@@ -19,6 +19,17 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+App_Install =[
+    'accounts.apps.AccountsConfig',
+    'orders.apps.OrdersConfig',
+    'products.apps.ProductsConfig'
+
+]
+
+Third_Party = [
+    'rest_framework',
+]
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,14 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # third party framework
-    'rest_framework',
-    # our apps 
-    'Account',
-    'Products',
-    'Order',
-    
+
+
 ]
+
+
+INSTALLED_APPS  += App_Install
+INSTALLED_APPS += Third_Party
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
