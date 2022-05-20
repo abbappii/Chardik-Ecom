@@ -104,7 +104,7 @@ class Products(InitModels):
         verbose_name_plural = "Product"
 
 
-
+# product images 
 class Product_images(InitModels):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='product_image')
     image=models.ImageField(upload_to='product_image_gallery', blank=True)
