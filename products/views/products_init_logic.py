@@ -1,8 +1,10 @@
 '''
-Category
-sub
-brand
-countries 
+This file contains the Business logics of the followings 
+
+- Category (Create , Update , view , Delete)
+- sub (Create , Update , view , Delete)
+- brand (Create , Update , view , Delete)
+- countries (Create , Update , view , Delete)
 '''
 from rest_framework import generics
 from products.database.init import *

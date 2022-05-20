@@ -1,3 +1,10 @@
+'''
+This file contains the Business logics of the followings 
+
+- Product (Create , Update , view , Delete)
+- Products Attribute (Create , Update , view , Delete)
+- Product Images (Create , Update , view , Delete)
+'''
 
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -7,12 +14,6 @@ from rest_framework.parsers import MultiPartParser, FileUploadParser,FormParser
 from utils.util import *
 from products.database.products import Products,Product_images,ProductAttribute
 from products.serializers import *
-'''
-Products
-produts attribute 
-images 
-'''
-
 
 #ProductsView
 class ProductListViewSet(generics.ListAPIView):
