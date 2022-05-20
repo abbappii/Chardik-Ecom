@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import InitModels
 '''
 Category
 sub Category
@@ -11,7 +12,7 @@ weight
 '''
 
 # Product  categories 
-class Categories(models.Model):
+class Categories(InitModels):
     category_name=models.CharField(
         max_length=100,
         null=True, 
@@ -35,8 +36,13 @@ class Categories(models.Model):
     def __str__(self):
         return self.category_name
 
+    class Meta:
+        verbose_name_plural = "Category"
+
+
+
 #Product Sub Categories
-class Sub_Categories(models.Model):
+class Sub_Categories(InitModels):
     category = models.ForeignKey(
         Categories, 
         on_delete=models.CASCADE, 
@@ -66,22 +72,31 @@ class Sub_Categories(models.Model):
     def __str__(self) -> str:
         return self.sub_category_name
 
+    class Meta:
+        verbose_name_plural = 'Sub Category'
+
 
 
 #Products Brands
-class Brand(models.Model):
+class Brand(InitModels):
     name = models.CharField(max_length=255,unique=True)
-    brand_website = models.CharField(max_length=255,unique=True)
+    brand_website = models.CharField(max_length=255,unique=True,null=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
 
+
+    class Meta:
+        verbose_name_plural = "Brand"
 
 #Products Countries
-class Countreies(models.Model):
-    name = models.CharField(max_length=255,unique=False)
+class Countreies(InitModels):
+    name = models.CharField(max_length=255,null=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name_plural = "Country"

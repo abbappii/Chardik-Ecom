@@ -29,7 +29,7 @@ Third_Party = [
     'rest_framework',
 ]
 
-INSTALLED_APPS = [
+Default_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,8 +41,8 @@ INSTALLED_APPS = [
 ]
 
 
-INSTALLED_APPS  += App_Install
-INSTALLED_APPS += Third_Party
+INSTALLED_APPS  = Default_APPS + App_Install + Third_Party
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

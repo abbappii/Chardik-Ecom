@@ -1,6 +1,9 @@
+
 from django.db import models
-from products.database.init import *
+
 from django.utils.translation import gettext_lazy as _
+
+from accounts.models import InitModels
 
 
 '''
@@ -9,29 +12,37 @@ attribute
 '''
 
 #Product Attribute model
-class ProductAttribute(models.Model):
+class ProductAttribute(InitModels):
     name = models.CharField(max_length=255,unique=False)
     description = models.TextField(blank=True)
+
     def __str__(self):
         return self.name
 
+    # custom Property 
+    def all_products(self):
+        return [products for products in self.Category_products.all()]
+
+    class Meta:
+        verbose_name_plural = "Product Attribute"
+
   
 #Product Model
-class Products(models.Model):
+class Products(InitModels):
     brand = models.ForeignKey(
-        Brand, 
+        'products.Brand', 
         on_delete=models.CASCADE,
         related_name= 'brand'
         )
     country = models.ForeignKey(
-        Countreies,
+        'products.Countreies',
         on_delete=models.CASCADE
         )
     
-    category = models.ManyToManyField(Categories)
-    sub_category = models.ManyToManyField(Sub_Categories)
+    category = models.ManyToManyField('products.Categories',related_name='Category_products')
+    sub_category = models.ManyToManyField('products.Sub_Categories',related_name='Sub_category_products')
 
-    name = models.CharField(
+    product_name = models.CharField(
         max_length=50, 
         null=True, 
         blank=True
@@ -44,25 +55,33 @@ class Products(models.Model):
         null=True, 
         blank=True
         )
-    descriptions = models.TextField(
-        max_length=500, 
+    short_descriptions = models.CharField(
+        max_length=1200, 
         null=True, 
-        blank=True
+        blank=True,
+        verbose_name='Short Description'
+        )
+    long_description = models.TextField(
+        null=True, 
+        blank=True,
+        verbose_name='Long Description'
         )
     alter_text = models.CharField(
-        max_length=100, 
+        max_length=400, 
         null=True, 
         blank=True
         )
     sku = models.CharField(
         max_length=20,
-        unique=True
+        unique=True,
+        verbose_name='SKU'
         )
     upc = models.CharField(
         max_length=12,
-        unique=True
+        unique=True,
+        verbose_name='UPC'
         )
-    feature_image=models.ImageField(upload_to='products')
+    feature_image=models.ImageField(upload_to='products',null=True)
     regular_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
@@ -73,19 +92,26 @@ class Products(models.Model):
         decimal_places=2,
         default=0.00
         )
-    inventory = models.IntegerField(default=0)
-    is_stock = models.BooleanField(default=True)
+
+    inventory = models.IntegerField(default=0,null=True,verbose_name="Inventory")
+    is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
 
 
     def __str__(self) -> str:
         return self.name
 
+    class Meta:
+        verbose_name_plural = "Product"
 
-class Product_images(models.Model):
+
+
+class Product_images(InitModels):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='product_image')
     image=models.ImageField(upload_to='product_image_gallery', blank=True)
     
     class Meta:
-        verbose_name = _("product image")
         verbose_name_plural = _("product images")
+
+    class Meta:
+        verbose_name_plural = "Product Image"
       
