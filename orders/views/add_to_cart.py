@@ -2,6 +2,7 @@ from products.database.products import Products
 from django.shortcuts import get_object_or_404
 from orders.database.cart import Cart 
 from orders.database.order import Order
+from django.shortcuts import render, redirect
 
 
 
@@ -47,6 +48,19 @@ def add_to_cart(request, pk):
         order = Order(user=request.user)
         order.save()
         order.orderItems.add(cart_check[0])
-        
 
+
+
+# show item in cart
+        
+def cart_view(request):
+    cart = Cart.objects.filter(user=request.user, purchased=False)
+    order = Order.objects.filter(user=request.user, ordered=False)
+
+    if cart.exists() and order.exists():
+        cart_order = order[0]
+        return render(request, 'Order/shopping-cart.html', context={'cart':cart, 'order':cart_order})
+
+    else:
+        return redirect('Products:index')
 
