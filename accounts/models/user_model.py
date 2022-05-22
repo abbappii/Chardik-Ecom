@@ -1,4 +1,4 @@
-from accounts.models import InitModels
+from accounts.models.initials import InitModels
 from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser,
  PermissionsMixin, BaseUserManager)
@@ -72,6 +72,9 @@ class User(AbstractBaseUser,PermissionsMixin):
 
     def get_short_name(self):
         return self.email
+
+    class Meta:
+        app_label = 'accounts'
 
 
 # User profile 

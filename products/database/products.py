@@ -3,7 +3,7 @@ from django.db import models
 
 from django.utils.translation import gettext_lazy as _
 
-from accounts.models import InitModels
+from accounts.models.initials import InitModels
 
 
 '''
@@ -39,8 +39,10 @@ class Products(InitModels):
         on_delete=models.CASCADE
         )
     
-    category = models.ManyToManyField('products.Categories',related_name='Category_products')
-    sub_category = models.ManyToManyField('products.Sub_Categories',related_name='Sub_category_products')
+    category = models.ManyToManyField('products.Categories',
+        related_name='Category_products')
+    sub_category = models.ManyToManyField('products.Sub_Categories',
+        related_name='Sub_category_products')
 
     product_name = models.CharField(
         max_length=50, 
@@ -106,7 +108,8 @@ class Products(InitModels):
 
 # product images 
 class Product_images(InitModels):
-    product = models.ForeignKey(Products, on_delete=models.CASCADE, related_name='product_image')
+    product = models.ForeignKey(Products, on_delete=models.CASCADE, 
+        related_name='product_image')
     image=models.ImageField(upload_to='product_image_gallery', blank=True)
     
     class Meta:

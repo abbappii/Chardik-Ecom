@@ -15,7 +15,10 @@ from utils.util import *
 from products.database.products import Products,Product_images,ProductAttribute
 from products.serializers import *
 
+
+
 #ProductsView
+
 class ProductListViewSet(generics.ListAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializers
@@ -38,6 +41,9 @@ class ProductCreateView(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+
+## Product Update view  
 
 class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
     queryset = Products.objects.all()

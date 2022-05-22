@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from accounts.database.user_model import User
+from accounts.models.user_model import User
 
 
 '''
