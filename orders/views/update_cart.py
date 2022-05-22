@@ -3,6 +3,8 @@ from django.shortcuts import get_object_or_404
 from orders.database.cart import Cart 
 from orders.database.order import Order
 from django.shortcuts import render, redirect
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 
 '''
@@ -12,6 +14,7 @@ Decrease Item in Cart
 '''
 
 # Remove item from cart
+@api_view(['GET','POST'])
 def remove_from_cart(request, pk):
     item = get_object_or_404(Products, pk=pk)
     order_table =  Order.objects.filter( user= request.user, ordered=False)
@@ -22,16 +25,20 @@ def remove_from_cart(request, pk):
             cart_check = Cart.objects.filter(item=item,user=request.user, purchased=False)[0]
             order.orderItems.remove(cart_check)
             cart_check.delete()
-            return redirect('Order:cartView')
+            return Response({})
+            #return redirect('Order:cartView')
         else:
-            return redirect('Products:index')
+            return Response({})
+            #return redirect('Products:index')
 
     else:
+        #return Response({})
         return redirect('Products:index')
 
 
 
 #Increase Item from Cart
+@api_view(['GET','POST'])
 def increase_item(request, pk):
     item = get_object_or_404(Products, pk=pk)
     order_table = Order.objects.filter(user=request.user, ordered=False)
@@ -43,15 +50,19 @@ def increase_item(request, pk):
             if cart_check.quantity>=1:
                  cart_check.quantity+=1
                  cart_check.save()
-                 return redirect('Order:cartView')
+                 return Response({})
+                 #return redirect('Order:cartView')
         else:
-            return redirect('Products:index')  
+            return Response({})
+            #return redirect('Products:index')  
     else:
-        return redirect('Products:index')
+        return Response({})
+        #return redirect('Products:index')
 
 
 
 #Decrease Item from cart
+@api_view(['GET','POST'])
 def decrease_item(request, pk):
     item = get_object_or_404(Products, pk=pk)
     order_table = Order.objects.filter(user=request.user, ordered=False)
@@ -63,13 +74,17 @@ def decrease_item(request, pk):
             if cart_check.quantity>1:
                  cart_check.quantity-=1
                  cart_check.save()
-                 return redirect('Order:cartView')
+                 return Response({})
+                 #return redirect('Order:cartView')
             else:
                 order.orderItems.remove(cart_check)
                 cart_check.delete()
-                return redirect('Products:index')
+                return Response({})
+                #return redirect('Products:index')
 
         else:
-            return redirect('Products:index')  
+            return Response({})
+            #return redirect('Products:index')  
     else:
-        return redirect('Products:index')
+        return Response({})
+        #return redirect('Products:index')

@@ -1,12 +1,16 @@
+from ast import Return
 from products.database.products import Products
 from django.shortcuts import get_object_or_404
 from orders.database.cart import Cart 
 from orders.database.order import Order
 from django.shortcuts import render, redirect
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 
 
 
 #add to cart function
+@api_view(['GET','POST'])
 def add_to_cart(request, pk):
     '''
     the item exist in product database or not
@@ -32,6 +36,7 @@ def add_to_cart(request, pk):
         if order.orderItems.filter(item=item).exists():
             cart_check[0].quantity +=1
             cart_check[0].save()
+            return Response({})
 
             '''
             Else it will add the item in active or exsit order table
@@ -39,6 +44,7 @@ def add_to_cart(request, pk):
         else:
             order.orderItems.add(cart_check[0])
             order.save()
+            return Response({})
             
         '''
         if the cart is empty and there is no active or exsist order than
@@ -48,19 +54,22 @@ def add_to_cart(request, pk):
         order = Order(user=request.user)
         order.save()
         order.orderItems.add(cart_check[0])
+        return Response({})
 
 
 
 # show item in cart
-        
+@api_view(['GET','POST'])     
 def cart_view(request):
     cart = Cart.objects.filter(user=request.user, purchased=False)
     order = Order.objects.filter(user=request.user, ordered=False)
 
     if cart.exists() and order.exists():
         cart_order = order[0]
-        return render(request, 'Order/shopping-cart.html', context={'cart':cart, 'order':cart_order})
+        return Response({})
+        #return render(request, 'Order/shopping-cart.html', context={'cart':cart, 'order':cart_order})
 
     else:
-        return redirect('Products:index')
+        return Response({})
+        #return redirect('Products:index')
 
