@@ -1,0 +1,12 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<div class="container">
+    <h1>Create Product</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {% render_form serializer %}
+        <button class="btn btn-primary" type="submit" value="submit">Create</button>
+    </form>
+</div>

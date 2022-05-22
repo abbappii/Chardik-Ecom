@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from accounts.database.user_model import User
+from accounts.database.user_model import *
 
 
 '''
@@ -38,5 +38,5 @@ class LoginSerializer(serializers.ModelSerializer):
 #user Profile Serializer
 class UserProfileSeriliazer(serializers.ModelSerializer):
     class Meta:
-        model = User
+        model = Profile
         fields= ['id', 'username','full_name','address','city','zipcode','country','phone','date_joined']

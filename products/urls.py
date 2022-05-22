@@ -12,9 +12,14 @@ urlpatterns = [
     path('sub_categories/<int:pk>/', SubCategoriesUpdateDelete.as_view(),name='sub_categories_update_delete'),
 
     # products URL
+    # path('product/', ProductListViewSet.as_view(), name='products' ),
+    # path('product/create/',ProductCreateView.as_view(), name='product_create' ),
+    # path('product/<slug:slug>/',ProductRetUpDesViewSet.as_view(), name='products_delete_update' ),
+
+    # products renderer url 
     path('product/', ProductListViewSet.as_view(), name='products' ),
     path('product/create/',ProductCreateView.as_view(), name='product_create' ),
-    path('product/<slug:slug>/',ProductRetUpDesViewSet.as_view(), name='products_delete_update' ),
+    path('product/<slug:slug>/',ProductDetail.as_view(), name='products_detail' ),
 
     # Brand part URL
     path('brand/', BrandView.as_view(), name='brand' ),
