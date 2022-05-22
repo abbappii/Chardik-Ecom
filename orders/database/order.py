@@ -11,7 +11,7 @@ Order
 
 # Order Models
 class Order (InitModels):
-    user = models.ForeignKey( settings.AUTH_USER_MODEL,on_delete=models.CASCADE )
+    user = models.ForeignKey( settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     orderItems = models.ManyToManyField(Cart)
     ordered = models.BooleanField(default=False)
     paymentId=models.CharField(max_length=264, blank=True, null=True)
