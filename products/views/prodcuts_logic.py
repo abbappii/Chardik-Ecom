@@ -20,7 +20,6 @@ from django.shortcuts import get_object_or_404
 
 
 #ProductsView
-<<<<<<< HEAD
 # class ProductListViewSet(generics.ListAPIView):
 #     queryset = Products.objects.all()
 #     serializer_class = ProductsSerializers
