@@ -1,4 +1,4 @@
-from accounts.models import InitModels
+from accounts.models.initials import InitModels
 from django.conf import settings
 from django.db import models
 from orders.database.cart import Cart
