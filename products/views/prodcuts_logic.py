@@ -17,7 +17,10 @@ from products.serializers import *
 from rest_framework.renderers import TemplateHTMLRenderer
 from django.shortcuts import get_object_or_404
 
+
+
 #ProductsView
+<<<<<<< HEAD
 # class ProductListViewSet(generics.ListAPIView):
 #     queryset = Products.objects.all()
 #     serializer_class = ProductsSerializers
@@ -58,6 +61,13 @@ class ProductListViewSet(APIView):
         return Response({'products': queryset})
 
 
+=======
+
+class ProductListViewSet(generics.ListAPIView):
+    queryset = Products.objects.all()
+    serializer_class = ProductsSerializers
+   
+>>>>>>> 410f7edb247ba565befcde0fe9f10921a12382aa
 class ProductCreateView(APIView):
     parser_classes = (MultiPartParser, FormParser)
 
@@ -97,3 +107,13 @@ class ProductDetail(APIView):
         serializer.save()
         return redirect('products')
 
+<<<<<<< HEAD
+=======
+
+## Product Update view  
+
+class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Products.objects.all()
+    serializer_class = ProductsSerializers
+    lookup_field = 'slug'
+>>>>>>> 410f7edb247ba565befcde0fe9f10921a12382aa

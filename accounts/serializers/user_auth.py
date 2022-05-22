@@ -1,5 +1,9 @@
 from rest_framework import serializers
+<<<<<<< HEAD
 from accounts.database.user_model import *
+=======
+from accounts.models.user_model import User
+>>>>>>> 410f7edb247ba565befcde0fe9f10921a12382aa
 
 
 '''
