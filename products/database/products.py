@@ -100,7 +100,7 @@ class Products(InitModels):
 
 
     def __str__(self) -> str:
-        return self.name
+        return self.product_name
 
     class Meta:
         verbose_name_plural = "Product"

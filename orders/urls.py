@@ -1,10 +1,23 @@
-from django.urls import path
+from django.urls import path, include
 from orders.views.coupon import (
     CouponView,CouponSingleView,CouponCreateView,
     CouponDeleteView,CouponEditView
 )
 
-urlpatterns = []
+from rest_framework import routers
+from orders.views.cart_order import *
+
+router = routers.DefaultRouter()
+router.register('cart',MyCart,basename="MyCart")
+router.register('orderviewset',OrderViewset,basename='OrderView')
+
+urlpatterns = [
+    path("",include(router.urls)),
+    path("addtocart/",AddtoCartView.as_view(),name="addtocart"),
+    path('updatecart/',Updatecart.as_view(),name='updatecart'),
+    path('editcart/',Editcart.as_view(),name='editcart'),
+    path('deletecart/',DeleteCart.as_view(),name='deleltecart'),
+]
 
 coupon_URL = [
     path('list/',CouponView.as_view()),
