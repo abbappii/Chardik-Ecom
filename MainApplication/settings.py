@@ -27,6 +27,8 @@ App_Install =[
 
 Third_Party = [
     'rest_framework',
+    'drf_yasg',
+    'corsheaders',
 ]
 
 Default_APPS = [
@@ -47,6 +49,9 @@ INSTALLED_APPS  = Default_APPS + App_Install + Third_Party
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -135,6 +140,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
 
+
+# swagger settings 
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic'
+        }
+    },
+}
+
+REDOC_SETTINGS = {
+   'LAZY_RENDERING': False,
+}
+
+# cors header part 
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+)
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 # REST_FRAMEWORK = {
    
