@@ -133,11 +133,7 @@ MEDIA_ROOT = MEDIA_DIR
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-<<<<<<< HEAD
-AUTH_USER_MODEL = 'accounts.Profile'
-=======
 AUTH_USER_MODEL = 'accounts.User'
->>>>>>> 410f7edb247ba565befcde0fe9f10921a12382aa
 
 
 # REST_FRAMEWORK = {
