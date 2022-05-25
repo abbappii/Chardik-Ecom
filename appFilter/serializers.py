@@ -5,8 +5,9 @@ from rest_framework import serializers
 
 # imporing models 
 from products.database.products import Products
+
 from products.database.init import (
-    Brand, Countreies
+    Brand, Categories, Countreies
 )
 
 
@@ -24,3 +25,11 @@ class ProductsAPI(serializers.ModelSerializer):
         model = Products
         fields = '__all__'
         
+        
+# Category API ENDpoint
+# show products under 
+class CategoryBaseProductsAPI(serializers.ModelSerializer):
+    Category_products = ProductsAPI(many=True)
+    class Meta:
+        model = Categories
+        fields = ['id','category_name','Category_products']

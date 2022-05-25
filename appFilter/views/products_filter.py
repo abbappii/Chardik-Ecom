@@ -17,11 +17,17 @@ Frontend
 
 from rest_framework import generics
 
+
 # importing models 
+from products.database.init import   (
+    Categories,Sub_Categories
+)
 from products.database.products import Products
 
 # importing API
-from appFilter.serializers import ProductsAPI
+from appFilter.serializers import (
+    ProductsAPI,CategoryBaseProductsAPI
+)
 
 
 # products Queries show ALL
@@ -30,3 +36,10 @@ class AllProductsView(generics.ListAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductsAPI
 
+
+
+# SHow products under Categories
+
+class ProductsUnderCategoryView(generics.ListAPIView):
+    queryset = Categories.objects.all()
+    serializer_class = CategoryBaseProductsAPI    
