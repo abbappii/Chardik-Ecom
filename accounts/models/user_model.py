@@ -92,3 +92,7 @@ class Profile(InitModels):
 
     def __str__(self):
         return self.user.email 
+
+    
+    class Meta:
+        verbose_name_plural = "Profile"

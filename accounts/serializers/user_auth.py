@@ -1,9 +1,14 @@
 from rest_framework import serializers
+<<<<<<< HEAD
 
 from accounts.models.user_model import *
 
 from accounts.models.user_model import User
 
+=======
+from accounts.models.user_model import *
+from accounts.models.user_model import User
+>>>>>>> 4f182d193358299a8622c10ba7f8ab0483aed009
 
 
 '''
