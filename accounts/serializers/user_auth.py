@@ -1,6 +1,14 @@
 from rest_framework import serializers
+<<<<<<< HEAD
+
+from accounts.models.user_model import *
+
+from accounts.models.user_model import User
+
+=======
 from accounts.models.user_model import *
 from accounts.models.user_model import User
+>>>>>>> 4f182d193358299a8622c10ba7f8ab0483aed009
 
 
 '''
@@ -11,21 +19,21 @@ Profile
 
 #user Registration Serializer
 class UserRegistrationSerializer(serializers.ModelSerializer):
-    confirm_pasworod = serializers.CharField(style={'input_type': 'password'})
+    confirm_password = serializers.CharField(style={'input_type': 'password'})
     class Meta:
         model = User
-        fields = ['email', 'password','confirm_pasworod']
+        fields = ['email', 'password','confirm_password']
         extra_kwargs={'password' :{'write_only':True}}
 
     def validate(self, attrs):
         password = attrs.get('password')
-        confirm_pasworod = attrs.get('confirm_pasworod')
-        if password != confirm_pasworod :
+        confirm_password = attrs.get('confirm_password')
+        if password != confirm_password :
             raise ValueError("Password and Confirm Password doesn't match !!!! ")
         return attrs
 
     def create(self, validated_data):
-        return User.objects._create_user(**validated_data)
+        return User.objects.create_user(**validated_data)
 
 
 #user Login Serializer
