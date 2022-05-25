@@ -7,6 +7,7 @@ from appFilter.views.products_filter import (
 
 
 
+
 urlpatterns = []
 
 
