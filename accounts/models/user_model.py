@@ -13,7 +13,7 @@ Profile
 #Create user and super user
 
 class MyUserManager(BaseUserManager):
-    def create_user(self, email,password=None,confirm_password=None, **extra_fields):
+    def create_user(self,email,password=None,confirm_password=None, **extra_fields):
         if not email:
             raise ValueError("Must Have to Eamil")
         email = self.normalize_email(email)
@@ -41,6 +41,8 @@ class MyUserManager(BaseUserManager):
 
 # over write AbstractBaseUser and set email 
 class User(AbstractBaseUser,PermissionsMixin):
+    username = models.CharField(max_length=300,unique=True,null=True,
+        verbose_name="Username")
     email=models.EmailField(unique=True, null=False)
     is_staff=models.BooleanField(gettext_lazy('staff status'),
     default=False,
@@ -61,7 +63,8 @@ class User(AbstractBaseUser,PermissionsMixin):
     
 
 
-    USERNAME_FIELD='email'
+    USERNAME_FIELD='username'
+    REQUIRED_FIELDS = ['email']
     objects=MyUserManager()
 
     def __str__(self):
@@ -81,7 +84,7 @@ class User(AbstractBaseUser,PermissionsMixin):
 class Profile(InitModels):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 
-    username=models.CharField(max_length=264, blank=True)
+    # username=models.CharField(max_length=264, blank=True)
     full_name=models.CharField(max_length=264, blank=True)
     address=models.TextField(max_length=300, blank=True)
     city=models.CharField(max_length=40, blank=True)
