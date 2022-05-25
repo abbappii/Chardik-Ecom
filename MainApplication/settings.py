@@ -28,7 +28,7 @@ App_Install =[
 Third_Party = [
     'rest_framework',
     'drf_yasg',
-    'corsheaders',
+    # 'corsheaders',
 ]
 
 Default_APPS = [
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
-    'corsheaders.middleware.CorsMiddleware',
+    # 'corsheaders.middleware.CorsMiddleware',
 
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -154,14 +154,14 @@ REDOC_SETTINGS = {
    'LAZY_RENDERING': False,
 }
 
-# cors header part 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:3000',
-)
+# # cors header part 
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:3000',
+# )
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-]
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+# ]
 
 # REST_FRAMEWORK = {
    
@@ -174,11 +174,11 @@ CORS_ALLOWED_ORIGINS = [
 
 from datetime import timedelta
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=90),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': False,
-    'UPDATE_LAST_LOGIN': False,
+    'ACCESS_TOKEN_LIFETIME': timedelta(seconds=20),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
 
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': SECRET_KEY,
