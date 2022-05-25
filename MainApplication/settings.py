@@ -28,6 +28,8 @@ App_Install =[
 Third_Party = [
     'rest_framework',
     'drf_yasg',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     # 'corsheaders',
 ]
 
@@ -163,14 +165,21 @@ REDOC_SETTINGS = {
 #     "http://localhost:3000",
 # ]
 
-# REST_FRAMEWORK = {
+'''
+Rest Framwork settings 
+     - Login 
+     - pagination 
+     - logout
+'''
+
+REST_FRAMEWORK = {
    
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-      
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     )
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
   
-# }
+}
 
 
 
@@ -195,7 +204,7 @@ SIMPLE_JWT = {
     'JWK_URL': None,
     'LEEWAY': 0,
 
-    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_TYPES': ('Bearer','JWT'),
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
     'USER_ID_FIELD': 'id',
     'USER_ID_CLAIM': 'user_id',
