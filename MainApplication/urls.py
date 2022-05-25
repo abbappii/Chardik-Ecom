@@ -36,6 +36,7 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('coupon/',include('orders.urls')),
     path('user/', include('accounts.urls')),
+    path('queries/',include('appFilter.urls')),
 
     # Configuration of Rest Framework Token
     
