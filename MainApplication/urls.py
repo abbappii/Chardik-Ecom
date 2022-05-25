@@ -26,12 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('products/', include('products.urls')),
     path('coupon/',include('orders.urls')),
-<<<<<<< HEAD
     path('user/', include('accounts.urls'))
-=======
-   #  path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
->>>>>>> 4f182d193358299a8622c10ba7f8ab0483aed009
 ]
 
 
