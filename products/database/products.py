@@ -106,6 +106,21 @@ class Products(InitModels):
         verbose_name_plural = "Product"
 
 
+    # Custom Property 
+
+    @property
+    def get_category(self):
+        category = [category.category_name for category in self.category.all()]
+        return category
+    
+
+    @property
+    def get_sub_category(self):
+        sub_category = [ sub_category.sub_category_name for  sub_category in \
+             self.sub_category.all()]
+        return sub_category
+
+
 # product images 
 class Product_images(InitModels):
     product = models.ForeignKey(Products, on_delete=models.CASCADE, 

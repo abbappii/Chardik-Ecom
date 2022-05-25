@@ -21,12 +21,12 @@ from rest_framework import generics
 from products.database.products import Products
 
 # importing API
-from products.serializers import ProductsSerializers
+from appFilter.serializers import ProductsAPI
 
 
 # products Queries show ALL
 
 class AllProductsView(generics.ListAPIView):
     queryset = Products.objects.all()
-    serializer_class = ProductsSerializers
+    serializer_class = ProductsAPI
 

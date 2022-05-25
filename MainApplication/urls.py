@@ -38,6 +38,11 @@ urlpatterns = [
     path('user/', include('accounts.urls')),
     path('queries/',include('appFilter.urls')),
 
+
+    # configure the redoc setup
+     #  path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
     # Configuration of Rest Framework Token
     
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
