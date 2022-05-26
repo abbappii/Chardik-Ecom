@@ -43,3 +43,9 @@ class BranBasedApi(serializers.ModelSerializer):
         fields = ['id','name','description','brand']
 
 
+# Countries API EndPoint
+class CountryBaseAPI(serializers.ModelSerializer):
+    country = ProductsAPI(many=True)
+    class Meta:
+        model = Countreies
+        fields = ['id','name','country']
