@@ -20,13 +20,13 @@ from rest_framework import generics
 
 # importing models 
 from products.database.init import   (
-    Categories,Sub_Categories
+    Brand, Categories,Sub_Categories
 )
 from products.database.products import Products
 
 # importing API
 from appFilter.serializers import (
-    ProductsAPI,CategoryBaseProductsAPI
+    ProductsAPI,CategoryBaseProductsAPI, BranBasedApi
 )
 
 
@@ -43,3 +43,11 @@ class AllProductsView(generics.ListAPIView):
 class ProductsUnderCategoryView(generics.ListAPIView):
     queryset = Categories.objects.all()
     serializer_class = CategoryBaseProductsAPI    
+
+
+
+# show products under Brand 
+
+class ProductsUnderBrandView(generics.ListAPIView):
+    queryset = Brand.objects.all()
+    serializer_class = BranBasedApi
