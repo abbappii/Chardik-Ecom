@@ -15,18 +15,19 @@ Frontend
 
 # importing initials 
 
+from typing import Counter
 from rest_framework import generics
 
 
 # importing models 
 from products.database.init import   (
-    Brand, Categories,Sub_Categories
+    Brand, Categories, Countreies,Sub_Categories
 )
 from products.database.products import Products
 
 # importing API
 from appFilter.serializers import (
-    ProductsAPI,CategoryBaseProductsAPI, BranBasedApi
+    ProductsAPI,CategoryBaseProductsAPI, BranBasedApi, CountryBaseAPI
 )
 
 
@@ -51,3 +52,10 @@ class ProductsUnderCategoryView(generics.ListAPIView):
 class ProductsUnderBrandView(generics.ListAPIView):
     queryset = Brand.objects.all()
     serializer_class = BranBasedApi
+
+#show products under Country
+class ProductsUnderCountryView(generics.ListAPIView):
+    queryset = Countreies.objects.all()
+    serializer_class = CountryBaseAPI
+
+    

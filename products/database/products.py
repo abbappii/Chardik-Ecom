@@ -36,7 +36,7 @@ class Products(InitModels):
         )
     country = models.ForeignKey(
         'products.Countreies',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE, related_name='country'
         )
     
     category = models.ManyToManyField('products.Categories',
