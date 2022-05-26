@@ -1,5 +1,6 @@
 
 from rest_framework import generics
+from rest_framework.generics import GenericAPIView
 from rest_framework import viewsets, mixins, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -28,13 +29,13 @@ class MyCart(viewsets.ViewSet):
             all_data.append(cart)
         return Response(all_data)
 
-class AddtoCartView(APIView):
+class AddtoCartView(GenericAPIView):
     # permission_classes=[IsAuthenticated, ]
     # authentication_classes=[TokenAuthentication, ]
     
     def post(self,request):
         # get product 
-        product_id = request.data['id']
+        product_id = int(request.data.get('id'))
         print(product_id)
         product_obj = Products.objects.get(id=product_id)
         # print(product_obj,"product_obj")  
@@ -50,10 +51,10 @@ class AddtoCartView(APIView):
                 # check product already in cart or not 
                 if this_product_in_cart.exists():
                     cartprod_uct = CartProduct.objects.filter(product=product_obj).filter(cart__complete=False).first()
-                    cartprod_uct.quantity +=1
-                    cartprod_uct.subtotal +=product_obj.new_price
+                    cartprod_uct.quantity += 1
+                    cartprod_uct.subtotal += product_obj.new_price
                     cartprod_uct.save()
-                    cart_cart.total +=product_obj.new_price
+                    cart_cart.total += product_obj.new_price
                     cart_cart.save()
 
                 # if product is not in cart add this product to cart 
@@ -194,3 +195,21 @@ class DeleteCart(APIView):
     def post(self,request):
         cart_product = CartProduct.objects.get(id = request.data['id'])
         cart_product.delete()
+
+
+
+# test code
+
+from rest_framework.generics import GenericAPIView
+
+class AddtoCartViews(GenericAPIView):
+    # permission_classes=[IsAuthenticated, ]
+    # authentication_classes=[TokenAuthentication, ]
+    
+    def post(self,request):
+        # get product 
+        product_id = request.data.get('id')
+        print(product_id)
+        # print(int(request.data['ID']))
+    
+        return Response({'data':'data'})
