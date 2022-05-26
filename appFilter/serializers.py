@@ -33,3 +33,13 @@ class CategoryBaseProductsAPI(serializers.ModelSerializer):
     class Meta:
         model = Categories
         fields = ['id','category_name','Category_products']
+
+
+# Brand Api Endpoint
+class BranBasedApi(serializers.ModelSerializer):
+    brand = ProductsAPI(many=True)
+    class Meta:
+        model = Brand
+        fields = ['id','name','description','brand']
+
+
