@@ -1,0 +1,30 @@
+[
+    {
+        "model":"accounts.userpermission",
+        "pk":1,
+        "fields":{
+            "permission_name":"Admin"
+        }
+    },
+    {
+        "model":"accounts.userpermission",
+        "pk":2,
+        "fields":{
+            "permission_name":"Manager"
+        }
+    },
+    {
+        "model":"accounts.userpermission",
+        "pk":3,
+        "fields":{
+            "permission_name":"Stuff"
+        }
+    },
+    {
+        "model":"accounts.userpermission",
+        "pk":4,
+        "fields":{
+            "permission_name":"Customer"
+        }
+    }
+]

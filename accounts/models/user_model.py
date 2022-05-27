@@ -1,3 +1,4 @@
+from contextlib import nullcontext
 from accounts.models.initials import InitModels
 from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser,
@@ -63,6 +64,8 @@ class User(AbstractBaseUser,PermissionsMixin):
     
 
 
+
+
     USERNAME_FIELD='username'
     REQUIRED_FIELDS = ['email']
     objects=MyUserManager()
@@ -80,22 +83,3 @@ class User(AbstractBaseUser,PermissionsMixin):
         app_label = 'accounts'
 
 
-# User profile 
-class Profile(InitModels):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-
-    # username=models.CharField(max_length=264, blank=True)
-    full_name=models.CharField(max_length=264, blank=True)
-    address=models.TextField(max_length=300, blank=True)
-    city=models.CharField(max_length=40, blank=True)
-    zipcode=models.CharField(max_length=10, blank=True)
-    country=models.CharField(max_length=50, blank=True)
-    phone=models.CharField(max_length=20, blank=True)
-    
-
-    def __str__(self):
-        return self.user.email 
-
-    
-    class Meta:
-        verbose_name_plural = "Profile"
