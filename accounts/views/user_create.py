@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
+from MainApplication.scripts.permission import IsCustomer
 from accounts.serializers.user_auth import (UserProfileSeriliazer, 
-UserRegistrationSerializer,LoginSerializer)
+UserRegistrationSerializer,LoginSerializer, UserChangePasswordSerializer)
 
 from rest_framework.response import Response
 from rest_framework import status
@@ -54,3 +55,12 @@ class UserProfileView(APIView):
     def get(self, request):
         serializer = UserProfileSeriliazer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+# password change View 
+class UserChangePasswordView(APIView):
+  permission_classes = [IsCustomer]
+  
+  def post(self, request, format=None):
+    serializer = UserChangePasswordSerializer(data=request.data, context={'user':request.user})
+    serializer.is_valid(raise_exception=True)
+    return Response({'msg':'Password Changed Successfully'}, status=status.HTTP_200_OK)
