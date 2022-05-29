@@ -4,6 +4,13 @@ from rest_framework import serializers
 # importing models
 from accounts.models.profile import Profile
 
+# User profile API
+
+class UserProfileSeriliazers(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields= ['id', 'full_name','address','city','zipcode','country',
+        'phone','date_joined']
 
 
 # Give Permission API
