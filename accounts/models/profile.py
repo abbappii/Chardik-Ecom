@@ -5,8 +5,10 @@ This file contains the followings
 '''
 
 from django.db import models
+from django.db.models.signals import pre_save
 from accounts.models.initials import InitModels
 from accounts.models.user_model import User
+from MainApplication.scripts.customer_ID import unique_customerID_generate
 
 
 # Permission Models 
@@ -46,9 +48,17 @@ class Profile(InitModels):
     class Meta:
         verbose_name_plural = "Profile"
 
-
     # custom property
     @property
     def get_permission(self):
         permissions = [permission.permission_name for permission in self.permission.all()]
         return permissions
+
+    # unique customer ID creating process
+def make_customer_ID(sender,instance,*args,**kwargs):
+    if not instance.customer_ID:
+        instance.customer_ID =unique_customerID_generate(instance)
+
+pre_save.connect(make_customer_ID,sender=Profile)
+
+
