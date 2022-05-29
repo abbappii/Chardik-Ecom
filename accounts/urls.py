@@ -10,11 +10,11 @@ from accounts.views.user_up_del_view import(
     UserDataUpdate, UserDeleteView
 )
 from accounts.views.user_init import (
-    LoginView
+    LoginView,RegisterView
 )
 
 urlpatterns = [ 
-    path('register/', UserRegisterView.as_view(), name='register'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='profile'),
     path('changepassword/', UserChangePasswordView.as_view()),

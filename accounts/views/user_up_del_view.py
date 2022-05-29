@@ -9,12 +9,14 @@ from rest_framework import status
 from rest_framework.generics import GenericAPIView
 from accounts.models.profile import Profile
 
-from accounts.serializers.profile_up_de  import UserProfileSeriliazers
 
 from MainApplication.scripts.permission import (
     IsAdmin,IsManager, IsCustomer
 )
 from accounts.models.user_model import User
+from accounts.serializers.profileAPI import (
+    UserProfileSeriliazers
+)
 
 '''
 User Profile Update View

@@ -38,7 +38,7 @@ class Profile(InitModels):
         "Customer ID",editable=False)
 
     # Permission Given property
-    permission = models.ManyToManyField(UserPermission,null=True)
+    permission = models.ManyToManyField(UserPermission)
     
 
     def __str__(self):
