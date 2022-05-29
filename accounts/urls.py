@@ -6,6 +6,10 @@ from accounts.views.permission_view import (
     PermissionListsView,PermissionSingleView
 )
 
+from accounts.views.user_up_del_view import( 
+    UserDataUpdate, UserDeleteView
+)
+
 urlpatterns = [ 
     path('register/', UserRegisterView.as_view(), name='register'),
     path('login/', UserLoginView.as_view(), name='login'),
@@ -22,4 +26,10 @@ permission_URL =[
 ]
 
 
+user_update_delete = [ 
+    path('user_update/',UserDataUpdate.as_view()),
+    path('user_delete/<int:pk>/', UserDeleteView.as_view()),
+]
+
 urlpatterns += permission_URL
+urlpatterns += user_update_delete
