@@ -1,3 +1,13 @@
-from django.contrib import admin
 
-# Register your models here.
+from django.contrib import admin
+from accounts.models.user_model import (
+    User
+)
+from accounts.models.profile import Profile,UserPermission
+
+admin.site.register(User)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display = ['id','full_name','get_permission']
+admin.site.register(Profile,ProfileAdmin)
+admin.site.register(UserPermission)
+

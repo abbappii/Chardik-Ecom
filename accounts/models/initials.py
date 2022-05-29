@@ -15,5 +15,4 @@ class InitModels(models.Model):
 
     class Meta:
         abstract = True
-
-
+                             

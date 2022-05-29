@@ -1,0 +1,13 @@
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+<div class="container">
+
+    <h1>Product - {{ product.product_name }}</h1>
+    <form action="{% url 'products_detail' slug=products.slug %}" method="POST">
+        {% csrf_token %}
+        {% render_form serializer %}
+        <input type="submit" value="Save">
+    </form>
+</div>
