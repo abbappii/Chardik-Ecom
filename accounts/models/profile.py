@@ -32,6 +32,8 @@ class Profile(InitModels):
     zipcode=models.CharField(max_length=10, blank=True,null=True)
     country=models.CharField(max_length=50, blank=True,null=True)
     phone=models.CharField(max_length=20, blank=True,null=True)
+    customer_ID = models.CharField(max_length=20,null=True,unique=True,verbose_name=
+        "Customer ID",editable=False)
 
     # Permission Given property
     permission = models.ManyToManyField(UserPermission,null=True)
