@@ -32,12 +32,19 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         return User.objects.create_user(**validated_data)
 
 
-#user Login Serializer
+# #user Login Serializer
+# class LoginSerializer(serializers.ModelSerializer):
+#     email = serializers.EmailField()
+#     class Meta:
+#         model = User
+#         fields = ['email','password']
+
+# login serializers
 class LoginSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField()
+    password = serializers.CharField(style={'input_type':'password'})
     class Meta:
         model = User
-        fields = ['email','password']
+        fields = ['username','password']
 
 
 #user Profile Serializer
