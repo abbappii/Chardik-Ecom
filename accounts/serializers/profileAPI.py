@@ -10,7 +10,7 @@ class UserProfileSeriliazers(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields= ['id', 'full_name','address','city','zipcode','country',
-        'phone','date_joined']
+        'phone']
 
 
 # Give Permission API
