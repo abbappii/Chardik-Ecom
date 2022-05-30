@@ -4,22 +4,23 @@ UserPasswordRestEmailSerializer,UserPasswordEmailLinkResetSerializer)
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
-
+from MainApplication.scripts.permission import IsCustomer
+from accounts.serializers.user_auth import UserChangePasswordSerializer
 '''
 User Password Change View
 User Password reset link create
 User Password rest link send
 '''
 
-#User Password Change View
-class UserPasswordChangedView(APIView):
-    def post(self, request, format=None):
-        permission_classes=[IsAuthenticated]
-        serializer = UserPasswordChangedSerializer(data=request.data, context={'user':request.user})
-        if serializer.is_valid(raise_exception=True):
-            return Response({'message':'Password Changed Successfully'}, status=status.HTTP_200_OK)
-        return Response({'message':'Failed to Change Password'}, status=status.HTTP_400_BAD_REQUEST)
 
+# password change View 
+class UserChangePasswordView(APIView):
+  permission_classes = [IsCustomer]
+  
+  def post(self, request, format=None):
+    serializer = UserChangePasswordSerializer(data=request.data, context={'user':request.user})
+    serializer.is_valid(raise_exception=True)
+    return Response({'msg':'Password Changed Successfully'}, status=status.HTTP_200_OK)
 
 #User Password reset link create
 class UserPasswordRestEmailView(APIView):

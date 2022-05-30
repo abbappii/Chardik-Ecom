@@ -1,6 +1,11 @@
 from django.urls import path
 
-from accounts.views.user_create import *
+from accounts.views.password_rest import (
+    UserChangePasswordView,
+    UserPasswordRestEmailView,
+    UserPasswordEmailLinkResetView
+)
+
 from accounts.views.permission_view import (
     PermissionCreateView,PermissionDestroyView,PermissionEditView,
     PermissionListsView,PermissionSingleView
@@ -10,14 +15,15 @@ from accounts.views.user_up_del_view import(
     UserDataUpdate, UserDeleteView
 )
 from accounts.views.user_init import (
-    LoginView,RegisterView
+    LoginView,RegisterView, UserProfileView
 )
 
 urlpatterns = [ 
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='profile'),
-    path('changepassword/', UserChangePasswordView.as_view()),
+
+
 ]
 
 permission_URL =[
@@ -34,5 +40,12 @@ user_update_delete = [
     path('user_delete/<int:pk>/', UserDeleteView.as_view()),
 ]
 
+user_pass_change_reset_email = [ 
+    path('changepassword/', UserChangePasswordView.as_view()),
+    path('send-reset-password-email/',UserPasswordRestEmailView.as_view()),
+    path('reset-password/<uid>/<token>/',UserPasswordEmailLinkResetView.as_view()),
+]
+
 urlpatterns += permission_URL
 urlpatterns += user_update_delete
+urlpatterns += user_pass_change_reset_email
