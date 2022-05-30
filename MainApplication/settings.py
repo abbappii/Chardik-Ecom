@@ -22,7 +22,8 @@ ALLOWED_HOSTS = []
 App_Install =[
     'accounts.apps.AccountsConfig',
     'orders.apps.OrdersConfig',
-    'products.apps.ProductsConfig'
+    'products.apps.ProductsConfig',
+    'inventory.apps.InventoryConfig'
 ]
 
 Third_Party = [
