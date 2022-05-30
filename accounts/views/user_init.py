@@ -116,5 +116,5 @@ class UserProfileView(APIView):
     permission_classes=[IsCustomer]
 
     def get(self, request):
-        serializer = UserProfileSeriliazer(request.user)
+        serializer = UserProfileSeriliazer(request.user.profile)
         return Response(serializer.data, status=status.HTTP_200_OK)
