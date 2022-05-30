@@ -3,7 +3,7 @@ This file contains followings
     - User context
     - login view 
     - register view 
-
+    - profile view
 
 '''
 
@@ -25,7 +25,9 @@ from accounts.serializers.profileAPI import (
 from accounts.models.user_model import User
 from accounts.models.profile import Profile
 
-
+from rest_framework.views import APIView
+from MainApplication.scripts.permission import IsCustomer
+from accounts.serializers.user_auth import UserProfileSeriliazer            
 
 
 # Login view 
@@ -108,4 +110,11 @@ class RegisterView(GenericAPIView):
         else:
             return Response({'Error':'No Validate data given'})
 
-            
+# User Profile view 
+
+class UserProfileView(APIView):
+    permission_classes=[IsCustomer]
+
+    def get(self, request):
+        serializer = UserProfileSeriliazer(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
