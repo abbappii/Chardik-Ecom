@@ -22,6 +22,7 @@ from accounts.serializers.profileAPI import (
 User Profile Update View
 '''
 class UserDataUpdate(GenericAPIView):
+    serializer_class = UserProfileSeriliazers
     permission_classes = [IsCustomer]
 
     def post(self,request):

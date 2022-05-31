@@ -21,3 +21,6 @@ supplier_URL = [
     path('supplier/delete/<int:pk>/',SupplierDeleteApiView.as_view()),
     path('supplier/create/',SupplierCreateApiView.as_view())
 ]
+
+
+urlpatterns += supplier_URL
