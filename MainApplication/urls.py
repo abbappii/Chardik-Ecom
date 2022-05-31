@@ -37,6 +37,7 @@ urlpatterns = [
     path('coupon/',include('orders.urls')),
     path('user/', include('accounts.urls')),
     path('queries/',include('appFilter.urls')),
+    path('inventory/',include('inventory.urls')),
 
     path('supplier/',include('inventory.urls')),
 
