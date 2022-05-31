@@ -1,10 +1,9 @@
 
 
 '''
-this file contains Serializers -
-
-Supplier Serializer
-Purchase Serializer
+this file contains Serializers 
+        - Supplier Serializer
+        - Purchase Serializer
 '''
 
 # import section 
