@@ -10,14 +10,36 @@ Purchase show
 Purchase Edit Delete and Update class
 '''
 
-# Purchase show 
-class PurchaseList(generics.ListCreateAPIView):
+# view List Function 
+
+class PurchaseView(generics.ListAPIView):
     queryset = Purchase.objects.all()
     serializer_class = PurchaseSerialiers
 
 
+# Single View 
 
-#Purchase Edit Delete and Update class
-class PurchaseDetail(generics.RetrieveUpdateDestroyAPIView):
+class PurchaseSingleView(generics.RetrieveAPIView):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerialiers
+
+
+#  Create View 
+
+class PurchaseCreateView(generics.CreateAPIView):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerialiers
+
+
+# delete View 
+
+class PurchaseDeleteView(generics.DestroyAPIView):
+    queryset = Purchase.objects.all()
+    serializer_class = PurchaseSerialiers
+
+
+# Single Edit View 
+
+class PurchaseEditView(generics.UpdateAPIView):
     queryset = Purchase.objects.all()
     serializer_class = PurchaseSerialiers
