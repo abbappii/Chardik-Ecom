@@ -22,7 +22,7 @@ from MainApplication.scripts.permission import (
 # Permission Create View
 
 class PermissionCreateView(generics.CreateAPIView):
-    permission_classes = [IsAdmin]
+    permission_classes = [IsAdmin] 
     queryset = Profile.objects.all()
     serializer_class = GivePermissionAPI
 

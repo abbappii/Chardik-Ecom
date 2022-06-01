@@ -15,6 +15,7 @@ Profile
 
 #user Registration Serializer
 class UserRegistrationSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(style={'input_type': 'password'})
     confirm_password = serializers.CharField(style={'input_type': 'password'})
     class Meta:
         model = User
