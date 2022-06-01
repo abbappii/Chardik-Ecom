@@ -3,7 +3,7 @@ from accounts.models.initials import InitModels
 from django.db import models
 from django.contrib.auth.models import (AbstractBaseUser,
  PermissionsMixin, BaseUserManager)
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy as _
 
 '''
 MyUserManager
@@ -14,30 +14,31 @@ Profile
 #Create user and super user
 
 class MyUserManager(BaseUserManager):
-    def create_user(self,email,password=None,confirm_password=None, **extra_fields):
+    """custom user email where email is unique.
+    We can also pass Full name , email and password here"""
+
+    def create_user(self, email, password, **extra_fields):
+        """Create and save a User given email and password"""
         if not email:
-            raise ValueError("Must Have to Eamil")
+            raise ValueError(_("The Email is must be set"))
         email = self.normalize_email(email)
-        user =self.model(email=email, **extra_fields)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
-        user.save(using=self._db)
+        user.save()
         return user
 
-    def create_superuser(self,email, password=None, **extra_fields):
-        extra_fields.setdefault('is_staff',True)
-        extra_fields.setdefault('is_superuser',True)
-        extra_fields.setdefault('is_active',True)
+    def create_superuser(self, email, password, **extra_fields):
+        """Create and save Super user with given email address"""
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)
 
         if extra_fields.get('is_staff') is not True:
-            raise ValueError('Superuse must have is_staff=True')
-
+            raise ValueError(_("Supperuser must have is_staff=True"))
         if extra_fields.get('is_superuser') is not True:
-            raise ValueError('Superuse must have is_superuser=True')
-        
-        if extra_fields.get('is_active') is not True:
-            raise ValueError('Superuse must have is_active=True')
+            raise ValueError(_("Supperuser must have is_superuser=True"))
 
-        return self.create_user(email,password, **extra_fields)
+        return self.create_user(email, password, **extra_fields)
 
 
 # over write AbstractBaseUser and set email 
@@ -45,13 +46,16 @@ class User(AbstractBaseUser,PermissionsMixin):
     username = models.CharField(max_length=300,unique=True,null=True,
         verbose_name="Username")
     email=models.EmailField(unique=True, null=False)
-    is_staff=models.BooleanField(gettext_lazy('staff status'),
+    is_staff=models.BooleanField(_('staff status'),
     default=False,
-     help_text=gettext_lazy('Designates whether the user can log in this site'))
+     help_text=_('Designates whether the user can log in this site'))
 
-    is_active=models.BooleanField(gettext_lazy('active'),default=True,
-     help_text=gettext_lazy('Designates whether this user should be treated as active .\
+    is_active=models.BooleanField(_('active'),default=True,
+     help_text=_('Designates whether this user should be treated as active .\
       Unselected this instead of deleting accounts'))
+
+    password = models.CharField(max_length=1500,null=True)
+    confirm_password = models.CharField(max_length=1500,null=True)
     date_joined=models.DateField(auto_now_add=True)
 
     # username=models.CharField(max_length=264, blank=True)
