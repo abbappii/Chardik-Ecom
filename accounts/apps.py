@@ -7,3 +7,4 @@ class AccountsConfig(AppConfig):
 
     def ready(self):
         from accounts.models.user_model import User
+        import accounts.signals
