@@ -4,7 +4,7 @@ This file contains the logics of
     - Give Permission 
 '''
 
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
 
 # importing models 
@@ -15,10 +15,9 @@ from accounts.models.profile import Profile,UserPermission
 
 # Creating Username 
 
-@receiver(pre_save,sender=Profile)
+@receiver(post_save,sender=Profile)
 def CreateUsername(sender,instance,created,*args,**kwargs):
     try:
-
         if created :
             user = User.objects.get(id=instance.user.id)
             user.username = f"{instance.customer_ID}_{user.email}"
@@ -28,7 +27,7 @@ def CreateUsername(sender,instance,created,*args,**kwargs):
 
 
 # Giver Permission to User 
-@receiver(pre_save,sender=Profile)
+@receiver(post_save,sender=Profile)
 def CreatePermission(sender,instance,created,*args,**kwargs):
     try:
         if created:

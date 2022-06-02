@@ -13,24 +13,24 @@ Login
 Profile
 '''
 
-#user Registration Serializer
-class UserRegistrationSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(style={'input_type': 'password'})
-    confirm_password = serializers.CharField(style={'input_type': 'password'})
-    class Meta:
-        model = User
-        fields = ['email', 'password','confirm_password']
-        extra_kwargs={'password' :{'write_only':True}}
+# #user Registration Serializer
+# class UserRegistrationSerializer(serializers.ModelSerializer):
+#     password = serializers.CharField(style={'input_type': 'password'})
+#     confirm_password = serializers.CharField(style={'input_type': 'password'})
+#     class Meta:
+#         model = User
+#         fields = ['email', 'password','confirm_password']
+#         extra_kwargs={'password' :{'write_only':True}}
 
-    def validate(self, attrs):
-        password = attrs.get('password')
-        confirm_password = attrs.get('confirm_password')
-        if password != confirm_password :
-            raise ValueError("Password and Confirm Password doesn't match !!!! ")
-        return attrs
+#     def validate(self, attrs):
+#         password = attrs.get('password')
+#         confirm_password = attrs.get('confirm_password')
+#         if password != confirm_password :
+#             raise ValueError("Password and Confirm Password doesn't match !!!! ")
+#         return attrs
 
-    def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
+    # def create(self, validated_data):
+    #     return User.objects.create_user(**validated_data)
 
 
 # #user Login Serializer
