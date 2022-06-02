@@ -1,10 +1,16 @@
 
-from rest_framework import serializers
-from .database.init import *
-
-from .database.products import *
-
 '''
+This file contains serializers
+        - Product Categories, Countries, Sub_Categories, Brand 
+        - Products, Product_images, ProductReview
+'''
+
+# import section 
+from rest_framework import serializers
+from .database.init import Categories, Countreies, Sub_Categories,  Brand
+from .database.products import Products, Product_images, ProductReview
+
+''' 
 Category
 subcategory
 brand
@@ -54,8 +60,17 @@ class Product_imagesSerializer(serializers.ModelSerializer):
 
 
 class ProductsSerializers(serializers.ModelSerializer):
-
     product_image = Product_imagesSerializer(many=True, read_only=True)
     class Meta:
         model= Products
         fields = "__all__"
+
+
+
+'''
+Products Review serializer
+'''
+class ProductReviewSerailizers(serializers.ModelSerializer):
+    class Meta:
+        model = ProductReview
+        fields = ['id','profile','product','star_count','review']
