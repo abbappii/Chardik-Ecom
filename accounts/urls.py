@@ -23,7 +23,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='profile'),
 
-
 ]
 
 permission_URL =[
