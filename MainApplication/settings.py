@@ -23,7 +23,8 @@ App_Install =[
     'accounts.apps.AccountsConfig',
     'orders.apps.OrdersConfig',
     'products.apps.ProductsConfig',
-    'inventory.apps.InventoryConfig'
+    'inventory.apps.InventoryConfig',
+    'pos_manager.apps.PosManagerConfig'
 ]
 
 Third_Party = [
