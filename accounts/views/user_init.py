@@ -75,7 +75,7 @@ class UserProfileView(APIView):
 
 ## User Register View 
 
-class RegisterView(GenericAPIView):
+class RegisterViews(GenericAPIView):
     serializer_class = UserProfileSeriliazers
     queryset = Profile.objects.all()
 
@@ -118,4 +118,87 @@ class RegisterView(GenericAPIView):
             return Response({'Success':'Profile is created'})
         else:
             return Response({'Error':'No Validate data given'})
+
+
+
+
+
+class RegisterView(GenericAPIView):
+    serializer_class = UserProfileSeriliazers
+    queryset = Profile.objects.all()
+
+    def post(self,request):
+        # data getting from Frontend
+        password1 = request.data.get('password') 
+        password2 = request.data.get('confirm_password')
+        getprem = request.data.get('email')
+        # phone = request.data.get('phone')
+
+
+        if '@' in getprem:
+            print('ok email')
+            return Response({"yes":'adsfadsf'})
+            # Password Checking 
+            # if password1 == None or password1 != password2:
+            #     return Response({'Error':'Password Didn`t Match'},status=\
+            #             status.HTTP_406_NOT_ACCEPTABLE)
+            # # Email checking 
+
+            # elif User.objects.filter(email=getprem):
+            #     return Response({'Error':'This email is associated with another account'},
+            #         status = status.HTTP_406_NOT_ACCEPTABLE)
+
+            # else:
+            #     authInfo = {
+            #         'email':getprem,
+            #         'password':make_password(password1),
+            #         'confirm_password':make_password(password2)
+            #     }
+            #     user = User(**authInfo)
+            #     user.save()
+
+            # # Profile Section of saving start
+            # add_user_to_profile = Profile(user=user)
+            # apifetch = UserProfileSeriliazers(add_user_to_profile,data=request.data)
+            # if apifetch.is_valid():
+            #     apifetch.save()
+            #     return Response({'Success':'Profile is created'})
+            # else:
+            #     return Response({'Error':'No Validate data given'})
+        
+        else:
+            print('Phone')
+            return Response({"yes":'adsfadsf'})
+
+            # Password Checking 
+            # if password1 == None or password1 != password2:
+            #     return Response({'Error':'Password Didn`t Match'},status=\
+            #             status.HTTP_406_NOT_ACCEPTABLE)
+
+            # # Phone Number Check 
+            # elif Profile.objects.filter(phone=getprem):
+            #     return Response({'Error':'Phone Number Already in Used'},
+            #     status= status.HTTP_406_NOT_ACCEPTABLE)
+
+            # else:
+            #     authInfo = {
+            #         # 'email':getprem,
+            #         'password':make_password(password1),
+            #         'confirm_password':make_password(password2)
+            #     }
+            #     user = User(**authInfo)
+            #     user.save()
+
+            # # Profile Section of saving start
+            # add_user_to_profile = Profile(user=user)
+            # apifetch = UserProfileSeriliazers(add_user_to_profile,data=request.data)
+            # if apifetch.is_valid():
+            #     apifetch.save()
+            #     return Response({'Success':'Profile is created'})
+            # else:
+            #     return Response({'Error':'No Validate data given'})
+        
+            
+            
+
 

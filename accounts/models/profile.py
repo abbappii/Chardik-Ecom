@@ -42,7 +42,7 @@ class Profile(InitModels):
     
 
     def __str__(self):
-        return self.user.email 
+        return str(self.customer_ID)
 
     
     class Meta:
