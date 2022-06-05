@@ -20,7 +20,7 @@ def CreateUsername(sender,instance,created,*args,**kwargs):
     try:
         if created :
             user = User.objects.get(id=instance.user.id)
-            user.username = f"{instance.customer_ID}_{user.email}"
+            user.username = f"{instance.customer_ID}_{instance.full_name[:1]}"
             user.save()
     except Exception as e:
         print(e)

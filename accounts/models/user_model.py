@@ -45,7 +45,7 @@ class MyUserManager(BaseUserManager):
 class User(AbstractBaseUser,PermissionsMixin):
     username = models.CharField(max_length=300,unique=True,null=True,
         verbose_name="Username")
-    email=models.EmailField(unique=True, null=False)
+    email=models.EmailField(blank=True,null=True)
     is_staff=models.BooleanField(_('staff status'),
     default=False,
      help_text=_('Designates whether the user can log in this site'))
@@ -75,7 +75,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     objects=MyUserManager()
 
     def __str__(self):
-        return self.email
+        return self.username
 
     def get_full_name(self):
         return self.email
