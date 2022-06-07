@@ -7,14 +7,14 @@ from accounts.models.profile import Profile
 # User profile API
 
 class UserProfileSeriliazers(serializers.ModelSerializer):
-    password = serializers.CharField(style={'input_type': 'password', 'placeholder': 'Password'})
-    # confirm_password = serializers.CharField(style={'input_type': 'password', 'placeholder': 'Password'})
+    #password = serializers.CharField(style={'input_type': 'password', 'placeholder': 'Password'})
+    #password2 = serializers.CharField(style={'input_type': 'password', 'placeholder': 'Password'})
 
     
     class Meta:
         model = Profile
         fields= ['id', 'full_name',
-        'phone','password']
+        'phone']
 
 '''
         fields= ['id', 'full_name','address','city','zipcode','country',

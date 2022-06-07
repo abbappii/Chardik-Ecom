@@ -130,14 +130,39 @@ class RegisterView(GenericAPIView):
     def post(self,request):
         # data getting from Frontend
         password1 = request.data.get('password') 
-        password2 = request.data.get('confirm_password')
-        getprem = request.data.get('email')
+        password2 = request.data.get('password2')
+        getprem = request.data.get('phone')
         # phone = request.data.get('phone')
 
 
         if '@' in getprem:
             print('ok email')
-            return Response({"yes":'adsfadsf'})
+
+            apifetch = UserProfileSeriliazers(data=request.data)
+            if apifetch.is_valid():
+                 # Password Checking 
+                if password1 != password2:
+                    return Response({'Error':'Password Didn`t Match'},status=\
+                            status.HTTP_406_NOT_ACCEPTABLE)
+
+                # Phone Number Check 
+                elif User.objects.filter(email=apifetch.validated_data['phone']):
+                    return Response({'Error':'Email Already in Used'},
+                    status= status.HTTP_406_NOT_ACCEPTABLE)
+                else:
+                     authInfo = {
+                     'email':apifetch.validated_data['phone'],
+                    'password':make_password(password1),
+                    'confirm_password':make_password(password2)
+                    }
+                     user = User(**authInfo)
+                     user.save()
+                apifetch.validated_data['user']=user
+                    
+                apifetch.save()
+                return Response({'Success':'Profile is created'})
+            else:
+                return Response(apifetch.errors)
             # Password Checking 
             # if password1 == None or password1 != password2:
             #     return Response({'Error':'Password Didn`t Match'},status=\
@@ -168,17 +193,9 @@ class RegisterView(GenericAPIView):
         
         else:
             print('Phone')
-            return Response({"yes":'adsfadsf'})
+            # return Response({"yes":'adsfadsf'})
 
-            # Password Checking 
-            # if password1 == None or password1 != password2:
-            #     return Response({'Error':'Password Didn`t Match'},status=\
-            #             status.HTTP_406_NOT_ACCEPTABLE)
-
-            # # Phone Number Check 
-            # elif Profile.objects.filter(phone=getprem):
-            #     return Response({'Error':'Phone Number Already in Used'},
-            #     status= status.HTTP_406_NOT_ACCEPTABLE)
+           
 
             # else:
             #     authInfo = {
@@ -191,12 +208,33 @@ class RegisterView(GenericAPIView):
 
             # # Profile Section of saving start
             # add_user_to_profile = Profile(user=user)
-            # apifetch = UserProfileSeriliazers(add_user_to_profile,data=request.data)
-            # if apifetch.is_valid():
-            #     apifetch.save()
-            #     return Response({'Success':'Profile is created'})
-            # else:
-            #     return Response({'Error':'No Validate data given'})
+            apifetch = UserProfileSeriliazers(data=request.data)
+            if apifetch.is_valid():
+                 # Password Checking 
+                if password1 != password2:
+                    return Response({'Error':'Password Didn`t Match'},status=\
+                            status.HTTP_406_NOT_ACCEPTABLE)
+
+                # Phone Number Check 
+                elif Profile.objects.filter(phone=apifetch.validated_data['phone']):
+                    return Response({'Error':'Phone Number Already in Used'},
+                    status= status.HTTP_406_NOT_ACCEPTABLE)
+                else:
+                     authInfo = {
+                    # 'email':getprem,
+                    'password':make_password(password1),
+                    'confirm_password':make_password(password2)
+                    }
+                     user = User(**authInfo)
+                     user.save()
+                apifetch.validated_data['user']=user
+                    
+                apifetch.save()
+                return Response({'Success':'Profile is created'})
+            else:
+                return Response(apifetch.errors)
+
+            
         
             
             
