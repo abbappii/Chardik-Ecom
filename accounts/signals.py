@@ -27,12 +27,12 @@ def CreateUsername(sender,instance,created,*args,**kwargs):
 
 
 # Giver Permission to User 
-# @receiver(post_save,sender=Profile)
-# def CreatePermission(sender,instance,created,*args,**kwargs):
-#     try:
-#         if created:
-#             permission_ID = UserPermission.objects.get(id=4)
-#             instance.permission.add(permission_ID)
-#             instance.save()
-#     except Exception as e:
-#         print(e)
+@receiver(post_save,sender=Profile)
+def CreatePermission(sender,instance,created,*args,**kwargs):
+    try:
+        if created:
+            permission_ID = UserPermission.objects.get(id=4)
+            instance.permission.add(permission_ID)
+            instance.save()
+    except Exception as e:
+        print(e)
