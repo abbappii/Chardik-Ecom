@@ -80,7 +80,7 @@ class Sub_Categories(InitModels):
 #Products Brands
 class Brand(InitModels):
     name = models.CharField(max_length=255,unique=True)
-    brand_website = models.CharField(max_length=255,unique=True,null=True)
+    brand_website = models.CharField(max_length=255,unique=True,null=True,blank=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
