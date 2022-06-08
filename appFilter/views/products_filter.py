@@ -45,6 +45,10 @@ class ProductsUnderCategoryView(generics.ListAPIView):
     queryset = Categories.objects.all()
     serializer_class = CategoryBaseProductsAPI    
 
+## show products under Single Category
+class SingleCategoryProducts(generics.RetrieveAPIView):
+    queryset = Categories.objects.prefetch_related('Category_products')
+    serializer_class = CategoryBaseProductsAPI
 
 
 # show products under Brand 
@@ -53,9 +57,18 @@ class ProductsUnderBrandView(generics.ListAPIView):
     queryset = Brand.objects.all()
     serializer_class = BranBasedApi
 
+## show products under Single Brand
+class SingleBrandProducts(generics.RetrieveAPIView):
+    queryset = Brand.objects.prefetch_related('brand')
+    serializer_class = BranBasedApi
+
 #show products under Country
 class ProductsUnderCountryView(generics.ListAPIView):
     queryset = Countreies.objects.all()
     serializer_class = CountryBaseAPI
 
+## show products under Single Country 
+class SingleCoutryProducts(generics.RetrieveAPIView):
+    queryset = Countreies.objects.prefetch_related('country')
+    serializer_class = CountryBaseAPI
     
