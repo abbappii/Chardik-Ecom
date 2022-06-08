@@ -94,12 +94,12 @@ class RegisterView(GenericAPIView):
 
                 '''
                 Apifetch will check 
-                    - Email 
+                    - Unique Email 
                     - Password will be taken automatically
                     - validated user will be saved
                 '''
 
-                # Phone Number Check 
+                # Unique Email Check 
                 if User.objects.filter(email=apifetch.validated_data['phone']):
                     return Response({'Error':'Email Already in Used'},
                     status= status.HTTP_406_NOT_ACCEPTABLE)
@@ -111,7 +111,7 @@ class RegisterView(GenericAPIView):
                     }
                      user = User(**authInfo)
                      user.save()
-                apifetch.validated_data['user']= user
+                apifetch.validated_data['user'] = user
                 apifetch.validated_data['phone'] = ''          
                 apifetch.save()
                 return Response({'Success':'Profile is created'})
@@ -129,7 +129,7 @@ class RegisterView(GenericAPIView):
                     - validated user will be saved
                 '''
 
-                # Phone Number Check 
+                # Unique Phone Number Check 
                 if Profile.objects.filter(phone=apifetch.validated_data['phone']):
                     return Response({'Error':'Phone Number Already in Used'},
                     status= status.HTTP_406_NOT_ACCEPTABLE)
@@ -140,7 +140,7 @@ class RegisterView(GenericAPIView):
                     }
                      user = User(**authInfo)
                      user.save()
-                apifetch.validated_data['user']=user
+                apifetch.validated_data['user'] = user
                 apifetch.save()
                 return Response({'Success':'Profile is created'})
             else:
