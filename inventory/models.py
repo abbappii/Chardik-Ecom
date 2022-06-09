@@ -13,10 +13,22 @@ Supplier models
 '''
 
 class Supplier(InitModels):
-    name = models.CharField(max_length=200,null=True,verbose_name="Supplier Name")
+    name = models.CharField(
+        max_length=200,
+        null=True,
+        verbose_name="Supplier Name"
+        )
+    email = models.EmailField(null=True, blank=True)
+    phone = models.CharField(max_length=20, null=True, blank=True)
+
     description = models.TextField(null=True,verbose_name="Description")
-    country = models.CharField(max_length=200,null=True,blank=True,verbose_name=
-        "Country Name")
+    address = models.TextField(null=True, verbose_name="Address")
+    country = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name="Country Name"
+        )
 
     def __str__(self):
         return self.name
