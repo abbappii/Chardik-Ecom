@@ -16,7 +16,8 @@ class Categories(InitModels):
     category_name=models.CharField(
         max_length=100,
         null=True, 
-        blank=True
+        blank=True,
+        unique=True
         )
     slug=models.SlugField(
         max_length=255, 
@@ -51,7 +52,8 @@ class Sub_Categories(InitModels):
     sub_category_name=models.CharField(
         max_length=100, 
         null=True, 
-        blank=True
+        blank=True,
+        unique=True
         )
     slug=models.SlugField(
         max_length=255, 
@@ -92,7 +94,7 @@ class Brand(InitModels):
 
 #Products Countries
 class Countreies(InitModels):
-    name = models.CharField(max_length=255,null=True)
+    name = models.CharField(max_length=255,null=True, unique=True)
     description = models.TextField(blank=True)
 
     def __str__(self):
