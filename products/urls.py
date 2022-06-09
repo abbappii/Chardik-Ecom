@@ -24,6 +24,15 @@ from products.views.product_review_logic import (
     ProductReviewDeleteView
 )
 
+
+from products.views.slider_logic import (
+    SliderListView, 
+    SliderSingleView,
+    SliderCreateView,
+    SliderEditView,
+    SliderDeleteView
+)
+
 urlpatterns = [ 
     path('categories/', CategoriesViewSet.as_view(), name='categories'),
     path('categories/<int:pk>/', CategoriesUpdateDelete.as_view(), name='categories_update_delete'),
@@ -59,7 +68,16 @@ urlpatterns_productsReview = [
     path('review/delete/<int:pk>/',ProductReviewDeleteView.as_view()),
 ]
 
+urlpatterns_slider = [ 
+    path('slider/',SliderListView.as_view()),
+    path('slider/create/',SliderCreateView.as_view()),
+    path('slider/view/<int:pk>/', SliderSingleView.as_view()),
+    path('slider/update/<int:pk>/',SliderEditView.as_view()),
+    path('slider/delete/<int:pk>/',SliderDeleteView.as_view()),
+]
+
 
 urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
 urlpatterns += urlpatterns_productsReview
+urlpatterns += urlpatterns_slider

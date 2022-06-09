@@ -6,6 +6,9 @@ from products.database.products import (
     Products,Product_images,ProductAttribute,
     ProductReview
 )
+from products.database.slider import(
+    Slider
+)
 
 admin.site.register(Categories)
 admin.site.register(Sub_Categories)
@@ -15,3 +18,8 @@ admin.site.register(Products)
 admin.site.register(ProductAttribute)
 admin.site.register(Product_images)
 admin.site.register(ProductReview)
+
+class SliderAdmin(admin.ModelAdmin):
+    list_display = ['id','slidername','position','home_shown']
+    
+admin.site.register(Slider,SliderAdmin)

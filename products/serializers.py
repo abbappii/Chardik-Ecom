@@ -7,6 +7,8 @@ This file contains serializers
 
 # import section 
 from rest_framework import serializers
+
+from products.database.slider import Slider
 from .database.init import Categories, Countreies, Sub_Categories,  Brand
 from .database.products import Products, Product_images, ProductReview
 
@@ -74,3 +76,12 @@ class ProductReviewSerailizers(serializers.ModelSerializer):
     class Meta:
         model = ProductReview
         fields = ['id','profile','product','star_count','review']
+
+
+'''
+Slider Serializers
+'''
+class SliderSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Slider
+        fields = '__all__'
