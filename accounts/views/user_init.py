@@ -159,6 +159,18 @@ class SendSMS(GenericAPIView):
         return Response({'Success':'Sens'})
 
             
+## Verfify OTP through phone
+class VerifyOTP(GenericAPIView):
+    def post(self,request,profile_ID):
+        profile = Profile.objects.get(id=profile_ID)
+        get_otp = request.data.get('otp')
+        if profile.phone_otp == get_otp :
+            profile.is_phone_verified = True
+            profile.is_active = True
+            profile.save()
+            return Response({"Success":"OTP Matched"},status=status.HTTP_200_OK)
+        else:
+            return Response({'Error':'OTP did not Match'},status=status.HTTP_406_NOT_ACCEPTABLE)
             
 
 
