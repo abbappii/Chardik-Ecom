@@ -146,15 +146,16 @@ class RegisterView(GenericAPIView):
             else:
                 return Response(apifetch.errors)
 
-from accounts.views.phone_verification import SMSsend
+from MainApplication.scripts.phone_verification import SMS_of_Phone_Verification
             
 ## Send SMS 
 class SendSMS(GenericAPIView):
 
     def get(self,request):
-        phone = "01521435207"
+        phone = "01309192698"
         number = f"88{phone}"
-        SMSsend(number)
+        profile_ID = 1
+        SMS_of_Phone_Verification(number,profile_ID).start()
         return Response({'Success':'Sens'})
 
             

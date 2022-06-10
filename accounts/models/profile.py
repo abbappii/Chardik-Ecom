@@ -4,6 +4,7 @@ This file contains the followings
     - Permission models 
 '''
 
+from re import U
 from django.db import models
 from django.db.models.signals import pre_save
 from accounts.models.initials import InitModels
@@ -34,7 +35,9 @@ class Profile(InitModels):
     city=models.CharField(max_length=40, blank=True,null=True)
     zipcode=models.CharField(max_length=10, blank=True,null=True)
     country=models.CharField(max_length=50, blank=True,null=True)
-    phone=models.CharField(max_length=20, blank=True,null=True)
+    phone=models.CharField(max_length=20, blank=True,null=True,unique=True)
+    is_phone_verified = models.BooleanField(default=False)
+    phone_otp = models.CharField(max_length=7,null=True,blank=True)
     customer_ID = models.CharField(max_length=20,null=True,unique=True,verbose_name=
         "Customer ID",editable=False)
 
