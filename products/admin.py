@@ -17,7 +17,7 @@ admin.site.register(Sub_Categories)
 admin.site.register(Brand)
 admin.site.register(Countreies)
 class ProductsAdmin(admin.ModelAdmin):
-    list_display = ['id','product_name','review_star_count']
+    list_display = ['id','product_name','review_star_count','review_comment_count']
 admin.site.register(Products,ProductsAdmin)
 admin.site.register(ProductAttribute)
 admin.site.register(Product_images)

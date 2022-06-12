@@ -133,6 +133,12 @@ class Products(InitModels):
             avg_count = '{0:.2g}'.format(sum_count/total_count)
             return avg_count
 
+    @property
+    def review_comment_count(self):
+        # review count by comment
+        comment_count = self.reviews.count()
+        return comment_count
+
 
 # product images 
 class Product_images(InitModels):
