@@ -1,6 +1,6 @@
 
 from rest_framework import generics
-from products.database.products import ProductReview
+from products.database.reviews import ProductReview
 from products.serializers import ProductReviewSerailizers
 
 # Review list view 
