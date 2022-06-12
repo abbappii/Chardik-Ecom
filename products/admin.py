@@ -4,10 +4,12 @@ from products.database.init import (
 )
 from products.database.products import (
     Products,Product_images,ProductAttribute,
-    ProductReview
 )
 from products.database.slider import(
     Slider
+)
+from products.database.reviews import (
+    ProductReview
 )
 
 admin.site.register(Categories)
