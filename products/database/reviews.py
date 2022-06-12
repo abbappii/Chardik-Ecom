@@ -7,7 +7,8 @@ from accounts.models.initials import InitModels
 class ProductReview(InitModels):
     profile = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
         verbose_name='Profile Name')
-    product = models.ForeignKey('products.Products',on_delete=models.CASCADE,null=True)
+    product = models.ForeignKey('products.Products',on_delete=models.CASCADE,
+        null=True,related_name='reviews')
     star_count = models.IntegerField(null=True)
     review = models.TextField(null=True,blank=True)
 
