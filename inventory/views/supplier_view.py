@@ -23,7 +23,7 @@ Supplier views
 
 # view List Function 
 class SupplierListView(generics.ListAPIView):
-    queryset = Supplier.objects.all()
+    queryset = Supplier.objects.all().order_by('-updated_at')
     serializer_class = SupplierSerializers
 
 
