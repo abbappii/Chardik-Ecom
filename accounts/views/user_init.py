@@ -61,9 +61,9 @@ class LoginView(GenericAPIView):
                     'fullName':user.profile.full_name
                 })
             else:
-                return Response({'Error':'Sorry Password mismatch'})
+                return Response({'Error':'Sorry Password mismatch'},status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
-            return Response({'Error':'Sorry, Credentials Not match!'})
+            return Response({'Error':'No such User Found'},status=status.HTTP_204_NO_CONTENT)
 
 
 # User Profile view 

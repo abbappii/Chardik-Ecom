@@ -13,7 +13,7 @@ Purchase Edit Delete and Update class
 # view List Function 
 
 class PurchaseView(generics.ListAPIView):
-    queryset = Purchase.objects.all()
+    queryset = Purchase.objects.all().order_by('-updated_at')
     serializer_class = PurchaseSerialiers
 
 
