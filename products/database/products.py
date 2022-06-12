@@ -122,6 +122,7 @@ class Products(InitModels):
              self.sub_category.all()]
         return sub_category
 
+
     @property
     def review_star_count(self):
         # review count by star
@@ -133,6 +134,7 @@ class Products(InitModels):
             avg_count = '{0:.2g}'.format(sum_count/total_count)
             return avg_count
 
+
     @property
     def review_comment_count(self):
         # review count by comment
@@ -142,12 +144,10 @@ class Products(InitModels):
 
 # product images 
 class Product_images(InitModels):
-    product = models.ForeignKey(Products, on_delete=models.CASCADE, 
+    product = models.ForeignKey('products.Products', on_delete=models.CASCADE, 
         related_name='product_image')
     image=models.ImageField(upload_to='product_image_gallery', blank=True)
     
-    class Meta:
-        verbose_name_plural = _("product images")
 
     class Meta:
         verbose_name_plural = "Product Image"
