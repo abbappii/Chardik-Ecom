@@ -24,7 +24,7 @@ Coupon Logics
 # view List Function 
 
 class CouponView(generics.ListAPIView):
-    queryset = Coupon.objects.all()
+    queryset = Coupon.objects.all().order_by('-updated_at')
     serializer_class = CouponAPI
 
 

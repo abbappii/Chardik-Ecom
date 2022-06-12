@@ -21,7 +21,7 @@ coupon_choices = (
 
 class Coupon(InitModels):
     coupon_name = models.CharField(max_length=100,null=True,verbose_name=
-        "Coupon Name")
+        "Coupon Name",unique=True) 
     coupon_type = models.CharField(choices=coupon_choices,max_length=20,
         default=None,null=True,verbose_name="Coupon Type")
     coupon_amount = models.FloatField(null=True,default=0.00,
