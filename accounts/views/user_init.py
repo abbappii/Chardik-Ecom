@@ -15,6 +15,8 @@ from django.contrib.auth import authenticate
 from rest_framework import status
 from django.contrib.auth.hashers import make_password
 
+from MainApplication.scripts.phone_verification import SMS_of_Phone_Verification
+
 # importing API
 from accounts.serializers.user_auth import LoginSerializer
 from accounts.serializers.profileAPI import (
@@ -146,7 +148,6 @@ class RegisterView(GenericAPIView):
             else:
                 return Response(apifetch.errors)
 
-from MainApplication.scripts.phone_verification import SMS_of_Phone_Verification
             
 ## Send SMS 
 class SendSMS(GenericAPIView):
