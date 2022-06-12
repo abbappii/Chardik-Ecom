@@ -4,6 +4,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from accounts.models.initials import InitModels
+from django.db.models import Sum,Count
+
 
 
 '''
@@ -119,6 +121,17 @@ class Products(InitModels):
         sub_category = [ sub_category.sub_category_name for  sub_category in \
              self.sub_category.all()]
         return sub_category
+
+    @property
+    def review_star_count(self):
+        # review count by star
+        sum_count = self.reviews.aggregate(Sum('star_count'))['star_count__sum']
+        total_count = self.reviews.aggregate(Count('star_count'))['star_count__count']
+        if sum_count is None:
+            return sum_count == 0 
+        else: 
+            avg_count = '{0:.2g}'.format(sum_count/total_count)
+            return avg_count
 
 
 # product images 
