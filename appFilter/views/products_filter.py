@@ -15,8 +15,8 @@ Frontend
 
 # importing initials 
 
-from typing import Counter
 from rest_framework import generics
+from django.db.models import Q
 
 
 # importing models 
@@ -71,4 +71,14 @@ class ProductsUnderCountryView(generics.ListAPIView):
 class SingleCoutryProducts(generics.RetrieveAPIView):
     queryset = Countreies.objects.prefetch_related('country')
     serializer_class = CountryBaseAPI
+
+
+
+## Popular Products  List
+    '''
+    - Filter by start Count
+    - Filter by comment count 
+    '''
     
+# class PopularProductsListView(generics.ListAPIView):
+#     queryset = Products.objects.filter()
