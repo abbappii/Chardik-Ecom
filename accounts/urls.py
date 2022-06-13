@@ -23,7 +23,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='profile'),
     path('sms/',SendSMS.as_view()),
-    path('verify/otp/<int:profile_ID>/',VerifyOTP.as_view())
+    path('verify/otp/',VerifyOTP.as_view())
 
 ]
 
