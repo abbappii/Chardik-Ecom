@@ -144,6 +144,8 @@ class RegisterView(GenericAPIView):
                      user.save()
                 apifetch.validated_data['user'] = user
                 apifetch.save()
+                profile_ID=user.profile.id
+                SMS_of_Phone_Verification(get_phone_or_email,profile_ID).start()
                 return Response({'Success':'Profile is created'})
             else:
                 return Response(apifetch.errors)
@@ -153,17 +155,18 @@ class RegisterView(GenericAPIView):
 class SendSMS(GenericAPIView):
 
     def get(self,request):
-        phone = "01309192698"
+        phone = "01406616646"
         number = f"88{phone}"
         profile_ID = 1
         SMS_of_Phone_Verification(number,profile_ID).start()
-        return Response({'Success':'Sens'})
+        return Response({'Success':'Send'})
 
             
 ## Verfify OTP through phone
 class VerifyOTP(GenericAPIView):
-    def post(self,request,profile_ID):
-        profile = Profile.objects.get(id=profile_ID)
+    def post(self,request):
+        get_profile_ID = request.data.get('profile_ID')
+        profile = Profile.objects.get(id=get_profile_ID)
         get_otp = request.data.get('otp')
         if profile.phone_otp == get_otp :
             profile.is_phone_verified = True
