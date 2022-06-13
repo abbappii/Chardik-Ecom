@@ -116,7 +116,8 @@ class RegisterView(GenericAPIView):
                 apifetch.validated_data['user'] = user
                 apifetch.validated_data['phone'] = ''          
                 apifetch.save()
-                return Response({'Success':'Profile is created'})
+                return Response({'Success':'Profile is created'},
+                status=status.HTTP_201_CREATED)
             else:
                 return Response(apifetch.errors)
         
@@ -146,7 +147,11 @@ class RegisterView(GenericAPIView):
                 apifetch.save()
                 profile_ID=user.profile.id
                 SMS_of_Phone_Verification(get_phone_or_email,profile_ID).start()
-                return Response({'Success':'Profile is created'})
+                getProfile = Profile.objects.get(id=profile_ID)
+                getProfile.is_active = False
+                getProfile.save()
+                return Response({'Success':'Profile is created','profile_ID':profile_ID},
+                status=status.HTTP_201_CREATED)
             else:
                 return Response(apifetch.errors)
 
