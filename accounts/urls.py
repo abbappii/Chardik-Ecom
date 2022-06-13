@@ -15,7 +15,8 @@ from accounts.views.user_up_del_view import(
     UserDataUpdate, UserDeleteView
 )
 from accounts.views.user_init import (
-    LoginView,RegisterView, UserProfileView, SendSMS,VerifyOTP
+    LoginView,RegisterView, UserProfileView, SendSMS,VerifyOTP,
+    ForgetPassword__with__Phone
 )
 
 urlpatterns = [ 
@@ -23,7 +24,8 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='profile'),
     path('sms/',SendSMS.as_view()),
-    path('verify/otp/',VerifyOTP.as_view())
+    path('verify/otp/',VerifyOTP.as_view()),
+    path('forget/password/phone/',ForgetPassword__with__Phone.as_view())
 
 ]
 
