@@ -255,13 +255,13 @@ class ChangePasswordInstant(GenericAPIView):
             - New Confirm Password
     '''
     def post(self,request):
-        
+
         getUser = User.objects.get(id=request.user.id)
         get_old_password = request.data.get('old_password',None)
         get_new_password = request.data.get('new_password1',None)
         get_new_password2 = request.data.get('new_password2',None)
 
-        if getUser.password != get_old_password:
+        if not getUser.check_password(get_old_password):
             return Response({
                 'Error':'Old Password Didn`t Match'
             },status=status.HTTP_406_NOT_ACCEPTABLE)
