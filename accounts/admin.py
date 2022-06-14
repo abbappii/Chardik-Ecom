@@ -7,7 +7,7 @@ from accounts.models.profile import Profile,UserPermission
 
 admin.site.register(User)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ['id','full_name','customer_ID']
+    list_display = ['id','full_name','customer_ID','get_permission_id']
 admin.site.register(Profile,ProfileAdmin)
 admin.site.register(UserPermission)
 

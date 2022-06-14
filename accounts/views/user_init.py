@@ -13,9 +13,11 @@ from django.db.models import Q
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from rest_framework import status
+from rest_framework.decorators import permission_classes
 from django.contrib.auth.hashers import make_password
 
 from MainApplication.scripts.phone_verification import SMS_of_Phone_Verification
+from MainApplication.scripts.permission import IsCustomer,IsAdmin,IsManager,IsStuff
 
 # importing API
 from accounts.serializers.user_auth import LoginSerializer
@@ -170,13 +172,16 @@ class SendSMS(GenericAPIView):
 ## Verfify OTP through phone
 class VerifyOTP(GenericAPIView):
     def post(self,request):
+
         get_profile_ID = request.data.get('profile_ID')
         profile = Profile.objects.get(id=get_profile_ID)
         get_otp = request.data.get('otp')
+
         if profile.phone_otp == get_otp :
             profile.is_phone_verified = True
             profile.is_active = True
             profile.save()
+
             return Response({"Success":"OTP Matched"},status=status.HTTP_200_OK)
         else:
             return Response({'Error':'OTP did not Match'},status=status.HTTP_406_NOT_ACCEPTABLE)
@@ -187,6 +192,7 @@ class VerifyOTP(GenericAPIView):
 class ForgetPassword__with__Phone(GenericAPIView):
     def get(self,request):
         get_number = request.data.get('phone')
+
         if Profile.objects.filter(phone=get_number):
             getProfile_ID = Profile.objects.filter(phone=get_number).first().id
             # print(getProfile_ID)
@@ -196,15 +202,18 @@ class ForgetPassword__with__Phone(GenericAPIView):
                 'OK':'Number Is Found',
                 'profile_ID':getProfile_ID
             },status=status.HTTP_200_OK)
+
         else:
             return Response({
                 'Error':'Number Didnt Found'
             },status=status.HTTP_204_NO_CONTENT)
     
     def post(self,request):
+
         get_profile_ID = request.data.get('profile_ID')
         profile = Profile.objects.get(id=get_profile_ID)
         get_otp = request.data.get('otp')
+
         if profile.phone_otp == get_otp :
             # profile.is_phone_verified = True
             # profile.is_active = True
@@ -215,6 +224,7 @@ class ForgetPassword__with__Phone(GenericAPIView):
     
     def put(self,request):
         get_profileID = request.data.get('profile_ID')
+
         if User.objects.filter(profile=get_profileID).first():
             get_password = request.data.get('password1')
             get_confirm_password = request.data.get('password2')
@@ -225,9 +235,47 @@ class ForgetPassword__with__Phone(GenericAPIView):
             return Response({
                 'Success':'Password Updated !'
             },status=status.HTTP_205_RESET_CONTENT)
+
         else:
             return Response({
                 'Error':'Profile Didn`t Match'
             },status=status.HTTP_204_NO_CONTENT)
 
         
+
+## Change password while User is  log-in
+
+@permission_classes ([IsAdmin|IsManager|IsStuff|IsCustomer])
+class ChangePasswordInstant(GenericAPIView):
+    '''
+    Change Password while User is logged IN
+        - User can change password with
+            - Old Password
+            - New Password 
+            - New Confirm Password
+    '''
+    def post(self,request):
+        
+        getUser = User.objects.get(id=request.user.id)
+        get_old_password = request.data.get('old_password',None)
+        get_new_password = request.data.get('new_password1',None)
+        get_new_password2 = request.data.get('new_password2',None)
+
+        if getUser.password != get_old_password:
+            return Response({
+                'Error':'Old Password Didn`t Match'
+            },status=status.HTTP_406_NOT_ACCEPTABLE)
+
+        elif get_new_password != get_new_password2:
+            return Response({
+                'Error':'Password & Confirm Password Didn`t Match'
+            },status=status.HTTP_406_NOT_ACCEPTABLE)
+
+        else :
+            getUser.password = make_password(get_new_password)
+            getUser.confirm_password = make_password(get_new_password2)
+            getUser.save()
+    
+            return Response({
+                'Success':'Password has Been Updated'
+            },status=status.HTTP_202_ACCEPTED)

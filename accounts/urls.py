@@ -16,7 +16,7 @@ from accounts.views.user_up_del_view import(
 )
 from accounts.views.user_init import (
     LoginView,RegisterView, UserProfileView, SendSMS,VerifyOTP,
-    ForgetPassword__with__Phone
+    ForgetPassword__with__Phone,ChangePasswordInstant
 )
 
 urlpatterns = [ 
@@ -25,7 +25,8 @@ urlpatterns = [
     path('profile/', UserProfileView.as_view(), name='profile'),
     path('sms/',SendSMS.as_view()),
     path('verify/otp/',VerifyOTP.as_view()),
-    path('forget/password/phone/',ForgetPassword__with__Phone.as_view())
+    path('forget/password/phone/',ForgetPassword__with__Phone.as_view()),
+    path('change/password/',ChangePasswordInstant.as_view())
 
 ]
 
