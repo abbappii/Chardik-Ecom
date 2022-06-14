@@ -4,7 +4,6 @@ This file contains the followings
     - Permission models 
 '''
 
-from re import U
 from django.db import models
 from django.db.models.signals import pre_save
 from accounts.models.initials import InitModels

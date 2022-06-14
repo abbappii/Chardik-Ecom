@@ -45,7 +45,7 @@ class MyUserManager(BaseUserManager):
 class User(AbstractBaseUser,PermissionsMixin):
     username = models.CharField(max_length=300,unique=True,null=True,
         verbose_name="Username")
-    email=models.EmailField(blank=True,null=True)
+    email=models.CharField(max_length=200,blank=True,null=True)
     is_staff=models.BooleanField(_('staff status'),
     default=False,
      help_text=_('Designates whether the user can log in this site'))
