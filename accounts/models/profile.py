@@ -58,6 +58,11 @@ class Profile(InitModels):
         permissions = [permission.permission_name for permission in self.permission.all()]
         return permissions
 
+    @property
+    def get_permission_id(self):
+        permissions = [permission.id for permission in self.permission.all()]
+        return permissions
+
     # unique customer ID creating process
 def make_customer_ID(sender,instance,*args,**kwargs):
     if not instance.customer_ID:
