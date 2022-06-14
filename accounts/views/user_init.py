@@ -231,7 +231,3 @@ class ForgetPassword__with__Phone(GenericAPIView):
             },status=status.HTTP_204_NO_CONTENT)
 
         
-
-
-        
-
