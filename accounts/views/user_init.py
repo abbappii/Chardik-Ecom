@@ -16,7 +16,7 @@ from rest_framework import status
 from rest_framework.decorators import permission_classes
 from django.contrib.auth.hashers import make_password
 
-from MainApplication.scripts.phone_verification import SMS_of_Phone_Verification
+from MainApplication.scripts.phone_SMS_settings import SMS_of_Phone_Verification
 from MainApplication.scripts.permission import IsCustomer,IsAdmin,IsManager,IsStuff
 
 # importing API
@@ -159,15 +159,17 @@ class RegisterView(GenericAPIView):
             else:
                 return Response(apifetch.errors)
 
+
+from MainApplication.scripts.phone_SMS_settings import SMS_for_Phone_Message
             
 ## Send SMS 
 class SendSMS(GenericAPIView):
 
     def get(self,request):
-        phone = "01406616646"
-        number = f"88{phone}"
-        profile_ID = 1
-        SMS_of_Phone_Verification(number,profile_ID).start()
+        phone = "01764343654"
+        # number = f"88{phone}"
+        phone_message = f"Charidike.com says \n Hi Shahrier ,cholen Turkey Jai"
+        SMS_for_Phone_Message(phone,phone_message).start()
         return Response({'Success':'Send'})
 
             
