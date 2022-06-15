@@ -38,7 +38,8 @@ urlpatterns = [
     path('user/', include('accounts.urls')),
     path('queries/',include('appFilter.urls')),
     path('record/',include('inventory.urls')),
-
+    
+    path('contact/', include('initapp.urls')),
 
     # configure the redoc setup
      #  path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
