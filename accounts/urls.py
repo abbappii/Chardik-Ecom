@@ -19,7 +19,9 @@ from accounts.views.user_init import (
     ForgetPassword__with__Phone,ChangePasswordInstant
 )
 
-urlpatterns = [ 
+urlpatterns = []
+
+user_URL = [
     path('register/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name='login'),
     path('profile/', UserProfileView.as_view(), name='profile'),
@@ -27,7 +29,6 @@ urlpatterns = [
     path('verify/otp/',VerifyOTP.as_view()),
     path('forget/password/phone/',ForgetPassword__with__Phone.as_view()),
     path('change/password/',ChangePasswordInstant.as_view())
-
 ]
 
 permission_URL =[
@@ -50,6 +51,8 @@ user_pass_change_reset_email = [
     path('reset-password/<uid>/<token>/',UserPasswordEmailLinkResetView.as_view()),
 ]
 
+
+urlpatterns += user_URL
 urlpatterns += permission_URL
 urlpatterns += user_update_delete
 urlpatterns += user_pass_change_reset_email
