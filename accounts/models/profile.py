@@ -70,3 +70,15 @@ def make_customer_ID(sender,instance,*args,**kwargs):
 pre_save.connect(make_customer_ID,sender=Profile)
 
 
+## Billing Address Models 
+
+class BillingAddress(InitModels):
+    customer = models.ForeignKey('accounts.Profile',on_delete=models.CASCADE,
+        null=True,verbose_name="Customer Name")
+    billing_address = models.TextField(null=True,verbose_name="Billing Address")
+
+    def __str__(self):
+        return str(self.customer)
+
+    class Meta:
+        verbose_name_plural = "Billing Address"
