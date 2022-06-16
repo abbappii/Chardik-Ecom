@@ -65,8 +65,8 @@ class OrderItem(InitModels):
 
 
     def __str__(self):
-        return f"Customer : {self.customer} === Item {self.item} === Quantitiy \
-                : {self.quantity} === Ordered {'Paid' if self.is_order == True else 'Not paid'}"
+        return f"Customer : {self.customer} === Item : {self.item} === Quantitiy  \
+                : {self.quantity} === Status : {'Paid' if self.is_order == True else 'Not paid'}"
 
     class Meta:
         verbose_name_plural =  "Order Item"
