@@ -65,9 +65,13 @@ class LoginView(GenericAPIView):
                     'fullName':user.profile.full_name
                 })
             else:
-                return Response({'Error':'Sorry Password mismatch'},status=status.HTTP_406_NOT_ACCEPTABLE)
+                return Response(
+                    {'Error':'Sorry Password mismatch'},
+                status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
-            return Response({'Error':'No such User Found'},status=status.HTTP_204_NO_CONTENT)
+            return Response(
+                {'Error':'No such User Found'},
+                status=status.HTTP_204_NO_CONTENT)
 
 
 # User Profile view 
@@ -107,7 +111,8 @@ class RegisterView(GenericAPIView):
 
                 # Unique Email Check 
                 if User.objects.filter(email=apifetch.validated_data['phone']):
-                    return Response({'Error':'Email Already in Used'},
+                    return Response(
+                        {'Error':'Email Already in Used'},
                     status= status.HTTP_406_NOT_ACCEPTABLE)
                 else:
                      authInfo = {
@@ -138,7 +143,8 @@ class RegisterView(GenericAPIView):
 
                 # Unique Phone Number Check 
                 if Profile.objects.filter(phone=apifetch.validated_data['phone']):
-                    return Response({'Error':'Phone Number Already in Used'},
+                    return Response(
+                        {'Error':'Phone Number Already in Used'},
                     status= status.HTTP_406_NOT_ACCEPTABLE)
                 else:
                      authInfo = {
@@ -154,7 +160,8 @@ class RegisterView(GenericAPIView):
                 getProfile = Profile.objects.get(id=profile_ID)
                 getProfile.is_active = False
                 getProfile.save()
-                return Response({'Success':'Profile is created','profile_ID':profile_ID},
+                return Response(
+                    {'Success':'Profile is created','profile_ID':profile_ID},
                 status=status.HTTP_201_CREATED)
             else:
                 return Response(apifetch.errors)
@@ -186,9 +193,13 @@ class VerifyOTP(GenericAPIView):
             profile.is_active = True
             profile.save()
 
-            return Response({"Success":"OTP Matched"},status=status.HTTP_200_OK)
+            return Response(
+                {"Success":"OTP Matched"},
+                status=status.HTTP_200_OK)
         else:
-            return Response({'Error':'OTP did not Match'},status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response(
+                {'Error':'OTP did not Match'},
+                status=status.HTTP_406_NOT_ACCEPTABLE)
             
 
 ## Forget Password option with Phone 
@@ -222,9 +233,13 @@ class ForgetPassword__with__Phone(GenericAPIView):
             # profile.is_phone_verified = True
             # profile.is_active = True
             # profile.save()
-            return Response({"Success":"OTP Matched"},status=status.HTTP_200_OK)
+            return Response(
+                {"Success":"OTP Matched"},
+                status=status.HTTP_200_OK)
         else:
-            return Response({'Error':'OTP did not Match'},status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response(
+                {'Error':'OTP did not Match'},
+                status=status.HTTP_406_NOT_ACCEPTABLE)
     
     def put(self,request):
         get_profileID = request.data.get('profile_ID')
