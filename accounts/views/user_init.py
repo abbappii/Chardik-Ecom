@@ -17,7 +17,9 @@ from rest_framework.decorators import permission_classes
 from django.contrib.auth.hashers import make_password
 
 from MainApplication.scripts.phone_SMS_settings import SMS_of_Phone_Verification
-from MainApplication.scripts.permission import IsCustomer,IsAdmin,IsManager,IsStuff
+from MainApplication.scripts.permission import (
+    IsCustomer,IsAdmin,IsManager,IsStuff
+) 
 
 # importing API
 from accounts.serializers.user_auth import LoginSerializer
@@ -30,7 +32,6 @@ from accounts.models.user_model import User
 from accounts.models.profile import Profile
 
 from rest_framework.views import APIView
-from MainApplication.scripts.permission import IsCustomer
 from accounts.serializers.user_auth import UserProfileSeriliazer            
 
 
@@ -188,18 +189,23 @@ class VerifyOTP(GenericAPIView):
         profile = Profile.objects.get(id=get_profile_ID)
         get_otp = request.data.get('otp')
 
-        if profile.phone_otp == get_otp :
-            profile.is_phone_verified = True
-            profile.is_active = True
-            profile.save()
+        if Profile.objects.filter(id=get_profile_ID):
+            if profile.phone_otp == get_otp :
+                profile.is_phone_verified = True
+                profile.is_active = True
+                profile.save()
 
-            return Response(
-                {"Success":"OTP Matched"},
-                status=status.HTTP_200_OK)
+                return Response(
+                    {"Success":"OTP Matched"},
+                    status=status.HTTP_200_OK)
+            else:
+                return Response(
+                    {'Error':'OTP did not Match'},
+                    status=status.HTTP_406_NOT_ACCEPTABLE)
         else:
-            return Response(
-                {'Error':'OTP did not Match'},
-                status=status.HTTP_406_NOT_ACCEPTABLE)
+            return Response({
+                "Error":"Profile ID did`t Match"
+            },status=status.HTTP_406_NOT_ACCEPTABLE)
             
 
 ## Forget Password option with Phone 
