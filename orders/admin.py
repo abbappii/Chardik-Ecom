@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 
-from orders.database.order import Coupon
+from orders.database.coupon import Coupon
 
 
 class CouponAdmin(admin.ModelAdmin):
