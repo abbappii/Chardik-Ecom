@@ -7,7 +7,7 @@ This file contain of
 from rest_framework import generics
 
 # importing models 
-from orders.database.order import Coupon
+from orders.database.coupon import Coupon
 
 # importng api
 from orders.serializers import CouponAPI
