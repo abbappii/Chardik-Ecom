@@ -37,7 +37,37 @@ class Order(InitModels):
     total = models.PositiveIntegerField()
     discount = models.PositiveIntegerField()
 
-    order_status = models.CharField(max_length=100,choices=ORDER_STATUS,default="Order Received")
+    order_status = models.CharField(max_length=100,choices=ORDER_STATUS,
+        default="Order Received")
 
     payment_complete = models.BooleanField(default=False,blank=True, null=True)
 
+
+
+
+
+'''
+Cart & Order Management
+    - Order models
+    - Cart models
+    - Cart Item models
+'''
+
+
+## Order Item Models 
+class OrderItem(InitModels):
+    customer = models.ForeignKey('accounts.Profile',on_delete=models.CASCADE,
+        null=True,verbose_name="Customer Name",related_name="order_items")
+    item = models.ForeignKey('products.Products',on_delete=models.SET_NULL,
+        null=True,verbose_name="Products",related_name="items")
+    quantity = models.IntegerField(null=True,verbose_name="Quantity")
+    is_order = models.BooleanField(default=False) 
+
+
+    def __str__(self):
+        return f"Customer : {self.customer} === Item {self.item} === Quantitiy \
+                : {self.quantity} === Ordered {'Paid' if self.is_order == True else 'Not paid'}"
+
+    class Meta:
+        verbose_name_plural =  "Order Item"
+    
