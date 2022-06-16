@@ -1,5 +1,4 @@
 
-from re import A
 from django.contrib import admin
 
 from orders.database.coupon import (
