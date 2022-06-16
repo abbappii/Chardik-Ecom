@@ -20,53 +20,47 @@ from rest_framework.response import Response
 
 
 '''
-Coupon Logics 
+Billing Address Logics 
     - Create 
     - Update 
-    - View 
+    - List View 
+    - single view
     - Delete
 '''
 
 # view List Function 
-
 class BillingAddressView(generics.ListAPIView):
-    queryset = BillingAddress.objects.all().order_by('-updated_at')
+    queryset = BillingAddress.objects.all()
     serializer_class = Billing_Address_Serialiazer
 
 
 # Single View 
-
 class BillingAddressViewFatch(generics.RetrieveAPIView):
     queryset = BillingAddress.objects.all()
     serializer_class = Billing_Address_Serialiazer
 
 
 #  Create View 
-
 class BillingAddressCreateView(generics.CreateAPIView):
     queryset = BillingAddress.objects.all()
     serializer_class = Billing_Address_Serialiazer
 
 
 # delete View 
-
 class BillingAddressDeleteView(generics.DestroyAPIView):
     queryset = BillingAddress.objects.all()
     serializer_class = Billing_Address_Serialiazer
 
 
 # Single Edit View 
-
 class BillingAddressEditView(generics.UpdateAPIView):
     queryset = BillingAddress.objects.all()
     serializer_class = BillingAddress
 
 
-
-
 class ShowBillingAddress(APIView):
     """
-    List all snippets, or create a new snippet.
+    List all billingAddress.
     """
     def get(self, request, format=None):
         get_user = BillingAddress.objects.all()
