@@ -96,7 +96,7 @@ class Products(InitModels):
     #     decimal_places=2,
     #     default=0.00
     #     )
-
+    expire_rate = models.DateField(auto_now_add=False,null=True,blank=True)
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
 
 
