@@ -5,7 +5,7 @@ This file contains of
     - Logics 
 '''
 from products.database.slider import Slider
-from products.serializers import SliderSerializers
+from products.serializers.init_serializers import SliderSerializers
 
 from rest_framework import generics
 

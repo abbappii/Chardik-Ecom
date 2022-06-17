@@ -75,29 +75,28 @@ class Products(InitModels):
         null=True, 
         blank=True
         )
-    sku = models.CharField(
-        max_length=20,
-        unique=True,
-        verbose_name='SKU'
-        )
-    upc = models.CharField(
-        max_length=12,
-        unique=True,
-        verbose_name='UPC'
-        )
+    # sku = models.CharField(
+    #     max_length=20,
+    #     unique=True,
+    #     verbose_name='SKU'
+    #     )
+    # upc = models.CharField(
+    #     max_length=12,
+    #     unique=True,
+    #     verbose_name='UPC'
+    #     )
     feature_image=models.ImageField(upload_to='products',null=True)
-    regular_price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        default=0.00
-        )
-    new_price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        default=0.00
-        )
+    # regular_price = models.DecimalField(
+    #     max_digits=10,
+    #     decimal_places=2,
+    #     default=0.00
+    #     )
+    # new_price = models.DecimalField(
+    #     max_digits=10,
+    #     decimal_places=2,
+    #     default=0.00
+    #     )
 
-    inventory = models.IntegerField(default=0,null=True,verbose_name="Inventory")
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
 
 
@@ -141,6 +140,31 @@ class Products(InitModels):
         comment_count = self.reviews.count()
         return comment_count
 
+
+
+## Product Variation with Price and variant 
+
+class Variation_with_Price_variant(InitModels):
+
+    product = models.ForeignKey('products.Products',on_delete=models.CASCADE,
+        null=True,verbose_name="Product",related_name="variant")
+    # variation 
+    size = models.ForeignKey('products.SizeVariation',on_delete=models.SET_NULL,
+        null=True,blank=True,verbose_name="Product Size")
+    color = models.ForeignKey('products.ColorVariation',on_delete=models.SET_NULL,
+        null=True,blank=True,verbose_name="Product Color")
+    weight = models.ForeignKey('products.WeightVariation',on_delete=models.CASCADE,
+        null=True,blank=True,verbose_name="Product Weight")
+    
+    # price 
+    regular_price = models.FloatField(null=True,blank=True)
+    selling_price = models.FloatField(null=True,blank=True)
+
+    def __str__(self):
+        return str(self.product)
+
+    class Meta:
+        verbose_name_plural = "Product Variation"
 
 
 
