@@ -114,7 +114,8 @@ Product Attribute models
 ## Color Models 
 
 class ColorVariation(InitModels):
-    color_name = models.CharField(max_length=100,null=True,verbose_name="Color Name")
+    color_name = models.CharField(max_length=100,null=True,
+        verbose_name="Color Name")
 
     def __str__(self):
         return str(self.color_name)
@@ -126,7 +127,8 @@ class ColorVariation(InitModels):
 ## Size models 
 
 class SizeVariation(InitModels):
-    size_name = models.CharField(max_length=100,null=True,verbose_name="Size Name")
+    size_name = models.CharField(max_length=100,null=True,
+        verbose_name="Size Name")
 
     def __str__(self):
         return str(self.size_name)
