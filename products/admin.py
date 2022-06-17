@@ -1,6 +1,7 @@
 from django.contrib import admin
 from products.database.init import (
-    Countreies,Sub_Categories,Brand,Categories
+    Countreies,Sub_Categories,Brand,Categories,
+    ColorVariation,SizeVariation, WeightVariation
 )
 from products.database.products import (
     Products,Product_images,ProductAttribute,
@@ -27,3 +28,6 @@ class SliderAdmin(admin.ModelAdmin):
     list_display = ['id','slidername','position','home_shown']
     
 admin.site.register(Slider,SliderAdmin)
+admin.site.register(ColorVariation)
+admin.site.register(SizeVariation)
+admin.site.register(WeightVariation)

@@ -142,6 +142,8 @@ class Products(InitModels):
         return comment_count
 
 
+
+
 # product images 
 class Product_images(InitModels):
     product = models.ForeignKey('products.Products', on_delete=models.CASCADE, 
@@ -151,5 +153,8 @@ class Product_images(InitModels):
 
     class Meta:
         verbose_name_plural = "Product Image"
+
+
+    
 
 
