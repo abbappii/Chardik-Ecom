@@ -102,3 +102,44 @@ class Countreies(InitModels):
 
     class Meta:
         verbose_name_plural = "Country"
+
+
+'''
+Product Attribute models
+    - Color
+    - Size
+    - weight 
+'''
+
+## Color Models 
+
+class ColorVariation(InitModels):
+    color_name = models.CharField(max_length=100,null=True,verbose_name="Color Name")
+
+    def __str__(self):
+        return str(self.color_name)
+    
+    class Meta:
+        verbose_name_plural = "Color Variation"
+
+
+## Size models 
+
+class SizeVariation(InitModels):
+    size_name = models.CharField(max_length=100,null=True,verbose_name="Size Name")
+
+    def __str__(self):
+        return str(self.size_name)
+
+    class Meta:
+        verbose_name_plural = "Size Variation"
+
+
+## Weight Models 
+
+class WeightVariation(InitModels):
+    weight_name = models.CharField(max_length=200,null=True,
+        verbose_name="Weight Name")
+    
+    def __str__(self):
+        return str(self.weight_name)
