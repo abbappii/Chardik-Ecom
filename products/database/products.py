@@ -96,6 +96,7 @@ class Products(InitModels):
     #     decimal_places=2,
     #     default=0.00
     #     )
+    sold_count = models.IntegerField(null=True,blank=True)
     expire_rate = models.DateField(auto_now_add=False,null=True,blank=True)
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
 
@@ -159,6 +160,7 @@ class Variation_with_Price_variant(InitModels):
     # price 
     regular_price = models.FloatField(null=True,blank=True)
     selling_price = models.FloatField(null=True,blank=True)
+
 
     def __str__(self):
         return str(self.product)
