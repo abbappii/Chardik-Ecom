@@ -8,7 +8,7 @@ This file contains the Business logics of the followings
 '''
 from rest_framework import generics
 from products.database.init import *
-from products.serializers import *
+from products.serializers.init_serializers import *
 
 class CategoriesViewSet(generics.ListCreateAPIView):
     queryset = Categories.objects.all()

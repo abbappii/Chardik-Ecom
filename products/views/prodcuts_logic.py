@@ -13,7 +13,7 @@ from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FileUploadParser,FormParser
 from utils.util import *
 from products.database.products import Products 
-from products.serializers import *
+from products.serializers.init_serializers import *
  
 
 #ProductsView

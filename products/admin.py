@@ -5,6 +5,7 @@ from products.database.init import (
 )
 from products.database.products import (
     Products,Product_images,ProductAttribute,
+    Variation_with_Price_variant
 )
 from products.database.slider import(
     Slider
@@ -20,6 +21,7 @@ admin.site.register(Countreies)
 class ProductsAdmin(admin.ModelAdmin):
     list_display = ['id','product_name','review_star_count','review_comment_count']
 admin.site.register(Products,ProductsAdmin)
+admin.site.register(Variation_with_Price_variant)
 admin.site.register(ProductAttribute)
 admin.site.register(Product_images)
 admin.site.register(ProductReview)

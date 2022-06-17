@@ -1,7 +1,7 @@
 
 from rest_framework import generics
 from products.database.reviews import ProductReview
-from products.serializers import ProductReviewSerailizers
+from products.serializers.init_serializers import ProductReviewSerailizers
 
 # Review list view 
 class ProducReviewtListView(generics.ListAPIView):
