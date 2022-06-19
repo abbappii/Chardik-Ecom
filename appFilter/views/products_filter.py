@@ -11,6 +11,7 @@ Frontend
 ○ Top Sales Products*
 ○ Price (Low to Hight , High to Low)*
 ○ Flash deal Based Product*
+
 '''
 
 # importing initials 
@@ -82,3 +83,51 @@ class SingleCoutryProducts(generics.RetrieveAPIView):
     
 # class PopularProductsListView(generics.ListAPIView):
 #     queryset = Products.objects.filter()
+
+
+
+
+
+
+
+
+
+# ---abbappii
+'''
+popular product logic by
+    - star count
+    - comment count 
+
+latest product count logic
+    - by updated_at
+
+Top sales product logic
+    - order_items last 7-10 days 
+    - filter by order_items quantity
+'''
+
+# popular products 
+class PopularProductList(generics.ListAPIView):
+    queryset = Products.objects.filter(review_star_count__gte = 4.0).filter(review_comment_count={})
+
+# latest products 
+class LatestProductList(generics.ListAPIView):
+    queryset = Products.objects.all().order_by('-created_at')[:20]
+    serializer_class = ProductsAPI
+
+# Top sales product ----logic 1
+class TopSalesProductsListView(generics.ListAPIView):
+    queryset = Products.objects.all().order_by('-sold_count')[:20]
+
+# Top sales products --- logic 2
+import datetime
+from django.db.models import Sum   
+class TopSalesProductList(generics.ListAPIView):
+    queryset = Products.objects.filter(orderitem=datetime.datetime.today(),
+             orderitem__created_at__gt=datetime.datetime.today()
+             -datetime.timedelta(days=7)).annotate(quantity_sum = 
+             Sum('orderitem__quantity')).order_by('-quantity_sum')[:10]
+
+# Price (Low to Hight , High to Low)* 
+class PriceLowToHighListView(generics.ListAPIView):
+    pass

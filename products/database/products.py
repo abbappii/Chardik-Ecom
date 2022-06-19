@@ -1,4 +1,5 @@
 
+from operator import truediv
 from django.db import models
 
 from django.utils.translation import gettext_lazy as _
@@ -141,6 +142,14 @@ class Products(InitModels):
         comment_count = self.reviews.count()
         return comment_count
 
+
+    @property
+    def is_top_sale(self):
+        # check sold_count quantity
+        if self.sold_count > 20:
+            return True
+        else:
+            return False
 
 
 ## Product Variation with Price and variant 
