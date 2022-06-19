@@ -132,7 +132,7 @@ class Products(InitModels):
         if sum_count is None:
             return sum_count == 0 
         else: 
-            avg_count = '{0:.2g}'.format(sum_count/total_count)
+            avg_count = round((sum_count/total_count),2)
             return avg_count
 
 
