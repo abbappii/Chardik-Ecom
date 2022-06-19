@@ -108,25 +108,22 @@ Top sales product logic
 
 # popular products 
 class PopularProductList(generics.ListAPIView):
-    queryset = Products.objects.filter(review_star_count__gte = 4.0).filter(review_comment_count={})
+    # queryset = Products.objects.filter(review_star_count__gte = 4.0).filter(review_comment_count={})
+    serializer_class = ProductsAPI
+    def get_queryset(self):
+        filtered = [x for x in Products.objects.all() if x.review_star_count >= 4.0 and x.review_comment_count]
+        print(filtered)
+        return filtered
 
 # latest products 
 class LatestProductList(generics.ListAPIView):
     queryset = Products.objects.all().order_by('-created_at')[:20]
     serializer_class = ProductsAPI
+    
 
-# Top sales product ----logic 1
+# Top sales product
 class TopSalesProductsListView(generics.ListAPIView):
     queryset = Products.objects.all().order_by('-sold_count')[:20]
-
-# Top sales products --- logic 2
-import datetime
-from django.db.models import Sum   
-class TopSalesProductList(generics.ListAPIView):
-    queryset = Products.objects.filter(orderitem=datetime.datetime.today(),
-             orderitem__created_at__gt=datetime.datetime.today()
-             -datetime.timedelta(days=7)).annotate(quantity_sum = 
-             Sum('orderitem__quantity')).order_by('-quantity_sum')[:10]
 
 # Price (Low to Hight , High to Low)* 
 class PriceLowToHighListView(generics.ListAPIView):

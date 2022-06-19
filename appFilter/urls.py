@@ -3,7 +3,8 @@ from django.urls import path
 # importing Views 
 from appFilter.views.products_filter import (
     AllProductsView, ProductsUnderBrandView,ProductsUnderCategoryView, ProductsUnderCountryView,
-    SingleCategoryProducts,SingleBrandProducts,SingleCoutryProducts
+    SingleCategoryProducts,SingleBrandProducts,SingleCoutryProducts,
+    PopularProductList,LatestProductList,TopSalesProductsListView
 )
 
 
@@ -19,7 +20,9 @@ products_URL = [
     path('products/country/', ProductsUnderCountryView.as_view(), name='products-under-country'),
     path('products/country/<int:pk>/',SingleCoutryProducts.as_view()),
 
-
+    path('popular-products/', PopularProductList.as_view()),
+    path('latest-products/', LatestProductList.as_view()),
+    path('top-sales-product/', TopSalesProductsListView.as_view()),
 ]
 
 urlpatterns += products_URL
