@@ -11,6 +11,7 @@ Frontend
 ○ Top Sales Products*
 ○ Price (Low to Hight , High to Low)*
 ○ Flash deal Based Product*
+
 '''
 
 # importing initials 
@@ -82,3 +83,49 @@ class SingleCoutryProducts(generics.RetrieveAPIView):
     
 # class PopularProductsListView(generics.ListAPIView):
 #     queryset = Products.objects.filter()
+
+
+
+
+
+
+'''
+popular product logic by
+    - star count
+    - comment count 
+
+'''
+class PopularProductList(generics.ListAPIView):
+    # queryset = Products.objects.filter(review_star_count__gte = 4.0).filter(review_comment_count={})
+    serializer_class = ProductsAPI
+    def get_queryset(self):
+        filtered = [x for x in Products.objects.all() if x.review_star_count >= 4.0 and x.review_comment_count]
+        print(filtered)
+        return filtered
+
+
+'''
+latest product count logic
+    - by created_at
+'''
+class LatestProductList(generics.ListAPIView):
+    queryset = Products.objects.all().order_by('-created_at')[:20]
+    serializer_class = ProductsAPI
+
+
+
+'''
+Top sales product logic
+    - using sold_count field
+'''
+class TopSalesProductsListView(generics.ListAPIView):
+    queryset = Products.objects.all().order_by('-sold_count')[:20]
+    serializer_class = ProductsAPI
+
+
+'''
+Product low to high 
+    - ordering by price
+
+'''
+

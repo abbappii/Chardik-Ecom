@@ -1,4 +1,5 @@
 
+from operator import truediv
 from django.db import models
 
 from django.utils.translation import gettext_lazy as _
@@ -131,7 +132,7 @@ class Products(InitModels):
         if sum_count is None:
             return sum_count == 0 
         else: 
-            avg_count = '{0:.2g}'.format(sum_count/total_count)
+            avg_count = round((sum_count/total_count),2)
             return avg_count
 
 
@@ -141,6 +142,14 @@ class Products(InitModels):
         comment_count = self.reviews.count()
         return comment_count
 
+
+    @property
+    def is_top_sale(self):
+        # check sold_count quantity
+        if self.sold_count > 20:
+            return True
+        else:
+            return False
 
 
 ## Product Variation with Price and variant 
