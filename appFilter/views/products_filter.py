@@ -89,24 +89,12 @@ class SingleCoutryProducts(generics.RetrieveAPIView):
 
 
 
-
-
-
-# ---abbappii
 '''
 popular product logic by
     - star count
     - comment count 
 
-latest product count logic
-    - by updated_at
-
-Top sales product logic
-    - order_items last 7-10 days 
-    - filter by order_items quantity
 '''
-
-# popular products 
 class PopularProductList(generics.ListAPIView):
     # queryset = Products.objects.filter(review_star_count__gte = 4.0).filter(review_comment_count={})
     serializer_class = ProductsAPI
@@ -115,16 +103,29 @@ class PopularProductList(generics.ListAPIView):
         print(filtered)
         return filtered
 
-# latest products 
+
+'''
+latest product count logic
+    - by created_at
+'''
 class LatestProductList(generics.ListAPIView):
     queryset = Products.objects.all().order_by('-created_at')[:20]
     serializer_class = ProductsAPI
-    
 
-# Top sales product
+
+
+'''
+Top sales product logic
+    - using sold_count field
+'''
 class TopSalesProductsListView(generics.ListAPIView):
     queryset = Products.objects.all().order_by('-sold_count')[:20]
+    serializer_class = ProductsAPI
 
-# Price (Low to Hight , High to Low)* 
-class PriceLowToHighListView(generics.ListAPIView):
-    pass
+
+'''
+Product low to high 
+    - ordering by price
+
+'''
+
