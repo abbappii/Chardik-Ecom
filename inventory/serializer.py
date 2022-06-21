@@ -19,7 +19,7 @@ from inventory.models import (
 class SupplierSerializers(serializers.ModelSerializer):
     class Meta:
         model = Supplier
-        fields = ['id','name','description','country']
+        fields = ['id','name','description','country','phone','email','address']
     
 # purchase serailizer 
 class PurchaseSerialiers(serializers.ModelSerializer):
