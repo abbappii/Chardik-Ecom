@@ -12,7 +12,12 @@ from appFilter.views.products_filter import (
     PopularProductList,
     LatestProductList,
     TopSalesProductsListView,
+<<<<<<< HEAD
     DailySalesOrderTimeToTimeListView,
+=======
+
+    # PriceLowToHighListView, PriceHighToLowListView
+>>>>>>> b94c948037c264608b556aa7bae7c4e9ae550c53
 )
 
 

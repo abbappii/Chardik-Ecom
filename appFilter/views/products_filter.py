@@ -24,7 +24,7 @@ from django.db.models import Q
 
 
 # importing models 
-from products.database.init import   (
+from products.database.init_p import   (
     Brand, Categories, Countreies,Sub_Categories
 )
 from products.database.products import Products
