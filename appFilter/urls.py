@@ -13,7 +13,7 @@ from appFilter.views.products_filter import (
     LatestProductList,
     TopSalesProductsListView,
 
-    PriceLowToHighListView, PriceHighToLowListView
+    # PriceLowToHighListView, PriceHighToLowListView
 )
 
 
