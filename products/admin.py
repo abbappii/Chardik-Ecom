@@ -1,5 +1,5 @@
 from django.contrib import admin
-from products.database.init import (
+from products.database.init_p import (
     Countreies,Sub_Categories,Brand,Categories,
     ColorVariation,SizeVariation, WeightVariation
 )
