@@ -20,26 +20,6 @@ from products.database.init_p import(
 # class ProductAPI(serializers.ModelSerializer):
 
 
-'''
-product images
-Products 
-Attribute
-'''
-
-class Product_imagesSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Product_images
-        fields = ('image', )
-
-
-class ProductsSerializers(serializers.ModelSerializer):
-    product_image = Product_imagesSerializer(many=True, read_only=True)
-    class Meta:
-        model= Products
-        fields = "__all__"
-
-
 
 '''
  Product Variation Serializer 
@@ -60,7 +40,7 @@ class VariationAPI(serializers.ModelSerializer):
 class VariationListAPI(serializers.ModelSerializer):
     
     product = serializers.SlugRelatedField(queryset=Products.objects.all(),
-        slug_field='name')
+        slug_field='product_name')
     size = serializers.SlugRelatedField(queryset=SizeVariation.objects.all(),
         slug_field='size_name')
     color = serializers.SlugRelatedField(queryset= ColorVariation.objects.all(),
@@ -75,3 +55,49 @@ class VariationListAPI(serializers.ModelSerializer):
                 'selling_price']
 
 
+### Image Serializer 
+class Product_imagesSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Product_images
+        fields = ('image', )
+
+
+'''
+Product API 
+    - view 
+    - delete
+    - create
+    - update
+'''
+
+class ProductListAPI(serializers.ModelSerializer):
+    variant = VariationListAPI(many=True)
+    product_image = Product_imagesSerializer(many=True)
+
+    class Meta:
+        model = Products
+        fields = ['id','brand','country',
+                    'category','sub_category','product_name',
+                    'slug','meta','short_descriptions',
+                    'long_description','alter_text',
+                    'feature_image','sold_count','exprire_rate',
+                    'is_stock']
+
+
+
+
+
+
+'''
+product images
+Products 
+Attribute
+'''
+
+
+class ProductsSerializers(serializers.ModelSerializer):
+    product_image = Product_imagesSerializer(many=True, read_only=True)
+    class Meta:
+        model= Products
+        fields = "__all__"
