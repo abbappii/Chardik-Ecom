@@ -14,6 +14,9 @@ from rest_framework.parsers import MultiPartParser, FileUploadParser,FormParser
 from utils.util import *
 from products.database.products import Products 
 from products.serializers.init_serializers import *
+from products.serializers.product_serializers import (
+    ProductsSerializers,Product_imagesSerializer
+)
  
 
 #ProductsView
