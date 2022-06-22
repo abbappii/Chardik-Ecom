@@ -12,10 +12,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FileUploadParser,FormParser
 from utils.util import *
-from products.database.products import Products 
+from products.database.products import Products, Variation_with_Price_variant 
 from products.serializers.init_serializers import *
 from products.serializers.product_serializers import (
-    ProductsSerializers,Product_imagesSerializer
+    ProductsSerializers,Product_imagesSerializer,
+    VariationAPI,VariationListAPI
 )
  
 
@@ -108,4 +109,33 @@ class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
 #             return Response({'serializer': serializer, 'product': product})
 #         serializer.save()
 #         return redirect('products')
+
+
+'''
+Product Variation API
+    - Update
+    - Delete
+    - Single View
+'''
+
+# product Variation Retrieve
+class ProductVariationSingleView(generics.RetrieveAPIView):
+    queryset = Variation_with_Price_variant.objects.all()
+    serializer_class = VariationListAPI
+
+
+# Product Variation delete
+class ProductVariationSingle_updateView(generics.UpdateAPIView):
+    queryset = Variation_with_Price_variant.objects.all()
+    serializer_class = VariationAPI
+
+
+# Product Delete View
+class ProductVariation_DeleteView(generics.DestroyAPIView):
+    queryset = Variation_with_Price_variant.objects.all()
+    serializer_class = VariationListAPI
+
+
+
+
 
