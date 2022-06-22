@@ -6,7 +6,7 @@ from rest_framework import serializers
 # imporing models 
 from products.database.products import Products
 
-from products.database.init import (
+from products.database.init_p import (
     Brand, Categories, Countreies
 )
 

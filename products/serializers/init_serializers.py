@@ -9,7 +9,7 @@ This file contains serializers
 from rest_framework import serializers
 
 from products.database.slider import Slider
-from products.database.init import Categories, Countreies, Sub_Categories,  Brand
+from products.database.init_p import Categories, Countreies, Sub_Categories,  Brand
 from products.database.products import Products, Product_images
 from products.database.reviews import ProductReview
 

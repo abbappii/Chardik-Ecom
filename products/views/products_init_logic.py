@@ -7,7 +7,7 @@ This file contains the Business logics of the followings
 - countries (Create , Update , view , Delete)
 '''
 from rest_framework import generics
-from products.database.init import *
+from products.database.init_p import *
 from products.serializers.init_serializers import *
 
 class CategoriesViewSet(generics.ListCreateAPIView):
