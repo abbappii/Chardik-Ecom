@@ -96,10 +96,13 @@ popular product logic by
 
 '''
 class PopularProductList(generics.ListAPIView):
-    # queryset = Products.objects.filter(review_star_count__gte = 4.0).filter(review_comment_count={})
+    # queryset = Products.objects.filter(review_star_count__gte = 4.0).
+    # filter(review_comment_count={})
     serializer_class = ProductsAPI
     def get_queryset(self):
-        filtered = [x for x in Products.objects.all() if x.review_star_count >= 4.0 and x.review_comment_count]
+        filtered = [x for x in Products.objects.all()\
+             if x.review_star_count >= 4.0 \
+                  and x.review_comment_count]
         print(filtered)
         return filtered
 
