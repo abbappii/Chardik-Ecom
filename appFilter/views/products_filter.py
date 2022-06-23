@@ -11,6 +11,9 @@ Frontend
 ○ Top Sales Products*
 ○ Price (Low to Hight , High to Low)*
 ○ Flash deal Based Product*
+o Daily sales
+o Weekly sales
+o Monthly sales
 
 '''
 
@@ -21,7 +24,7 @@ from django.db.models import Q
 
 
 # importing models 
-from products.database.init import   (
+from products.database.init_p import   (
     Brand, Categories, Countreies,Sub_Categories
 )
 from products.database.products import Products
@@ -132,3 +135,29 @@ Product low to high
 
 '''
 
+'''
+Daily sales logic
+'''
+import datetime
+
+class DailySalesOrderTimeToTimeListView(generics.ListAPIView):
+    queryset = Products.objects.filter(items__created_at=datetime.date.today(), 
+    items__is_order=True
+    )
+    print(queryset)
+    serializer_class = ProductsAPI
+
+'''
+Daily total sales price
+'''
+from django.db.models import Sum
+class DailyTotalSalesRevenue(generics.ListAPIView):
+    queryset = Products.objects.all().filter(items__created_at=datetime.date.today()).aggregate(total_sum=Sum('variant__selling_price'))
+    serializer_class = ProductsAPI
+
+
+'''
+expenses 
+    - model create
+    - 
+'''

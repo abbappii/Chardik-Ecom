@@ -3,7 +3,10 @@ from django.urls import path
 from products.views.prodcuts_logic import (
     ProductListViewSet,
     ProductCreateView,
-    ProductRetUpDesViewSet
+    ProductRetUpDesViewSet,
+    ProductVariationSingle_updateView,
+    ProductVariation_DeleteView,
+    ProductVariationSingleView
 )
 
 from products.views.products_init_logic import (
@@ -49,6 +52,11 @@ urlpatterns_product = [
     # path('product/', ProductListViewSet.as_view(), name='products' ),
     # path('product/create/',ProductCreateView.as_view(), name='product_create' ),
     # path('product/<slug:slug>/',ProductDetail.as_view(), name='products_detail' ),
+
+    # product Variation URL
+    path('product/variation/view/<int:pk>/',ProductVariationSingleView.as_view()),
+    path('product/variation/update/<int:pk>/',ProductVariationSingle_updateView.as_view()),
+    path('product/variation/delete/<int:pk>/',ProductVariation_DeleteView.as_view()),
 ]
 
 
