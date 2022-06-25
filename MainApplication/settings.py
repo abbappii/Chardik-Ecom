@@ -25,7 +25,8 @@ App_Install =[
     'products.apps.ProductsConfig',
     'inventory.apps.InventoryConfig',
     'pos_manager.apps.PosManagerConfig',
-    'initapp.apps.InitappConfig'
+    'initapp.apps.InitappConfig',
+    'courier.apps.CourierConfig',
 ]
 
 Third_Party = [
@@ -34,7 +35,7 @@ Third_Party = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     # 'corsheaders',
-    'courier',
+    
 ]
 
 Default_APPS = [

@@ -4,6 +4,7 @@ from products.views.prodcuts_logic import (
     ProductListViewSet,
     ProductCreateView,
     ProductRetUpDesViewSet,
+    ProductVariationCreate,
     ProductVariationSingle_updateView,
     ProductVariation_DeleteView,
     ProductVariationSingleView
@@ -36,7 +37,12 @@ from products.views.slider_logic import (
     SliderDeleteView
 )
 
-urlpatterns = [ 
+
+
+urlpatterns = []
+
+
+urlpatterns_category = [
     path('categories/', CategoriesViewSet.as_view(), name='categories'),
     path('categories/<int:pk>/', CategoriesUpdateDelete.as_view(), name='categories_update_delete'),
     path('sub_categories/', SubCategoriesViewSet.as_view(), name='sub_categories'),
@@ -54,6 +60,7 @@ urlpatterns_product = [
     # path('product/<slug:slug>/',ProductDetail.as_view(), name='products_detail' ),
 
     # product Variation URL
+    path('product/variation/create/',ProductVariationCreate.as_view()),
     path('product/variation/view/<int:pk>/',ProductVariationSingleView.as_view()),
     path('product/variation/update/<int:pk>/',ProductVariationSingle_updateView.as_view()),
     path('product/variation/delete/<int:pk>/',ProductVariation_DeleteView.as_view()),
@@ -85,6 +92,7 @@ urlpatterns_slider = [
 ]
 
 
+urlpatterns += urlpatterns_category
 urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
 urlpatterns += urlpatterns_productsReview
