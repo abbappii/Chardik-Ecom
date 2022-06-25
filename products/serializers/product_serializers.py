@@ -81,7 +81,7 @@ class ProductListAPI(serializers.ModelSerializer):
                     'category','sub_category','product_name',
                     'slug','meta','short_descriptions',
                     'long_description','alter_text',
-                    'feature_image','sold_count','exprire_rate',
+                    'feature_image','product_image','sold_count','exprire_rate',
                     'is_stock']
 
 
