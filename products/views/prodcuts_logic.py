@@ -7,7 +7,7 @@ This file contains the Business logics of the followings
 '''
 from django.shortcuts import redirect
 from rest_framework import generics
-from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FileUploadParser,FormParser
@@ -26,8 +26,13 @@ class ProductListViewSet(generics.ListAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializers
 
-class ProductCreateView(APIView):
+
+
+class ProductCreateView(GenericAPIView):
     parser_classes = (MultiPartParser, FormParser)
+    queryset = Products.objects.all()
+    serializer_class = ProductsSerializers
+
 
     def post(self, request,format=None):
         data = request.data
