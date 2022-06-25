@@ -7,7 +7,7 @@ from rest_framework import serializers
 # from orders.database.cart import Cart
 
 # imporing models 
-from orders.database.order import Coupon
+from orders.database.coupon import Coupon
 from orders.database.cart_order import Cart, CartProduct,Order
 
 '''
