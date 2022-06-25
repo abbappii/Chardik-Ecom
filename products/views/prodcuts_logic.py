@@ -113,10 +113,18 @@ class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
 
 '''
 Product Variation API
+    - Create
     - Update
     - Delete
     - Single View
 '''
+
+
+# Product Variation Create
+class ProductVariationCreate(generics.CreateAPIView):
+    queryset = Variation_with_Price_variant.objects.all()
+    serializer_class = VariationAPI
+
 
 # product Variation Retrieve
 class ProductVariationSingleView(generics.RetrieveAPIView):
