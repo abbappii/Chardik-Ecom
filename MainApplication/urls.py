@@ -40,6 +40,7 @@ urlpatterns = [
     path('record/',include('inventory.urls')),
     
     path('contact/', include('initapp.urls')),
+    path('blog/', include('blog.urls')),
 
     # configure the redoc setup
      #  path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
