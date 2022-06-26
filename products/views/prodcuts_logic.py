@@ -23,7 +23,7 @@ from products.serializers.product_serializers import (
 #ProductsView
 
 class ProductListViewSet(generics.ListAPIView):
-    queryset = Products.objects.all()
+    queryset = Products.objects.prefetch_related('variant','product_image','reviews')
     serializer_class = ProductListAPI
 
 
