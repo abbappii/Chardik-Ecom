@@ -1,14 +1,10 @@
 from django.contrib import admin
 
-from .database.admin_post import AdminBlog
-from .database.customer_post import CustomerBlog
+from blog.database.blog import Blog
 
 # Register your models here.
 
-class AdminBlogAdmin(admin.ModelAdmin):
+class BlogAdmin(admin.ModelAdmin):
     list_display = ['id','title','is_active']
-admin.site.register(AdminBlog,AdminBlogAdmin)
+admin.site.register(Blog,BlogAdmin)
 
-class CustomerBlogAdmin(admin.ModelAdmin):
-    list_display = ['id','title','is_active']
-admin.site.register(CustomerBlog,CustomerBlogAdmin)
