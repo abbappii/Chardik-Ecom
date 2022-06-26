@@ -12,6 +12,7 @@ from products.database.slider import Slider
 from products.database.init_p import Categories, Countreies, Sub_Categories,  Brand
 from products.database.products import Products, Product_images
 from products.database.reviews import ProductReview
+from accounts.models.profile import Profile
 
 ''' 
 Category
@@ -56,6 +57,18 @@ class CountriesSerializer(serializers.ModelSerializer):
 Products Review serializer
 '''
 class ProductReviewSerailizers(serializers.ModelSerializer):
+    class Meta:
+        model = ProductReview
+        fields = ['id','profile','product','star_count','review']
+
+
+## List view
+
+class ProductReviewListAPI(serializers.ModelSerializer):
+    profile = serializers.SlugRelatedField(queryset=Profile.objects.all(),
+        slug_field="full_name")
+    product = serializers.SlugRelatedField(queryset=Products.objects.all(),
+        slug_field='product_name')
     class Meta:
         model = ProductReview
         fields = ['id','profile','product','star_count','review']

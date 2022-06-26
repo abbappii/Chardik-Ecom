@@ -16,7 +16,7 @@ from products.database.products import Products, Variation_with_Price_variant
 from products.serializers.init_serializers import *
 from products.serializers.product_serializers import (
     ProductsSerializers,Product_imagesSerializer,
-    VariationAPI,VariationListAPI
+    VariationAPI,VariationListAPI,ProductListAPI
 )
  
 
@@ -24,7 +24,7 @@ from products.serializers.product_serializers import (
 
 class ProductListViewSet(generics.ListAPIView):
     queryset = Products.objects.all()
-    serializer_class = ProductsSerializers
+    serializer_class = ProductListAPI
 
 
 
