@@ -40,6 +40,7 @@ class SMS_of_Phone_Verification(threading.Thread):
                 message=Your Charidike.com OTP is {otp}"
 
             payload  = {}
+            
             headers = {
             'Content-Type': 'application/x-www-form-urlencoded'
             }

@@ -7,7 +7,7 @@ This file contains the Business logics of the followings
 '''
 from django.shortcuts import redirect
 from rest_framework import generics
-from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FileUploadParser,FormParser
@@ -16,18 +16,23 @@ from products.database.products import Products, Variation_with_Price_variant
 from products.serializers.init_serializers import *
 from products.serializers.product_serializers import (
     ProductsSerializers,Product_imagesSerializer,
-    VariationAPI,VariationListAPI
+    VariationAPI,VariationListAPI,ProductListAPI
 )
  
 
 #ProductsView
 
 class ProductListViewSet(generics.ListAPIView):
+    queryset = Products.objects.prefetch_related('variant','product_image','reviews')
+    serializer_class = ProductListAPI
+
+
+
+class ProductCreateView(GenericAPIView):
+    parser_classes = (MultiPartParser, FormParser)
     queryset = Products.objects.all()
     serializer_class = ProductsSerializers
 
-class ProductCreateView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request,format=None):
         data = request.data
@@ -113,10 +118,18 @@ class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
 
 '''
 Product Variation API
+    - Create
     - Update
     - Delete
     - Single View
 '''
+
+
+# Product Variation Create
+class ProductVariationCreate(generics.CreateAPIView):
+    queryset = Variation_with_Price_variant.objects.all()
+    serializer_class = VariationAPI
+
 
 # product Variation Retrieve
 class ProductVariationSingleView(generics.RetrieveAPIView):

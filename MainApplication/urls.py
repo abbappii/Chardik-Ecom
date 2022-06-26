@@ -40,6 +40,7 @@ urlpatterns = [
     path('record/',include('inventory.urls')),
     
     path('contact/', include('initapp.urls')),
+    path('blog/', include('blog.urls')),
 
     # configure the redoc setup
      #  path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
@@ -49,6 +50,7 @@ urlpatterns = [
     
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('courier/', include('courier.urls'))
 
 ]
 

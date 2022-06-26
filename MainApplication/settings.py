@@ -25,7 +25,10 @@ App_Install =[
     'products.apps.ProductsConfig',
     'inventory.apps.InventoryConfig',
     'pos_manager.apps.PosManagerConfig',
-    'initapp.apps.InitappConfig'
+    'initapp.apps.InitappConfig',
+    'courier.apps.CourierConfig',
+    'blog.apps.BlogConfig',
+
 ]
 
 Third_Party = [
@@ -34,6 +37,7 @@ Third_Party = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     # 'corsheaders',
+    
 ]
 
 Default_APPS = [
@@ -179,7 +183,7 @@ REST_FRAMEWORK = {
    
     'DEFAULT_AUTHENTICATION_CLASSES': (
         
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
   
 }
