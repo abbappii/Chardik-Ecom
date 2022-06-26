@@ -5,9 +5,11 @@ from blog.views.blog_logic import (
     BlogSingleView, 
     BlogUpdateView,
     BlogDeleteView, 
+    BlogCreateView
 )
 
 urlpatterns = [ 
+    path('create/',BlogCreateView.as_view()),
     path('list/view/', BlogListView.as_view()),
     path('single/view/<int:pk>/', BlogSingleView.as_view()),
     path('update/view/<int:pk>/', BlogUpdateView.as_view()),
