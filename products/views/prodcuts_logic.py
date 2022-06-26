@@ -16,15 +16,15 @@ from products.database.products import Products, Variation_with_Price_variant
 from products.serializers.init_serializers import *
 from products.serializers.product_serializers import (
     ProductsSerializers,Product_imagesSerializer,
-    VariationAPI,VariationListAPI
+    VariationAPI,VariationListAPI,ProductListAPI
 )
  
 
 #ProductsView
 
 class ProductListViewSet(generics.ListAPIView):
-    queryset = Products.objects.all()
-    serializer_class = ProductsSerializers
+    queryset = Products.objects.prefetch_related('variant','product_image','reviews')
+    serializer_class = ProductListAPI
 
 
 
