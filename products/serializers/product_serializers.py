@@ -23,6 +23,8 @@ from products.serializers.init_serializers import(
 )
 
 
+# class 
+
 ## Products API
 
 # class ProductAPI(serializers.ModelSerializer):

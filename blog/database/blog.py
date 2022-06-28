@@ -2,7 +2,9 @@ from django.db import models
 from accounts.models.initials import InitModels
 
 class Blog(InitModels):
-    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, related_name='post_author')
+
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, 
+        related_name='post_author')
     title = models.CharField(max_length=200,blank=True)
     description = models.TextField()
     image = models.ImageField(upload_to='blog_admin',blank = True)
@@ -16,6 +18,6 @@ class Blog(InitModels):
         return self.title
 
     class Meta:
-        verbose_name_plural = 'Blogs'
+        verbose_name_plural = 'Blog'
         ordering = ['-created_at']
     
