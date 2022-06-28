@@ -89,8 +89,12 @@ class SingleCoutryProducts(generics.RetrieveAPIView):
 
 
 
+class Prouduct_by_review_count(generics.ListAPIView):
+    serializer_class = ProductsAPI
 
-
+    def get_queryset(self):
+        product_by_count = Products.objects.filter(is_active=True).order_by('-review_star_count')
+        return product_by_count
 
 '''
 popular product logic by
