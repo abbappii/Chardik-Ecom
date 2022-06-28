@@ -52,12 +52,14 @@ class BrandSerializer(serializers.ModelSerializer):
     class Meta: 
         model= Brand
         fields = '__all__'
+        depth=1
 
 # CountrySerializer 
 class CountriesSerializer(serializers.ModelSerializer):
     class Meta: 
         model= Countreies
         fields = '__all__'
+        depth=1
 
 
 
