@@ -7,7 +7,8 @@ from products.views.prodcuts_logic import (
     ProductVariationCreate,
     ProductVariationSingle_updateView,
     ProductVariation_DeleteView,
-    ProductVariationSingleView
+    ProductVariationSingleView,
+    ProductSingleView
 )
 
 from products.views.products_init_logic import (
@@ -64,6 +65,7 @@ urlpatterns_product = [
     path('product/create/',ProductCreateView.as_view(), name='product_create' ),
     path('product/<slug:slug>/',ProductRetUpDesViewSet.as_view(), 
         name='products_delete_update' ),
+    path('product/single/<int:pk>/',ProductSingleView.as_view()),
     # products renderer url 
     # path('product/', ProductListViewSet.as_view(), name='products' ),
     # path('product/create/',ProductCreateView.as_view(), name='product_create' ),

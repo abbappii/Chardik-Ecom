@@ -57,6 +57,11 @@ class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'slug'
 
 
+## Product Single View 
+class ProductSingleView(generics.RetrieveAPIView):
+    queryset = Products.objects.prefetch_related('variant','product_image','reviews')
+    serializer_class = ProductListAPI
+
 # rendrer html form 
 # class ProductListViewSet(APIView):
 #     renderer_classes = [TemplateHTMLRenderer]
