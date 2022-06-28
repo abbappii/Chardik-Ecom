@@ -9,6 +9,7 @@ from appFilter.views.products_filter import (
     SingleCategoryProducts,
     SingleBrandProducts,
     SingleCoutryProducts,
+    Prouduct_by_review_count,
     PopularProductList,
     LatestProductList,
     TopSalesProductsListView, 
@@ -29,6 +30,7 @@ products_URL = [
     path('products/country/', ProductsUnderCountryView.as_view(), name='products-under-country'),
     path('products/country/<int:pk>/',SingleCoutryProducts.as_view()),
 
+    path('product-by-review-count/',Prouduct_by_review_count.as_view()),
     path('popular-products/', PopularProductList.as_view()),
     path('latest-products/', LatestProductList.as_view()),
     path('top-sales-product/', TopSalesProductsListView.as_view()),
