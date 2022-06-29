@@ -28,19 +28,7 @@ ORDER_STATUS = (
     ("Order Canceled", "Order Canceled"),
 )
 
-class Order(InitModels):
-    cart  = models.OneToOneField(Cart,on_delete=models.CASCADE)
-    mobile = models.CharField(max_length=16)
-    email = models.CharField(max_length=200)
-    address = models.CharField(max_length=255)
 
-    total = models.PositiveIntegerField()
-    discount = models.PositiveIntegerField()
-
-    order_status = models.CharField(max_length=100,choices=ORDER_STATUS,
-        default="Order Received")
-
-    payment_complete = models.BooleanField(default=False,blank=True, null=True)
 
 
 
@@ -56,12 +44,15 @@ Cart & Order Management
 
 ## Order Item Models 
 class OrderItem(InitModels):
-    customer = models.ForeignKey('accounts.Profile',on_delete=models.CASCADE,
-        null=True,verbose_name="Customer Name",related_name="order_items")
+    # customer = models.ForeignKey('accounts.Profile',on_delete=models.CASCADE,
+    #     null=True,verbose_name="Customer Name",related_name="order_items")
     item = models.ForeignKey('products.Products',on_delete=models.SET_NULL,
         null=True,verbose_name="Products",related_name="items")
     quantity = models.IntegerField(null=True,verbose_name="Quantity")
+    attr = models.CharField(max_length=300,null=True,blank=True,verbose_name="Attribute")
     is_order = models.BooleanField(default=False) 
+
+    
 
 
     def __str__(self):
@@ -71,3 +62,19 @@ class OrderItem(InitModels):
     class Meta:
         verbose_name_plural =  "Order Item"
     
+
+class Order(InitModels):
+    # cart  = models.OneToOneField(Cart,on_delete=models.CASCADE)
+    customer = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
+        verbose_name="Customer")
+    mobile = models.CharField(max_length=16)
+    email = models.CharField(max_length=200)
+    address = models.CharField(max_length=255)
+
+    total = models.PositiveIntegerField()
+    # discount = models.PositiveIntegerField()
+
+    order_status = models.CharField(max_length=100,choices=ORDER_STATUS,
+        default="Order Received")
+
+    payment_complete = models.BooleanField(default=False,blank=True, null=True)
