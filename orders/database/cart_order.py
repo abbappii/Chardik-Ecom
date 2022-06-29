@@ -51,6 +51,7 @@ class OrderItem(InitModels):
     quantity = models.IntegerField(null=True,verbose_name="Quantity")
     attr = models.CharField(max_length=300,null=True,blank=True,verbose_name="Attribute")
     is_order = models.BooleanField(default=False) 
+    amount_item = models.PositiveIntegerField(null=True)
 
     
 
