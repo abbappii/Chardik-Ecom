@@ -67,14 +67,42 @@ class Order(InitModels):
     # cart  = models.OneToOneField(Cart,on_delete=models.CASCADE)
     customer = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
         verbose_name="Customer")
+    ref_code = models.CharField(max_length=20, blank=True, null=True)
     mobile = models.CharField(max_length=16)
     email = models.CharField(max_length=200)
     address = models.CharField(max_length=255)
-
+    
     total = models.PositiveIntegerField()
     # discount = models.PositiveIntegerField()
 
     order_status = models.CharField(max_length=100,choices=ORDER_STATUS,
         default="Order Received")
 
-    payment_complete = models.BooleanField(default=False,blank=True, null=True)
+    payment_complete = models.BooleanField(default=False)
+    is_order = models.BooleanField(default=False,null=True)
+
+
+
+
+
+'''
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
+    ref_code = models.CharField(max_length=20, blank=True, null=True)
+    items = models.ManyToManyField(OrderItem)
+    start_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
+    shipping_address = models.ForeignKey(
+        'Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
+    billing_address = models.ForeignKey(
+        'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
+    payment = models.ForeignKey(
+        'Payment', on_delete=models.SET_NULL, blank=True, null=True)
+    coupon = models.ForeignKey(
+        'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
+    being_delivered = models.BooleanField(default=False)
+    received = models.BooleanField(default=False)
+    refund_requested = models.BooleanField(default=False)
+    refund_granted = models.BooleanField(default=False)
+    '''
