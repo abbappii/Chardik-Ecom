@@ -6,7 +6,10 @@ from orders.views.coupon import (
 
 from rest_framework import routers
 from orders.views.cart_order import *
-
+from orders.views.order_view import (
+    OrderView,
+    AddOrderItem
+)
 router = routers.DefaultRouter()
 router.register('cart',MyCart,basename="MyCart")
 router.register('orderviewset',OrderViewset,basename='OrderView')
@@ -27,4 +30,11 @@ coupon_URL = [
     path('delele/<int:pk>/',CouponDeleteView.as_view())
 ]
 
+order_URL = [
+    path('order/',OrderView.as_view()),
+    path('add/item/',AddOrderItem.as_view())
+]
+
+
+urlpatterns += order_URL
 urlpatterns += coupon_URL
