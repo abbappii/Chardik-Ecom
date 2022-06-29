@@ -5,7 +5,8 @@ from orders.database.coupon import (
     Coupon
 )
 from orders.database.cart_order import(
-    OrderItem
+    OrderItem,
+    Order
 )
 
 
@@ -18,3 +19,4 @@ class OrderItem_admin(admin.ModelAdmin):
     list_display = ['id','item','quantity','is_order']
 
 admin.site.register(OrderItem,OrderItem_admin)
+admin.site.register(Order)
