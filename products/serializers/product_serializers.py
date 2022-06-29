@@ -19,8 +19,14 @@ from products.database.init_p import(
    Sub_Categories
 )
 from products.serializers.init_serializers import(
-    ProductReviewListAPI
+    BrandSerializer,
+    CategoriesSerializers,
+    ProductReviewListAPI,
+    SubCategoriesSerializers,
+    CountriesSerializer
 )
+
+from products.serializers.init_serializers import CategoriesSerializers, SubCategoriesSerializers, BrandSerializer, CountriesSerializer
 
 
 # class 
@@ -83,8 +89,12 @@ Product API
 
 class ProductListAPI(serializers.ModelSerializer):
     # add name fields views
-    sub_category = serializers.CharField(source = 'get_sub_category',read_only=True)
-    category = serializers.CharField(source='get_category',read_only=True)
+    # sub_category = serializers.CharField(source = 'get_sub_category',read_only=True)
+    # category = serializers.CharField(source='get_category',read_only=True)
+    category=CategoriesSerializers(many=True, read_only=True)
+    sub_category=SubCategoriesSerializers(many=True, read_only=True)
+    #brand=BrandSerializer(many=True, read_only=True)
+    #country=CountriesSerializer(many=True, read_only=True)
     variant = VariationListAPI(many=True)
     product_image = Product_imagesSerializer(many=True)
     reviews = ProductReviewListAPI(many=True)
