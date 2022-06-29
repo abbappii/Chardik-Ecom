@@ -101,15 +101,12 @@ class ProductListAPI(serializers.ModelSerializer):
 
     class Meta:
         model = Products
-        # fields = ['id','brand','country',
-        #             'category','sub_category','product_name',
-        #             'slug','meta','short_descriptions',
-        #             'long_description','alter_text',
-        #             'feature_image','product_image','sold_count','expire_rate',
-        #             'is_stock','variant','reviews']
-
-        fields="__all__"
-        depth=1
+        fields = ['id','brand','country','sku',
+                    'category','sub_category','product_name',
+                    'slug','meta','short_descriptions',
+                    'long_description','alter_text',
+                    'feature_image','product_image','sold_count','expire_rate',
+                    'is_stock','variant','reviews']
 
 
 
