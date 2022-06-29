@@ -56,7 +56,7 @@ class OrderItem(InitModels):
 
 
     def __str__(self):
-        return f"Customer : {self.customer} === Item : {self.item} === Quantitiy  \
+        return f"Item : {self.item} === Quantitiy  \
                 : {self.quantity} === Status : {'Paid' if self.is_order == True else 'Not paid'}"
 
     class Meta:
@@ -68,10 +68,14 @@ class Order(InitModels):
     customer = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
         verbose_name="Customer")
     ref_code = models.CharField(max_length=20, blank=True, null=True)
-    mobile = models.CharField(max_length=16)
-    email = models.CharField(max_length=200)
-    address = models.CharField(max_length=255)
-    
+    # mobile = models.CharField(max_length=16)
+    # email = models.CharField(max_length=200)
+    address = models.ForeignKey('accounts.BillingAddress',on_delete=models.SET_NULL,
+        null=True,blank=True)
+    coupon = models.ForeignKey('orders.Coupon',blank=True,null=True,
+        on_delete=models.SET_NULL)
+    ordered_date = models.DateTimeField(null=True)
+    items = models.ManyToManyField(OrderItem)
     total = models.PositiveIntegerField()
     # discount = models.PositiveIntegerField()
 
@@ -81,28 +85,10 @@ class Order(InitModels):
     payment_complete = models.BooleanField(default=False)
     is_order = models.BooleanField(default=False,null=True)
 
+    def __str__(self):
+        return str(self.customer)
+
+    class Meta:
+        verbose_name_plural = 'Customer Order'
 
 
-
-
-'''
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
-    ref_code = models.CharField(max_length=20, blank=True, null=True)
-    items = models.ManyToManyField(OrderItem)
-    start_date = models.DateTimeField(auto_now_add=True)
-    ordered_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
-    shipping_address = models.ForeignKey(
-        'Address', related_name='shipping_address', on_delete=models.SET_NULL, blank=True, null=True)
-    billing_address = models.ForeignKey(
-        'Address', related_name='billing_address', on_delete=models.SET_NULL, blank=True, null=True)
-    payment = models.ForeignKey(
-        'Payment', on_delete=models.SET_NULL, blank=True, null=True)
-    coupon = models.ForeignKey(
-        'Coupon', on_delete=models.SET_NULL, blank=True, null=True)
-    being_delivered = models.BooleanField(default=False)
-    received = models.BooleanField(default=False)
-    refund_requested = models.BooleanField(default=False)
-    refund_granted = models.BooleanField(default=False)
-    '''
