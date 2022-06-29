@@ -6,7 +6,7 @@ from accounts.models.initials import InitModels
 
 class OfflineSale(InitModels):
     outlet = models.CharField(max_length=255, null= True, blank=True)
-    user = models.ForeignKey('accounts.User', 
+    user = models.ForeignKey('accounts.Profile', 
             on_delete=models.CASCADE, 
             related_name='customer_user'
             )
