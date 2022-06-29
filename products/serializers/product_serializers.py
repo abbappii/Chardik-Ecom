@@ -89,7 +89,7 @@ class ProductListAPI(serializers.ModelSerializer):
 
     class Meta:
         model = Products
-        fields = ['id','brand','country',
+        fields = ['id','brand','country','sku',
                     'category','sub_category','product_name',
                     'slug','meta','short_descriptions',
                     'long_description','alter_text',
