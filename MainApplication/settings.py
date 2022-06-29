@@ -27,6 +27,8 @@ App_Install =[
     'pos_manager.apps.PosManagerConfig',
     'initapp.apps.InitappConfig',
     'courier.apps.CourierConfig',
+    'blog.apps.BlogConfig',
+
 ]
 
 Third_Party = [

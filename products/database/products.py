@@ -63,7 +63,7 @@ class Products(InitModels):
         max_length=1200, 
         null=True, 
         blank=True,
-        verbose_name='Short Description'
+        verbose_name='Short DesColorVariationcription'
         )
     long_description = models.TextField(
         null=True, 
