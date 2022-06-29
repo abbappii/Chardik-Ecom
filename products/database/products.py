@@ -47,7 +47,7 @@ class Products(InitModels):
         related_name='Sub_category_products')
 
     product_name = models.CharField(
-        max_length=50, 
+        max_length=255, 
         null=True, 
         blank=True
         )
