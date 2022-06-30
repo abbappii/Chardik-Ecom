@@ -45,6 +45,7 @@ class OfflineProfileCreateView(GenericAPIView):
             
             apifetch.validated_data['user'] = user
             apifetch.save()
+            
             profile_ID=user.profile.id
             message = f"Thanks for joining Charike.com \n Your Phone Number is {phone} \n Your Password is {password} \
                             \n You can change the Password in your dashboard"
