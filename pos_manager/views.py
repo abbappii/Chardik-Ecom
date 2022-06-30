@@ -27,7 +27,7 @@ class OfflineProfileCreateView(GenericAPIView):
 
     def post(self,request):
         phone = request.data.get('phone')
-        password = request.data.get('password') 
+        password = "123456" 
 
         apifetch = UserOfflineProfileSerializers(data=request.data)
         if apifetch.is_valid():
@@ -46,9 +46,7 @@ class OfflineProfileCreateView(GenericAPIView):
             apifetch.validated_data['user'] = user
             apifetch.save()
             profile_ID=user.profile.id
-            message = f"Thanks for joining Charike.com \n \
-                            Your Phone Number is {phone} \n \
-                            Your Password is {password} \
+            message = f"Thanks for joining Charike.com \n Your Phone Number is {phone} \n Your Password is {password} \
                             \n You can change the Password in your dashboard"
             SMS_for_Phone_Message(phone,message).start()
 
