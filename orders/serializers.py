@@ -8,8 +8,12 @@ from rest_framework import serializers
 
 # imporing models 
 from orders.database.coupon import Coupon
-from orders.database.cart_order import Cart, CartProduct,Order
-
+from orders.database.cart_order import (
+    Cart, 
+    CartProduct,
+    Order,
+    OrderItem
+)
 '''
 Coupon API serializers 
 '''
@@ -48,3 +52,31 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = "__all__"
         depth = 1
+
+
+'''
+Order API 
+    order Item
+    Order
+'''
+
+# Item API
+class OrderItemAPI(serializers.ModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = ['id','item',
+                'quantity','attr',
+                'is_order','amount_item'
+                ]
+
+
+## Order API
+
+class OrderAPI(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = ['id',
+                'ref_code','address','coupon',
+                'ordered_date','items',
+                'total','order_status','is_order'
+                ]
