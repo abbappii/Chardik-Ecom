@@ -53,7 +53,15 @@ class UserProfileSeriliazer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields= ['id', 'full_name','address','city','zipcode','country',
-        'phone','date_joined']
+        'phone']
+
+# User Profile list serializers 
+class UserProfileListSeriliazer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        # fields= ['id', 'user','full_name', 'phone']
+        fields = "__all__"
+
 
 
 # User passwordchange Serializer 
