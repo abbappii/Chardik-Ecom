@@ -26,7 +26,12 @@ from products.serializers.init_serializers import(
     CountriesSerializer
 )
 
-from products.serializers.init_serializers import CategoriesSerializers, SubCategoriesSerializers, BrandSerializer, CountriesSerializer
+from products.serializers.init_serializers import(
+     CategoriesSerializers, 
+     SubCategoriesSerializers, 
+     BrandSerializer, 
+     CountriesSerializer
+)
 
 
 # class 
