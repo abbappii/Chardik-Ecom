@@ -46,6 +46,7 @@ class SubCategoriesSerializers(serializers.ModelSerializer):
     class Meta:
         model = Sub_Categories
         fields="__all__"
+        depth = 1
 
 # BrandSerrializer
 class BrandSerializer(serializers.ModelSerializer):
