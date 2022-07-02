@@ -41,15 +41,15 @@ Purchase Models
     '''
 
 order_status = (
-    ('1','Recieved'),
-    ('2','Pending'),
-    ('3','Ordered')
+    ('Received','Recieved'),
+    ('Pending','Pending'),
+    ('Ordered','Ordered')
 )
 
 payment_status = (
-    ('1','Pending'),
-    ('2','Partial'),
-    ('3','Paid')
+    ('Pending','Pending'),
+    ('Partial','Partial'),
+    ('Paid','Paid')
 )
 
 

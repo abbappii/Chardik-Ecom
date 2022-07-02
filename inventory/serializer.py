@@ -42,3 +42,4 @@ class PurchaseSerialiers(serializers.ModelSerializer):
             'payment_status',
             'description'
         ]
+        depth = 1
