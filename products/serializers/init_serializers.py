@@ -84,7 +84,8 @@ class ProductReviewListAPI(serializers.ModelSerializer):
         slug_field='product_name')
     class Meta:
         model = ProductReview
-        fields = ['id','profile','product','star_count','review']
+        fields = ['id','profile','product','star_count','review','is_active']
+        # depth = 1
 
 
 '''
