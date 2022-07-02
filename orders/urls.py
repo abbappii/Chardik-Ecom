@@ -26,11 +26,11 @@ from orders.views.order_view import (
 urlpatterns =[]
 
 coupon_URL = [
-    path('list/',CouponView.as_view()),
-    path('<int:pk>/',CouponSingleView.as_view()),
-    path('edit/<int:pk>/',CouponEditView.as_view()),
-    path('create/',CouponCreateView.as_view()),
-    path('delele/<int:pk>/',CouponDeleteView.as_view())
+    path('coupon/list/',CouponView.as_view()),
+    path('coupon/singleview/<int:pk>/',CouponSingleView.as_view()),
+    path('coupon/edit/<int:pk>/',CouponEditView.as_view()),
+    path('coupon/create/',CouponCreateView.as_view()),
+    path('coupon/delele/<int:pk>/',CouponDeleteView.as_view())
 ]
 
 order_URL = [
