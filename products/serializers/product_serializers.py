@@ -107,6 +107,7 @@ class ProductListAPI(serializers.ModelSerializer):
                     'long_description','alter_text',
                     'feature_image','product_image','sold_count','expire_rate',
                     'is_stock','variant','reviews']
+        depth = 1
 
 
 
@@ -125,3 +126,4 @@ class ProductsSerializers(serializers.ModelSerializer):
     class Meta:
         model= Products
         fields = "__all__"
+        depth = 1
