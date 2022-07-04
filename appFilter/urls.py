@@ -24,11 +24,11 @@ urlpatterns = []
 products_URL = [
     path('products/',AllProductsView.as_view()),
     path('products/category/',ProductsUnderCategoryView.as_view()),
-    path('products/category/<int:pk>/',SingleCategoryProducts.as_view()),
+    path('products/category/<slug:slug>/',SingleCategoryProducts.as_view()),
     path('products/brand/', ProductsUnderBrandView.as_view(), name='products-under-brand'),
-    path('products/brand/<int:pk>/',SingleBrandProducts.as_view()),
+    path('products/brand/<slug:slug>/',SingleBrandProducts.as_view()),
     path('products/country/', ProductsUnderCountryView.as_view(), name='products-under-country'),
-    path('products/country/<int:pk>/',SingleCoutryProducts.as_view()),
+    path('products/country/<slug:slug>/',SingleCoutryProducts.as_view()),
 
     path('product-by-review-count/',Prouduct_by_review_count.as_view()),
     path('popular-products/', PopularProductList.as_view()),

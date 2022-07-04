@@ -10,7 +10,10 @@ from rest_framework import generics
 from products.database.init_p import *
 from products.serializers.init_serializers import (
     CategoriesSerializers,
-    SubCategoriesSerializers,
+
+    SubCategoriesListSerializers,
+    SubCategorySerializers,
+    
     BrandSerializer,
     CountriesSerializer,
     SizeVariationAPI,
@@ -41,13 +44,42 @@ class CategoriesUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
             return self.list(request)
 
 #Sub Category part
-class SubCategoriesViewSet(generics.ListCreateAPIView):
+class SubCategoriesListView(generics.ListAPIView):
     queryset = Sub_Categories.objects.all()
-    serializer_class = SubCategoriesSerializers
+    serializer_class = SubCategoriesListSerializers
 
-class SubCategoriesUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+'''
+subcategory createview
+'''
+class SubCategoryCreateView(generics.CreateAPIView):
     queryset = Sub_Categories.objects.all()
-    serializer_class =SubCategoriesSerializers
+    serializer_class = SubCategorySerializers
+
+'''
+subcategory single view
+'''
+class SubCategorySingleView(generics.RetrieveAPIView):
+    queryset = Sub_Categories.objects.all()
+    serializer_class = SubCategoriesListSerializers
+
+'''
+Sub category update view
+'''
+class SubCategoryUpdateView(generics.UpdateAPIView):
+    queryset = Sub_Categories.objects.all()
+    serializer_class = SubCategorySerializers
+
+'''
+Sub category delete view
+'''
+class SubCategoryDeleteView(generics.DestroyAPIView):
+    queryset = Sub_Categories.objects.all()
+    serializer_class = SubCategorySerializers
+
+
+# class SubCategoriesUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Sub_Categories.objects.all()
+#     serializer_class =SubCategoriesSerializers
 
 
 #Brnad 

@@ -39,7 +39,7 @@ class CategoriesSerializers(serializers.ModelSerializer):
         depth = 1
 
 #  SubCategorySerializers 
-class SubCategoriesSerializers(serializers.ModelSerializer):
+class SubCategoriesListSerializers(serializers.ModelSerializer):
     image = serializers.ImageField(max_length=None, allow_empty_file=False, 
         allow_null=False, use_url=True, required=False)
     categories = CategoriesSerializers(many=True, read_only=True)
@@ -47,6 +47,18 @@ class SubCategoriesSerializers(serializers.ModelSerializer):
         model = Sub_Categories
         fields="__all__"
         depth = 1
+
+'''
+sub category create view serializer
+'''
+class SubCategorySerializers(serializers.ModelSerializer):
+    image = serializers.ImageField(max_length=None, allow_empty_file=False, 
+        allow_null=False, use_url=True, required=False)
+    categories = CategoriesSerializers(many=True, read_only=True)
+    class Meta:
+        model = Sub_Categories
+        fields="__all__"
+       
 
 # BrandSerrializer
 class BrandSerializer(serializers.ModelSerializer):
