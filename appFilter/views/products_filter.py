@@ -19,6 +19,7 @@ o Monthly sales
 
 # importing initials 
 
+from unicodedata import category
 from rest_framework import generics
 from django.db.models import Q
 
@@ -167,4 +168,64 @@ class DailyTotalSalesRevenue(generics.ListAPIView):
 expenses 
     - model create
     - 
+'''
+
+# next trying 
+
+# class ProductBrandCategoryWiseView(generics.ListAPIView):
+#     queryset = Brand.objects.prefetch_related('categories_product')
+
+# products under brand ---categorywise
+# products under country -- categorywise
+# popularProductList -- categorywise
+# topSalesProductsListView --categorywise
+# latestProductList -- categorywise 
+'''
+class ProductsUnderBrandView(generics.ListAPIView):
+    queryset = Brand.objects.all()
+    serializer_class = BranBasedApi
+
+
+class ProductsUnderCountryView(generics.ListAPIView):
+    queryset = Countreies.objects.all()
+    serializer_class = CountryBaseAPI
+
+
+class PopularProductList(generics.ListAPIView):
+    # queryset = Products.objects.filter(review_star_count__gte = 4.0).
+    # filter(review_comment_count={})
+    serializer_class = ProductsAPI
+    def get_queryset(self):
+        filtered = [x for x in Products.objects.all()\
+             if x.review_star_count >= 4.0 \
+                  and x.review_comment_count]
+        print(filtered)
+        return filtered
+
+class TopSalesProductsListView(generics.ListAPIView):
+    queryset = Products.objects.all().order_by('-sold_count')[:20]
+    serializer_class = ProductsAPI
+
+
+
+class LatestProductList(generics.ListAPIView):
+    queryset = Products.objects.all().order_by('-created_at')[:20]
+    serializer_class = ProductsAPI
+
+
+import datetime
+
+class DailySalesOrderTimeToTimeListView(generics.ListAPIView):
+    queryset = Products.objects.filter(items__created_at=datetime.date.today(), 
+    items__is_order=True
+    )
+    print(queryset)
+    serializer_class = ProductsAPI
+    
+
+from django.db.models import Sum
+class DailyTotalSalesRevenue(generics.ListAPIView):
+    queryset = Products.objects.all().filter(items__created_at=datetime.date.today()).aggregate(total_sum=Sum('variant__selling_price'))
+    serializer_class = ProductsAPI
+
 '''

@@ -153,6 +153,10 @@ class ProductVariation_DeleteView(generics.DestroyAPIView):
     queryset = Variation_with_Price_variant.objects.all()
     serializer_class = VariationListAPI
 
+class ProductVariationList(generics.ListAPIView):
+    queryset = Variation_with_Price_variant.objects.all()
+    serializer_class = VariationListAPI
+
 
 
 
