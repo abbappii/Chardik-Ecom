@@ -60,13 +60,22 @@ class LoginView(GenericAPIView):
         if match_data:
             user = authenticate(username = match_data.username, password= password)
 
+            
             if user:
-                return Response({
-                    'username':user.username,
-                    'user_obj_ID':user.id,
-                    'profile_ID':user.profile.id,
-                    'fullName':user.profile.full_name
-                })
+                if user.profile.is_active == False:
+
+                    return Response(
+                        {'Error':'Sorry User is not Active'},
+                        status=status.HTTP_406_NOT_ACCEPTABLE
+                    )
+                else:
+                    return Response({
+                        'username':user.username,
+                        'user_obj_ID':user.id,
+                        'profile_ID':user.profile.id,
+                        'fullName':user.profile.full_name
+                    })
+
             else:
                 return Response(
                     {'Error':'Sorry Password mismatch'},
