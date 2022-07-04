@@ -14,10 +14,16 @@ from products.views.prodcuts_logic import (
 from products.views.products_init_logic import (
     CategoriesViewSet, 
     CategoriesUpdateDelete, 
-    SubCategoriesViewSet, 
-    SubCategoriesUpdateDelete,
+
+    SubCategoriesListView, 
+    SubCategoryCreateView,
+    SubCategorySingleView,
+    SubCategoryUpdateView,
+    SubCategoryDeleteView,
+
     BrandView,
     BrandUpdateDelete,
+    
     CountryView,
     CountryUpdateDelete,
     ColorVariationListAPIview,
@@ -55,9 +61,13 @@ urlpatterns_category = [
     path('categories/', CategoriesViewSet.as_view(), name='categories'),
     path('categories/<int:pk>/', CategoriesUpdateDelete.as_view(), 
         name='categories_update_delete'),
-    path('sub_categories/', SubCategoriesViewSet.as_view(), name='sub_categories'),
-    path('sub_categories/<int:pk>/', SubCategoriesUpdateDelete.as_view(),
+
+    path('sub_categories/list/', SubCategoriesListView.as_view(), name='sub_categories_list'),
+    path('subcategory/create/', SubCategoryCreateView.as_view(), name='sub_category_create'),
+    path('sub_categories/single/<int:pk>/', SubCategorySingleView.as_view(),
         name='sub_categories_update_delete'),
+    path('sub_category/update/<int:pk>/',SubCategoryUpdateView.as_view()),
+    path('sub_category/delete/<int:pk>/',SubCategoryDeleteView.as_view()),
 ]
 
 urlpatterns_product = [ 
