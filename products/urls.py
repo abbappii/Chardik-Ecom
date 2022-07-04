@@ -8,7 +8,9 @@ from products.views.prodcuts_logic import (
     ProductVariationSingle_updateView,
     ProductVariation_DeleteView,
     ProductVariationSingleView,
-    ProductSingleView
+    ProductSingleView,
+
+    ProductVariationList,
 )
 
 from products.views.products_init_logic import (
@@ -86,6 +88,8 @@ urlpatterns_product = [
     path('product/variation/view/<int:pk>/',ProductVariationSingleView.as_view()),
     path('product/variation/update/<int:pk>/',ProductVariationSingle_updateView.as_view()),
     path('product/variation/delete/<int:pk>/',ProductVariation_DeleteView.as_view()),
+    path('product/variation/list/',ProductVariationList.as_view()),
+
 ]
 
 
