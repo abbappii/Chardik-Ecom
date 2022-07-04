@@ -67,7 +67,7 @@ class ProductsUnderBrandView(generics.ListAPIView):
 class SingleBrandProducts(generics.RetrieveAPIView):
     queryset = Brand.objects.prefetch_related('brand')
     serializer_class = BranBasedApi
-    lookup_field =  'slug'
+    # lookup_field =  'slug'
 
 #show products under Country
 class ProductsUnderCountryView(generics.ListAPIView):
@@ -78,7 +78,7 @@ class ProductsUnderCountryView(generics.ListAPIView):
 class SingleCoutryProducts(generics.RetrieveAPIView):
     queryset = Countreies.objects.prefetch_related('country')
     serializer_class = CountryBaseAPI
-    lookup_field =  'slug'
+    # lookup_field =  'slug'
 
 
 
