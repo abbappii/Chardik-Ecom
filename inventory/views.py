@@ -42,4 +42,4 @@ class PurchaseDeleteView(generics.DestroyAPIView):
 
 class PurchaseEditView(generics.UpdateAPIView):
     queryset = Purchase.objects.all()
-    serializer_class = PurchaseSerialiers
+    serializer_class = PurchaseCreateSerializers
