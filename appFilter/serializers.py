@@ -13,7 +13,7 @@ from products.database.init_p import (
 # importing serializer 
 from products.serializers.product_serializers import (
     CategoriesSerializers,
-    SubCategoriesSerializers,
+    SubCategoriesListSerializers,
     VariationListAPI,
     Product_imagesSerializer,
     ProductReviewListAPI
@@ -26,7 +26,7 @@ class ProductsAPI(serializers.ModelSerializer):
     # sub_category = serializers.CharField(source = 'get_sub_category',read_only=True)
     # category = serializers.CharField(source='get_category',read_only=True)
     category=CategoriesSerializers(many=True, read_only=True)
-    sub_category=SubCategoriesSerializers(many=True, read_only=True)
+    sub_category=SubCategoriesListSerializers(many=True, read_only=True)
     #brand=BrandSerializer(many=True, read_only=True)
     #country=CountriesSerializer(many=True, read_only=True)
     variant = VariationListAPI(many=True)
