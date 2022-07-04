@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from inventory.models import Purchase
-from inventory.serializer import PurchaseSerialiers
+from inventory.serializer import PurchaseSerialiers, PurchaseCreateSerializers
 from rest_framework import generics
 
 
@@ -28,7 +28,7 @@ class PurchaseSingleView(generics.RetrieveAPIView):
 
 class PurchaseCreateView(generics.CreateAPIView):
     queryset = Purchase.objects.all()
-    serializer_class = PurchaseSerialiers
+    serializer_class = PurchaseCreateSerializers
 
 
 # delete View 

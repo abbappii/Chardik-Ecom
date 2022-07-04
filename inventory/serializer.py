@@ -43,3 +43,25 @@ class PurchaseSerialiers(serializers.ModelSerializer):
             'description'
         ]
         depth = 1
+
+
+class PurchaseCreateSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Purchase
+        fields = [
+            'id',
+            'ref_code',
+            'batch_no',
+            'date_of_purchase',
+            'order_status',
+            'product',
+            'price',
+            'supplier',
+            'outlet_name',
+            'unit_cost',
+            'other_cost',
+            'due_price',
+            'payment_method',
+            'payment_status',
+            'description'
+        ]

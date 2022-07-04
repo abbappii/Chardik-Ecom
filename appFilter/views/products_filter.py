@@ -53,6 +53,7 @@ class ProductsUnderCategoryView(generics.ListAPIView):
 class SingleCategoryProducts(generics.RetrieveAPIView):
     queryset = Categories.objects.prefetch_related('Category_products')
     serializer_class = CategoryBaseProductsAPI
+    lookup_field =  'slug'
 
 
 # show products under Brand 
@@ -65,6 +66,7 @@ class ProductsUnderBrandView(generics.ListAPIView):
 class SingleBrandProducts(generics.RetrieveAPIView):
     queryset = Brand.objects.prefetch_related('brand')
     serializer_class = BranBasedApi
+    lookup_field =  'slug'
 
 #show products under Country
 class ProductsUnderCountryView(generics.ListAPIView):
@@ -75,6 +77,7 @@ class ProductsUnderCountryView(generics.ListAPIView):
 class SingleCoutryProducts(generics.RetrieveAPIView):
     queryset = Countreies.objects.prefetch_related('country')
     serializer_class = CountryBaseAPI
+    lookup_field =  'slug'
 
 
 
@@ -132,7 +135,7 @@ class TopSalesProductsListView(generics.ListAPIView):
     queryset = Products.objects.all().order_by('-sold_count')[:20]
     serializer_class = ProductsAPI
 
-
+# class TopSalesProductsListView
 '''
 Product low to high 
     - ordering by price
