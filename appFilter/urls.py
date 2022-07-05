@@ -24,7 +24,7 @@ urlpatterns = []
 products_URL = [
     path('products/',AllProductsView.as_view()),
     path('products/category/',ProductsUnderCategoryView.as_view()),
-    path('products/category/<slug:slug>/',SingleCategoryProducts.as_view()),
+    path('products/category/<ink:pk>/',SingleCategoryProducts.as_view()),
     path('products/brand/', ProductsUnderBrandView.as_view(), name='products-under-brand'),
     path('products/brand/<int:pk>/',SingleBrandProducts.as_view()),
     path('products/country/', ProductsUnderCountryView.as_view(), name='products-under-country'),
