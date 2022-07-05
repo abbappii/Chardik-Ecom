@@ -54,7 +54,7 @@ class ProductsUnderCategoryView(generics.ListAPIView):
 class SingleCategoryProducts(generics.RetrieveAPIView):
     queryset = Categories.objects.prefetch_related('Category_products')
     serializer_class = CategoryBaseProductsAPI
-    lookup_field =  'slug'
+    # lookup_field =  'slug'
 
 
 # show products under Brand 
