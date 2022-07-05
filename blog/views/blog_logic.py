@@ -52,21 +52,31 @@ class BlogCreateView(GenericAPIView):
 
 # Blog ListView
 class BlogListView(generics.ListAPIView):
-    queryset = Blog.objects.all()
+    queryset = Blog.objects.filter(is_active=True)
     serializer_class = BlogSerializers
 
 # Blog single View 
 class BlogSingleView(generics.RetrieveAPIView):
-    queryset = Blog.objects.all()
+    queryset = Blog.objects.filter(is_active=True)
     serializer_class = BlogSerializers
 
 # Blog update view 
 class BlogUpdateView(generics.UpdateAPIView):
-    queryset = Blog.objects.all()
+    queryset = Blog.objects.filter(is_active=True)
     serializer_class = BlogSerializers
 
 # Blog delete view 
 class BlogDeleteView(generics.DestroyAPIView):
-    queryset = Blog.objects.all()
+    queryset = Blog.objects.filter(is_active=True)
     serializer_class = BlogSerializers
 
+
+## Blog List View admin
+class AdminBlogListView(generics.ListAPIView):
+    queryset = Blog.objects.filter(is_active=True,is_admin=True)
+    serializer_class = BlogSerializers
+
+## Blog List view Customer 
+class CustomerBlogListView(generics.ListAPIView):
+    queryset = Blog.objects.filter(is_active=True,is_customer=True)
+    serializer_class = BlogSerializers
