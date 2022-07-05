@@ -24,10 +24,15 @@ from MainApplication.scripts.permission import(
         - Delete view
 '''
 
-@permission_classes([IsAdmin|IsCustomer])
+# @permission_classes([IsAdmin|IsCustomer])
 class BlogCreateView(GenericAPIView):
+    permission_classes = [IsAdmin|IsCustomer]
     queryset = Blog.objects.filter(is_active=True)
     serializer_class = BlogSerializers
+
+    # def get(self,request):
+    #     # print(request.user.profile.get_permission_id)
+    #     return Response({'hello':'hey'})
 
     def post(self,request):
         # print(request.user)

@@ -20,8 +20,10 @@ class IsAdmin(BasePermission):
     def has_permission(self, request, view):
 
         try:
+            # print(request.user.profile.get_permission_id)
             return bool(request.user.is_authenticated and request.user.profile \
                  and 1 in request.user.profile.get_permission_id)
+            
         except Profile.DoesNotExist:
             return JsonResponse({'Error':'Sorry User is not an Admin'})
 
