@@ -43,14 +43,15 @@ class Profile(InitModels):
     # Permission Given property
     permission = models.ManyToManyField(UserPermission)
     
-    points_gained = models.CharField(max_length=200,blank=True)
+    points_gained = models.IntegerField(default=0)
 
     def __str__(self):
         return self.full_name
 
     
+
     class Meta:
-        verbose_name_plural = "Profile"
+        verbose_name_plural = "Profiles"
 
     # custom property
     @property

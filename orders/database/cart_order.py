@@ -91,5 +91,30 @@ class Order(InitModels):
 
     class Meta:
         verbose_name_plural = 'Customer Order'
+    
+    # def save(self, *args, **kwargs):
+    #     if not self.pk:
+    #         if self.total <= 1000:
+    #             points_gained = 0.1 * self.total
+    #         elif self.total >1000 and self.total <= 3000:
+    #             points_gained = 0.3 * self.total
+    #         elif self.total >3000 and self.total <= 5000:
+    #             points_gained = 0.5 * self.total
+    #         elif self.total >5000 and self.total <= 10000:
+    #             points_gained = 0.7 * self.total
+    #         else:
+    #             points_gained = 0.8 * self.total
+        
+    #         try:
+    #             profile = self.customer
+    #             print(profile)
+    #             profile.points_gained += points_gained
+                
+    #             profile.save()
+
+    #         except Exception as e:
+    #             print(e)
+
+    #     super().save(*args, **kwargs)
 
 
