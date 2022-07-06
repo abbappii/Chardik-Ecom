@@ -28,12 +28,16 @@ def points_count(sender,instance, created,*args,**kwargs):
             # points instance check 
             points = Profile.objects.get(points_gained = user.profile.points_gained)
             print(points)
-            # asign points value 
-            points.profile.points_gained = points_gained
-            # save points 
-            points.profile.save(update_fields=['points_gained'])
+            if points:
+                # asign points value 
+                points.profile.points_gained = points_gained
+                # save points 
+                points.profile.save(update_fields=['points_gained'])
+            else:
+                points = user.profile.points_gained 
+                points = points_gained
+                points.save()
 
-        except:
-            points = user.profile.points_gained 
-            points = points_gained
-            points.save()
+
+        except Exception as e:
+            print(e)
