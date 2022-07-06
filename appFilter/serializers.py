@@ -41,6 +41,7 @@ class ProductsAPI(serializers.ModelSerializer):
                     'long_description','alter_text',
                     'feature_image','product_image','sold_count','expire_rate',
                     'is_stock','variant','reviews']
+        depth = 1
 
                     
         
