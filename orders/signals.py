@@ -2,7 +2,6 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from accounts.models.user_model import User 
 from orders.database.cart_order import Order
 
 from accounts.models.profile import Profile
@@ -24,14 +23,16 @@ def points_count(sender,instance, created,*args,**kwargs):
 
         
         try:
-            # points = User.objects.get(user=instance.user)
-            points = Profile.objects.get(points_gained=instance.user)
+            #get user
+            user = instance.user 
+            # points instance check 
+            points = Profile.objects.get_or_create(points_gained = user.profile.points_gained)
             print(points)
+            # asign points value 
             points.profile.points_gained = points_gained
+            # save points 
             points.profile.save(update_fields=['points_gained'])
 
         except Exception as e:
             print(e)
-
-
-    
+        
