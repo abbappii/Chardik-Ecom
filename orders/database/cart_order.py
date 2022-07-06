@@ -28,7 +28,10 @@ ORDER_STATUS = (
     ("Order Canceled", "Order Canceled"),
 )
 
-
+ORDER_PAY_METHOD = (
+    ("Cash on Delivery", "Cash on Delivery"),
+    ("SSL Commerz", "SSL Commerz"),
+)
 
 
 
@@ -82,6 +85,8 @@ class Order(InitModels):
 
     order_status = models.CharField(max_length=100,choices=ORDER_STATUS,
         default="Order Received")
+    payment_method = models.CharField(max_length=100,choices=ORDER_PAY_METHOD,
+        default="Cash on Delivery")
 
     payment_complete = models.BooleanField(default=False)
     is_order = models.BooleanField(default=False,null=True)

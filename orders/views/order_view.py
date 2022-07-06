@@ -34,16 +34,16 @@ class AddOrderItem(GenericAPIView):
             # item_id = Products.objects.filter(id=item['id']).first()
         #     # print(item_id)
             add_item = OrderItem(
-                item = item['item'],
-                # item = Products.objects.filter(id=item['id']).first(),
+                item_id = item['item'],
                 quantity = item['quantity'],
-                # attr = item['attr'],
-                # amount_item = item['amount'],
+                attr = item['attr'],
+                amount_item = item['amount_item'],
                 is_order = True
             )
             add_item.save()
-            list_item.append(add_item)
-        return Response ()
+            # itemList = OrderItem.objects.filter(is_order=True).values()
+            list_item.append(add_item.id)
+        return Response (list_item)
 
 
 ## Order Add
