@@ -27,23 +27,23 @@ class AddOrderItem(GenericAPIView):
         # data = request.data
         # item_list = dict((request.data).lists())['id','quantity','attr','amount_item']
         item_list = request.data
-        print(item_list.json())
+        # print(item_list.json())
         list_item = []
         for item in item_list:
             print (item)
-        #     # item_id = Products.objects.filter(id=item['id']).first()
+            # item_id = Products.objects.filter(id=item['id']).first()
         #     # print(item_id)
-            # add_item = OrderItem(
-            #     # item = item['id'],
-            #     # item = Products.objects.filter(id=item['id']).first(),
-            #     quantity = item['quantity'],
-            #     # attr = item['attr'],
-            #     # amount_item = item['amount'],
-            #     is_order = True
-            # )
-            # add_item.save()
-            # list_item.append(add_item)
-        return Response (list_item)
+            add_item = OrderItem(
+                item = item['item'],
+                # item = Products.objects.filter(id=item['id']).first(),
+                quantity = item['quantity'],
+                # attr = item['attr'],
+                # amount_item = item['amount'],
+                is_order = True
+            )
+            add_item.save()
+            list_item.append(add_item)
+        return Response ()
 
 
 ## Order Add
