@@ -5,6 +5,8 @@ from django.dispatch import receiver
 from accounts.models.user_model import User 
 from orders.database.cart_order import Order
 
+from accounts.models.profile import Profile
+
 @receiver(post_save,sender=Order)
 def points_count(sender,instance, created,*args,**kwargs):
     # print('hello world!')
@@ -22,7 +24,8 @@ def points_count(sender,instance, created,*args,**kwargs):
 
         
         try:
-            points = User.objects.get(user=instance.user)
+            # points = User.objects.get(user=instance.user)
+            points = Profile.objects.get(points_gained=instance.user)
             print(points)
             points.profile.points_gained = points_gained
             points.profile.save(update_fields=['points_gained'])
