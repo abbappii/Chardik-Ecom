@@ -24,7 +24,6 @@ App_Install =[
     'orders.apps.OrdersConfig',
     'products.apps.ProductsConfig',
     'inventory.apps.InventoryConfig',
-    # 'pos_manager.apps.PosManagerConfig',
     'initapp.apps.InitappConfig',
     'courier.apps.CourierConfig',
     'blog.apps.BlogConfig',
