@@ -43,6 +43,7 @@ class Profile(InitModels):
     # Permission Given property
     permission = models.ManyToManyField(UserPermission)
     
+    points_gained = models.CharField(max_length=200,blank=True)
 
     def __str__(self):
         return self.full_name
