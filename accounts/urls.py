@@ -52,7 +52,7 @@ permission_URL =[
 
 
 user_update_delete = [ 
-    path('user_update/',UserDataUpdate.as_view()),
+    path('user_profile_update/',UserDataUpdate.as_view()),
     path('user_delete/<int:pk>/', UserDeleteView.as_view()),
 ]
 
