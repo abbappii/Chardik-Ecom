@@ -7,16 +7,26 @@ from accounts.views.password_rest import (
 )
 
 from accounts.views.permission_view import (
-    PermissionCreateView,PermissionDestroyView,PermissionEditView,
-    PermissionListsView,PermissionSingleView
+    PermissionCreateView,
+    PermissionDestroyView,
+    PermissionEditView,
+    PermissionListsView,
+    PermissionSingleView
 )
 
 from accounts.views.user_up_del_view import( 
     UserDataUpdate, UserDeleteView
 )
 from accounts.views.user_init import (
-    LoginView,RegisterView, UserProfileView, SendSMS,VerifyOTP,
-    ForgetPassword__with__Phone,ChangePasswordInstant, UserProfileList
+    LoginView,RegisterView, 
+    UserProfileView, SendSMS,
+    VerifyOTP,
+    ForgetPassword__with__Phone,ChangePasswordInstant, 
+    UserProfileList
+)
+
+from accounts.views.billing_address import (
+    BillingAddressView
 )
 
 urlpatterns = []
@@ -52,8 +62,14 @@ user_pass_change_reset_email = [
     path('reset-password/<uid>/<token>/',UserPasswordEmailLinkResetView.as_view()),
 ]
 
+billingAddress_URL = [
+    path('billing/address/',BillingAddressView.as_view())
+]
+
+
 
 urlpatterns += user_URL
 urlpatterns += permission_URL
 urlpatterns += user_update_delete
 urlpatterns += user_pass_change_reset_email
+urlpatterns += billingAddress_URL
