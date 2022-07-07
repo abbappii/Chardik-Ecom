@@ -14,7 +14,7 @@ from MainApplication.scripts.permission import (
     IsAdmin,IsManager, IsCustomer
 )
 from accounts.models.user_model import User
-from accounts.serializers.profileAPI import (
+from accounts.serializers.user_auth import (
     UserProfileSeriliazer
 )
 
