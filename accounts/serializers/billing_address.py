@@ -10,7 +10,7 @@ from accounts.models.profile import BillingAddress
 class Billing_Address_Serialiazer(serializers.ModelSerializer):
     class Meta:
         model = BillingAddress
-        fields = ['customer','billing_address']
+        fields = ['billing_address']
 
 
 
