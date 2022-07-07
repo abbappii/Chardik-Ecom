@@ -49,13 +49,20 @@ Cart & Order Management
 class OrderItem(InitModels):
     # customer = models.ForeignKey('accounts.Profile',on_delete=models.CASCADE,
     #     null=True,verbose_name="Customer Name",related_name="order_items")
-    item = models.ForeignKey('products.Products',on_delete=models.SET_NULL,
-        null=True,verbose_name="Products",related_name="items")
+    item = models.ForeignKey('products.Products',
+        on_delete=models.SET_NULL,
+        null=True,verbose_name="Products",
+        related_name="items"
+    )
     quantity = models.IntegerField(null=True,verbose_name="Quantity")
     attr = models.CharField(max_length=300,null=True,blank=True,verbose_name="Attribute")
     is_order = models.BooleanField(default=False) 
-    amount_item = models.PositiveIntegerField(null=True)
-
+    amount_item = models.PositiveIntegerField(null=True,verbose_name="Unit Price")
+    total_amount_item = models.PositiveBigIntegerField(
+        null=True,
+        verbose_name="Total Unit Price",
+        blank=True
+    )
     
 
 

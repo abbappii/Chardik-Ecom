@@ -24,24 +24,23 @@ from orders.serializers import (
 class AddOrderItem(GenericAPIView):
     
     def post(self,request):
-        # data = request.data
-        # item_list = dict((request.data).lists())['id','quantity','attr','amount_item']
+
         item_list = request.data
-        # print(item_list.json())
+
         list_item = []
         for item in item_list:
-            print (item)
-            # item_id = Products.objects.filter(id=item['id']).first()
-        #     # print(item_id)
+
+
             add_item = OrderItem(
                 item_id = item['item'],
                 quantity = item['quantity'],
                 attr = item['attr'],
                 amount_item = item['amount_item'],
+                total_amount_item = item['total_price'],
                 is_order = True
             )
             add_item.save()
-            # itemList = OrderItem.objects.filter(is_order=True).values()
+
             list_item.append(add_item.id)
         return Response (list_item)
 
