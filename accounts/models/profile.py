@@ -72,12 +72,22 @@ def make_customer_ID(sender,instance,*args,**kwargs):
 pre_save.connect(make_customer_ID,sender=Profile)
 
 
+
+
 ## Billing Address Models 
 
 class BillingAddress(InitModels):
     customer = models.ForeignKey('accounts.Profile',on_delete=models.CASCADE,
         null=True,verbose_name="Customer Name")
-    billing_address = models.TextField(null=True,verbose_name="Billing Address")
+    region = models.CharField(max_length=300,null=True,
+        verbose_name="Region Name")
+    city = models.CharField(max_length=300,null=True,
+        verbose_name="City Name")
+    area = models.CharField(max_length=500,null=True,
+        verbose_name="Area Name",blank=True)
+    post_code = models.CharField(max_length=100,null=True,
+        verbose_name="Post Code",blank=True)
+    address = models.TextField(null=True,verbose_name="Address")
 
     def __str__(self):
         return str(self.customer)
