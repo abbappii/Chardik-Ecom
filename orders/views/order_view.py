@@ -101,7 +101,7 @@ class OrderUpdateView(generics.UpdateAPIView):
 
 class UserOrderListView(generics.ListAPIView):
     permission_classes = [IsCustomer]
-    queryset = Order.objects.filter(is_order=True) 
+    queryset = Order.objects.filter(is_active=True) 
     serializer_class = OrderSerializer
 
     def get(self,request):
