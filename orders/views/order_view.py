@@ -106,7 +106,7 @@ class UserOrderListView(generics.ListAPIView):
 
     def get(self,request):
         customer = request.user.profile
-        query = Order.objects.filter(customer=customer,is_order=True)
+        query = Order.objects.filter(customer=customer,is_active=True)
         serializer = OrderSerializer(query, many=True).data
 
         return Response(serializer, status=status.HTTP_200_OK)
