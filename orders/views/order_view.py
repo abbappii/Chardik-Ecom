@@ -3,24 +3,31 @@ This file contains the
     - order management 
     - cart management
 '''
-import json
+
 from rest_framework import status
+from rest_framework import generics
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
-from products.database.products import Products
-from django.http import JsonResponse
 
+# importing permission 
+from MainApplication.scripts.permission import ( 
+    IsAdmin, 
+    IsCustomer, 
+    IsManager, 
+    IsStuff
+)
 # importing models 
 from orders.database.cart_order import (
     Order,
     OrderItem
 )
+# importing serializers
 from orders.serializers import (
-    OrderAPI
+    OrderAPI,
+    OrderSerializer
 )
 
 ## Order Item added 
-
 class AddOrderItem(GenericAPIView):
     
     def post(self,request):
@@ -76,3 +83,30 @@ class OrderView(GenericAPIView):
     }
 }
 '''
+
+
+
+
+# order list view 
+class OrderListview(generics.ListAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+# order updateview
+class OrderUpdateView(generics.UpdateAPIView):
+    permission_classes = [IsAdmin, IsManager, IsStuff]
+    queryset = Order.objects.all()
+    serializer_class = OrderAPI
+
+
+class UserOrderListView(generics.ListAPIView):
+    permission_classes = [IsCustomer]
+    queryset = Order.objects.filter(is_order=True) 
+    serializer_class = OrderSerializer
+
+    def get(self,request):
+        customer = request.user.profile
+        query = Order.objects.filter(customer=customer,is_order=True)
+        serializer = OrderSerializer(query, many=True).data
+
+        return Response(serializer, status=status.HTTP_200_OK)

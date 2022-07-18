@@ -45,7 +45,8 @@ class CartProductSerializer(serializers.ModelSerializer):
 
 
 '''
-Order api serializers
+Order api serializers 
+    -list view
 '''
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
@@ -70,13 +71,16 @@ class OrderItemAPI(serializers.ModelSerializer):
                 ]
 
 
-## Order API
-
+## Order API 
+    # -create v
+    # -update v
+    
 class OrderAPI(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id',
                 'ref_code','address','coupon',
                 'ordered_date','items',
-                'total','order_status','is_order'
+                'total','order_status','is_order',
+                'mobile','email','first_deliverry'
                 ]

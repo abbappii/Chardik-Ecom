@@ -8,7 +8,10 @@ from orders.views.coupon import (
 from orders.views.cart_order import *
 from orders.views.order_view import (
     OrderView,
-    AddOrderItem
+    AddOrderItem,
+    OrderListview,
+    OrderUpdateView,
+    UserOrderListView
 )
 
 # router = routers.DefaultRouter()
@@ -35,9 +38,13 @@ coupon_URL = [
 
 order_URL = [
     path('order/',OrderView.as_view()),
-    path('add/item/',AddOrderItem.as_view())
-]
+    path('add/item/',AddOrderItem.as_view()),
 
+    path('list/',OrderListview.as_view()),
+    path('update/<int:pk>/',OrderUpdateView.as_view()),
+    path('customer/view/',UserOrderListView.as_view()),
+
+]
 
 urlpatterns += order_URL
 urlpatterns += coupon_URL
