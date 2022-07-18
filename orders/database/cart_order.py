@@ -79,8 +79,10 @@ class Order(InitModels):
     customer = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
         verbose_name="Customer")
     ref_code = models.CharField(max_length=20, blank=True, null=True)
-    # mobile = models.CharField(max_length=16)
-    # email = models.CharField(max_length=200)
+
+    mobile = models.CharField(max_length=16,null=True,blank=True)
+    email = models.CharField(max_length=200, null=True, blank=True)
+    
     address = models.ForeignKey('accounts.BillingAddress',on_delete=models.SET_NULL,
         null=True,blank=True)
     coupon = models.ForeignKey('orders.Coupon',blank=True,null=True,
