@@ -82,7 +82,7 @@ class Order(InitModels):
 
     mobile = models.CharField(max_length=16,null=True,blank=True)
     email = models.CharField(max_length=200, null=True, blank=True)
-    
+
     address = models.ForeignKey('accounts.BillingAddress',on_delete=models.SET_NULL,
         null=True,blank=True)
     coupon = models.ForeignKey('orders.Coupon',blank=True,null=True,
@@ -99,6 +99,9 @@ class Order(InitModels):
 
     payment_complete = models.BooleanField(default=False)
     is_order = models.BooleanField(default=False,null=True)
+    
+    # new add delivery status 
+    first_deliverry = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.customer)
