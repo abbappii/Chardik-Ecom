@@ -54,7 +54,7 @@ class ProductCreateView(GenericAPIView):
 class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializers
-    lookup_field = 'slug'
+    # lookup_field = 'slug'
 
 
 ## Product Single View 
