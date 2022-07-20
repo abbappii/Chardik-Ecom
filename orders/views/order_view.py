@@ -115,4 +115,5 @@ class UserOrderListView(generics.ListAPIView):
 #order single view
 class OrderSingleView(generics.RetrieveAPIView):
     serializer_class = OrderSerializer
-    queryset = Order.objects.all()        
+    queryset = Order.objects.all()  
+          
