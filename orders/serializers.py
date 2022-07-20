@@ -52,7 +52,7 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = "__all__"
-        depth = 1
+        depth = 2
 
 
 '''
@@ -84,3 +84,19 @@ class OrderAPI(serializers.ModelSerializer):
                 'total','order_status','is_order',
                 'mobile','email','first_deliverry'
                 ]
+
+class FlashSaleserializer (serializers.ModelSerializer):
+    start_time = serializers.DateTimeField(
+                format="%Y-%m-%d %H:%M:%S", 
+                input_formats=['%d-%m-%Y %H:%M:%S' , 
+                'iso-8601'], 
+                required = False
+                )
+    end_time  = serializers.DateTimeField(
+                format="%Y-%m-%d %H:%M:%S", 
+                input_formats=['%d-%m-%Y %H:%M:%S' , 
+                'iso-8601'],
+                required = False
+
+                )
+    # benefit_value = serializers.DecimalField()            
