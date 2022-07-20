@@ -98,6 +98,7 @@ class OrderUpdateView(generics.UpdateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderAPI
 
+#order customer view
 
 class UserOrderListView(generics.ListAPIView):
     permission_classes = [IsCustomer]
@@ -110,3 +111,8 @@ class UserOrderListView(generics.ListAPIView):
         serializer = OrderSerializer(query, many=True).data
 
         return Response(serializer, status=status.HTTP_200_OK)
+
+#order single view
+class OrderSingleView(generics.RetrieveAPIView):
+    serializer_class = OrderSerializer
+    queryset = Order.objects.all()        
