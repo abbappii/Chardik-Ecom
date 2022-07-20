@@ -7,6 +7,7 @@ from orders.views.coupon import (
 # from rest_framework import routers
 from orders.views.cart_order import *
 from orders.views.order_view import (
+    OrderSingleView,
     OrderView,
     AddOrderItem,
     OrderListview,
@@ -43,6 +44,7 @@ order_URL = [
     path('list/',OrderListview.as_view()),
     path('update/<int:pk>/',OrderUpdateView.as_view()),
     path('customer/view/',UserOrderListView.as_view()),
+    path('single/view/<int:pk>/', OrderSingleView.as_view ()),
 
 ]
 
