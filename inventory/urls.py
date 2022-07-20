@@ -33,5 +33,22 @@ purchase_URL = [
     path('purchase/create/',PurchaseCreateView.as_view())
 ]
 
+from inventory.bank_view.bank_accounts_view import (
+    BankAccountCreateView,
+    BankAccountDeleteView,
+    BankAccountEditView,
+    BankAccountListView,
+    BankAccountSingleView
+)
+bank_accounts_URL = [ 
+    path('baccounts/list/view/', BankAccountListView.as_view()),
+    path('baccounts/single/view/<int:pk>/', BankAccountSingleView.as_view()),
+    path('baccounts/create/view/', BankAccountCreateView.as_view()),
+    path('baccounts/edit/view/<int:pk>/', BankAccountEditView.as_view()),
+    path('baccounts/delete/view/<int:pk>/', BankAccountDeleteView.as_view()),
+
+]
+
 urlpatterns += supplier_URL
 urlpatterns += purchase_URL
+urlpatterns += bank_accounts_URL
