@@ -27,13 +27,19 @@ class UserPermission(InitModels):
 class Profile(InitModels):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile', 
         null=True)
-
     # username=models.CharField(max_length=264, blank=True)
     full_name=models.CharField(max_length=264, blank=True,null=True)
+
+    dob = models.DateField(max_length=8,null=True,blank=True)
+    gender = models.CharField(max_length=20,null=True,blank=True) 
+    bio = models.TextField(null=True,blank=True)
+    profile_picture = models.ImageField(upload_to='profile_image', blank=True) 
+
     address=models.TextField(max_length=300, blank=True,null=True)
     city=models.CharField(max_length=40, blank=True,null=True)
     zipcode=models.CharField(max_length=10, blank=True,null=True)
     country=models.CharField(max_length=50, blank=True,null=True)
+
     phone=models.CharField(max_length=20, blank=True,null=True,unique=True)
     is_phone_verified = models.BooleanField(default=False)
     phone_otp = models.CharField(max_length=7,null=True,blank=True)
@@ -44,6 +50,7 @@ class Profile(InitModels):
     permission = models.ManyToManyField(UserPermission)
     
     points_gained = models.IntegerField(default=0)
+
 
     def __str__(self):
         return self.full_name
