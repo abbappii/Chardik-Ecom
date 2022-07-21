@@ -90,14 +90,14 @@ class ProductReviewSerailizers(serializers.ModelSerializer):
 ## List view
 
 class ProductReviewListAPI(serializers.ModelSerializer):
-    profile = serializers.SlugRelatedField(queryset=Profile.objects.all(),
-        slug_field="full_name")
-    product = serializers.SlugRelatedField(queryset=Products.objects.all(),
-        slug_field='product_name')
+    # profile = serializers.SlugRelatedField(queryset=Profile.objects.all(),
+    #     slug_field="full_name")
+    # product = serializers.SlugRelatedField(queryset=Products.objects.all(),
+    #     slug_field='product_name')
     class Meta:
         model = ProductReview
         fields = ['id','is_active','profile','product','star_count','review','is_active']
-        # depth = 1
+        depth = 1
 
 
 '''
