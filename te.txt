@@ -1,8 +1,0 @@
-
-
-name - table 
-outlet - table 
-type - choice field
-
-
-review update
