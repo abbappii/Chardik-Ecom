@@ -109,7 +109,7 @@ class ProductListAPI(serializers.ModelSerializer):
         fields = ['id','brand','country','sku',
                     'category','sub_category','product_name',
                     'slug','meta','short_descriptions',
-                    'long_description','alter_text',
+                    'long_description','alter_text','tags',
                     'feature_image','product_image','sold_count','expire_rate',
                     'is_stock','variant','reviews']
         depth = 1
