@@ -23,7 +23,12 @@ class CartProduct(InitModels):
 ORDER_STATUS = (
     ("Order Received", "Order Received"),
     ("Order Processing", "Order Processing"),
-    ("On the way", "On the way"),
+    ("On Hold", "On Hold"),
+    ("Refunded", "Refunded"),
+    ("Pending","Pending"),
+    ("Order Failed", "Order Failed"),
+    ("Delete", "Delete"),
+    ("Order Confirmed","Order Confirmed"),
     ("Order Completed", "Order Completed"),
     ("Order Canceled", "Order Canceled"),
 )
