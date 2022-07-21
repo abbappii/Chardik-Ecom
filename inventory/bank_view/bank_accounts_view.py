@@ -82,3 +82,9 @@ class DepositWithdrawCreateView(generics.GenericAPIView):
             obj.account.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# delete view 
+class DepositWithdrawDeleteView(generics.DestroyAPIView):
+    queryset = DepositWithdraw.objects.all()
+    serializer_class = DepositWithdrawSerializers
