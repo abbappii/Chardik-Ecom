@@ -28,7 +28,7 @@ ORDER_STATUS = (
     ("Pending","Pending"),
     ("Order Failed", "Order Failed"),
     ("Delete", "Delete"),
-    ("Order Confirmed","Order Confirmed")
+    ("Order Confirmed","Order Confirmed"),
     ("Order Completed", "Order Completed"),
     ("Order Canceled", "Order Canceled"),
 )
