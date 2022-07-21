@@ -38,7 +38,10 @@ from inventory.bank_view.bank_accounts_view import (
     BankAccountDeleteView,
     BankAccountEditView,
     BankAccountListView,
-    BankAccountSingleView
+    BankAccountSingleView,
+
+    DepositWithdrawListView,
+    DepositWithdrawCreateView
 )
 bank_accounts_URL = [ 
     path('baccounts/list/view/', BankAccountListView.as_view()),
@@ -46,6 +49,9 @@ bank_accounts_URL = [
     path('baccounts/create/view/', BankAccountCreateView.as_view()),
     path('baccounts/edit/view/<int:pk>/', BankAccountEditView.as_view()),
     path('baccounts/delete/view/<int:pk>/', BankAccountDeleteView.as_view()),
+
+    path('baccounts/depowith/list/view/', DepositWithdrawListView.as_view()),
+    path('baccounts/depowith/create/view/', DepositWithdrawCreateView.as_view()),
 
 ]
 
