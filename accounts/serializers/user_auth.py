@@ -52,8 +52,9 @@ class LoginSerializer(serializers.ModelSerializer):
 class UserProfileSeriliazer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields= ['id', 'full_name','address','city','zipcode','country',
-        'phone']
+        fields = '__all__'
+        # fields= ['id', 'full_name','address','city','zipcode','country',
+        # 'phone']
 
 # User Profile list serializers 
 class UserProfileListSeriliazer(serializers.ModelSerializer):
