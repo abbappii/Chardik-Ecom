@@ -16,15 +16,15 @@ from products.serializers.init_serializers import (
     
     BrandSerializer,
     CountriesSerializer,
-    SizeVariationAPI,
-    WeightVariationAPI,
-    ColorVariationAPI
+    # SizeVariationAPI,
+    # WeightVariationAPI,
+    # ColorVariationAPI
 )
-from products.database.init_p import (
-    ColorVariation,
-    WeightVariation,
-    SizeVariation
-)
+# from products.database.init_p import (
+#     ColorVariation,
+#     WeightVariation,
+#     SizeVariation
+# )
 
 
 
@@ -110,32 +110,32 @@ Color Variation
     - update
 '''
 
-class ColorVariationListAPIview(generics.ListCreateAPIView):
-    queryset = ColorVariation.objects.filter(is_active=True)
-    serializer_class = ColorVariationAPI
+# class ColorVariationListAPIview(generics.ListCreateAPIView):
+#     queryset = ColorVariation.objects.filter(is_active=True)
+#     serializer_class = ColorVariationAPI
 
-class ColorVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
-    queryset = ColorVariation.objects.filter(is_active=True)
-    serializer_class = ColorVariationAPI
-
-
-## Size View 
-
-class SizeVariationListAPIview(generics.ListCreateAPIView):
-    queryset = SizeVariation.objects.filter(is_active=True)
-    serializer_class = SizeVariationAPI
-
-class SizeVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
-    queryset = SizeVariation.objects.filter(is_active=True)
-    serializer_class = SizeVariationAPI
-
-## Weight Variation View
-
-class WeightVariationListAPIview(generics.ListCreateAPIView):
-    queryset = WeightVariation.objects.filter(is_active=True)
-    serializer_class = WeightVariationAPI
+# class ColorVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = ColorVariation.objects.filter(is_active=True)
+#     serializer_class = ColorVariationAPI
 
 
-class WeightVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
-    queryset = WeightVariation.objects.filter(is_active=True)
-    serializer_class = WeightVariationAPI
+# ## Size View 
+
+# class SizeVariationListAPIview(generics.ListCreateAPIView):
+#     queryset = SizeVariation.objects.filter(is_active=True)
+#     serializer_class = SizeVariationAPI
+
+# class SizeVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = SizeVariation.objects.filter(is_active=True)
+#     serializer_class = SizeVariationAPI
+
+# ## Weight Variation View
+
+# class WeightVariationListAPIview(generics.ListCreateAPIView):
+#     queryset = WeightVariation.objects.filter(is_active=True)
+#     serializer_class = WeightVariationAPI
+
+
+# class WeightVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = WeightVariation.objects.filter(is_active=True)
+#     serializer_class = WeightVariationAPI

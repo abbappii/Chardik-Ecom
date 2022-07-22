@@ -99,8 +99,14 @@ class Products(InitModels):
     #     decimal_places=2,
     #     default=0.00
     #     )
+
+    regular_price = models.FloatField(null=True,blank=True)
+    selling_price = models.FloatField(null=True,blank=True)
+    reseller_price = models.FloatField(null=True, blank=True)
+    quantity = models.PositiveIntegerField(default=0,null=True,blank=True)
+    
     sold_count = models.IntegerField(null=True,blank=True)
-    expire_rate = models.DateField(auto_now_add=False,null=True,blank=True)
+    expire_date = models.DateField(auto_now_add=False,null=True,blank=True)
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
 
 
@@ -156,28 +162,28 @@ class Products(InitModels):
 
 ## Product Variation with Price and variant 
 
-class Variation_with_Price_variant(InitModels):
+# class Variation_with_Price_variant(InitModels):
 
-    product = models.ForeignKey('products.Products',on_delete=models.CASCADE,
-        null=True,verbose_name="Product",related_name="variant")
-    # variation 
-    size = models.ForeignKey('products.SizeVariation',on_delete=models.SET_NULL,
-        null=True,blank=True,verbose_name="Product Size")
-    color = models.ForeignKey('products.ColorVariation',on_delete=models.SET_NULL,
-        null=True,blank=True,verbose_name="Product Color")
-    weight = models.ForeignKey('products.WeightVariation',on_delete=models.CASCADE,
-        null=True,blank=True,verbose_name="Product Weight")
+#     product = models.ForeignKey('products.Products',on_delete=models.CASCADE,
+#         null=True,verbose_name="Product",related_name="variant")
+#     # variation 
+#     size = models.ForeignKey('products.SizeVariation',on_delete=models.SET_NULL,
+#         null=True,blank=True,verbose_name="Product Size")
+#     color = models.ForeignKey('products.ColorVariation',on_delete=models.SET_NULL,
+#         null=True,blank=True,verbose_name="Product Color")
+#     weight = models.ForeignKey('products.WeightVariation',on_delete=models.CASCADE,
+#         null=True,blank=True,verbose_name="Product Weight")
     
-    # price 
-    regular_price = models.FloatField(null=True,blank=True)
-    selling_price = models.FloatField(null=True,blank=True)
+#     # price 
+#     regular_price = models.FloatField(null=True,blank=True)
+#     selling_price = models.FloatField(null=True,blank=True)
 
 
-    def __str__(self):
-        return str(self.product)
+#     def __str__(self):
+#         return str(self.product)
 
-    class Meta:
-        verbose_name_plural = "Product Variation"
+#     class Meta:
+#         verbose_name_plural = "Product Variation"
 
 
 
@@ -193,5 +199,3 @@ class Product_images(InitModels):
 
 
     
-
-

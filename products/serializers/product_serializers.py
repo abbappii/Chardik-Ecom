@@ -9,15 +9,14 @@ from rest_framework import serializers
 from products.database.products import(
     Products,
     Product_images,
-    Variation_with_Price_variant
 )
-from products.database.init_p import(
-   ColorVariation,
-   WeightVariation,
-   SizeVariation,
-   Categories,
-   Sub_Categories
-)
+# from products.database.init_p import(
+#    ColorVariation,
+#    WeightVariation,
+#    SizeVariation,
+#    Categories,
+#    Sub_Categories
+# )
 from products.serializers.init_serializers import(
     BrandSerializer,
     CategoriesSerializers,
@@ -49,31 +48,31 @@ from products.serializers.init_serializers import(
 '''
 
 # Create , edit, update 
-class VariationAPI(serializers.ModelSerializer):
-    class Meta:
-        model = Variation_with_Price_variant
-        fields = ['id','product','size',
-                'color','weight','regular_price',
-                'selling_price']
+# class VariationAPI(serializers.ModelSerializer):
+#     class Meta:
+#         model = Variation_with_Price_variant
+#         fields = ['id','product','size',
+#                 'color','weight','regular_price',
+#                 'selling_price']
 
 
 # List , single view
-class VariationListAPI(serializers.ModelSerializer):
+# class VariationListAPI(serializers.ModelSerializer):
     
-    product = serializers.SlugRelatedField(queryset=Products.objects.all(),
-        slug_field='product_name')
-    size = serializers.SlugRelatedField(queryset=SizeVariation.objects.all(),
-        slug_field='size_name')
-    color = serializers.SlugRelatedField(queryset= ColorVariation.objects.all(),
-        slug_field='color_name')
-    weight = serializers.SlugRelatedField(queryset =WeightVariation.objects.all(),
-        slug_field='weight_name')
+#     product = serializers.SlugRelatedField(queryset=Products.objects.all(),
+#         slug_field='product_name')
+#     size = serializers.SlugRelatedField(queryset=SizeVariation.objects.all(),
+#         slug_field='size_name')
+#     color = serializers.SlugRelatedField(queryset= ColorVariation.objects.all(),
+#         slug_field='color_name')
+#     weight = serializers.SlugRelatedField(queryset =WeightVariation.objects.all(),
+#         slug_field='weight_name')
     
-    class Meta:
-        model = Variation_with_Price_variant
-        fields = ['id','product','size',
-                'color','weight','regular_price',
-                'selling_price']
+#     class Meta:
+#         model = Variation_with_Price_variant
+#         fields = ['id','product','size',
+#                 'color','weight','regular_price',
+#                 'selling_price']
 
 
 ### Image Serializer 
@@ -100,7 +99,7 @@ class ProductListAPI(serializers.ModelSerializer):
     sub_category=SubCategoriesListSerializers(many=True, read_only=True)
     #brand=BrandSerializer(many=True, read_only=True)
     #country=CountriesSerializer(many=True, read_only=True)
-    variant = VariationListAPI(many=True)
+    # variant = VariationListAPI(many=True)
     product_image = Product_imagesSerializer(many=True)
     reviews = ProductReviewListAPI(many=True)
 
@@ -110,8 +109,9 @@ class ProductListAPI(serializers.ModelSerializer):
                     'category','sub_category','product_name',
                     'slug','meta','short_descriptions',
                     'long_description','alter_text','tags',
-                    'feature_image','product_image','sold_count','expire_rate',
-                    'is_stock','variant','reviews']
+                    'feature_image','product_image','sold_count','expire_date',
+                    'regular_price','selling_price','quantity',
+                    'is_stock','reviews']
         depth = 1
 
 

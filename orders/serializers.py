@@ -82,7 +82,7 @@ class OrderAPI(serializers.ModelSerializer):
                 'ref_code','address','coupon',
                 'ordered_date','items',
                 'total','order_status','is_order',
-                'mobile','email','first_deliverry'
+                'mobile','email','fast_delivery'
                 ]
 
            
