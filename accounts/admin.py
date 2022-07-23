@@ -15,3 +15,5 @@ class PermissionAdmin(admin.ModelAdmin):
     list_display = ['id','permission_name']
 admin.site.register(UserPermission,PermissionAdmin)
 admin.site.register(BillingAddress)
+
+# admin.site.register(ShippingAddress)
