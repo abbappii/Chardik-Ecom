@@ -159,6 +159,16 @@ class Products(InitModels):
         else:
             return False
 
+    # Quantity property 
+    @property
+    def product_quantity(self):
+        if self.purchase_product:
+            # return self.purchase.quantity
+            # print()
+            return self.purchase_product.first().quantity
+        else:
+            return f"0.00"
+        # return self.purchase_product.quantity if self.purchase_product else "none"
 
 ## Product Variation with Price and variant 
 
