@@ -140,3 +140,7 @@ class Order(InitModels):
     #     super().save(*args, **kwargs)
 
 
+
+'''
+shipping address foreingkey need
+'''

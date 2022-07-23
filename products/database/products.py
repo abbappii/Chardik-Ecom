@@ -99,11 +99,11 @@ class Products(InitModels):
     #     decimal_places=2,
     #     default=0.00
     #     )
-
+    attribute = models.CharField(max_length=1000, null=True, blank=True)
+    
     regular_price = models.FloatField(null=True,blank=True)
     selling_price = models.FloatField(null=True,blank=True)
     reseller_price = models.FloatField(null=True, blank=True)
-    quantity = models.PositiveIntegerField(default=0,null=True,blank=True)
     
     sold_count = models.IntegerField(null=True,blank=True)
     expire_date = models.DateField(auto_now_add=False,null=True,blank=True)

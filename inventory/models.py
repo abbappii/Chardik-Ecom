@@ -77,6 +77,7 @@ class Purchase(InitModels):
     payment_status = models.CharField(max_length=100,null=True,blank=True,choices=
         payment_status,verbose_name="Payment Status")
     description = models.TextField(null=True,blank=True,verbose_name="Description")
+    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
 
 
     def __str__(self):

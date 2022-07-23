@@ -86,6 +86,15 @@ pre_save.connect(make_customer_ID,sender=Profile)
 class BillingAddress(InitModels):
     customer = models.ForeignKey('accounts.Profile',on_delete=models.CASCADE,
         null=True,verbose_name="Customer Name")
+    '''
+    name
+    phone 
+    email
+    '''
+    name = models.CharField(max_length=255,null=True, blank=True)
+    email = models.CharField(max_length=255, null=True,blank=True)
+    phone = models.CharField(max_length=255, null=True, blank=True)
+
     region = models.CharField(max_length=300,null=True,
         verbose_name="Region Name")
     city = models.CharField(max_length=300,null=True,
@@ -95,9 +104,12 @@ class BillingAddress(InitModels):
     post_code = models.CharField(max_length=100,null=True,
         verbose_name="Post Code",blank=True)
     address = models.TextField(null=True,verbose_name="Address")
-
+    is_biling =models.BooleanField(default=False)
     def __str__(self):
         return str(self.customer)
 
     class Meta:
-        verbose_name_plural = "Billing Address"
+        verbose_name_plural = "Shipping Address"
+        
+
+

@@ -26,9 +26,14 @@ from accounts.views.user_init import (
 )
 
 from accounts.views.billing_address import (
+    BillingAddressDeleteView,
     BillingAddressView
 )
 
+# from accounts.views.shipping_address import (
+#     ShippingAddressDeleteView,
+#     ShippingAddressListCreateView
+# )
 urlpatterns = []
 
 user_URL = [
@@ -63,13 +68,18 @@ user_pass_change_reset_email = [
 ]
 
 billingAddress_URL = [
-    path('billing/address/',BillingAddressView.as_view())
+    path('billing/address/',BillingAddressView.as_view()),
+    path('billng/address/delete/<int:pk>/', BillingAddressDeleteView.as_view()),
 ]
 
-
+# shippingAddress_URL = [ 
+#     path('shipping/address/list-create/',ShippingAddressListCreateView.as_view()),
+#     path('shipiing/address/delete/<int:pk>/', ShippingAddressDeleteView.as_view()),
+# ]
 
 urlpatterns += user_URL
 urlpatterns += permission_URL
 urlpatterns += user_update_delete
 urlpatterns += user_pass_change_reset_email
 urlpatterns += billingAddress_URL
+# urlpatterns += shippingAddress_URL
