@@ -24,7 +24,8 @@ class Billing_Address_Serialiazer(serializers.ModelSerializer):
             'city',
             'area',
             'post_code',
-            'address'
+            'address',
+            'is_biling'
         ]
 
 
