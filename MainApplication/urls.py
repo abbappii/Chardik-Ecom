@@ -18,6 +18,15 @@ from rest_framework_simplejwt.views import (
 )
 
 
+
+'''
+IN THIS SECTION , we are overwritng the Django default title, header and index title 
+'''
+### Admin panel Configure 
+admin.site.site_header = "Chardike Super Admin Panel"
+admin.site.site_title = "Chardike Backend"
+admin.site.index_title = "Welcome to Chardike Super Admin Panel"
+
 schema_view = get_schema_view(
    openapi.Info(
       title="Ecommerce API",
