@@ -22,7 +22,7 @@ from products.serializers.product_serializers import (
 #ProductsView
 
 class ProductListViewSet(generics.ListAPIView):
-    queryset = Products.objects.prefetch_related('variant','product_image','reviews')
+    queryset = Products.objects.prefetch_related('product_image','reviews')
     serializer_class = ProductListAPI
 
 
@@ -58,7 +58,7 @@ class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
 
 ## Product Single View 
 class ProductSingleView(generics.RetrieveAPIView):
-    queryset = Products.objects.prefetch_related('variant','product_image','reviews')
+    queryset = Products.objects.prefetch_related('product_image','reviews')
     serializer_class = ProductListAPI
 
 # rendrer html form 
