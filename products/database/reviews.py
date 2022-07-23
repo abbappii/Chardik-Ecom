@@ -12,6 +12,8 @@ class ProductReview(InitModels):
     star_count = models.IntegerField(null=True)
     review = models.TextField(null=True,blank=True)
 
+    is_approved = models.BooleanField(default=False)
+
 
     def __str__(self):
         return self.review
