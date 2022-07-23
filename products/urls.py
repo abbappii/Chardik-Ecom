@@ -4,13 +4,14 @@ from products.views.prodcuts_logic import (
     ProductListViewSet,
     ProductCreateView,
     ProductRetUpDesViewSet,
-    ProductVariationCreate,
-    ProductVariationSingle_updateView,
-    ProductVariation_DeleteView,
-    ProductVariationSingleView,
+
+    # ProductVariationCreate,
+    # ProductVariationSingle_updateView,
+    # ProductVariation_DeleteView,
+    # ProductVariationSingleView,
     ProductSingleView,
 
-    ProductVariationList,
+    # ProductVariationList,
 )
 
 from products.views.products_init_logic import (
@@ -28,12 +29,13 @@ from products.views.products_init_logic import (
     
     CountryView,
     CountryUpdateDelete,
-    ColorVariationListAPIview,
-    ColorVariationSingleAPIview,
-    SizeVariationListAPIview,
-    SizeVariationSingleAPIview,
-    WeightVariationListAPIview,
-    WeightVariationSingleAPIview
+
+    # ColorVariationListAPIview,
+    # ColorVariationSingleAPIview,
+    # SizeVariationListAPIview,
+    # SizeVariationSingleAPIview,
+    # WeightVariationListAPIview,
+    # WeightVariationSingleAPIview
      
 )
 
@@ -84,11 +86,11 @@ urlpatterns_product = [
     # path('product/<slug:slug>/',ProductDetail.as_view(), name='products_detail' ),
 
     # product Variation URL
-    path('product/variation/create/',ProductVariationCreate.as_view()),
-    path('product/variation/view/<int:pk>/',ProductVariationSingleView.as_view()),
-    path('product/variation/update/<int:pk>/',ProductVariationSingle_updateView.as_view()),
-    path('product/variation/delete/<int:pk>/',ProductVariation_DeleteView.as_view()),
-    path('product/variation/list/',ProductVariationList.as_view()),
+    # path('product/variation/create/',ProductVariationCreate.as_view()),
+    # path('product/variation/view/<int:pk>/',ProductVariationSingleView.as_view()),
+    # path('product/variation/update/<int:pk>/',ProductVariationSingle_updateView.as_view()),
+    # path('product/variation/delete/<int:pk>/',ProductVariation_DeleteView.as_view()),
+    # path('product/variation/list/',ProductVariationList.as_view()),
 
 ]
 
@@ -117,19 +119,19 @@ urlpatterns_slider = [
     path('slider/delete/<int:pk>/',SliderDeleteView.as_view()),
 ]
 
-urlpatterns_attribute = [
-    path('color/',ColorVariationListAPIview.as_view()),
-    path('color/<int:pk>/',ColorVariationSingleAPIview.as_view()),
+# urlpatterns_attribute = [
+#     path('color/',ColorVariationListAPIview.as_view()),
+#     path('color/<int:pk>/',ColorVariationSingleAPIview.as_view()),
     
-    path('size/',SizeVariationListAPIview.as_view()),
-    path('size/<int:pk>/',SizeVariationSingleAPIview.as_view()),
+#     path('size/',SizeVariationListAPIview.as_view()),
+#     path('size/<int:pk>/',SizeVariationSingleAPIview.as_view()),
 
-    path('weight/',WeightVariationListAPIview.as_view()),
-    path('weight/<int:pk>/',WeightVariationSingleAPIview.as_view())
-]
+#     path('weight/',WeightVariationListAPIview.as_view()),
+#     path('weight/<int:pk>/',WeightVariationSingleAPIview.as_view())
+# ]
 
 
-urlpatterns += urlpatterns_attribute
+# urlpatterns += urlpatterns_attribute
 urlpatterns += urlpatterns_category
 urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries

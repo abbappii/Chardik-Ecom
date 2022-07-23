@@ -158,10 +158,10 @@ class DailySalesOrderTimeToTimeListView(generics.ListAPIView):
 '''
 Daily total sales price
 '''
-from django.db.models import Sum
-class DailyTotalSalesRevenue(generics.ListAPIView):
-    queryset = Products.objects.all().filter(items__created_at=datetime.date.today()).aggregate(total_sum=Sum('variant__selling_price'))
-    serializer_class = ProductsAPI
+# from django.db.models import Sum
+# class DailyTotalSalesRevenue(generics.ListAPIView):
+#     queryset = Products.objects.all().filter(items__created_at=datetime.date.today()).aggregate(total_sum=Sum('variant__selling_price'))
+#     serializer_class = ProductsAPI
 
 
 '''

@@ -36,7 +36,7 @@ urlpatterns = [
     path('products/', include('products.urls')),
     path('order/',include('orders.urls')),
     path('user/', include('accounts.urls')),
-    # path('queries/',include('appFilter.urls')),
+    path('queries/',include('appFilter.urls')),
     path('record/',include('inventory.urls')),
     
     path('contact/', include('initapp.urls')),

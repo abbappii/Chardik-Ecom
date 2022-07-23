@@ -13,10 +13,7 @@ from products.database.init_p import (
     Categories, 
     Countreies, 
     Sub_Categories,  
-    Brand,
-    ColorVariation,
-    WeightVariation,
-    SizeVariation
+    Brand
 )
 from products.database.products import Products, Product_images
 from products.database.reviews import ProductReview
@@ -115,21 +112,21 @@ Variation Attribute
     - weight
 '''
 
-class ColorVariationAPI(serializers.ModelSerializer):
-    class Meta:
-        model = ColorVariation
-        fields = ['id','color_name']
+# class ColorVariationAPI(serializers.ModelSerializer):
+#     class Meta:
+#         model = ColorVariation
+#         fields = ['id','color_name']
 
-# Size API
+# # Size API
 
-class SizeVariationAPI(serializers.ModelSerializer):
-    class Meta:
-        model = SizeVariation
-        fields = ['id','size_name']
+# class SizeVariationAPI(serializers.ModelSerializer):
+#     class Meta:
+#         model = SizeVariation
+#         fields = ['id','size_name']
 
-# Weight API
+# # Weight API
 
-class WeightVariationAPI(serializers.ModelSerializer):
-    class Meta:
-        model = WeightVariation
-        fields = ['id','weight_name']
+# class WeightVariationAPI(serializers.ModelSerializer):
+#     class Meta:
+#         model = WeightVariation
+#         fields = ['id','weight_name']

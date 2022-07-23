@@ -12,11 +12,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FileUploadParser,FormParser
 from utils.util import *
-from products.database.products import Products, Variation_with_Price_variant 
+# from products.database.products import Products, Variation_with_Price_variant 
 from products.serializers.init_serializers import *
 from products.serializers.product_serializers import (
-    ProductsSerializers,Product_imagesSerializer,
-    VariationAPI,VariationListAPI,ProductListAPI
+    ProductsSerializers,Product_imagesSerializer,ProductListAPI
 )
  
 
@@ -130,32 +129,32 @@ Product Variation API
 '''
 
 
-# Product Variation Create
-class ProductVariationCreate(generics.CreateAPIView):
-    queryset = Variation_with_Price_variant.objects.all()
-    serializer_class = VariationAPI
+# # Product Variation Create
+# class ProductVariationCreate(generics.CreateAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationAPI
 
 
-# product Variation Retrieve
-class ProductVariationSingleView(generics.RetrieveAPIView):
-    queryset = Variation_with_Price_variant.objects.all()
-    serializer_class = VariationListAPI
+# # product Variation Retrieve
+# class ProductVariationSingleView(generics.RetrieveAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationListAPI
 
 
-# Product Variation delete
-class ProductVariationSingle_updateView(generics.UpdateAPIView):
-    queryset = Variation_with_Price_variant.objects.all()
-    serializer_class = VariationAPI
+# # Product Variation delete
+# class ProductVariationSingle_updateView(generics.UpdateAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationAPI
 
 
-# Product Delete View
-class ProductVariation_DeleteView(generics.DestroyAPIView):
-    queryset = Variation_with_Price_variant.objects.all()
-    serializer_class = VariationListAPI
+# # Product Delete View
+# class ProductVariation_DeleteView(generics.DestroyAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationListAPI
 
-class ProductVariationList(generics.ListAPIView):
-    queryset = Variation_with_Price_variant.objects.all()
-    serializer_class = VariationListAPI
+# class ProductVariationList(generics.ListAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationListAPI
 
 
 

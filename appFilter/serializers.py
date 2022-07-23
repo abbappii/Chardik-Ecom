@@ -14,7 +14,7 @@ from products.database.init_p import (
 from products.serializers.product_serializers import (
     CategoriesSerializers,
     SubCategoriesListSerializers,
-    VariationListAPI,
+    # VariationListAPI,
     Product_imagesSerializer,
     ProductReviewListAPI
 )
@@ -29,7 +29,7 @@ class ProductsAPI(serializers.ModelSerializer):
     sub_category=SubCategoriesListSerializers(many=True, read_only=True)
     #brand=BrandSerializer(many=True, read_only=True)
     #country=CountriesSerializer(many=True, read_only=True)
-    variant = VariationListAPI(many=True)
+    # variant = VariationListAPI(many=True)
     product_image = Product_imagesSerializer(many=True)
     reviews = ProductReviewListAPI(many=True)
 
@@ -39,8 +39,8 @@ class ProductsAPI(serializers.ModelSerializer):
                     'category','sub_category','product_name',
                     'slug','meta','short_descriptions',
                     'long_description','alter_text',
-                    'feature_image','product_image','sold_count','expire_rate',
-                    'is_stock','variant','reviews']
+                    'feature_image','product_image','sold_count','expire_date',
+                    'is_stock','reviews']
         depth = 1
 
                     
