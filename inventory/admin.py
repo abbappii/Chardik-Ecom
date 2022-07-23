@@ -2,7 +2,13 @@ from django.contrib import admin
 
 from inventory.models import Purchase,Supplier
 
-from inventory.bank_model.baccounts import BankAccounts, DepositWithdraw
+from inventory.bank_model.baccounts import (
+    BankAccounts, 
+    DepositWithdraw,
+    Name,
+    Outlet,
+    Expenses
+    )
 
 admin.site.register(Supplier)
 
@@ -21,3 +27,7 @@ class DepositWithdrawAdmin(admin.ModelAdmin):
     list_display = ['id','account','Reference','created_by']
 
 admin.site.register(DepositWithdraw)
+
+admin.site.register(Name)
+admin.site.register(Outlet)
+admin.site.register(Expenses)
