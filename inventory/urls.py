@@ -15,6 +15,28 @@ from inventory.views.supplier_view import (
     SupplierRetrieveView,SupplierDeleteApiView
 )
 
+from inventory.bank_view.bank_accounts_view import (
+    BankAccountCreateView,
+    BankAccountDeleteView,
+    BankAccountEditView,
+    BankAccountListView,
+    BankAccountSingleView,
+
+    DepositWithdrawListView,
+    DepositWithdrawCreateView,
+    DepositWithdrawDeleteView
+)
+
+from inventory.bank_view.name_outlet import (
+    NameCreateView,
+    NameDeleteView,
+
+    OutletCreateView,
+    OutletDeleteView, 
+)
+
+from inventory.bank_view.expence import ExpenceCreateView, ExpenceListView
+
 urlpatterns = []
 
 supplier_URL = [
@@ -33,17 +55,7 @@ purchase_URL = [
     path('purchase/create/',PurchaseCreateView.as_view())
 ]
 
-from inventory.bank_view.bank_accounts_view import (
-    BankAccountCreateView,
-    BankAccountDeleteView,
-    BankAccountEditView,
-    BankAccountListView,
-    BankAccountSingleView,
 
-    DepositWithdrawListView,
-    DepositWithdrawCreateView,
-    DepositWithdrawDeleteView
-)
 bank_accounts_URL = [ 
     path('baccounts/list/view/', BankAccountListView.as_view()),
     path('baccounts/single/view/<int:pk>/', BankAccountSingleView.as_view()),
@@ -57,6 +69,21 @@ bank_accounts_URL = [
 
 ]
 
+name_outlet_URL = [ 
+    path('expance/name/create/',NameCreateView.as_view()),
+    path('expence/name/delete/<int:pk>/', NameDeleteView.as_view()),
+
+    path('expence/outlet/create/',OutletCreateView.as_view()),
+    path('expence/outlet/delete/<int:pk>/', OutletDeleteView.as_view()),
+]
+
+expence_URL = [ 
+    path('expence/create/',ExpenceCreateView.as_view()),
+    path('expence/list/view/',ExpenceListView.as_view()),
+]
+
 urlpatterns += supplier_URL
 urlpatterns += purchase_URL
 urlpatterns += bank_accounts_URL
+urlpatterns += name_outlet_URL
+urlpatterns += expence_URL
