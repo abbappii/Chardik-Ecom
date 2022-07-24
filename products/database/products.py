@@ -165,7 +165,8 @@ class Products(InitModels):
         if self.purchase_product:
             # return self.purchase.quantity
             # print()
-            return self.purchase_product.first().quantity
+            return self.purchase_product.\
+                    aggregate(Sum('quantity'))['quantity__sum']
         else:
             return f"0.00"
         # return self.purchase_product.quantity if self.purchase_product else "none"
