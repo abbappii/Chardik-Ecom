@@ -104,7 +104,10 @@ class BillingAddress(InitModels):
     post_code = models.CharField(max_length=100,null=True,
         verbose_name="Post Code",blank=True)
     address = models.TextField(null=True,verbose_name="Address")
-    is_biling =models.BooleanField(default=False)
+    # By default this model will save as a shipping address 
+    # But when Is_billing = True , it will save as a billing address
+    is_billing =models.BooleanField(default=False,verbose_name="Is Billing Address")
+
     def __str__(self):
         return str(self.customer)
 
