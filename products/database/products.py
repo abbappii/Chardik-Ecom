@@ -160,16 +160,21 @@ class Products(InitModels):
             return False
 
     # Quantity property 
+    '''
+    this func will show the total quantity of products 
+    '''
     @property
     def product_quantity(self):
         if self.purchase_product:
-            # return self.purchase.quantity
-            # print()
+            # if product has purhcase history then show the quantity 
+            # else return 0.00
             return self.purchase_product.\
                     aggregate(Sum('quantity'))['quantity__sum']
         else:
             return f"0.00"
-        # return self.purchase_product.quantity if self.purchase_product else "none"
+
+
+
 
 ## Product Variation with Price and variant 
 
