@@ -98,7 +98,7 @@ class Order(InitModels):
     # discount = models.PositiveIntegerField()
 
     order_status = models.CharField(max_length=100,choices=ORDER_STATUS,
-        default="Order Received")
+        default="Order Processing")
     payment_method = models.CharField(max_length=100,choices=ORDER_PAY_METHOD,
         default="Cash on Delivery")
 
