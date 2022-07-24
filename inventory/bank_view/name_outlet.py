@@ -24,3 +24,7 @@ class OutletDeleteView(generics.DestroyAPIView):
     queryset = Outlet.objects.all()
     serializer_class = OutletSerializers
 
+# list view outlet 
+class OutletListView(generics.ListAPIView):
+    queryset = Outlet.objects.all()
+    serializer_class = OutletSerializers

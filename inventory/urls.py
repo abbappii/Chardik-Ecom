@@ -30,7 +30,7 @@ from inventory.bank_view.bank_accounts_view import (
 from inventory.bank_view.name_outlet import (
     NameCreateView,
     NameDeleteView,
-
+    OutletListView,
     OutletCreateView,
     OutletDeleteView, 
 )
@@ -73,6 +73,7 @@ name_outlet_URL = [
     path('expance/name/create/',NameCreateView.as_view()),
     path('expence/name/delete/<int:pk>/', NameDeleteView.as_view()),
 
+    path('expence/outlet/list/view/',OutletListView.as_view()),
     path('expence/outlet/create/',OutletCreateView.as_view()),
     path('expence/outlet/delete/<int:pk>/', OutletDeleteView.as_view()),
 ]
