@@ -27,7 +27,8 @@ from accounts.views.user_init import (
 
 from accounts.views.billing_address import (
     BillingAddressDeleteView,
-    BillingAddressView
+    BillingAddressView,
+    ShippingAddressView
 )
 
 # from accounts.views.shipping_address import (
@@ -69,6 +70,7 @@ user_pass_change_reset_email = [
 
 billingAddress_URL = [
     path('billing/address/',BillingAddressView.as_view()),
+    path('shipping/address/',ShippingAddressView.as_view()),
     path('billng/address/delete/<int:pk>/', BillingAddressDeleteView.as_view()),
 ]
 
