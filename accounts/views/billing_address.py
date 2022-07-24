@@ -42,7 +42,7 @@ class BillingAddressView(generics.ListAPIView):
     def get(self,request):
         user = request.user.profile
         data_fetch = BillingAddress.objects.filter(
-                customer=user,is_active=True,is_biling=True
+                customer=user,is_active=True,is_billing=True
                 )
         apifetch = Billing_Address_Serialiazer(data_fetch,many=True)
         return Response(
@@ -72,7 +72,7 @@ class ShippingAddressView(generics.ListAPIView):
     def get(self,request):
         user = request.user.profile
         data_fetch = BillingAddress.objects.filter(
-                customer=user,is_active=True,is_biling=False
+                customer=user,is_active=True,is_billing=False
                 )
         apifetch = Billing_Address_Serialiazer(data_fetch,many=True)
         return Response(
