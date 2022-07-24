@@ -16,4 +16,11 @@ class BankAccountsSerializers(serializers.ModelSerializer):
 class DepositWithdrawSerializers(serializers.ModelSerializer):
     class Meta:
         model = DepositWithdraw
-        fields = ['id','Reference','account', 'created_by', 'transfer_type','note']
+        fields = ['id','Reference','account', 'amount','created_by','date_field', 'transfer_type','note']
+    
+# deposit withdraw list 
+class DepositWithdrawList(serializers.ModelSerializer):
+    class Meta:
+        model = DepositWithdraw
+        fields = ['id','Reference','account', 'amount','created_by','date_field', 'transfer_type','note']
+        depth=1

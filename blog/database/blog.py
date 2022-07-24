@@ -3,7 +3,7 @@ from accounts.models.initials import InitModels
 
 class Blog(InitModels):
 
-    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, 
+    user = models.ForeignKey('accounts.Profile', on_delete=models.CASCADE, 
         related_name='post_author')
     title = models.CharField(max_length=200,blank=True)
     description = models.TextField()
