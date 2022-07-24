@@ -30,3 +30,17 @@ class FlashSale(InitModels):
 
     class Meta:
         verbose_name_plural = "Flash Deal"
+
+    ## Customer Property 
+    @property
+    def flash_products(self):
+        products = [product.id for product in self.products.all()]    
+        return products
+    ## Override the Save method 
+    # def save(self,*args,**kwargs):
+    #     for product in self.products.all():
+    #         print(product)
+    #     super(FlashSale, self).save(*args, **kwargs) 
+
+    
+        
