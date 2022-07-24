@@ -36,12 +36,14 @@ Billing Address Logics
 # view List Function 
 @permission_classes([IsCustomer])
 class BillingAddressView(generics.ListAPIView):
-    queryset = BillingAddress.objects.filter(is_active=True)
+    queryset = BillingAddress.objects.filter(is_active=True,is_billing=True)
     serializer_class = Billing_Address_Serialiazer
 
     def get(self,request):
         user = request.user.profile
-        data_fetch = BillingAddress.objects.filter(customer=user,is_active=True)
+        data_fetch = BillingAddress.objects.filter(
+                customer=user,is_active=True,is_biling=True
+                )
         apifetch = Billing_Address_Serialiazer(data_fetch,many=True)
         return Response(
             apifetch.data,
@@ -62,7 +64,20 @@ class BillingAddressView(generics.ListAPIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
+@permission_classes([IsCustomer])
+class ShippingAddressView(generics.ListAPIView):
+    queryset = BillingAddress.objects.filter(is_active=True,is_billing=False)
+    serializer_class = Billing_Address_Serialiazer
 
+    def get(self,request):
+        user = request.user.profile
+        data_fetch = BillingAddress.objects.filter(
+                customer=user,is_active=True,is_biling=False
+                )
+        apifetch = Billing_Address_Serialiazer(data_fetch,many=True)
+        return Response(
+            apifetch.data,
+            status=status.HTTP_200_OK)
 
 
 # Single View 
