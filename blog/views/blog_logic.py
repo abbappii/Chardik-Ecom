@@ -36,7 +36,7 @@ class BlogCreateView(GenericAPIView):
 
     def post(self,request):
         # print(request.user)
-        user = request.user
+        user = request.user.profile
 
         fetchUser = Blog(user=user)
         apifetch = BlogSerializers(fetchUser,data=request.data)
