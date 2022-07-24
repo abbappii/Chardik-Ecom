@@ -111,7 +111,9 @@ class ProductListAPI(serializers.ModelSerializer):
                     'long_description','alter_text','tags',
                     'feature_image','product_image','sold_count','expire_date',
                     'regular_price','selling_price','attribute','reseller_price',
-                    'is_stock','reviews']
+                    'is_stock','reviews',
+                    'product_quantity'
+                    ]
         depth = 1
 
 
