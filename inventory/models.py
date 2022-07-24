@@ -5,7 +5,7 @@ This file contaisn the Database layout of
 
 from django.db import models
 from accounts.models.initials import InitModels
-
+from decimal import Decimal
 
 
 '''
@@ -64,16 +64,20 @@ class Purchase(InitModels):
         verbose_name="Select Supplier",related_name="purchase")
     order_status = models.CharField(max_length=100,choices=order_status,null=True,
         verbose_name="Order Status")
-    outlet_name = models.CharField(max_length=300,null=True,blank=True,verbose_name=
-        "Outlet Name")
+    # outlet_name = models.CharField(max_length=300,null=True,blank=True,verbose_name=
+    #     "Outlet Name")
+    outlet_name = models.ForeignKey('inventory.Outlet', on_delete=models.SET_NULL, null=True,related_name='p_outlet_name')
+
     product = models.ForeignKey('products.Products',null=True,on_delete=models.SET_NULL,
         verbose_name="Select product",related_name='purchase_product')
     price = models.FloatField(null=True,verbose_name="Prce")
     unit_cost = models.FloatField(null=True,blank=True,verbose_name="Net Unit Cost")
     other_cost = models.FloatField(null=True,verbose_name="Other Cost")
     due_price = models.FloatField(null=True,blank=True,verbose_name="Due Price")
-    payment_method = models.CharField(null=True,blank=True,max_length=200,
-        verbose_name="Payment Method")
+    # payment_method = models.CharField(null=True,blank=True,max_length=200,
+    #     verbose_name="Payment Method")
+    payment_method = models.ForeignKey('inventory.BankAccounts', on_delete=models.SET_NULL,null=True,related_name='bank_acc_name')
+
     payment_status = models.CharField(max_length=100,null=True,blank=True,choices=
         payment_status,verbose_name="Payment Status")
     description = models.TextField(null=True,blank=True,verbose_name="Description")
@@ -86,6 +90,18 @@ class Purchase(InitModels):
     class Meta:
         verbose_name_plural = "Purchase History"
 
-
-    
-    
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            total_purchase_amount = self.price
+            try:
+                account = self.payment_method
+                account.amount -= Decimal(total_purchase_amount)
+                account.save()
+                # instance.payment_method.amount -= Decimal(total_purchase_amount)
+                # instance.payment_method.save()
+                
+          
+            except Exception as e:
+                print(e)
+        super().save(*args, **kwargs)
+ 
