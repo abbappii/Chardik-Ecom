@@ -77,7 +77,7 @@ urlpatterns_category = [
 urlpatterns_product = [ 
     path('product/', ProductListViewSet.as_view(), name='products' ),
     path('product/create/',ProductCreateView.as_view(), name='product_create' ),
-    path('product/<int:pk>/',ProductRetUpDesViewSet.as_view(), 
+    path('product/update-delete/<int:pk>/',ProductRetUpDesViewSet.as_view(), 
         name='products_delete_update' ),
     path('product/single/<int:pk>/',ProductSingleView.as_view()),
     # products renderer url 
