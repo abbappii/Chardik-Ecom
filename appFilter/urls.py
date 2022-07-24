@@ -14,7 +14,7 @@ from appFilter.views.products_filter import (
     LatestProductList,
     TopSalesProductsListView, 
     DailySalesOrderTimeToTimeListView,
-    # DailyTotalSalesRevenue,
+    DailyTotalSales,
 )
 
 
@@ -38,7 +38,7 @@ products_URL = [
     # path('low-to-high-price/', PriceLowToHighListView.as_view()),
     # path('high-to-low-price/', PriceHighToLowListView.as_view()),
     path('daily-sales/', DailySalesOrderTimeToTimeListView.as_view()),
-    # path('total-sales-price-daily/',DailyTotalSalesRevenue.as_view()),
+    path('total-sales-price-daily/',DailyTotalSales.as_view()),
 ]
 
 urlpatterns += products_URL
