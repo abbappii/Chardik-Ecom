@@ -3,7 +3,11 @@
 from inventory.bank_model.baccounts import BankAccounts, DepositWithdraw
 
 # serializer import 
-from inventory.bank_serializer.bac_serializers import BankAccountsSerializers, DepositWithdrawSerializers
+from inventory.bank_serializer.bac_serializers import (
+    BankAccountsSerializers, 
+    DepositWithdrawSerializers, 
+    DepositWithdrawList
+    )
 
 # rest framework property import 
 from rest_framework import generics
@@ -59,7 +63,7 @@ class BankAccountDeleteView(generics.DestroyAPIView):
 # list view 
 class DepositWithdrawListView(generics.ListAPIView):
     queryset = DepositWithdraw.objects.all()
-    serializer_class = DepositWithdrawSerializers
+    serializer_class = DepositWithdrawList
 
 
 # create view 

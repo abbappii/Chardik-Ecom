@@ -40,6 +40,8 @@ class DepositWithdraw(InitModels):
         related_name='account',
         verbose_name='Bank Account'
         )
+    amount = models.DecimalField(max_digits=20,decimal_places=2, default=0.00)
+
     Reference = models.CharField(
         max_length=255,
         null=True, 
@@ -58,6 +60,7 @@ class DepositWithdraw(InitModels):
         max_length=1000, 
         blank=True
         )
+    date_field = models.CharField(max_length=255,null=True, blank=True)
 
     def __unicode__(self):
         return self.account
