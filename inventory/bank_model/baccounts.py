@@ -109,6 +109,9 @@ class Expenses(InitModels):
         related_name='outlet_name'
         )
     reference = models.CharField( max_length=255,null=True,  blank=True)
+
+    date = models.CharField(max_length=255,null=True, blank=True)
+    
     account = models.ForeignKey(BankAccounts, on_delete=models.CASCADE, 
         related_name='Bank_account'
         )
