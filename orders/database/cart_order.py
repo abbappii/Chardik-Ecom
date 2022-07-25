@@ -83,7 +83,8 @@ class Order(InitModels):
     # cart  = models.OneToOneField(Cart,on_delete=models.CASCADE)
     customer = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
         verbose_name="Customer")
-    ref_code = models.CharField(max_length=20, blank=True, null=True)
+
+    ref_code = models.CharField(max_length=255, null=True,blank=True, unique=True)
 
     mobile = models.CharField(max_length=16,null=True,blank=True)
     email = models.CharField(max_length=200, null=True, blank=True)
