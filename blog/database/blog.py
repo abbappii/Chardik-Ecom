@@ -21,3 +21,10 @@ class Blog(InitModels):
         verbose_name_plural = 'Blog'
         ordering = ['-created_at']
     
+
+    # custom property 
+    @property
+    def profile_image(self):
+        # profile picture get
+        profile_pic= self.user.profile.profile_picture
+        return profile_pic
