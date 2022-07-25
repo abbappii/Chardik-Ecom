@@ -36,7 +36,13 @@ from inventory.views.name_outlet import (
     OutletDeleteView, 
 )
 
-from inventory.views.expence import ExpenceCreateView, ExpenceListView
+from inventory.views.expence import (
+    
+    ExpenceCreateView, 
+    ExpenceListView, 
+    ExpenceDeleteView
+
+    )
 
 urlpatterns = []
 
@@ -84,6 +90,7 @@ name_outlet_URL = [
 expence_URL = [ 
     path('expence/create/',ExpenceCreateView.as_view()),
     path('expence/list/view/',ExpenceListView.as_view()),
+    path('expence/delete/<int:pk>/', ExpenceDeleteView.as_view()),
 ]
 
 urlpatterns += supplier_URL

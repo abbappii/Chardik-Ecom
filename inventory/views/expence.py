@@ -1,6 +1,6 @@
 
 from inventory.bank_model.baccounts import Expenses
-from inventory.bank_serializer.expence_serializers import ExpenceSerializers
+from inventory.bank_serializer.expence_serializers import ExpenceSerializers, ExpenceListSerializers
 
 from rest_framework import generics, status
 from rest_framework.response import Response
@@ -33,5 +33,10 @@ class ExpenceCreateView(generics.GenericAPIView):
     
 # list view 
 class ExpenceListView(generics.ListAPIView):
+    queryset = Expenses.objects.filter(is_active=True)
+    serializer_class = ExpenceListSerializers
+
+# delete view 
+class ExpenceDeleteView(generics.DestroyAPIView):
     queryset = Expenses.objects.filter(is_active=True)
     serializer_class = ExpenceSerializers
