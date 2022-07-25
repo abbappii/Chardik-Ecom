@@ -79,10 +79,8 @@ class OrderAPI(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields = ['id',
-                'ref_code','address','coupon',
+                'ref_code','address_shipping','address_billing','coupon',
                 'ordered_date','items',
                 'total','order_status','is_order',
                 'mobile','email','fast_delivery'
                 ]
-
-           

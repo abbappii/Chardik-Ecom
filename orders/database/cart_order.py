@@ -88,8 +88,12 @@ class Order(InitModels):
     mobile = models.CharField(max_length=16,null=True,blank=True)
     email = models.CharField(max_length=200, null=True, blank=True)
 
-    address = models.ForeignKey('accounts.BillingAddress',on_delete=models.SET_NULL,
-        null=True,blank=True)
+    address_shipping = models.ForeignKey('accounts.BillingAddress',on_delete=models.SET_NULL,
+        null=True,blank=True, related_name='shiping_address')
+    
+    address_billing = models.ForeignKey('accounts.BillingAddress', on_delete=models.SET_NULL, 
+    null=True,blank=True,related_name='billing_address')
+
     coupon = models.ForeignKey('orders.Coupon',blank=True,null=True,
         on_delete=models.SET_NULL)
     ordered_date = models.DateTimeField(null=True)
