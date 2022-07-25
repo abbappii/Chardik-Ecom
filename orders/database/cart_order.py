@@ -83,13 +83,18 @@ class Order(InitModels):
     # cart  = models.OneToOneField(Cart,on_delete=models.CASCADE)
     customer = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
         verbose_name="Customer")
-    ref_code = models.CharField(max_length=20, blank=True, null=True)
+
+    ref_code = models.CharField(max_length=255, null=True,blank=True, unique=True)
 
     mobile = models.CharField(max_length=16,null=True,blank=True)
     email = models.CharField(max_length=200, null=True, blank=True)
 
-    address = models.ForeignKey('accounts.BillingAddress',on_delete=models.SET_NULL,
-        null=True,blank=True)
+    address_shipping = models.ForeignKey('accounts.BillingAddress',on_delete=models.SET_NULL,
+        null=True,blank=True, related_name='shiping_address')
+    
+    address_billing = models.ForeignKey('accounts.BillingAddress', on_delete=models.SET_NULL, 
+    null=True,blank=True,related_name='billing_address')
+
     coupon = models.ForeignKey('orders.Coupon',blank=True,null=True,
         on_delete=models.SET_NULL)
     ordered_date = models.DateTimeField(null=True)

@@ -26,5 +26,7 @@ class Blog(InitModels):
     @property
     def profile_image(self):
         # profile picture get
-        profile_pic= self.user.profile.profile_picture
-        return profile_pic
+        if self.profle.profile_picture:
+            return self.user.profile.profile_picture.url
+        else:
+            return ''

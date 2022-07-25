@@ -9,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import permission_classes
 from rest_framework.generics import GenericAPIView
 from blog.database.blog import Blog
-from blog.serializers.blog_serializers import BlogSerializers
+from blog.serializers.blog_serializers import BlogSerializers, BlogListSerializers
 # importing Permission
 from MainApplication.scripts.permission import(
     IsAdmin,
@@ -53,12 +53,12 @@ class BlogCreateView(GenericAPIView):
 # Blog ListView
 class BlogListView(generics.ListAPIView):
     queryset = Blog.objects.filter(is_active=True)
-    serializer_class = BlogSerializers
+    serializer_class = BlogListSerializers
 
 # Blog single View 
 class BlogSingleView(generics.RetrieveAPIView):
     queryset = Blog.objects.filter(is_active=True)
-    serializer_class = BlogSerializers
+    serializer_class = BlogListSerializers
 
 # Blog update view 
 class BlogUpdateView(generics.UpdateAPIView):
@@ -74,9 +74,9 @@ class BlogDeleteView(generics.DestroyAPIView):
 ## Blog List View admin
 class AdminBlogListView(generics.ListAPIView):
     queryset = Blog.objects.filter(is_active=True,is_admin=True)
-    serializer_class = BlogSerializers
+    serializer_class = BlogListSerializers
 
 ## Blog List view Customer 
 class CustomerBlogListView(generics.ListAPIView):
     queryset = Blog.objects.filter(is_active=True,is_customer=True)
-    serializer_class = BlogSerializers
+    serializer_class = BlogListSerializers
