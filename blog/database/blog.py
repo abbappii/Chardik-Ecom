@@ -24,9 +24,17 @@ class Blog(InitModels):
 
     # custom property 
     @property
-    def profile_image(self):
+    def user_profile_image(self):
         # profile picture get
-        if self.profle.profile_picture:
+        if self.user.profile.profile_picture:
             return self.user.profile.profile_picture.url
         else:
             return ''
+
+    @property
+    def user_full_name(self):
+        # full name get 
+        if self.user.profile.full_name:
+            return self.user.profile.full_name
+        else:
+            return ""
