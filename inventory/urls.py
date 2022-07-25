@@ -15,7 +15,7 @@ from inventory.views.supplier_view import (
     SupplierRetrieveView,SupplierDeleteApiView
 )
 
-from inventory.bank_view.bank_accounts_view import (
+from inventory.views.bank_accounts_view import (
     BankAccountCreateView,
     BankAccountDeleteView,
     BankAccountEditView,
@@ -27,7 +27,8 @@ from inventory.bank_view.bank_accounts_view import (
     DepositWithdrawDeleteView
 )
 
-from inventory.bank_view.name_outlet import (
+from inventory.views.name_outlet import (
+    NameListView,
     NameCreateView,
     NameDeleteView,
     OutletListView,
@@ -35,7 +36,7 @@ from inventory.bank_view.name_outlet import (
     OutletDeleteView, 
 )
 
-from inventory.bank_view.expence import ExpenceCreateView, ExpenceListView
+from inventory.views.expence import ExpenceCreateView, ExpenceListView
 
 urlpatterns = []
 
@@ -70,7 +71,9 @@ bank_accounts_URL = [
 ]
 
 name_outlet_URL = [ 
-    path('expance/name/create/',NameCreateView.as_view()),
+
+    path('expence/name/list/view/',NameListView.as_view()),
+    path('expence/name/create/',NameCreateView.as_view()),
     path('expence/name/delete/<int:pk>/', NameDeleteView.as_view()),
 
     path('expence/outlet/list/view/',OutletListView.as_view()),
