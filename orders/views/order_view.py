@@ -95,7 +95,7 @@ class OrderListview(generics.ListAPIView):
 
 # order updateview
 class OrderUpdateView(generics.UpdateAPIView):
-    permission_classes = [IsAdmin, IsManager, IsStuff]
+    permission_classes = [IsAdmin]
     queryset = Order.objects.all()
     serializer_class = OrderAPI
 
