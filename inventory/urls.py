@@ -72,7 +72,7 @@ bank_accounts_URL = [
     path('baccounts/edit/view/<int:pk>/', BankAccountEditView.as_view()),
     path('baccounts/delete/view/<int:pk>/', BankAccountDeleteView.as_view()),
 
-    path('baccounts/total/amount/view/', BankAccountDeleteView.as_view()),
+    path('baccounts/total/amount/view/', AllBankAccountTotalMoneyView.as_view()),
 
     path('baccounts/depositwithraw/list/view/', DepositWithdrawListView.as_view()),
     path('baccounts/depositwithraw/create/view/', DepositWithdrawCreateView.as_view()),
