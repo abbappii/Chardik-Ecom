@@ -39,8 +39,6 @@ class FlashSale(InitModels):
         return products
 
 
-    
-
 ## Through models for products 
 '''
 THis model is an auxilary model for Flash Sale
@@ -64,3 +62,5 @@ class FlashProducts(InitModels):
 
     class Meta:
         verbose_name_plural = "Flash Products Add"
+
+
