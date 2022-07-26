@@ -52,6 +52,19 @@ class BankAccountDeleteView(generics.DestroyAPIView):
     serializer_class = BankAccountsSerializers
 
 '''
+    all bank accounts total amount view
+
+''' 
+from rest_framework.views import APIView
+from django.db.models import Sum
+
+class AllBankAccountTotalMoneyView(APIView):
+    def get(self,request):
+        qs = BankAccounts.objects.filter(is_active=True).aggregate(total=Sum('amount'))
+        return Response(qs)
+
+
+'''
     here logic for 
         deposit withdraw
             - list view

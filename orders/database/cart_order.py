@@ -21,16 +21,17 @@ class CartProduct(InitModels):
 
 
 ORDER_STATUS = (
-    ("Order Received", "Order Received"),
-    ("Order Processing", "Order Processing"),
-    ("On Hold", "On Hold"),
-    ("Refunded", "Refunded"),
     ("Pending","Pending"),
-    ("Order Failed", "Order Failed"),
-    ("Delete", "Delete"),
-    ("Order Confirmed","Order Confirmed"),
-    ("Order Completed", "Order Completed"),
-    ("Order Canceled", "Order Canceled"),
+    ("Received", "Received"),
+    ("Shipped", "Shipped"),
+
+    ("On Hold", "On Hold"),
+    ("Completed","Completed"),
+    ("Canceled", "Canceled"),
+    
+    ("Refunded", "Refunded"),
+    ("Failed", "Failed"),
+    ("Deleted", "Deleted"),   
 )
 
 ORDER_PAY_METHOD = (
@@ -103,7 +104,7 @@ class Order(InitModels):
     # discount = models.PositiveIntegerField()
 
     order_status = models.CharField(max_length=100,choices=ORDER_STATUS,
-        default="Order Processing")
+        default="Pending")
     payment_method = models.CharField(max_length=100,choices=ORDER_PAY_METHOD,
         default="Cash on Delivery")
 

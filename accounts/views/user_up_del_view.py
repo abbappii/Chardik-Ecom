@@ -28,16 +28,11 @@ class UserDataUpdate(GenericAPIView):
 
     def post(self,request):
         user = request.user.profile
-        user_query = Profile.objects.get(user=user)
-
         data = request.data
-        serializer = UserProfileSeriliazer(user_query, data=data)
+        serializer = UserProfileSeriliazer(user, data=data)
         if serializer.is_valid():
             serializer.save()
-            # return Response({'msg': 'Information updated successfully'})
             return Response(serializer.data)
-
-        # return Response({'msg':'serializers error!'})
         return Response(serializer.errors)
 
 
