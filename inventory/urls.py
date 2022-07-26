@@ -20,6 +20,7 @@ from inventory.views.bank_accounts_view import (
     BankAccountDeleteView,
     BankAccountEditView,
     BankAccountListView,
+
     BankAccountSingleView,
     DepositWithdrawListView,
     DepositWithdrawCreateView,
