@@ -9,7 +9,7 @@ from django.db.models.signals import post_save,pre_delete,pre_save
 from django.dispatch import receiver
 
 # importing accounts
-from flash_sale.models import FlashSale
+from flash_sale.models import FlashProducts, FlashSale
 from products.database.products import Products
 
 
@@ -57,3 +57,25 @@ def ChangeProductStatus_on_Delete(sender,instance,using,*args,**kwargs):
             product.save()
     except Exception as e:
         print(e)
+
+
+
+'''
+Flash Sale Signals 
+'''
+
+@receiver(post_save,sender=FlashProducts)
+def UpdatePrice_of_FlashProducts(sender,instance,created,*args,**kwargs):
+    try:
+        if created:
+            # for product in instance.products.all():
+                # instance.flash_price = 100 * instance.
+                # print(instance._meta.get_fields())
+                print(instance.flash_sale.discount)
+                print(instance.flash_product.regular_price)
+                instance.flash_price = instance.flash_sale.discount / instance.flash_product.regular_price
+                instance.save()
+    except Exception as e:
+        print(e)
+    # if created:
+    #     print(instance.id)
