@@ -109,9 +109,6 @@ class Products(InitModels):
     sold_count = models.IntegerField(null=True,blank=True)
     expire_date = models.DateField(auto_now_add=False,null=True,blank=True)
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
-    is_in_flash_sale = models.BooleanField(
-        default=False,verbose_name="Is this Product in Flash Sale"
-    )
 
 
     def __str__(self) -> str:
