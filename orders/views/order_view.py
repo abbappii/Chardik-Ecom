@@ -64,7 +64,8 @@ class OrderView(GenericAPIView):
         if apifetch.is_valid():
             apifetch.save()
             return Response(
-                {'success':'Order is Updated'},
+                apifetch.data,
+                # {'success':'Order is Updated'},
                 status=status.HTTP_201_CREATED)
         else:
             return Response(apifetch.errors)

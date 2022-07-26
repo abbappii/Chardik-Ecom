@@ -21,7 +21,6 @@ from inventory.views.bank_accounts_view import (
     BankAccountEditView,
     BankAccountListView,
     BankAccountSingleView,
-
     DepositWithdrawListView,
     DepositWithdrawCreateView,
     DepositWithdrawDeleteView

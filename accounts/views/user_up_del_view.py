@@ -22,19 +22,24 @@ from accounts.serializers.user_auth import (
 User Profile Update View
 '''
 class UserDataUpdate(GenericAPIView):
+    queryset = Profile.objects.all()
     serializer_class = UserProfileSeriliazer
     permission_classes = [IsCustomer]
 
     def post(self,request):
-        user = request.user
-        user_query = User.objects.get(user=user)
+        user = request.user.profile
+        user_query = Profile.objects.get(user=user)
 
         data = request.data
         serializer = UserProfileSeriliazer(user_query, data=data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'msg': 'Information updated successfully'})
-        return Response({'msg':'serializers error!'})
+            # return Response({'msg': 'Information updated successfully'})
+            return Response(serializer.data)
+
+        # return Response({'msg':'serializers error!'})
+        return Response(serializer.errors)
+
 
 
 
