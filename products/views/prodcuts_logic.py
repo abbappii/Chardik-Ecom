@@ -22,7 +22,8 @@ from products.serializers.product_serializers import (
 #ProductsView
 
 class ProductListViewSet(generics.ListAPIView):
-    queryset = Products.objects.prefetch_related('product_image','reviews')
+    queryset = Products.objects.prefetch_related('product_image','reviews').\
+        exclude(flash_product__is_active=True)
     serializer_class = ProductListAPI
 
 
