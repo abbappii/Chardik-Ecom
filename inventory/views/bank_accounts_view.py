@@ -51,7 +51,6 @@ class BankAccountDeleteView(generics.DestroyAPIView):
     queryset = BankAccounts.objects.all()
     serializer_class = BankAccountsSerializers
 
-
 '''
     here logic for 
         deposit withdraw
