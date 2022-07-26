@@ -42,6 +42,9 @@ class FlashSale(InitModels):
     
 
 ## Through models for products 
+'''
+THis model is an auxilary model for Flash Sale
+    '''
 
 class FlashProducts(InitModels):
     flash_sale = models.ForeignKey(
