@@ -2,6 +2,7 @@
 from django.urls import path
 from products.views.prodcuts_logic import (
     ProductListViewSet,
+    ProductListViewAdmin,
     ProductCreateView,
     ProductRetUpDesViewSet,
 
@@ -75,7 +76,11 @@ urlpatterns_category = [
 ]
 
 urlpatterns_product = [ 
+    
     path('product/', ProductListViewSet.as_view(), name='products' ),
+
+    path('product/list/admin/view/', ProductListViewAdmin.as_view()),
+
     path('product/create/',ProductCreateView.as_view(), name='product_create' ),
     path('product/update-delete/<int:pk>/',ProductRetUpDesViewSet.as_view(), 
         name='products_delete_update' ),
