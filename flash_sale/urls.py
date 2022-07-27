@@ -31,6 +31,7 @@ flash_sale_URL = [
 flash_products_URL = [
     path('product/create/',FlashProducts_createView.as_view()),
     # path('')
+
 ]
 
 urlpatterns += flash_products_URL

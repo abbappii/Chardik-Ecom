@@ -27,7 +27,7 @@ class FlashSale_ProductAPI(serializers.ModelSerializer):
         fields = [
             'flash_sale',
             'flash_product',
-            'flash_price',
+            # 'flash_price',
             # 'is_active'
             ]
 
