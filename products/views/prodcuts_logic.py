@@ -27,7 +27,6 @@ class ProductListViewSet(generics.ListAPIView):
     serializer_class = ProductListAPI
 
 
-
 class ProductCreateView(GenericAPIView):
     parser_classes = (MultiPartParser, FormParser)
     queryset = Products.objects.all()
