@@ -106,6 +106,8 @@ class Products(InitModels):
     selling_price = models.FloatField(default=0)
     reseller_price = models.FloatField(default=0)
     
+    stock_count = models.IntegerField(default=0)
+
     sold_count = models.IntegerField( default=0)
     expire_date = models.DateField(auto_now_add=False,null=True,blank=True)
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")

@@ -112,7 +112,7 @@ class ProductListAPI(serializers.ModelSerializer):
                     'feature_image','product_image','sold_count','expire_date',
                     'regular_price','selling_price','attribute','reseller_price',
                     'is_stock','reviews',
-                    'product_quantity'
+                    'stock_count'
                     ]
         depth = 1
 
