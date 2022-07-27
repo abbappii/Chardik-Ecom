@@ -26,7 +26,13 @@ class ProductListViewSet(generics.ListAPIView):
         exclude(flash_product__is_active=True)
     serializer_class = ProductListAPI
 
+# product list admin view 
+class ProductListViewAdmin(generics.ListAPIView):
+    queryset = Products.objects.prefetch_related('product_image','reviews')
+    serializer_class = ProductListAPI
 
+
+# product create view 
 class ProductCreateView(GenericAPIView):
     parser_classes = (MultiPartParser, FormParser)
     queryset = Products.objects.all()
