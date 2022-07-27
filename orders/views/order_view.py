@@ -21,6 +21,9 @@ from orders.database.cart_order import (
     Order,
     OrderItem
 )
+from products.database.products import (
+    Products
+)
 # importing serializers
 from orders.serializers import (
     OrderAPI,
@@ -46,7 +49,11 @@ class AddOrderItem(GenericAPIView):
                 total_amount_item = item['total_price'],
                 is_order = True
             )
+            
             add_item.save()
+            get_product = Products(id=add_item.id)
+            get_product.stock_count += item['quantity']
+            get_product.save()
 
             list_item.append(add_item.id)
         return Response (list_item)
