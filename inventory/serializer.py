@@ -51,7 +51,7 @@ class PurchaseCreateSerializers(serializers.ModelSerializer):
         fields = [
             'id',
             'ref_code',
-            'batch_no',
+            # 'batch_no',
             'date_of_purchase',
             'order_status',
             'product',
