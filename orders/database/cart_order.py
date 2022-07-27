@@ -70,8 +70,6 @@ class OrderItem(InitModels):
         blank=True
     )
     
-
-
     def __str__(self):
         return f"Item : {self.item} === Quantitiy  \
                 : {self.quantity} === Status : {'Paid' if self.is_order == True else 'Not paid'}"
