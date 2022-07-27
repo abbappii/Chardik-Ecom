@@ -67,18 +67,17 @@ Flash Sale Signals
 '''
 
 ## flash sale when created
+
 @receiver(post_save,sender=FlashProducts)
 def AddPrice_of_FlashProducts(sender,instance,created,*args,**kwargs):
     try:
         if created:
-                instance.flash_price = round (instance.flash_product.regular_price - \
-                                    ((instance.flash_sale.discount / \
-                                    instance.flash_product.regular_price) * 100))
+                instance.flash_price = round (instance.flash_product.regular_price - 
+                ((instance.flash_sale.discount / 100 ) * instance.flash_product.regular_price))
                 instance.save()
     except Exception as e:
         print(e)
-
-
+        
 # ## Flash sale when Updated 
 # @receiver(post_save,sender=FlashSale)
 # def UpdatePrice_of_FlashProducts(sender,instance,created,*args,**kwargs):
