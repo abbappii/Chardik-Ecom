@@ -11,6 +11,10 @@ from flash_sale.models import (
     FlashProducts
 )
 
+from products.serializers.product_serializers import (
+    ProductListAPI
+)
+
 
 
 '''
@@ -22,6 +26,7 @@ Flash Sale Products API
 
 class FlashSale_ProductAPI(serializers.ModelSerializer):
 
+    
     class Meta:
         model = FlashProducts
         fields = [
@@ -35,6 +40,8 @@ class FlashSale_ProductAPI(serializers.ModelSerializer):
 
 class FlashSale_ProductAPI_show(serializers.ModelSerializer):
 
+    flash_product = ProductListAPI(read_only=True)
+
     class Meta:
         model = FlashProducts
         fields = [
@@ -43,8 +50,6 @@ class FlashSale_ProductAPI_show(serializers.ModelSerializer):
             'flash_price',
             'is_active'
             ]
-        depth = 2
-
 
 
 '''
@@ -71,6 +76,7 @@ class FlashSale_API(serializers.ModelSerializer):
             'products'
         ]
 
+    # depth = 2
     
     ## Custom method to return the list of flash products
     def get_products(self,obj):
