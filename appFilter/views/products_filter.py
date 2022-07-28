@@ -19,7 +19,6 @@ o Monthly sales
 
 # importing initials 
 
-from unicodedata import category
 from rest_framework import generics
 from django.db.models import Q
 
@@ -159,7 +158,46 @@ class DailyTotalSales(generics.ListAPIView):
 
 
 '''
-expenses 
-    - model create
-    - 
+    hourly sales, 
+    last 24 hours sales
+    daily sales 
+    weekly sales, 
+    monthly sales, 
+    6 monthly sales, 
+    yearly sales
 '''
+from datetime import datetime, timedelta
+
+# hourly sales 
+class HourlySales(generics.ListAPIView):
+    queryset = Products.objects.filter(items__created_at=datetime.now() - \
+         timedelta(hours=1)).aggregate(total_sum=Sum('selling_price'))
+    serializer_class = ProductsAPI
+
+# last 24 hours sales 
+class Last24hoursSales(generics.ListAPIView):
+    queryset = Products.objects.filter(items__created_at=datetime.now() - \
+         timedelta(hours=24)).aggregate(total_sum=Sum('selling_price'))
+    serializer = ProductsAPI
+
+# last 7 days sales 
+class WeeklySalesView(generics.ListAPIView):
+    queryset = Products.objects.filter(items__created_at__gte=datetime.date.today() - \
+         timedelta(days=7)).aggregate(total_sum=Sum('selling_price'))
+    serializer = ProductsAPI
+
+# last 30 days sales 
+class MonthlySasleView(generics.ListAPIView):
+    queryset = Products.objects.filter(items__created_at__gte=datetime.date.today()- \
+         timedelta(months=1)).aggregate(total_sum=Sum('selling_price'))
+    serializer_class = ProductsAPI
+
+# last 6 month sales 
+class HalfYearlySalesView(generics.ListAPIView):
+    queryset = Products.objects.filter(items_created_at__gte=datetime.date.today() - \
+         timedelta(months=6)).aggregate(total_sum=Sum('selling_price'))
+
+# yearly sales =1
+class YearlySalesView(generics.ListAPIView):
+    queryset = Products.objects.filter(items_created_at__gte=datetime.date.today() - \
+         timedelta(year=1)).aggregate(total_sum=Sum('selling_price'))
