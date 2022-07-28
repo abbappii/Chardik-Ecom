@@ -144,13 +144,13 @@ Daily sales logic
 '''
 import datetime
 
-class DailySalesOrderTimeToTimeListView(generics.ListAPIView):
-    queryset = Order.objects.filter(created_at=datetime.date.today(), 
-    items__is_order=True
-    )
-    print(queryset)
-    serializer_class = ProductsAPI
-
+class DailySalesOrderTimeToTimeListView(APIView):
+    def get(self,request):
+        queryset = Order.objects.filter(created_at=datetime.date.today(), 
+        items__is_order=True
+        )
+        print(queryset)
+        return Response(queryset)
 
 
 '''
@@ -186,11 +186,13 @@ class DailyTotalSales(APIView):
         qs = Order.objects.all().filter(created_at=datetime.date.today()).aggregate(total_sum=Sum('total'))
         return Response(qs)
 
-# # last 24 hours sales 
-# class Last24hoursSales(generics.ListAPIView):
-#     queryset = Products.objects.filter(items__created_at__gte=datetime.now() - \
-#          timedelta(hours=24)).aggregate(total_sum=Sum('selling_price'))
-#     serializer = ProductsAPI
+# last 24 hours sales 
+class Last24hoursSales(APIView):
+    def get(self,request):
+        qs = Order.objects.filter(created_at__gte=datetime.now() - \
+            timedelta(hours=24)).aggregate(total_sum=Sum('total'))
+        return Response(qs)
+    
 
 # # last 7 days sales 
 # class WeeklySalesView(generics.ListAPIView):

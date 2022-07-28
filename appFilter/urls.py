@@ -19,7 +19,8 @@ from appFilter.views.products_filter import (
 
 
 from appFilter.views.products_filter import (
-    HourlySales
+    HourlySales,
+    Last24hoursSales,
 )
 
 
@@ -42,10 +43,12 @@ products_URL = [
 
     # path('low-to-high-price/', PriceLowToHighListView.as_view()),
     # path('high-to-low-price/', PriceHighToLowListView.as_view()),
-    path('daily-sales/', DailySalesOrderTimeToTimeListView.as_view()),
+    path('daily/sales/timetotime/list/', DailySalesOrderTimeToTimeListView.as_view()),
     path('total-sales-price-daily/',DailyTotalSales.as_view()),
 
     path('hour/',HourlySales.as_view()),
+    path('last24/hours/sales/', Last24hoursSales.as_view()),
+    
 ]
 
 
