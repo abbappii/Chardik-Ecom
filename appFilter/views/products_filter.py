@@ -183,7 +183,7 @@ Daily total sales price
 from django.db.models import Sum
 class DailyTotalSales(APIView):
     def get(self,request):
-        qs = Order.objects.all().filter(created_at=datetime.date.today()).aggregate(total_sum=Sum('total'))
+        qs = Order.objects.all().filter(created_at=now.date()).aggregate(total_sum=Sum('total'))
         return Response(qs)
 
 # last 24 hours sales 
@@ -197,21 +197,26 @@ class Last24hoursSales(APIView):
 # last 7 days sales 
 class WeeklySalesView(APIView):
     def get(self,request):
-        qs = Products.objects.filter(items__created_at__gte= now - \
-            timedelta(days=7)).aggregate(total_sum=Sum('selling_price'))
+        qs =Order.objects.filter(created_at__gte= now - \
+            timedelta(days=7)).aggregate(total_sum=Sum('total'))
         return Response(qs)
     
 
-# # last 30 days sales 
-# class MonthlySasleView(generics.ListAPIView):
-#     queryset = Products.objects.filter(items__created_at__gte= now - \
-#          timedelta(days=30)).aggregate(total_sum=Sum('selling_price'))
-#     serializer_class = ProductsAPI
+# last 30 days sales 
+class MonthlySasleView(APIView):
+    def get(self,request):
+        queryset = Order.objects.filter(created_at__gte= now - \
+            timedelta(days=30)).aggregate(total_sum=Sum('total'))
+        return Response(queryset)
 
 # # last 6 month sales 
-# class HalfYearlySalesView(generics.ListAPIView):
-#     queryset = Products.objects.filter(items__created_at__gte = now - \
-#          timedelta(days=180)).aggregate(total_sum=Sum('selling_price'))
+month_ago = 6
+class HalfYearlySalesView(APIView):
+    def get(self,request):
+        queryset = Order.objects.filter(created_at__gte = now - \
+            timedelta(days=(month_ago * 365 / 12))).aggregate(total_sum=Sum('total'))
+
+        return Response(queryset)
 
 # # yearly sales =1
 # class YearlySalesView(generics.ListAPIView):
