@@ -194,11 +194,13 @@ class Last24hoursSales(APIView):
         return Response(qs)
     
 
-# # last 7 days sales 
-# class WeeklySalesView(generics.ListAPIView):
-#     queryset = Products.objects.filter(items__created_at__gte= now - \
-#          timedelta(days=7)).aggregate(total_sum=Sum('selling_price'))
-#     serializer = ProductsAPI
+# last 7 days sales 
+class WeeklySalesView(APIView):
+    def get(self,request):
+        qs = Products.objects.filter(items__created_at__gte= now - \
+            timedelta(days=7)).aggregate(total_sum=Sum('selling_price'))
+        return Response(qs)
+    
 
 # # last 30 days sales 
 # class MonthlySasleView(generics.ListAPIView):
