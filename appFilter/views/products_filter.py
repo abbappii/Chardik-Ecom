@@ -183,7 +183,7 @@ Daily total sales price
 from django.db.models import Sum
 class DailyTotalSales(APIView):
     def get(self,request):
-        qs = Order.objects.all().filter(created_at=now.date()).aggregate(total_sum=Sum('total'))
+        qs = Order.objects.filter(created_at=now.date()).aggregate(total_sum=Sum('total'))
         return Response(qs)
 
 # last 24 hours sales 
@@ -218,7 +218,10 @@ class HalfYearlySalesView(APIView):
 
         return Response(queryset)
 
-# # yearly sales =1
-# class YearlySalesView(generics.ListAPIView):
-#     queryset = Products.objects.filter(items__created_at__gte = now - \
-#          timedelta(days=365)).aggregate(total_sum=Sum('selling_price'))
+# yearly sales =1
+class YearlySalesView(APIView):
+    def get(self,request):
+        queryset = Order.objects.filter(created_at__gte = now - \
+            timedelta(days=365)).aggregate(total_sum=Sum('total'))
+        return Response(queryset)
+

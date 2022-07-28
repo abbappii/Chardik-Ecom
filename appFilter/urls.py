@@ -24,7 +24,7 @@ from appFilter.views.products_filter import (
     WeeklySalesView,
     MonthlySasleView,
     HalfYearlySalesView,
-
+    YearlySalesView
 )
 
 
@@ -55,6 +55,7 @@ products_URL = [
     path('weekly/sales/',WeeklySalesView.as_view()),
     path('monthly/sales/',MonthlySasleView.as_view()),
     path('half/yearly/sales/', HalfYearlySalesView.as_view()),
+    path('yearly/sales/', YearlySalesView.as_view()),
 ]
 
 
