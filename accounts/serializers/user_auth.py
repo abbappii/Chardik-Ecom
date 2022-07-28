@@ -53,7 +53,7 @@ class UserProfileSeriliazer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         # fields = '__all__'
-        fields= ['id', 'full_name','dob','gender','profile_picture','address','city','zipcode','country',
+        fields= ['id', 'full_name','dob','gender','bio','profile_picture','address','city','zipcode','country',
         'phone']
 
 # User Profile list serializers 
