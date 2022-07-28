@@ -102,7 +102,7 @@ def AddPrice_of_FlashProducts(sender,instance,created,*args,**kwargs):
         
 
 
-    except Exception as e:
-        print(e)
+    # except Exception as e:
+    #     print(e)
 
 
