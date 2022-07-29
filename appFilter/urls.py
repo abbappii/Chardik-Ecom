@@ -18,6 +18,16 @@ from appFilter.views.products_filter import (
 )
 
 
+from appFilter.views.products_filter import (
+    HourlySales,
+    Last24hoursSales,
+    WeeklySalesView,
+    MonthlySasleView,
+    HalfYearlySalesView,
+    YearlySalesView
+)
+
+
 urlpatterns = []
 
 
@@ -37,8 +47,17 @@ products_URL = [
 
     # path('low-to-high-price/', PriceLowToHighListView.as_view()),
     # path('high-to-low-price/', PriceHighToLowListView.as_view()),
-    path('daily-sales/', DailySalesOrderTimeToTimeListView.as_view()),
+    path('daily/sales/timetotime/list/', DailySalesOrderTimeToTimeListView.as_view()),
     path('total-sales-price-daily/',DailyTotalSales.as_view()),
+
+    path('hour/',HourlySales.as_view()),
+    path('last24/hours/sales/', Last24hoursSales.as_view()),
+    path('weekly/sales/',WeeklySalesView.as_view()),
+    path('monthly/sales/',MonthlySasleView.as_view()),
+    path('half/yearly/sales/', HalfYearlySalesView.as_view()),
+    path('yearly/sales/', YearlySalesView.as_view()),
 ]
+
+
 
 urlpatterns += products_URL
