@@ -21,7 +21,8 @@ from flash_sale.models import(
 from flash_sale.serializers import (
     FlashSale_API,
     FlashSale_ProductAPI,
-    FlashSale_API_func
+    FlashSale_API_func,
+    FlashSale_ProductAPI_show
 )
 
 
@@ -108,6 +109,17 @@ class FlashProducts_createView (GenericAPIView):
 
 
 
+
+## Flash Products Update
+class FlashProduct_SingleView(generics.RetrieveAPIView):
+    queryset = FlashProducts.objects.filter(is_active = True)
+    serializer_class = FlashSale_ProductAPI_show
+
+
+## Flash Product Delete
+class FlashProduct_DeleteView(generics.DestroyAPIView):
+    queryset = FlashProducts.objects.filter(is_active = True)
+    serializer_class = FlashSale_ProductAPI
 
 
     
