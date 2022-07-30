@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 
@@ -185,7 +184,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        # 'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
   
 }
 
@@ -202,7 +205,6 @@ EMAIL_USE_TLS = True
 
 '''
 Use of Django Simple JWT  Token Authentication 
-
 '''
 
 from datetime import timedelta
@@ -237,4 +239,3 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
