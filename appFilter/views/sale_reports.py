@@ -37,8 +37,8 @@ class SaleReports_View(APIView):
             timedelta(hours=1)).aggregate(total=Sum('total')),
             
             # 24 hours sale
-            '24_hours_sale':Order.objects.filter(created_at__gte=datetime.now() - \
-            timedelta(hours=24)).aggregate(total=Sum('total')),
+            '24_hours_sale':Order.objects.filter(created_at__gte= now - \
+            timedelta(hours=24)).aggregate(total_sum=Sum('total')),
 
             # Weekily sale
             'weekly_sale':Order.objects.filter(created_at__gte= now - \
