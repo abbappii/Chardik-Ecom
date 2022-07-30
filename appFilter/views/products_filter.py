@@ -35,9 +35,14 @@ from appFilter.serializers import (
 )
 
 from orders.database.cart_order import Order
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
+from django.db.models import Sum
+
+from datetime import datetime, timedelta
+from django.utils import timezone
 # products Queries show ALL
 
 class AllProductsView(generics.ListAPIView):
@@ -163,8 +168,7 @@ class DailySalesOrderTimeToTimeListView(APIView):
     yearly sales
 '''
 
-from datetime import datetime, timedelta
-from django.utils import timezone
+
 now = timezone.now()
 
 '''
@@ -180,7 +184,6 @@ class HourlySales(APIView):
 '''
 Daily total sales price
 '''
-from django.db.models import Sum
 class DailyTotalSales(APIView):
     def get(self,request):
         qs = Order.objects.filter(created_at=now.date()).aggregate(total_sum=Sum('total'))
