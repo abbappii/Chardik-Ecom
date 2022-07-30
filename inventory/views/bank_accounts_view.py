@@ -48,7 +48,7 @@ class BankAccountEditView(generics.UpdateAPIView):
 
 # delete view 
 class BankAccountDeleteView(generics.DestroyAPIView):
-    queryset = BankAccounts.objects.all()
+    queryset = BankAccounts.objects.all().exclude(bank_name='ORDERS_READ_ONLY')
     serializer_class = BankAccountsSerializers
 
 '''

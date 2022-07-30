@@ -13,7 +13,7 @@ from appFilter.views.products_filter import (
     PopularProductList,
     LatestProductList,
     TopSalesProductsListView, 
-    DailySalesOrderTimeToTimeListView,
+    # DailySalesOrderTimeToTimeListView,
     # DailyTotalSales,
 )
 

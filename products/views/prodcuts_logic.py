@@ -20,16 +20,19 @@ from products.serializers.product_serializers import (
  
 
 #ProductsView
-
 class ProductListViewSet(generics.ListAPIView):
-    queryset = Products.objects.prefetch_related('product_image','reviews').\
-        exclude(flash_product__is_active=True)
-    serializer_class = ProductListAPI
-
-# product list admin view 
-class ProductListViewAdmin(generics.ListAPIView):
     queryset = Products.objects.prefetch_related('product_image','reviews')
     serializer_class = ProductListAPI
+
+# class ProductListViewSet(generics.ListAPIView):
+#     queryset = Products.objects.prefetch_related('product_image','reviews').\
+#         exclude(flash_product__is_active=True)
+#     serializer_class = ProductListAPI
+
+# product list admin view 
+# class ProductListViewAdmin(generics.ListAPIView):
+#     queryset = Products.objects.prefetch_related('product_image','reviews')
+#     serializer_class = ProductListAPI
 
 
 # product create view 

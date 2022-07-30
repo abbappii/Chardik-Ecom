@@ -17,7 +17,7 @@ class passParams(APIView):
         #custom filter parameters
         hourly = self.request.query_params.get('hourly',None)
         hourly_24 = self.request.query_params.get('24_hourly',None)
-        daily = self.request.query_params.get('daily',None)
+        # daily = self.request.query_params.get('daily',None)
         monthly = self.request.query_params.get('monthly',None)
         half_yearly = self.request.query_params.get('half_yearly',None)
         yearly = self.request.query_params.get('yearly',None)
@@ -26,8 +26,8 @@ class passParams(APIView):
             query = query.filter(created_at = datetime.now() - timedelta(hours=1)).aggregate(hourly_sales =Sum('total'))
         if hourly_24:
             query = query.filter(created_at=datetime.now()-timedelta(hours=24)).aggregate(hourly_24 =Sum('total'))
-        if daily:
-            query = query.filter(created_at = now - timedelta(day=1)).aggregate(daily_sales =Sum('total'))
+        # if daily:
+        #     query = query.filter(created_at = now - timedelta(day=1)).aggregate(daily_sales =Sum('total'))
         if monthly: 
             query = query.filter(created_at = now - timedelta(day=30)).aggregate(monthly_sales =Sum('total'))
         if half_yearly:
