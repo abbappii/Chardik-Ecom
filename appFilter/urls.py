@@ -47,7 +47,7 @@ products_URL = [
 
     # path('low-to-high-price/', PriceLowToHighListView.as_view()),
     # path('high-to-low-price/', PriceHighToLowListView.as_view()),
-    path('daily/sales/timetotime/list/', DailySalesOrderTimeToTimeListView.as_view()),
+    # path('daily/sales/timetotime/list/', DailySalesOrderTimeToTimeListView.as_view()),
     # path('total-sales-price-daily/',DailyTotalSales.as_view()),
 
     path('hour/',HourlySales.as_view()),

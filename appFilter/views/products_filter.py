@@ -149,13 +149,13 @@ Daily sales logic
 '''
 import datetime
 
-class DailySalesOrderTimeToTimeListView(APIView):
-    def get(self,request):
-        queryset = Order.objects.filter(created_at=datetime.date.today(), 
-        items__is_order=True
-        )
-        print(queryset)
-        return Response(queryset)
+# class DailySalesOrderTimeToTimeListView(APIView):
+#     def get(self,request):
+#         queryset = Order.objects.filter(created_at=datetime.date.today(), 
+#         items__is_order=True
+#         )
+#         print(queryset)
+#         return Response(queryset)
 
 
 '''
