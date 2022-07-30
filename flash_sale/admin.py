@@ -5,4 +5,8 @@ from flash_sale.models import (
 
 # Register your models here.
 admin.site.register(FlashSale)
-admin.site.register(FlashProducts)
+
+# Flash Product Admin
+class FlashProductAdmin(admin.ModelAdmin):
+    list_display = ['id','flash_sale','flash_product','flash_price']
+admin.site.register(FlashProducts,FlashProductAdmin)

@@ -16,7 +16,9 @@ from flash_sale.views import (
     FlashSale_update_deleteView,
 
     # Flash Sale Products
-    FlashProducts_createView
+    FlashProducts_createView,
+    FlashProduct_SingleView,
+    FlashProduct_DeleteView
 )
 
 urlpatterns = []
@@ -30,6 +32,8 @@ flash_sale_URL = [
 
 flash_products_URL = [
     path('product/create/',FlashProducts_createView.as_view()),
+    path('product/view/<int:pk>/',FlashProduct_SingleView.as_view()),
+    path('product/delete/<int:pk>/',FlashProduct_SingleView.as_view())
     # path('')
 
 ]
