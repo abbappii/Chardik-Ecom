@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 
@@ -202,7 +201,6 @@ EMAIL_USE_TLS = True
 
 '''
 Use of Django Simple JWT  Token Authentication 
-
 '''
 
 from datetime import timedelta
@@ -237,4 +235,3 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-
