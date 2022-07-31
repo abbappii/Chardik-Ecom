@@ -55,33 +55,34 @@ products filiter logic
 
 # list view 
 class BannerListView(generics.ListAPIView):
-    queryset = Banner
+    queryset = Banner.objects.all()
     serializer_class = BannerSerializers
 
 # create view 
 class BannerCreateView(generics.CreateAPIView):
-    queryset = Banner
+    queryset = Banner.objects.all()
     serializer_class = BannerSerializers
     
 # single view 
 class BannerSingleView(generics.RetrieveAPIView):
-    queryset = Banner
+    queryset = Banner.objects.all()
     serializer_class = BannerSerializers
     
 # update view 
 class BannerUpdateView(generics.UpdateAPIView):
-    queryset = Banner
+    queryset = Banner.objects.all()
     serializer_class = BannerSerializers
     
 # delete view 
 class BannerDeleteView(generics.DestroyAPIView):
-    queryset = Banner
+    queryset = Banner.objects.all()
     serializer_class = BannerSerializers
 
 
-
+# from rest_framework.response import Response
 # from rest_framework.views import APIView
 # class Filter_by(APIView):
 
-#     def get(self,request):
-#         qs = Product_filter.objects.filter(product_query_select=)
+#     def get(self,request,bannerID):
+#         qs = BannerProduct.objects.filter(banner__id=bannerID)
+#         return Response(qs) 

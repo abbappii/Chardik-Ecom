@@ -11,7 +11,7 @@ class Banner(InitModels):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name_plural = 'Product By Query'
+        verbose_name_plural = 'Banner'
 
 # feature product model 
 class BannerProduct(InitModels):
@@ -33,4 +33,4 @@ class BannerProduct(InitModels):
         return self.feature_product.name
 
     class Meta:
-        verbose_name_plural = 'Feature Products'
+        verbose_name_plural = 'Banner Products'

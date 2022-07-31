@@ -69,6 +69,9 @@ from products.views.feature_products_logic import (
     BannerSingleView,
     BannerUpdateView,
     BannerDeleteView,
+
+    # Filter_by,
+
 )
 
 urlpatterns = []
@@ -138,16 +141,22 @@ urlpatterns_slider = [
 ]
 
 urlpatterns_banner_products = [ 
-    path('Banner/products/list/',BannerProductListView.as_view()),
-    path('Banner/product/create/',BannerProductCreateView.as_view()),
-    path('Banner/product/update/view/<int:pk>/',BannerProductUpdateView.as_view()),
-    path('Banner/product/delete/<int:pk>/',BannerProductDeleteView.as_view()),
+    path('banner/products/list/',BannerProductListView.as_view()),
+    path('banner/product/create/',BannerProductCreateView.as_view()),
+    path('banner/product/update/view/<int:pk>/',BannerProductUpdateView.as_view()),
+    path('banner/product/delete/<int:pk>/',BannerProductDeleteView.as_view()),
 
-    path('Banner/list/view/',BannerListView.as_view()),
-    path('Banner/create/',BannerCreateView.as_view()),
-    path('Banner/single/view/<int:pk>/',BannerSingleView.as_view()),
-    path('Banner/update/view/<int:pk>/',BannerUpdateView.as_view()),
-    path('Banner/delete/<int:pk>/',BannerDeleteView.as_view()),
+    path('banner/list/view/',BannerListView.as_view()),
+    path('banner/create/',BannerCreateView.as_view()),
+    path('banner/single/view/<int:pk>/',BannerSingleView.as_view()),
+    path('banner/update/view/<int:pk>/',BannerUpdateView.as_view()),
+    path('banner/delete/<int:pk>/',BannerDeleteView.as_view()),
+
+
+    # path('filter/by/<int:bannerID>/',Filter_by.as_view()),
+
+
+
 
 ]
 # urlpatterns_attribute = [
