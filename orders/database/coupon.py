@@ -1,7 +1,8 @@
 from accounts.models.initials import InitModels
 from django.conf import settings
 from django.db import models
-
+from products.database.init_p import Brand, Categories
+from products.database.products import Products
 
 '''
 Coupon Class 
@@ -36,6 +37,10 @@ class Coupon(InitModels):
     maximum_sale = models.IntegerField(null=True,blank=True,verbose_name=
         "Maximum Sale")
 
+    # field added manytomany 
+    category = models.ManyToManyField(Categories)
+    brand  = models.ManyToManyField(Brand)
+    product = models.ManyToManyField(Products)
 
     def __str__(self):
         return str(self.coupon_name)
