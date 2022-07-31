@@ -58,6 +58,12 @@ from products.views.slider_logic import (
 )
 
 
+from products.views.feature_products_logic import (
+    FeatureProductListView,
+    FeatureProductCreateView,
+    FeatureProductUpdateView,
+    FeatureProductDeleteView,
+)
 
 urlpatterns = []
 
@@ -125,6 +131,12 @@ urlpatterns_slider = [
     path('slider/delete/<int:pk>/',SliderDeleteView.as_view()),
 ]
 
+urlpatterns_feature_products = [ 
+    path('feature/products/list/',FeatureProductListView.as_view()),
+    path('feature/product/create/',FeatureProductCreateView.as_view()),
+    path('feature/product/update/view/<int:pk>/',FeatureProductUpdateView.as_view()),
+    path('feature/product/delete/',FeatureProductDeleteView.as_view()),
+]
 # urlpatterns_attribute = [
 #     path('color/',ColorVariationListAPIview.as_view()),
 #     path('color/<int:pk>/',ColorVariationSingleAPIview.as_view()),
@@ -143,3 +155,4 @@ urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
 urlpatterns += urlpatterns_productsReview
 urlpatterns += urlpatterns_slider
+urlpatterns += urlpatterns_feature_products
