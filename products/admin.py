@@ -12,7 +12,7 @@ from products.database.reviews import (
     ProductReview
 )
 from products.database.feature_product import (
-    Feature_product,Product_filter
+    Banner,BannerProduct
 )
 
 admin.site.register(Categories)
@@ -27,10 +27,10 @@ admin.site.register(ProductAttribute)
 admin.site.register(Product_images)
 admin.site.register(ProductReview)
 
-admin.site.register(Product_filter)
-class FeatureProductAdmin(admin.ModelAdmin):
+admin.site.register(Banner)
+class BannerProductAdmin(admin.ModelAdmin):
     list_display = [ 'id','feature_product','is_active']
-admin.site.register(Feature_product,FeatureProductAdmin)
+admin.site.register(BannerProduct,BannerProductAdmin)
 
 class SliderAdmin(admin.ModelAdmin):
     list_display = ['id','slidername','position','home_shown']

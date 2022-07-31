@@ -7,12 +7,12 @@ this file contains feature products logic
 # imort section 
 from venv import create
 from rest_framework import generics
-from products.database.feature_product import Feature_product, Product_filter
+from products.database.feature_product import BannerProduct, Banner
 
-from products.serializers.feature_products import FeatureProductSerializers, FeatureProductListSerializers
+from products.serializers.feature_products import BannerProductSerializers, BannerProductListSerializers
 
 from products.serializers.feature_products import (
-    ProductFilterSerializers
+    BannerSerializers
 )
 '''
 feature products logic 
@@ -23,24 +23,24 @@ feature products logic
 '''
 
 # feature product list view 
-class FeatureProductListView(generics.ListAPIView):
-    queryset = Feature_product.objects.all()
-    serializer_class = FeatureProductListSerializers
+class BannerProductListView(generics.ListAPIView):
+    queryset = BannerProduct.objects.all()
+    serializer_class = BannerProductListSerializers
 
 # create view 
-class FeatureProductCreateView(generics.CreateAPIView):
-    queryset = Feature_product.objects.all()
-    serializer_class = FeatureProductSerializers
+class BannerProductCreateView(generics.CreateAPIView):
+    queryset = BannerProduct.objects.all()
+    serializer_class = BannerProductSerializers
 
 # update/edit view 
-class FeatureProductUpdateView(generics.UpdateAPIView):
-    queryset = Feature_product.objects.all()
-    serializer_class = FeatureProductSerializers
+class BannerProductUpdateView(generics.UpdateAPIView):
+    queryset = BannerProduct.objects.all()
+    serializer_class = BannerProductSerializers
 
 # delete view 
-class FeatureProductDeleteView(generics.DestroyAPIView):
-    queryset = Feature_product.objects.all()
-    serializer_class = FeatureProductSerializers
+class BannerProductDeleteView(generics.DestroyAPIView):
+    queryset = BannerProduct.objects.all()
+    serializer_class = BannerProductSerializers
 
 
 
@@ -54,29 +54,29 @@ products filiter logic
 '''
 
 # list view 
-class ProductFilterListView(generics.ListAPIView):
-    queryset = Product_filter
-    serializer_class = ProductFilterSerializers
+class BannerListView(generics.ListAPIView):
+    queryset = Banner
+    serializer_class = BannerSerializers
 
 # create view 
-class ProductFilterCreateView(generics.CreateAPIView):
-    queryset = Product_filter
-    serializer_class = ProductFilterSerializers
+class BannerCreateView(generics.CreateAPIView):
+    queryset = Banner
+    serializer_class = BannerSerializers
     
 # single view 
-class ProductFilterSingleView(generics.RetrieveAPIView):
-    queryset = Product_filter
-    serializer_class = ProductFilterSerializers
+class BannerSingleView(generics.RetrieveAPIView):
+    queryset = Banner
+    serializer_class = BannerSerializers
     
 # update view 
-class ProductFilterUpdateView(generics.UpdateAPIView):
-    queryset = Product_filter
-    serializer_class = ProductFilterSerializers
+class BannerUpdateView(generics.UpdateAPIView):
+    queryset = Banner
+    serializer_class = BannerSerializers
     
 # delete view 
-class ProductFilterDeleteView(generics.DestroyAPIView):
-    queryset = Product_filter
-    serializer_class = ProductFilterSerializers
+class BannerDeleteView(generics.DestroyAPIView):
+    queryset = Banner
+    serializer_class = BannerSerializers
 
 
 
