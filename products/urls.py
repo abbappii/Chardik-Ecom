@@ -63,6 +63,12 @@ from products.views.feature_products_logic import (
     FeatureProductCreateView,
     FeatureProductUpdateView,
     FeatureProductDeleteView,
+
+    ProductFilterListView,
+    ProductFilterCreateView,
+    ProductFilterSingleView,
+    ProductFilterUpdateView,
+    ProductFilterDeleteView,
 )
 
 urlpatterns = []
@@ -136,6 +142,13 @@ urlpatterns_feature_products = [
     path('feature/product/create/',FeatureProductCreateView.as_view()),
     path('feature/product/update/view/<int:pk>/',FeatureProductUpdateView.as_view()),
     path('feature/product/delete/',FeatureProductDeleteView.as_view()),
+
+    path('filter/list/view/',ProductFilterListView.as_view()),
+    path('filter/create/',ProductFilterCreateView.as_view()),
+    path('filter/single/<int:pk>/',ProductFilterSingleView.as_view()),
+    path('filter/update/view/<int:pk>/',ProductFilterUpdateView.as_view()),
+    path('filter/delete/<int:pk>/',ProductFilterDeleteView.as_view()),
+
 ]
 # urlpatterns_attribute = [
 #     path('color/',ColorVariationListAPIview.as_view()),
