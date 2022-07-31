@@ -42,6 +42,7 @@ from appFilter.views.sale_reports import (
     SaleReports_View
 )
 
+from appFilter.views.views_sales import passParams
 urlpatterns = []
 
 
@@ -72,7 +73,9 @@ products_URL = [
     path('yearly/sales/', YearlySalesView.as_view()),
 ]
 
-
+sales_param_URL = [ 
+    path('sales/query/pass/params/', passParams.as_view()),
+]
 
 expence_URL = [ 
     path('expence/last/hour/',HourlyExpenceView.as_view()),
@@ -89,5 +92,6 @@ sales_reports_URL = [
 
 
 urlpatterns += sales_reports_URL
+urlpatterns += sales_param_URL
 urlpatterns += products_URL
 urlpatterns += expence_URL
