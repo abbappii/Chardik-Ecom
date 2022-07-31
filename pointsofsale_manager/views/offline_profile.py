@@ -5,7 +5,12 @@ this file contains pos logic
 
 '''
 from accounts.models.profile import Profile
+from orders.database.cart_order import Order
 from pointsofsale_manager.serializers.pos_profile_serializers import UserOfflineProfileSerializers
+from pointsofsale_manager.serializers.pos_info_serializers import (
+    OrderAPI_POS
+)
+from rest_framework import generics
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import  Response
 
@@ -63,3 +68,14 @@ class OfflineProfileCreateView(GenericAPIView):
             return Response(apifetch.errors)
         
 
+
+
+
+'''
+Point of Sale of
+    Order Method
+'''
+
+class POS_OrderView(generics.ListCreateAPIView):
+    queryset = Order.objects.filter(is_active=True)
+    serializer_class = OrderAPI_POS
