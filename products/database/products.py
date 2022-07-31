@@ -168,17 +168,29 @@ class Products(InitModels):
     '''
     @property
     def product_quantity(self):
-        if self.purchase_product == 0:
+        if self.purchase_product.first() is None:
+            # self.stock_count = 0
+            return 0
+        elif self.purchase_product == 0 :
             self.stock_count = 0
-            self.save()
+            return 0
+            # self.save()
         else:
             return self.purchase_product.\
                     aggregate(Sum('quantity'))['quantity__sum']
 
     @property
     def total_quantity (self):
-        quantity = self.product_quantity - self.stock_count
-        return quantity
+        ## Check if product quantity is 0 or check
+        ## if stock count is greater then product quantity 
+        if self.product_quantity < self.stock_count \
+            or self.product_quantity == 0:
+            return 0
+        else:
+            quantity = self.product_quantity - self.stock_count
+            return quantity
+
+
 
 
 

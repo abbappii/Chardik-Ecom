@@ -3,6 +3,7 @@ This file contains
     - product API
 '''
 
+from numpy import source
 from rest_framework import serializers
 
 # importing models
@@ -92,6 +93,7 @@ Product API
 '''
 
 class ProductListAPI(serializers.ModelSerializer):
+    # total_quantity = serializers.CharField(source='total_quantity',read_only=True)
     # add name fields views
     # sub_category = serializers.CharField(source = 'get_sub_category',read_only=True)
     # category = serializers.CharField(source='get_category',read_only=True)
@@ -112,7 +114,7 @@ class ProductListAPI(serializers.ModelSerializer):
                     'feature_image','product_image','sold_count','expire_date',
                     'regular_price','selling_price','attribute','reseller_price',
                     'is_stock','reviews',
-                    'stock_count'
+                    'stock_count','total_quantity'
                     ]
         depth = 1
 

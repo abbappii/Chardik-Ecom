@@ -85,7 +85,7 @@ class Purchase(InitModels):
 
 
     def __str__(self):
-        return self.ref_code
+        return str(self.product)
 
     class Meta:
         verbose_name_plural = "Purchase History"
