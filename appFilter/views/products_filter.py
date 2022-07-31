@@ -184,10 +184,10 @@ class HourlySales(APIView):
 '''
 Daily total sales price
 '''
-# class DailyTotalSales(APIView):
-#     def get(self,request):
-#         qs = Order.objects.filter(created_at__gte = now.date()).aggregate(total_sum=Sum('total'))
-#         return Response(qs)
+class DailyTotalSales(APIView):
+    def get(self,request):
+        qs = Order.objects.filter(created_at__gte = now.date()).aggregate(total_sum=Sum('total'))
+        return Response(qs)
 
 # last 24 hours sales 
 class Last24hoursSales(APIView):
