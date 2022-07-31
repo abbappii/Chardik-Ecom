@@ -59,16 +59,16 @@ from products.views.slider_logic import (
 
 
 from products.views.feature_products_logic import (
-    FeatureProductListView,
-    FeatureProductCreateView,
-    FeatureProductUpdateView,
-    FeatureProductDeleteView,
+    BannerProductListView,
+    BannerProductCreateView,
+    BannerProductUpdateView,
+    BannerProductDeleteView,
 
-    ProductFilterListView,
-    ProductFilterCreateView,
-    ProductFilterSingleView,
-    ProductFilterUpdateView,
-    ProductFilterDeleteView,
+    BannerListView,
+    BannerCreateView,
+    BannerSingleView,
+    BannerUpdateView,
+    BannerDeleteView,
 )
 
 urlpatterns = []
@@ -137,17 +137,17 @@ urlpatterns_slider = [
     path('slider/delete/<int:pk>/',SliderDeleteView.as_view()),
 ]
 
-urlpatterns_feature_products = [ 
-    path('feature/products/list/',FeatureProductListView.as_view()),
-    path('feature/product/create/',FeatureProductCreateView.as_view()),
-    path('feature/product/update/view/<int:pk>/',FeatureProductUpdateView.as_view()),
-    path('feature/product/delete/',FeatureProductDeleteView.as_view()),
+urlpatterns_banner_products = [ 
+    path('Banner/products/list/',BannerProductListView.as_view()),
+    path('Banner/product/create/',BannerProductCreateView.as_view()),
+    path('Banner/product/update/view/<int:pk>/',BannerProductUpdateView.as_view()),
+    path('Banner/product/delete/<int:pk>/',BannerProductDeleteView.as_view()),
 
-    path('filter/list/view/',ProductFilterListView.as_view()),
-    path('filter/create/',ProductFilterCreateView.as_view()),
-    path('filter/single/<int:pk>/',ProductFilterSingleView.as_view()),
-    path('filter/update/view/<int:pk>/',ProductFilterUpdateView.as_view()),
-    path('filter/delete/<int:pk>/',ProductFilterDeleteView.as_view()),
+    path('Banner/list/view/',BannerListView.as_view()),
+    path('Banner/create/',BannerCreateView.as_view()),
+    path('Banner/single/view/<int:pk>/',BannerSingleView.as_view()),
+    path('Banner/update/view/<int:pk>/',BannerUpdateView.as_view()),
+    path('Banner/delete/<int:pk>/',BannerDeleteView.as_view()),
 
 ]
 # urlpatterns_attribute = [
@@ -168,4 +168,4 @@ urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
 urlpatterns += urlpatterns_productsReview
 urlpatterns += urlpatterns_slider
-urlpatterns += urlpatterns_feature_products
+urlpatterns += urlpatterns_banner_products

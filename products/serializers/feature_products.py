@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from products.database.feature_product import Feature_product, Product_filter
+from products.database.feature_product import Banner, BannerProduct
 
 from products.serializers.product_serializers import (
     ProductListAPI
@@ -10,21 +10,21 @@ feature product
         - create 
         - update 
 '''
-class FeatureProductSerializers(serializers.ModelSerializer):
+class BannerProductSerializers(serializers.ModelSerializer):
     class Meta:
-        model = Feature_product
-        fields = ['id','feature_product','product_by_query']
+        model = BannerProduct
+        fields = ['id','feature_product','banner']
 
 
 '''
 feature product 
         - list
 '''
-class FeatureProductListSerializers(serializers.ModelSerializer):
+class BannerProductListSerializers(serializers.ModelSerializer):
     feature_product = ProductListAPI(read_only=True)
     class Meta:
-        model = Feature_product
-        fields = ['id','feature_product','product_by_query','is_active']
+        model = BannerProduct
+        fields = ['id','feature_product','banner','is_active']
         depth = 1
 
 
@@ -32,7 +32,7 @@ class FeatureProductListSerializers(serializers.ModelSerializer):
 product filter 
 '''
 # product filter model 
-class ProductFilterSerializers(serializers.ModelSerializer):
+class BannerSerializers(serializers.ModelSerializer):
     class Meta:
-        model = Product_filter
+        model = Banner
         fields = ['id','name','banner_image']

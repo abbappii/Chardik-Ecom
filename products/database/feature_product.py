@@ -4,7 +4,7 @@ from django.db import models
 from accounts.models import InitModels
 
 # product filter model 
-class Product_filter(InitModels):
+class Banner(InitModels):
     name = models.CharField(max_length=255, unique=True)
     banner_image = models.ImageField(upload_to = 'product_filter_image')
 
@@ -14,13 +14,13 @@ class Product_filter(InitModels):
         verbose_name_plural = 'Product By Query'
 
 # feature product model 
-class Feature_product(InitModels):
+class BannerProduct(InitModels):
 
-    product_by_query = models.ForeignKey(
-        Product_filter,
+    banner = models.ForeignKey(
+        Banner,
         on_delete=models.SET_NULL,
         null=True, 
-        related_name="product_query_select"
+        related_name="banner"
         )
 
     feature_product = models.ForeignKey(

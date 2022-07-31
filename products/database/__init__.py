@@ -1,1 +1,1 @@
-from products.database.feature_product import Feature_product
+from products.database.feature_product import Banner, BannerProduct
