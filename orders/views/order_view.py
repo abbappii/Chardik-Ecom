@@ -51,8 +51,9 @@ class AddOrderItem(GenericAPIView):
             )
             
             add_item.save()
-            get_product = Products(id=add_item.id)
-            get_product.stock_count += item['quantity']
+            get_product = Products.objects.get(id=add_item.item_id)
+            # print(get_product)
+            get_product.stock_count += int(item['quantity'])
             get_product.save()
 
             list_item.append(add_item.id)
