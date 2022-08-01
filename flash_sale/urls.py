@@ -33,7 +33,7 @@ flash_sale_URL = [
 flash_products_URL = [
     path('product/create/',FlashProducts_createView.as_view()),
     path('product/view/<int:pk>/',FlashProduct_SingleView.as_view()),
-    path('product/delete/<int:pk>/',FlashProduct_SingleView.as_view())
+    path('product/delete/<int:pk>/',FlashProduct_DeleteView.as_view())
     # path('')
 
 ]

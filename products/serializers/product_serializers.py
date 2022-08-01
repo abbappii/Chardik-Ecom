@@ -3,7 +3,6 @@ This file contains
     - product API
 '''
 
-from numpy import source
 from rest_framework import serializers
 
 # importing models
