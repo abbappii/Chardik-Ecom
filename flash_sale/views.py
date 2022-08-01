@@ -110,7 +110,7 @@ class FlashProducts_createView (GenericAPIView):
 
 
 
-## Flash Products Update
+## Flash Products single view
 class FlashProduct_SingleView(generics.RetrieveAPIView):
     queryset = FlashProducts.objects.filter(is_active = True)
     serializer_class = FlashSale_ProductAPI_show
