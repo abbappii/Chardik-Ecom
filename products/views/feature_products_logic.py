@@ -79,10 +79,10 @@ class BannerDeleteView(generics.DestroyAPIView):
     serializer_class = BannerSerializers
 
 
-# from rest_framework.response import Response
-# from rest_framework.views import APIView
-# class Filter_by(APIView):
+from rest_framework.response import Response
+from rest_framework.views import APIView
+class Filter_by(APIView):
 
-#     def get(self,request,bannerID):
-#         qs = BannerProduct.objects.filter(banner__id=bannerID)
-#         return Response(qs) 
+    def get(self,request,bannerID):
+        qs = BannerProduct.objects.filter(banner__id=bannerID)
+        return Response(qs) 

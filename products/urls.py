@@ -70,7 +70,7 @@ from products.views.feature_products_logic import (
     BannerUpdateView,
     BannerDeleteView,
 
-    # Filter_by,
+    Filter_by,
 
 )
 
@@ -153,7 +153,7 @@ urlpatterns_banner_products = [
     path('banner/delete/<int:pk>/',BannerDeleteView.as_view()),
 
 
-    # path('filter/by/<int:bannerID>/',Filter_by.as_view()),
+    path('banner/products/list/<int:bannerID>/',Filter_by.as_view()),
 
 
 
