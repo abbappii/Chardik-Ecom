@@ -8,12 +8,25 @@ class Banner(InitModels):
     name = models.CharField(max_length=255, unique=True)
     banner_image = models.ImageField(upload_to = 'product_filter_image')
 
+    products = models.ManyToManyField(
+        'products.Products', related_name='banner_products',
+        through='BannerProduct')
+
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name_plural = 'Banner'
+        verbose_name_plural = 'Banners'
 
-# feature product model 
+    ## Customer Property 
+    @property
+    def banner_products(self):
+        products = [product.id for product in self.products.all()]    
+        return products
+
+## Through models for products 
+'''
+THis model is an auxilary model for Flash Sale
+'''
 class BannerProduct(InitModels):
 
     banner = models.ForeignKey(
@@ -23,14 +36,16 @@ class BannerProduct(InitModels):
         related_name="banner"
         )
 
-    feature_product = models.ForeignKey(
+    banner_product = models.ForeignKey(
         'products.Products',
-        on_delete=models.CASCADE,
-        related_name = 'feature_product'
-        )		
+        on_delete=models.SET_NULL,
+        null=True,
+        verbose_name="Select Product",
+        related_name='banner_product')		
     
-    def __unicode__(self):
-        return self.feature_product.name
+
+    def __str__(self):
+        return f"Product : {self.banner_product}"
 
     class Meta:
-        verbose_name_plural = 'Banner Products'
+        verbose_name_plural = 'Banner Products Add'

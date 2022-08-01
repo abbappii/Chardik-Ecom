@@ -29,7 +29,7 @@ admin.site.register(ProductReview)
 
 admin.site.register(Banner)
 class BannerProductAdmin(admin.ModelAdmin):
-    list_display = [ 'id','feature_product','is_active']
+    list_display = [ 'id','banner','banner_product','is_active']
 admin.site.register(BannerProduct,BannerProductAdmin)
 
 class SliderAdmin(admin.ModelAdmin):
