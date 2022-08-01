@@ -1,88 +1,99 @@
 
-'''
-this file contains feature products logic
+# '''
+# this file contains feature products logic
 
-'''
+# '''
 
-# imort section 
-from venv import create
+# # imort section 
 from rest_framework import generics
-from products.database.feature_product import BannerProduct, Banner
-
-from products.serializers.feature_products import BannerProductSerializers, BannerProductListSerializers
-
-from products.serializers.feature_products import (
-    BannerSerializers
+from products.database.feature_product import (
+    BannerProduct, 
+    Banner
 )
-'''
-feature products logic 
-        - list view 
-        - create
-        - update 
-        - delete 
-'''
 
-# feature product list view 
-class BannerProductListView(generics.ListAPIView):
-    queryset = BannerProduct.objects.all()
-    serializer_class = BannerProductListSerializers
-
-# create view 
-class BannerProductCreateView(generics.CreateAPIView):
-    queryset = BannerProduct.objects.all()
-    serializer_class = BannerProductSerializers
-
-# update/edit view 
-class BannerProductUpdateView(generics.UpdateAPIView):
-    queryset = BannerProduct.objects.all()
-    serializer_class = BannerProductSerializers
-
-# delete view 
-class BannerProductDeleteView(generics.DestroyAPIView):
-    queryset = BannerProduct.objects.all()
-    serializer_class = BannerProductSerializers
+from products.serializers.feature_products import ( 
+    Banner_API, 
+    Banner_API_func,
+    Banner_Product_API, 
+    BannerProduct_API_show
+)
 
 
+# '''
+# Banner view logics 
+#         - list view 
+#         - create
+#         - update 
+#         - delete 
+# '''
 
-'''
-products filiter logic 
-        - list view 
-        - create
-        - single
-        - update 
-        - delete 
-'''
+# # banner product list view 
+
+class Banner_createView(generics.CreateAPIView):
+    queryset = Banner.objects.filter(is_active=True)
+    serializer_class = Banner_API_func
 
 # list view 
-class BannerListView(generics.ListAPIView):
-    queryset = Banner.objects.all()
-    serializer_class = BannerSerializers
+class Banner_ListView(generics.ListAPIView):
+    queryset = Banner.objects.filter(is_active=True)
+    serializer_class = Banner_API
+
+# single view 
+class Banner_SingleView(generics.RetrieveAPIView):
+    queryset = Banner.objects.filter(is_active=True)
+    serializer_class = Banner_API
+
+# update, delete view 
+class Banner_update_deleteView(generics.RetrieveUpdateDestroyAPIView):
+    ueryset = Banner.objects.filter(is_active=True)
+    serializer_class = Banner_API_func
+
+'''
+Banner products view logics
+    - create
+    - list
+    - update
+    - delete
+
+'''
+from rest_framework.response import Response
+from rest_framework import status
 
 # create view 
-class BannerCreateView(generics.CreateAPIView):
-    queryset = Banner.objects.all()
-    serializer_class = BannerSerializers
+class BannerProducts_createView(generics.GenericAPIView):
+    queryset = BannerProduct.objects.filter(is_active=True)
+    serializer_class = Banner_Product_API
+
+    def post(self,request):
+        data = request.data
+        serializer = Banner_Product_API(data=data)
+
+        if serializer.is_valid():
+            obj_check = BannerProduct.objects.filter(
+                            banner=serializer.validated_data['banner'],
+                            banner_product=serializer.validated_data['banner_product']
+            )
+            if obj_check:
+                return Response({
+                    'Error':'Banner Obj Already Exits !'
+                },status=status.HTTP_406_NOT_ACCEPTABLE)
+            else:
+                serializer.save()
+                return Response({
+                    'Success':'Banner Obj Created'
+                },status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors)
+
     
-# single view 
-class BannerSingleView(generics.RetrieveAPIView):
-    queryset = Banner.objects.all()
-    serializer_class = BannerSerializers
-    
-# update view 
-class BannerUpdateView(generics.UpdateAPIView):
-    queryset = Banner.objects.all()
-    serializer_class = BannerSerializers
-    
-# delete view 
-class BannerDeleteView(generics.DestroyAPIView):
-    queryset = Banner.objects.all()
-    serializer_class = BannerSerializers
+# Banner products single view 
+class BannerProducts_SingleView(generics.RetrieveAPIView):
+    queryset = BannerProduct.objects.filter(is_active=True)
+    serializer_class = BannerProduct_API_show
 
 
-from rest_framework.response import Response
-from rest_framework.views import APIView
-class Filter_by(APIView):
-
-    def get(self,request,bannerID):
-        qs = BannerProduct.objects.filter(banner__id=bannerID)
-        return Response(qs) 
+# Banner Products delete 
+class BannerProducts_DeleteView(generics.DestroyAPIView):
+    queryset = BannerProduct.objects.filter(is_active=True)
+    serializer_class = Banner_Product_API
+    

@@ -2,17 +2,10 @@
 from django.urls import path
 from products.views.prodcuts_logic import (
     ProductListViewSet,
-    # ProductListViewAdmin,
     ProductCreateView,
     ProductRetUpDesViewSet,
 
-    # ProductVariationCreate,
-    # ProductVariationSingle_updateView,
-    # ProductVariation_DeleteView,
-    # ProductVariationSingleView,
     ProductSingleView,
-
-    # ProductVariationList,
 )
 
 from products.views.products_init_logic import (
@@ -30,13 +23,6 @@ from products.views.products_init_logic import (
     
     CountryView,
     CountryUpdateDelete,
-
-    # ColorVariationListAPIview,
-    # ColorVariationSingleAPIview,
-    # SizeVariationListAPIview,
-    # SizeVariationSingleAPIview,
-    # WeightVariationListAPIview,
-    # WeightVariationSingleAPIview
      
 )
 
@@ -59,18 +45,14 @@ from products.views.slider_logic import (
 
 
 from products.views.feature_products_logic import (
-    BannerProductListView,
-    BannerProductCreateView,
-    BannerProductUpdateView,
-    BannerProductDeleteView,
+    Banner_createView,
+    Banner_ListView,
+    Banner_SingleView,
+    Banner_update_deleteView,
 
-    BannerListView,
-    BannerCreateView,
-    BannerSingleView,
-    BannerUpdateView,
-    BannerDeleteView,
-
-    Filter_by,
+    BannerProducts_createView,
+    BannerProducts_SingleView,
+    BannerProducts_DeleteView,
 
 )
 
@@ -93,26 +75,11 @@ urlpatterns_category = [
 urlpatterns_product = [ 
     
     path('product/', ProductListViewSet.as_view(), name='products' ),
-
-    # path('product/list/admin/view/', ProductListViewAdmin.as_view()),
-
     path('product/create/',ProductCreateView.as_view(), name='product_create' ),
     path('product/update-delete/<int:pk>/',ProductRetUpDesViewSet.as_view(), 
         name='products_delete_update' ),
     path('product/single/<int:pk>/',ProductSingleView.as_view()),
     
-    # products renderer url 
-    # path('product/', ProductListViewSet.as_view(), name='products' ),
-    # path('product/create/',ProductCreateView.as_view(), name='product_create' ),
-    # path('product/<slug:slug>/',ProductDetail.as_view(), name='products_detail' ),
-
-    # product Variation URL
-    # path('product/variation/create/',ProductVariationCreate.as_view()),
-    # path('product/variation/view/<int:pk>/',ProductVariationSingleView.as_view()),
-    # path('product/variation/update/<int:pk>/',ProductVariationSingle_updateView.as_view()),
-    # path('product/variation/delete/<int:pk>/',ProductVariation_DeleteView.as_view()),
-    # path('product/variation/list/',ProductVariationList.as_view()),
-
 ]
 
 
@@ -141,37 +108,16 @@ urlpatterns_slider = [
 ]
 
 urlpatterns_banner_products = [ 
-    path('banner/products/list/',BannerProductListView.as_view()),
-    path('banner/product/create/',BannerProductCreateView.as_view()),
-    path('banner/product/update/view/<int:pk>/',BannerProductUpdateView.as_view()),
-    path('banner/product/delete/<int:pk>/',BannerProductDeleteView.as_view()),
+    path('banners/list/',Banner_ListView.as_view()),
+    path('banners/create/',Banner_createView.as_view()),
+    path('banners/single/view/<int:pk>/',Banner_SingleView.as_view()),
+    path('banners/action/<int:pk>/',Banner_update_deleteView.as_view()),
 
-    path('banner/list/view/',BannerListView.as_view()),
-    path('banner/create/',BannerCreateView.as_view()),
-    path('banner/single/view/<int:pk>/',BannerSingleView.as_view()),
-    path('banner/update/view/<int:pk>/',BannerUpdateView.as_view()),
-    path('banner/delete/<int:pk>/',BannerDeleteView.as_view()),
-
-
-    path('banner/products/list/<int:bannerID>/',Filter_by.as_view()),
-
-
-
-
+    path('banners/product/create/',BannerProducts_createView.as_view()),
+    path('banners/product/single/view/<int:pk>/',BannerProducts_SingleView.as_view()),
+    path('banners/product/delete/<int:pk>/',BannerProducts_DeleteView.as_view()),
 ]
-# urlpatterns_attribute = [
-#     path('color/',ColorVariationListAPIview.as_view()),
-#     path('color/<int:pk>/',ColorVariationSingleAPIview.as_view()),
-    
-#     path('size/',SizeVariationListAPIview.as_view()),
-#     path('size/<int:pk>/',SizeVariationSingleAPIview.as_view()),
 
-#     path('weight/',WeightVariationListAPIview.as_view()),
-#     path('weight/<int:pk>/',WeightVariationSingleAPIview.as_view())
-# ]
-
-
-# urlpatterns += urlpatterns_attribute
 urlpatterns += urlpatterns_category
 urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
