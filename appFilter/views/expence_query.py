@@ -96,3 +96,15 @@ class twenty_4_hours_expence_view(generics.ListAPIView):
 class daily_expence_view(generics.ListAPIView):
     queryset = Expenses.objects.filter( created_at__gte=now.date(),is_active=True )
     serializer_class = ExpenceListSerializers
+
+# weekly expence with values 
+class monthly_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte= now - timedelta(days=30) , is_active=True )
+    serializer_class = ExpenceListSerializers
+    
+# half yearly expences with values 
+class half_yearly_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte = now - \
+            timedelta(days=(month_ago * 365 / 12)),is_active=True )
+    serializer_class = ExpenceListSerializers
+
