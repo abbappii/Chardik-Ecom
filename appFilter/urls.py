@@ -48,8 +48,8 @@ from appFilter.views.views_sales import (
     hourly_View,
     daily_view,
     monthly_View,
-    # half_yearly_View,
-    # yearly_View
+    half_yearly_View,
+    yearly_View
     
     )
 
@@ -88,8 +88,8 @@ sales_param_URL = [
     path('hourly/', hourly_View.as_view()),
     path('daily/', daily_view.as_view()),
     path('monthly/', monthly_View.as_view()),
-    # path('half/yearly/', half_yearly_View.as_view()),
-    # path('yearly/', yearly_View.as_view()),
+    path('half/yearly/', half_yearly_View.as_view()),
+    path('yearly/', yearly_View.as_view()),
 ]
 
 expence_URL = [ 

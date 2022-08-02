@@ -65,13 +65,13 @@ class monthly_View(generics.ListAPIView):
     serializer_class = OrderAPI
 
 # # half yearly 
-# class half_yearly_View(generics.ListAPIView):
-#     queryset = Order.objects.filter(created_at__gte = now - timedelta(days = 6 * 365 /12 ), is_active=True)
-#     serializer_class = OrderAPI
+class half_yearly_View(generics.ListAPIView):
+    queryset = Order.objects.filter(created_at__gte = now - timedelta(days = 6 * 365 /12 ), is_active=True)
+    serializer_class = OrderAPI
 
 # # yearly 
-# class yearly_View(generics.ListAPIView):
-#     queryset = Order.objects.filter(created_at__gte = now - timedelta(days = 365 ), is_active=True)
-#     serializer_class = OrderAPI
+class yearly_View(generics.ListAPIView):
+    queryset = Order.objects.filter(created_at__gte = now - timedelta(days = 365 ), is_active=True)
+    serializer_class = OrderAPI
 
     
