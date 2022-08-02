@@ -53,7 +53,7 @@ from products.views.feature_products_logic import (
     BannerProducts_createView,
     BannerProducts_SingleView,
     BannerProducts_DeleteView,
-
+    BannerListView,
 )
 
 urlpatterns = []
@@ -116,6 +116,8 @@ urlpatterns_banner_products = [
     path('banners/product/create/',BannerProducts_createView.as_view()),
     path('banners/product/single/view/<int:pk>/',BannerProducts_SingleView.as_view()),
     path('banners/product/delete/<int:pk>/',BannerProducts_DeleteView.as_view()),
+
+    path("banner/product/list/", BannerListView.as_view()),
 ]
 
 urlpatterns += urlpatterns_category
