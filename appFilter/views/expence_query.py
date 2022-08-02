@@ -4,8 +4,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-# from orders.database.cart_order import Order
-# from orders.serializers import OrderSerializer
 from inventory.bank_model.baccounts import Expenses
 from inventory.bank_serializer.expence_serializers import ExpenceListSerializers
 from django.db.models import Sum
@@ -75,3 +73,11 @@ class YearlyExpenceView(APIView):
             timedelta(days=365)).aggregate(last_1_year_expence=Sum('expence_amount'))
         return Response(queryset)
 
+
+from inventory.bank_serializer.expence_serializers import  ExpenceListSerializers
+from rest_framework import generics
+
+# hourly expence with values 
+class hourly_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte = now - timedelta(hours=1))
+    serializer_class = ExpenceListSerializers

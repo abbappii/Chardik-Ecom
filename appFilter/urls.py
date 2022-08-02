@@ -36,6 +36,8 @@ from appFilter.views.expence_query import (
     HalfYearlyExpenceView,
     YearlyExpenceView,
 
+    hourly_expence_view,
+
 )
 
 from appFilter.views.sale_reports import (
@@ -100,7 +102,9 @@ expence_URL = [
     path('expence/half/yearly/',HalfYearlyExpenceView.as_view()),
     path('expence/yearly/',YearlyExpenceView.as_view()),
 ]
-
+expence_date_total_URL = [ 
+    path('expence/values/hour/',hourly_expence_view.as_view()),
+]
 sales_reports_URL = [
     path('sales/reports/',SaleReports_View.as_view()),
 ]
@@ -110,3 +114,4 @@ urlpatterns += sales_reports_URL
 urlpatterns += sales_param_URL
 urlpatterns += products_URL
 urlpatterns += expence_URL
+urlpatterns += expence_date_total_URL
