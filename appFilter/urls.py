@@ -47,9 +47,9 @@ from appFilter.views.views_sales import (
     last_24_hour_list,
     hourly_View,
     daily_view,
-    monthly_View,
-    half_yearly_View,
-    yearly_View
+    # monthly_View,
+    # half_yearly_View,
+    # yearly_View
     
     )
 
@@ -86,7 +86,7 @@ products_URL = [
 sales_param_URL = [ 
     path('list/24/hours/', last_24_hour_list.as_view()),
     path('hourly/', hourly_View.as_view()),
-    # path('daily/', daily_view.as_view()),
+    path('daily/', daily_view.as_view()),
     # path('monthly/', monthly_View.as_view()),
     # path('half/yearly/', half_yearly_View.as_view()),
     # path('yearly/', yearly_View.as_view()),

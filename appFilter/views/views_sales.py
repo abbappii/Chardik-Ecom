@@ -54,10 +54,10 @@ class hourly_View(generics.ListAPIView):
     queryset = Order.objects.filter(created_at__gte = datetime.now() - timedelta(hours=1), is_active=True)
     serializer_class = OrderAPI
 
-# # daily 
-# class daily_view(generics.ListAPIView):
-#     queryset = Order.objects.filter( created_at__gte=now.date(), is_active=True )
-#     serializer_class = OrderAPI
+# daily 
+class daily_view(generics.ListAPIView):
+    queryset = Order.objects.filter( created_at__gte=now.date(), is_active=True )
+    serializer_class = OrderAPI
 
 # # monthly 
 # class monthly_View(generics.ListAPIView):
