@@ -60,9 +60,9 @@ class daily_view(generics.ListAPIView):
     serializer_class = OrderAPI
 
 # # monthly 
-# class monthly_View(generics.ListAPIView):
-#     queryset = Order.objects.filter(created_at__gte = now - timedelta(days=30), is_active=True)
-#     serializer_class = OrderAPI
+class monthly_View(generics.ListAPIView):
+    queryset = Order.objects.filter(created_at__gte = now - timedelta(days=30), is_active=True)
+    serializer_class = OrderAPI
 
 # # half yearly 
 # class half_yearly_View(generics.ListAPIView):
