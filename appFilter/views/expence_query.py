@@ -74,10 +74,25 @@ class YearlyExpenceView(APIView):
         return Response(queryset)
 
 
+'''
+Expences with values
+        - total
+        - created date
+'''
 from inventory.bank_serializer.expence_serializers import  ExpenceListSerializers
 from rest_framework import generics
 
 # hourly expence with values 
 class hourly_expence_view(generics.ListAPIView):
-    queryset = Expenses.objects.filter(created_at__gte = now - timedelta(hours=1))
+    queryset = Expenses.objects.filter(created_at__gte = now - timedelta(hours=1), is_active=True)
+    serializer_class = ExpenceListSerializers
+
+# 24 hours expence with values 
+class twenty_4_hours_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte = now - timedelta(hours=24), is_active=True)
+    serializer_class = ExpenceListSerializers
+
+# daily expence with values 
+class daily_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter( created_at__gte=now.date(),is_active=True )
     serializer_class = ExpenceListSerializers
