@@ -69,6 +69,7 @@ class FlashSale_API(serializers.ModelSerializer):
     class Meta:
         model = FlashSale
         fields = [
+            'id',
             'flash_sale_ID',
             'name',
             'discount',
@@ -93,6 +94,7 @@ class FlashSale_API_func(serializers.ModelSerializer):
     class Meta:
         model = FlashSale
         fields = [
+            'id',
             'name',
             'discount',
             'start_time',
