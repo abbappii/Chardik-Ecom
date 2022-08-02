@@ -96,4 +96,8 @@ class BannerProducts_SingleView(generics.RetrieveAPIView):
 class BannerProducts_DeleteView(generics.DestroyAPIView):
     queryset = BannerProduct.objects.filter(is_active=True)
     serializer_class = Banner_Product_API
+
+class BannerListView(generics.ListAPIView):
+    queryset = BannerProduct.objects.filter(is_active=True)
+    serializer_class = Banner_Product_API
     

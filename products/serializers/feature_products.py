@@ -14,6 +14,7 @@ class Banner_Product_API(serializers.ModelSerializer):
     class Meta:
         model = BannerProduct
         fields = [
+            'id',
             'banner_product',
             'banner'
         ]
@@ -30,6 +31,7 @@ class BannerProduct_API_show(serializers.ModelSerializer):
     class Meta:
         model = BannerProduct
         fields = [
+            'id',
             'banner_product',
             'is_active'
         ]
