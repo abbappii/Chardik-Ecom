@@ -28,7 +28,6 @@ class PurchaseSerialiers(serializers.ModelSerializer):
         fields = [
             'id',
             'ref_code',
-            # 'batch_no',
             'date_of_purchase',
             'order_status',
             'product',
@@ -51,7 +50,6 @@ class PurchaseCreateSerializers(serializers.ModelSerializer):
         fields = [
             'id',
             'ref_code',
-            # 'batch_no',
             'date_of_purchase',
             'order_status',
             'product',
@@ -63,5 +61,6 @@ class PurchaseCreateSerializers(serializers.ModelSerializer):
             'due_price',
             'payment_method',
             'payment_status',
-            'description'
+            'description',
+            'quantity'
         ]
