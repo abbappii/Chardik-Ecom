@@ -4,8 +4,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-# from orders.database.cart_order import Order
-# from orders.serializers import OrderSerializer
 from inventory.bank_model.baccounts import Expenses
 from inventory.bank_serializer.expence_serializers import ExpenceListSerializers
 from django.db.models import Sum
@@ -75,3 +73,43 @@ class YearlyExpenceView(APIView):
             timedelta(days=365)).aggregate(last_1_year_expence=Sum('expence_amount'))
         return Response(queryset)
 
+
+'''
+Expences with values
+        - total
+        - created date
+'''
+from inventory.bank_serializer.expence_serializers import  ExpenceListSerializers
+from rest_framework import generics
+
+# hourly expence with values 
+class hourly_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte = now - timedelta(hours=1), is_active=True)
+    serializer_class = ExpenceListSerializers
+
+# 24 hours expence with values 
+class twenty_4_hours_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte = now - timedelta(hours=24), is_active=True)
+    serializer_class = ExpenceListSerializers
+
+# daily expence with values 
+class daily_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter( created_at__gte=now.date(),is_active=True )
+    serializer_class = ExpenceListSerializers
+
+# weekly expence with values 
+class monthly_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte= now - timedelta(days=30) , is_active=True )
+    serializer_class = ExpenceListSerializers
+
+# half yearly expences with values 
+class half_yearly_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte = now - \
+            timedelta(days=(month_ago * 365 / 12)),is_active=True )
+    serializer_class = ExpenceListSerializers
+
+# yearly expences with values 
+class yearly_expence_view(generics.ListAPIView):
+    queryset = Expenses.objects.filter(created_at__gte = now - \
+            timedelta(days=365),is_active=True )
+    serializer_class = ExpenceListSerializers
