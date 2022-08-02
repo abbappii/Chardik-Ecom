@@ -70,6 +70,7 @@ class Purchase(InitModels):
 
     product = models.ForeignKey('products.Products',null=True,on_delete=models.SET_NULL,
         verbose_name="Select product",related_name='purchase_product')
+        
     price = models.FloatField(null=True,verbose_name="Prce")
     unit_cost = models.FloatField(null=True,blank=True,verbose_name="Net Unit Cost")
     other_cost = models.FloatField(null=True,verbose_name="Other Cost")

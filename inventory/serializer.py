@@ -64,3 +64,20 @@ class PurchaseCreateSerializers(serializers.ModelSerializer):
             'description',
             'quantity'
         ]
+
+
+'''
+Define Supplier DUE Reports 
+'''
+
+class SupplierDueReportsAPI(serializers.ModelSerializer):
+    supplier = serializers.SlugRelatedField(queryset= Supplier.objects.all(),\
+        slug_field='name')
+    class Meta:
+        model = Purchase
+        fields = [
+            'id',
+            'supplier',
+            'due_price'
+                ]
+        # depth = 1

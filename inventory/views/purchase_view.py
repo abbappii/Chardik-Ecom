@@ -1,6 +1,10 @@
 
 from inventory.models import Purchase
-from inventory.serializer import PurchaseSerialiers, PurchaseCreateSerializers
+from inventory.serializer import (
+    PurchaseSerialiers, 
+    PurchaseCreateSerializers,
+    SupplierDueReportsAPI
+    )
 from rest_framework import generics
 
 
@@ -44,3 +48,9 @@ class PurchaseEditView(generics.UpdateAPIView):
     queryset = Purchase.objects.all()
     serializer_class = PurchaseCreateSerializers
 
+
+
+#### Due supplier view 
+class SupplierDue_ReportsView(generics.ListAPIView):
+    queryset = Purchase.objects.filter(is_active=True)
+    serializer_class = SupplierDueReportsAPI

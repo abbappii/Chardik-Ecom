@@ -6,7 +6,8 @@ This file contains the URL config of Inventory app
 from django.urls import path
 from inventory.views.purchase_view import (
     PurchaseView,PurchaseSingleView,PurchaseCreateView,
-    PurchaseEditView,PurchaseDeleteView
+    PurchaseEditView,PurchaseDeleteView,
+    SupplierDue_ReportsView
 
 )
 
@@ -61,7 +62,8 @@ purchase_URL = [
     path('purchase/view/<int:pk>/',PurchaseSingleView.as_view()),
     path('purchase/update/<int:pk>/',PurchaseEditView.as_view()),
     path('purchase/delete/<int:pk>/',PurchaseDeleteView.as_view()),
-    path('purchase/create/',PurchaseCreateView.as_view())
+    path('purchase/create/',PurchaseCreateView.as_view()),
+    path('purchase/due/',SupplierDue_ReportsView.as_view())
 ]
 
 
