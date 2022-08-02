@@ -42,7 +42,17 @@ from appFilter.views.sale_reports import (
     SaleReports_View
 )
 
-from appFilter.views.views_sales import passParams
+from appFilter.views.views_sales import (
+    passParams, 
+    last_24_hour_list,
+    hourly_View,
+    daily_view,
+    monthly_View,
+    half_yearly_View,
+    yearly_View
+    
+    )
+
 urlpatterns = []
 
 
@@ -74,7 +84,12 @@ products_URL = [
 ]
 
 sales_param_URL = [ 
-    path('sales/query/pass/params/', passParams.as_view()),
+    path('list/24/hours/', last_24_hour_list.as_view()),
+    path('hourly/', hourly_View.as_view()),
+    # path('daily/', daily_view.as_view()),
+    # path('monthly/', monthly_View.as_view()),
+    # path('half/yearly/', half_yearly_View.as_view()),
+    # path('yearly/', yearly_View.as_view()),
 ]
 
 expence_URL = [ 
@@ -87,7 +102,7 @@ expence_URL = [
 ]
 
 sales_reports_URL = [
-    path('sales/reports/',SaleReports_View.as_view())
+    path('sales/reports/',SaleReports_View.as_view()),
 ]
 
 
