@@ -23,37 +23,37 @@ def points_count(sender,instance, created,*args,**kwargs):
             pass
 
 
-@receiver(pre_save, sender=Order)
-def coupon_count(sender, instance,created, *args, **kwargs):
-    if created:
-        '''
-        work 
-            - get coupon count value
-                - - example: coupon_count = 7
-            - need maximum user
-            - expire date
-        '''
+# @receiver(pre_save, sender=Order)
+# def coupon_count(sender, instance,created, *args, **kwargs):
+#     if created:
+#         '''
+#         work 
+#             - get coupon count value
+#                 - - example: coupon_count = 7
+#             - need maximum user
+#             - expire date
+#         '''
 
-        # get coupon_count 
-        get_coupon = instance.coupon_count
+#         # get coupon_count 
+#         get_coupon = instance.coupon_count
 
-        # get maximum user from coupon table 
-        m_user = instance.coupon.maximum_user
+#         # get maximum user from coupon table 
+#         m_user = instance.coupon.maximum_user
 
-        # get expire date of coupon 
-        exp_date = instance.coupon.expire_date
+#         # get expire date of coupon 
+#         exp_date = instance.coupon.expire_date
 
-        # logic implementation
-        try:
-            if get_coupon == m_user:
-                instance.coupon.is_active = False
-                instance.coupon.save()
+#         # logic implementation
+#         try:
+#             if get_coupon == m_user:
+#                 instance.coupon.is_active = False
+#                 instance.coupon.save()
 
-            elif exp_date == now.date():
-                instance.coupon.is_active = False
-                instance.coupon.save()
-            else:
-                pass
-        except Exception as e:
-            print(e)
+#             elif exp_date == now.date():
+#                 instance.coupon.is_active = False
+#                 instance.coupon.save()
+#             else:
+#                 pass
+#         except Exception as e:
+#             print(e)
 

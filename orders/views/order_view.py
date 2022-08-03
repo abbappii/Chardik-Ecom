@@ -102,7 +102,7 @@ class OrderListview(generics.ListAPIView):
     serializer_class = OrderSerializer
 
 # order updateview
-class OrderUpdateView(generics.RetrieveUpdateAPIView):
+class OrderUpdateView(generics.RetrieveUpdateDestroyAPIView):
     # permission_classes = [IsAdmin]
     queryset = Order.objects.filter(is_active=True)
     serializer_class = OrderAPI
