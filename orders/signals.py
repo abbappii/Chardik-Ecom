@@ -49,7 +49,7 @@ def coupon_count(sender, instance,created, *args, **kwargs):
                 instance.coupon.is_active = False
                 instance.coupon.save()
 
-            elif instance.coupon.expire_date == now.date():
+            elif exp_date == now.date():
                 instance.coupon.is_active = False
                 instance.coupon.save()
             else:
