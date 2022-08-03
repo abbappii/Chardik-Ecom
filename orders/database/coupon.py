@@ -30,8 +30,8 @@ class Coupon(InitModels):
     free_shipping = models.BooleanField(default=False,null=True,
         verbose_name="Free Shipping Allow ?")
     expire_date = models.DateField(null=True,blank=True,auto_now_add=False)
-    minimum_user = models.IntegerField(default=0,null=True,blank=True,verbose_name=
-        "Minimum Users")
+    maximum_user = models.IntegerField(default=0,null=True,blank=True,verbose_name=
+        "Maximum Users")
     minimum_sale = models.IntegerField(null=True,blank=True,verbose_name=
         "Minimum Sale")
     maximum_sale = models.IntegerField(null=True,blank=True,verbose_name=
@@ -49,5 +49,6 @@ class Coupon(InitModels):
         verbose_name_plural = "Coupon"
         app_label = "orders"
 
+    
 
 

@@ -23,7 +23,7 @@ class CouponAPI(serializers.ModelSerializer):
         fields = [
             'id','coupon_name','coupon_type',
             'coupon_amount','free_shipping',
-            'expire_date','minimum_user',
+            'expire_date','maximum_user',
             'minimum_sale','maximum_sale',
             'category','brand','product'
         ]
