@@ -145,14 +145,14 @@ class Order(InitModels):
 
 
     # custom property 
-    @property
-    def coupon_count(self):
-        c_count = 0
-        if self.coupon:
-            c_count += 1
-            return c_count
-        else:
-            return c_count 
+    # @property
+    # def coupon_count(self):
+    #     c_count = 0
+    #     if self.coupon:
+    #         c_count += 1
+    #         return c_count
+    #     else:
+    #         return c_count 
 
 
 '''
