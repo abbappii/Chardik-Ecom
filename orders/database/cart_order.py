@@ -144,6 +144,16 @@ class Order(InitModels):
     #     super().save(*args, **kwargs)
 
 
+    # custom property 
+    @property
+    def coupon_count(self):
+        c_count = 0
+        if self.coupon:
+            c_count += 1
+            return c_count
+        else:
+            return c_count 
+
 
 '''
 shipping address foreingkey need
