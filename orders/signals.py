@@ -1,5 +1,5 @@
 
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
 from orders.database.cart_order import Order
@@ -23,7 +23,7 @@ def points_count(sender,instance, created,*args,**kwargs):
             pass
 
 
-@receiver(post_save, sender=Order)
+@receiver(pre_save, sender=Order)
 def coupon_count(sender, instance,created, *args, **kwargs):
     if created:
         '''
