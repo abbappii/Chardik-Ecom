@@ -98,7 +98,7 @@ class OrderView(GenericAPIView):
 
 # order list view 
 class OrderListview(generics.ListAPIView):
-    queryset = Order.objects.all()
+    queryset = Order.objects.all().order_by('-created_at')
     serializer_class = OrderSerializer
 
 # order updateview
