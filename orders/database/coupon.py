@@ -38,9 +38,9 @@ class Coupon(InitModels):
         "Maximum Sale")
 
     # field added manytomany 
-    category = models.ManyToManyField(Categories)
-    brand  = models.ManyToManyField(Brand)
-    product = models.ManyToManyField(Products)
+    category = models.ManyToManyField(Categories, blank=True)
+    brand  = models.ManyToManyField(Brand, blank=True)
+    product = models.ManyToManyField(Products, blank=True)
 
     def __str__(self):
         return str(self.coupon_name)
