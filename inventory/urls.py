@@ -63,7 +63,7 @@ purchase_URL = [
     path('purchase/update/<int:pk>/',PurchaseEditView.as_view()),
     path('purchase/delete/<int:pk>/',PurchaseDeleteView.as_view()),
     path('purchase/create/',PurchaseCreateView.as_view()),
-    path('purchase/due/',SupplierDue_ReportsView.as_view())
+    path('supplier/due/reports/',SupplierDue_ReportsView.as_view())
 ]
 
 
