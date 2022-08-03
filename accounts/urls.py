@@ -30,6 +30,10 @@ from accounts.views.billing_address import (
     BillingAddressView,
     ShippingAddressView
 )
+from accounts.views.points_profile import (
+    PointLooseView,
+    PointAddView
+)
 
 # from accounts.views.shipping_address import (
 #     ShippingAddressDeleteView,
@@ -74,6 +78,11 @@ billingAddress_URL = [
     path('billng/address/delete/<int:pk>/', BillingAddressDeleteView.as_view()),
 ]
 
+point_URL = [
+    path('points/loose/',PointLooseView.as_view()),
+    path('points/add/',PointAddView.as_view())
+]
+
 # shippingAddress_URL = [ 
 #     path('shipping/address/list-create/',ShippingAddressListCreateView.as_view()),
 #     path('shipiing/address/delete/<int:pk>/', ShippingAddressDeleteView.as_view()),
@@ -84,4 +93,5 @@ urlpatterns += permission_URL
 urlpatterns += user_update_delete
 urlpatterns += user_pass_change_reset_email
 urlpatterns += billingAddress_URL
+urlpatterns += point_URL
 # urlpatterns += shippingAddress_URL
