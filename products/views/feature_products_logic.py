@@ -45,7 +45,7 @@ class Banner_SingleView(generics.RetrieveAPIView):
 
 # update, delete view 
 class Banner_update_deleteView(generics.RetrieveUpdateDestroyAPIView):
-    ueryset = Banner.objects.filter(is_active=True)
+    queryset = Banner.objects.filter(is_active=True)
     serializer_class = Banner_API_func
 
 '''
