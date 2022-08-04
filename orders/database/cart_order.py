@@ -148,7 +148,7 @@ class Order(InitModels):
     # @property
     # def coupon_count(self):
     #     c_count = 0
-    #     if self.coupon:
+    #     if self.coupon is not None:
     #         c_count += 1
     #         return c_count
     #     else:

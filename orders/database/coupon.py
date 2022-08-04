@@ -36,7 +36,8 @@ class Coupon(InitModels):
         "Minimum Sale")
     maximum_sale = models.IntegerField(null=True,blank=True,verbose_name=
         "Maximum Sale")
-
+    coupon_count = models.PositiveIntegerField(default=0)
+    
     # field added manytomany 
     category = models.ManyToManyField(Categories, blank=True)
     brand  = models.ManyToManyField(Brand, blank=True)
