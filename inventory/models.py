@@ -6,6 +6,7 @@ This file contaisn the Database layout of
 from django.db import models
 from accounts.models.initials import InitModels
 from decimal import Decimal
+# from MainApplication.scripts.batch_ID import unique_batchID_generate
 
 
 '''
@@ -56,8 +57,8 @@ payment_status = (
 class Purchase(InitModels):
     ref_code = models.CharField(max_length=100,null=True,blank=True,verbose_name=
         "Reference Number")
-    # batch_no = models.CharField(max_length=100,null=True,blank=True,verbose_name=
-    #     "Batch No")
+    batch_no = models.CharField(max_length=100,null=True,blank=True,verbose_name=
+        "Batch No",editable=False)
     date_of_purchase = models.DateField(auto_now_add=False,null=True,blank=True,
         verbose_name="Date of Purchase")
     supplier = models.ForeignKey(Supplier,on_delete=models.SET_NULL,null=True,
