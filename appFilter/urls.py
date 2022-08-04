@@ -50,7 +50,7 @@ from appFilter.views.sale_reports import (
 )
 
 from appFilter.views.views_sales import (
-    passParams, 
+    # passParams, 
     last_24_hour_list,
     hourly_View,
     daily_view,
