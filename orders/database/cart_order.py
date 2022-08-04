@@ -112,6 +112,9 @@ class Order(InitModels):
     # new add delivery status 
     fast_delivery = models.BooleanField(default=False)
 
+    user_device = models.CharField(max_length=255, null=True,blank=True)
+    user_browser = models.CharField(max_length=255, null=True,blank=True)
+
     def __str__(self):
         return str(self.customer)
 
