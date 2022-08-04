@@ -36,7 +36,7 @@ def CreateHistory(sender,instance,created,*args,**kwargs):
 def UpdateHistory(sender,instance,created,*args,**kwargs):
 
     try:
-        if not created:
+        if not created and instance.order_status == 'Completed':
             for orderItem in instance.items.all():
                 # print(orderItem)
                 # print(orderItem.item.quantity)
@@ -48,6 +48,7 @@ def UpdateHistory(sender,instance,created,*args,**kwargs):
                         product_name = orderItem.item,
                         purchase_unit = orderItem.item.\
                             purchase_product.last().price,
+                        selling_unit = orderItem.amount_item ,
                         quantity = orderItem.quantity   
                 )
                 obj.save()
