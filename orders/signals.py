@@ -30,31 +30,16 @@ this function for get coupon count and validations check
 
 @receiver(pre_save, sender=Order)
 def coupon_count(sender, instance, *args, **kwargs):
-
-    '''
-    works 
-        - get coupon 
-            - - if use coupon in order
-        - need maximum user
-        - expire date
-    '''
-
-    # get coupon_count use 
-    if instance.coupon is not None:
-        instance.coupon.coupon_count += 1
-        instance.coupon.save()
-    else:
-        pass 
-
+    
     try:
+
         if instance.coupon.coupon_count == instance.coupon.maximum_user:
-            instance.coupon.is_active = False
-            instance.coupon.save()
+                instance.coupon.is_active = False
+                instance.coupon.save()
 
-        elif instance.coupon.expire_date == now.date():
-            instance.coupon.is_active = False
+        elif instance.coupon is not None:
+            instance.coupon.coupon_count += 1
             instance.coupon.save()
-
         else:
             pass 
 
