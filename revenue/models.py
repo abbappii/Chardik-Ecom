@@ -24,7 +24,7 @@ class RevenueHistory(InitModels):
     purchase_unit = models.FloatField(null=True)
     selling_unit = models.FloatField(null=True)
     quantity = models.PositiveIntegerField(default=1)
-    profits = models.FloatField(null=True)
+    profits = models.FloatField(null=True,blank=True)
 
     def __str__(self):
         return str(self.purchase_code)

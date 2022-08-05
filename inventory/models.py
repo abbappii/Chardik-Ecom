@@ -92,10 +92,10 @@ class Purchase(InitModels):
     class Meta:
         verbose_name_plural = "Purchase History"
 
-
+    ## Net price calculated
     @property
     def Net_unitPrice(self):
-        price = self.price + self.other_cost
+        price = self.price + self.other_cost + self.unit_cost
         net_price = price / self.quantity
 
         return round(net_price,2)
