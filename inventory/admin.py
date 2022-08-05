@@ -13,7 +13,7 @@ from inventory.bank_model.baccounts import (
 admin.site.register(Supplier)
 
 class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ['id','batch_no','date_of_purchase','supplier']
+    list_display = ['id','batch_no','date_of_purchase','supplier','Net_unitPrice']
 admin.site.register(Purchase,PurchaseAdmin)
 
 # Bank accounts 
