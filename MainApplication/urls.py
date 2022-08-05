@@ -52,6 +52,7 @@ urlpatterns = [
     path('courier/', include('courier.urls')),
     path('pointsofsale/',include('pointsofsale_manager.urls')),
     path('flash-sale/',include('flash_sale.urls')),
+    path('revenue/',include('revenue.urls')),
 
     # configure the redoc setup
      #  path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
