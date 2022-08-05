@@ -6,6 +6,7 @@ This file contaisn the Database layout of
 from django.db import models
 from accounts.models.initials import InitModels
 from decimal import Decimal
+# from MainApplication.scripts.batch_ID import unique_batchID_generate
 
 
 '''
@@ -56,8 +57,8 @@ payment_status = (
 class Purchase(InitModels):
     ref_code = models.CharField(max_length=100,null=True,blank=True,verbose_name=
         "Reference Number")
-    # batch_no = models.CharField(max_length=100,null=True,blank=True,verbose_name=
-    #     "Batch No")
+    batch_no = models.CharField(max_length=100,null=True,blank=True,verbose_name=
+        "Batch No",editable=False)
     date_of_purchase = models.DateField(auto_now_add=False,null=True,blank=True,
         verbose_name="Date of Purchase")
     supplier = models.ForeignKey(Supplier,on_delete=models.SET_NULL,null=True,
@@ -72,9 +73,9 @@ class Purchase(InitModels):
         verbose_name="Select product",related_name='purchase_product')
         
     price = models.FloatField(null=True,verbose_name="Prce")
-    unit_cost = models.FloatField(null=True,blank=True,verbose_name="Net Unit Cost")
-    other_cost = models.FloatField(null=True,verbose_name="Other Cost")
-    due_price = models.FloatField(null=True,blank=True,verbose_name="Due Price")
+    unit_cost = models.FloatField(null=True,blank=True,default=0.0,verbose_name="Net Unit Cost")
+    other_cost = models.FloatField(null=True,verbose_name="Other Cost",default=0.0)
+    due_price = models.FloatField(null=True,default=0.0,blank=True,verbose_name="Due Price")
     # payment_method = models.CharField(null=True,blank=True,max_length=200,
     #     verbose_name="Payment Method")
     payment_method = models.ForeignKey('inventory.BankAccounts', on_delete=models.SET_NULL,null=True,related_name='bank_acc_name')
@@ -82,7 +83,7 @@ class Purchase(InitModels):
     payment_status = models.CharField(max_length=100,null=True,blank=True,choices=
         payment_status,verbose_name="Payment Status")
     description = models.TextField(null=True,blank=True,verbose_name="Description")
-    quantity = models.PositiveIntegerField(default=0, null=True, blank=True)
+    quantity = models.PositiveIntegerField(default=1, null=True, blank=True)
 
 
     def __str__(self):
@@ -90,6 +91,15 @@ class Purchase(InitModels):
 
     class Meta:
         verbose_name_plural = "Purchase History"
+
+    ## Net price calculated
+    @property
+    def Net_unitPrice(self):
+        price = self.price + self.other_cost + self.unit_cost
+        net_price = price / self.quantity
+
+        return round(net_price,2)
+
 
     def save(self, *args, **kwargs):
         if not self.pk:
