@@ -31,6 +31,7 @@ class RevenueAPI(serializers.ModelSerializer):
             'purchase_unit',
             'selling_unit',
             'quantity',
-            'profits'
+            'profits',
+            'created_at',
         ]
     
