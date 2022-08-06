@@ -24,10 +24,14 @@ from orders.database.cart_order import (
 from products.database.products import (
     Products
 )
+
+from accounts.models.profile import Profile
+
 # importing serializers
 from orders.serializers import (
     OrderAPI,
-    OrderSerializer
+    OrderSerializer,
+    CustomerOrdersViewAdminSerializer,
 )
 
 ## Order Item added 
@@ -79,23 +83,6 @@ class OrderView(GenericAPIView):
             return Response(apifetch.errors)
 
 
-'''
-
-{
-    {
-        "id":"1",
-        "quantity":"3"
-    },
-    {
-        "id":"2",
-        "quantity":"3"
-    }
-}
-'''
-
-
-
-
 # order list view 
 class OrderListview(generics.ListAPIView):
     queryset = Order.objects.all().order_by('-created_at')
@@ -103,12 +90,11 @@ class OrderListview(generics.ListAPIView):
 
 # order updateview
 class OrderUpdateView(generics.RetrieveUpdateDestroyAPIView):
-    # permission_classes = [IsAdmin]
+    permission_classes = [IsAdmin,IsManager,IsStuff]
     queryset = Order.objects.filter(is_active=True)
     serializer_class = OrderAPI
 
 #order customer view
-
 class UserOrderListView(generics.ListAPIView):
     permission_classes = [IsCustomer]
     queryset = Order.objects.filter(is_active=True) 
@@ -126,3 +112,16 @@ class OrderSingleView(generics.RetrieveAPIView):
     serializer_class = OrderSerializer
     queryset = Order.objects.all()  
           
+
+
+# admin view of custommer orders 
+class orderviewofcustomerAdminview(generics.ListAPIView):
+    queryset = Order.objects.filter(is_active=True) 
+    serializer_class = CustomerOrdersViewAdminSerializer
+    permission_classes = [IsAdmin]
+
+    def get(self,request,profileID):
+        customer = Profile.objects.get(id = profileID)
+        query = Order.objects.filter( customer = customer, is_active=True)
+        serializer = CustomerOrdersViewAdminSerializer(query, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
