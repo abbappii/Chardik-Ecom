@@ -25,7 +25,7 @@ class CouponAPI(serializers.ModelSerializer):
             'coupon_amount','free_shipping',
             'expire_date','maximum_user',
             'minimum_sale','maximum_sale',
-            'category','brand','product'
+            'category','brand','product','coupon_count'
         ]
 
 
