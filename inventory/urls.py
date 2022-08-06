@@ -7,8 +7,8 @@ from django.urls import path
 from inventory.views.purchase_view import (
     PurchaseView,PurchaseSingleView,PurchaseCreateView,
     PurchaseEditView,PurchaseDeleteView,
-    SupplierDue_ReportsView
-
+    SupplierDue_ReportsView,
+    SupplierDue_ReportsDeleteView
 )
 
 from inventory.views.supplier_view import (
@@ -63,7 +63,8 @@ purchase_URL = [
     path('purchase/update/<int:pk>/',PurchaseEditView.as_view()),
     path('purchase/delete/<int:pk>/',PurchaseDeleteView.as_view()),
     path('purchase/create/',PurchaseCreateView.as_view()),
-    path('supplier/due/reports/',SupplierDue_ReportsView.as_view())
+    path('supplier/due/reports/',SupplierDue_ReportsView.as_view()),
+    path('supplier/due/reports/delete/<int:pk>/', SupplierDue_ReportsDeleteView.as_view()),
 ]
 
 

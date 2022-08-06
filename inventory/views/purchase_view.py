@@ -54,3 +54,8 @@ class PurchaseEditView(generics.UpdateAPIView):
 class SupplierDue_ReportsView(generics.ListAPIView):
     queryset = Purchase.objects.filter(is_active=True)
     serializer_class = SupplierDueReportsAPI
+
+# supplier due delte view 
+class SupplierDue_ReportsDeleteView(generics.DestroyAPIView):
+    queryset = Purchase.objects.filter(is_active=True)
+    serializer_class = SupplierDueReportsAPI
