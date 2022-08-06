@@ -56,3 +56,17 @@ class weekly_revenue(generics.ListAPIView):
     queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=7), is_active=True)
     serializer_class = RevenueAPI
 
+# monthly revenue 
+class monthly_revenue(generics.ListAPIView):
+    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=30), is_active=True)
+    serializer_class = RevenueAPI
+
+# half yearly 
+class half_yearly_revenue(generics.ListAPIView):
+    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days = 6 * 365 /12 ), is_active=True)
+    serializer_class = RevenueAPI
+
+# yearly 
+class yearly_revenue(generics.ListAPIView):
+    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=365), is_active=True)
+    serializer_class = RevenueAPI
