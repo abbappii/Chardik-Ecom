@@ -33,26 +33,26 @@ class SaleReports_View(APIView):
                 aggregate(total=Sum('total')),
 
             # hourly sale 
-            'hourly_sale':Order.objects.filter(created_at__gte=datetime.now() - \
+            'hourly_sale':Order.objects.filter(order_status="Completed",created_at__gte=datetime.now() - \
             timedelta(hours=1)).aggregate(total=Sum('total')),
             
             # 24 hours sale
-            '24_hours_sale':Order.objects.filter(created_at__gte= now - \
+            '24_hours_sale':Order.objects.filter(order_status="Completed",created_at__gte= now - \
             timedelta(hours=24)).aggregate(total_sum=Sum('total')),
 
             # Weekily sale
-            'weekly_sale':Order.objects.filter(created_at__gte= now - \
+            'weekly_sale':Order.objects.filter( order_status="Completed", created_at__gte= now - \
             timedelta(days=7)).aggregate(total_sum=Sum('total')),
         
             # Monthly Sale
-            'monthly_sale': Order.objects.filter(created_at__gte= now - \
+            'monthly_sale': Order.objects.filter(order_status="Completed",created_at__gte= now - \
             timedelta(days=30)).aggregate(total_sum=Sum('total')),
 
             # Half Yearly Sale 
-            'half_yearly_sale':Order.objects.filter(created_at__gte = now - \
+            'half_yearly_sale':Order.objects.filter( order_status="Completed", created_at__gte = now - \
             timedelta(days=(6 * 365 / 12))).aggregate(total_sum=Sum('total')),
 
             # Yearly Sale 
-            'yearly_sale':Order.objects.filter(created_at__gte = now - \
+            'yearly_sale':Order.objects.filter( order_status="Completed", created_at__gte = now - \
             timedelta(days=365)).aggregate(total_sum=Sum('total'))
         })

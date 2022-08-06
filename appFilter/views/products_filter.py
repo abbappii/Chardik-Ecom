@@ -169,62 +169,62 @@ import datetime
 '''
 
 
-now = timezone.now()
+# now = timezone.now()
 
-'''
-hourly sales
-'''
-class HourlySales(APIView):
+# '''
+# hourly sales
+# '''
+# class HourlySales(APIView):
     
-    def get(self,request):
-        qs = Order.objects.filter(created_at__gte=now - \
-            timedelta(hours=1)).aggregate(total_sum=Sum('total'))
-        return Response(qs)
+#     def get(self,request):
+#         qs = Order.objects.filter(created_at__gte=now - \
+#             timedelta(hours=1)).aggregate(total_sum=Sum('total'))
+#         return Response(qs)
     
-'''
-Daily total sales price
-'''
-class DailyTotalSales(APIView):
-    def get(self,request):
-        qs = Order.objects.filter(created_at__gte = now.date()).aggregate(total_sum=Sum('total'))
-        return Response(qs)
+# '''
+# Daily total sales price
+# '''
+# class DailyTotalSales(APIView):
+#     def get(self,request):
+#         qs = Order.objects.filter(created_at__gte = now.date()).aggregate(total_sum=Sum('total'))
+#         return Response(qs)
 
-# last 24 hours sales 
-class Last24hoursSales(APIView):
-    def get(self,request):
-        qs = Order.objects.filter(created_at__gte= now - \
-            timedelta(hours=24)).aggregate(total_sum=Sum('total'))
-        return Response(qs)
-    
-
-# last 7 days sales 
-class WeeklySalesView(APIView):
-    def get(self,request):
-        qs =Order.objects.filter(created_at__gte= now - \
-            timedelta(days=7)).aggregate(total_sum=Sum('total'))
-        return Response(qs)
+# # last 24 hours sales 
+# class Last24hoursSales(APIView):
+#     def get(self,request):
+#         qs = Order.objects.filter(created_at__gte= now - \
+#             timedelta(hours=24)).aggregate(total_sum=Sum('total'))
+#         return Response(qs)
     
 
-# last 30 days sales 
-class MonthlySasleView(APIView):
-    def get(self,request):
-        queryset = Order.objects.filter(created_at__gte= now - \
-            timedelta(days=30)).aggregate(total_sum=Sum('total'))
-        return Response(queryset)
+# # last 7 days sales 
+# class WeeklySalesView(APIView):
+#     def get(self,request):
+#         qs =Order.objects.filter(created_at__gte= now - \
+#             timedelta(days=7)).aggregate(total_sum=Sum('total'))
+#         return Response(qs)
+    
 
-# # last 6 month sales 
-month_ago = 6
-class HalfYearlySalesView(APIView):
-    def get(self,request):
-        queryset = Order.objects.filter(created_at__gte = now - \
-            timedelta(days=(month_ago * 365 / 12))).aggregate(total_sum=Sum('total'))
+# # last 30 days sales 
+# class MonthlySasleView(APIView):
+#     def get(self,request):
+#         queryset = Order.objects.filter(created_at__gte= now - \
+#             timedelta(days=30)).aggregate(total_sum=Sum('total'))
+#         return Response(queryset)
 
-        return Response(queryset)
+# # # last 6 month sales 
+# month_ago = 6
+# class HalfYearlySalesView(APIView):
+#     def get(self,request):
+#         queryset = Order.objects.filter(created_at__gte = now - \
+#             timedelta(days=(month_ago * 365 / 12))).aggregate(total_sum=Sum('total'))
 
-# yearly sales =1
-class YearlySalesView(APIView):
-    def get(self,request):
-        queryset = Order.objects.filter(created_at__gte = now - \
-            timedelta(days=365)).aggregate(total_sum=Sum('total'))
-        return Response(queryset)
+#         return Response(queryset)
+
+# # yearly sales =1
+# class YearlySalesView(APIView):
+#     def get(self,request):
+#         queryset = Order.objects.filter(created_at__gte = now - \
+#             timedelta(days=365)).aggregate(total_sum=Sum('total'))
+#         return Response(queryset)
 
