@@ -11,7 +11,9 @@ from revenue.views import (
 
 from revenue.filiter import (
     RevenueReports_View,
-    
+    last_24_hour_revenue,
+    weekly_revenue,
+   
 )
 
 
@@ -26,6 +28,8 @@ urlpatterns_revenue_reports = [
     
 ]
 urlpatterns_revenue_values = [ 
+    path('24/hours/revenue/',last_24_hour_revenue.as_view()),
+    path('weekly/revenue/',weekly_revenue.as_view()),
 ]
 
 urlpatterns += urlpatterns_revenue_reports
