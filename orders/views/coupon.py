@@ -33,6 +33,7 @@ class CouponView(generics.ListAPIView):
 class CouponSingleView(generics.RetrieveAPIView):
     queryset = Coupon.objects.all()
     serializer_class = CouponAPI
+    lookup_field = 'coupon_name'
 
 
 #  Create View 

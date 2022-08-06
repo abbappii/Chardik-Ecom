@@ -18,6 +18,7 @@ from orders.database.cart_order import (
 Coupon API serializers 
 '''
 class CouponAPI(serializers.ModelSerializer):
+    coupon_name = serializers.SlugField()
     class Meta:
         model = Coupon
         fields = [

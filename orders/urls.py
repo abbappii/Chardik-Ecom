@@ -33,7 +33,8 @@ urlpatterns =[]
 
 coupon_URL = [
     path('coupon/list/',CouponView.as_view()),
-    path('coupon/singleview/<int:pk>/',CouponSingleView.as_view()),
+    # path('coupon/singleview/<int:pk>/',CouponSingleView.as_view()),
+    path('coupon/singleview/<slug:coupon_name>/',CouponSingleView.as_view()),
     path('coupon/edit/<int:pk>/',CouponEditView.as_view()),
     path('coupon/create/',CouponCreateView.as_view()),
     path('coupon/delele/<int:pk>/',CouponDeleteView.as_view())
