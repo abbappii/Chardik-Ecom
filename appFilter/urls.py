@@ -91,12 +91,16 @@ products_URL = [
 ]
 
 sales_param_URL = [ 
-    path('sales/last-24-hours/', last_24_hour_list.as_view()),
-    path('sales/hourly/', hourly_View.as_view()),
-    path('sales/daily/', daily_view.as_view()),
-    path('sales/monthly/', monthly_View.as_view()),
-    path('sales/half/yearly/', half_yearly_View.as_view()),
-    path('sales/yearly/', yearly_View.as_view()),
+    path('sales/list/last-24-hours/', last_24_hour_list.as_view()),
+    path('sales/list/hourly/', hourly_View.as_view()),
+    path('sales/list/daily/', daily_view.as_view()),
+    path('sales/list/monthly/', monthly_View.as_view()),
+    path('sales/list/half-yearly/', half_yearly_View.as_view()),
+    path('sales/list/yearly/', yearly_View.as_view()),
+]
+
+sales_reports_URL = [
+    path('sales/totals/',SaleReports_View.as_view()),
 ]
 
 expence_URL = [ 
@@ -115,9 +119,6 @@ expence_date_total_URL = [
     path('expense/list/half-yearly/',half_yearly_expence_view.as_view()),
     path('expense/list/yearly/',yearly_expence_view.as_view()),
 
-]
-sales_reports_URL = [
-    path('sales/totals/',SaleReports_View.as_view()),
 ]
 
 
