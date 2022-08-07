@@ -24,3 +24,10 @@ class Discountproducts_list_view(generics.ListAPIView):
 class Discountproducts_Single_view(generics.RetrieveAPIView):
     queryset = Discounts_product.objects.filter(is_active=True)
     serializer_class = DiscountProductsListAPI
+
+
+# create view 
+
+class Discountproducts_Create_view(generics.CreateAPIView):
+    queryset = Discounts_product.objects.filter(is_active=True)
+    serializer_class = DiscountProductsSerailzers
