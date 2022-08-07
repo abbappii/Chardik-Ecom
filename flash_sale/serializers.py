@@ -33,7 +33,9 @@ class FlashSale_ProductAPI(serializers.ModelSerializer):
             'id',
             'flash_sale',
             'flash_product',
-            # 'flash_price',
+            'flash_discount',
+            'flash_price',
+
             # 'is_active'
             ]
 
@@ -48,6 +50,7 @@ class FlashSale_ProductAPI_show(serializers.ModelSerializer):
         fields = [
             'id',
             'flash_product',
+            'flash_discount',
             'flash_price',
             'is_active'
             ]
@@ -72,7 +75,6 @@ class FlashSale_API(serializers.ModelSerializer):
             'id',
             'flash_sale_ID',
             'name',
-            'discount',
             'start_time',
             'end_time',
             'products'
@@ -96,7 +98,6 @@ class FlashSale_API_func(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
-            'discount',
             'start_time',
             'end_time',
         ]
