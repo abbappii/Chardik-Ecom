@@ -91,33 +91,33 @@ products_URL = [
 ]
 
 sales_param_URL = [ 
-    path('list/24/hours/', last_24_hour_list.as_view()),
-    path('hourly/', hourly_View.as_view()),
-    path('daily/', daily_view.as_view()),
-    path('monthly/', monthly_View.as_view()),
-    path('half/yearly/', half_yearly_View.as_view()),
-    path('yearly/', yearly_View.as_view()),
+    path('sales/last-24-hours/', last_24_hour_list.as_view()),
+    path('sales/hourly/', hourly_View.as_view()),
+    path('sales/daily/', daily_view.as_view()),
+    path('sales/monthly/', monthly_View.as_view()),
+    path('sales/half/yearly/', half_yearly_View.as_view()),
+    path('sales/yearly/', yearly_View.as_view()),
 ]
 
 expence_URL = [ 
-    path('expence/last/hour/',HourlyExpenceView.as_view()),
-    path('expence/last/24/hour/',last_24_hours_ExpenceView.as_view()),
-    path('expence/weekly/',WeeklyExpenceView.as_view()),
-    path('expence/monthly/',MonthlyExpenceView.as_view()),
-    path('expence/half/yearly/',HalfYearlyExpenceView.as_view()),
-    path('expence/yearly/',YearlyExpenceView.as_view()),
+    path('expense/totals/last-hour/',HourlyExpenceView.as_view()),
+    path('expense/totals/last-24-hour/',last_24_hours_ExpenceView.as_view()),
+    path('expense/totals/weekly/',WeeklyExpenceView.as_view()),
+    path('expense/totals/monthly/',MonthlyExpenceView.as_view()),
+    path('expense/totals/half-yearly/',HalfYearlyExpenceView.as_view()),
+    path('expense/totals/yearly/',YearlyExpenceView.as_view()),
 ]
 expence_date_total_URL = [ 
-    path('expence/values/hour/',hourly_expence_view.as_view()),
-    path('expence/values/24/hours/',twenty_4_hours_expence_view.as_view()),
-    path('expence/values/daily/',daily_expence_view.as_view()),
-    path('expence/values/monthly/',monthly_expence_view.as_view()),
-    path('expence/values/half/yearly/',half_yearly_expence_view.as_view()),
-    path('expence/values/yearly/',yearly_expence_view.as_view()),
+    path('expense/list/hour/',hourly_expence_view.as_view()),
+    path('expense/list/24-hours/',twenty_4_hours_expence_view.as_view()),
+    path('expense/list/daily/',daily_expence_view.as_view()),
+    path('expense/list/monthly/',monthly_expence_view.as_view()),
+    path('expense/list/half-yearly/',half_yearly_expence_view.as_view()),
+    path('expense/list/yearly/',yearly_expence_view.as_view()),
 
 ]
 sales_reports_URL = [
-    path('sales/reports/',SaleReports_View.as_view()),
+    path('sales/totals/',SaleReports_View.as_view()),
 ]
 
 
