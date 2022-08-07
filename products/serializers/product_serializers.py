@@ -133,4 +133,6 @@ class ProductsSerializers(serializers.ModelSerializer):
     product_image = Product_imagesSerializer(many=True, read_only=True)
     class Meta:
         model= Products
-        fields = "__all__"
+        # fields = "__all__"
+        exclude = ['is_active','created_at','updated_at']
+       
