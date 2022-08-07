@@ -56,6 +56,10 @@ from products.views.feature_products_logic import (
     BannerListView,
 )
 
+from products.views.discount_product_logic import (
+    Discountproducts_list_view,
+)
+
 urlpatterns = []
 
 
@@ -120,9 +124,14 @@ urlpatterns_banner_products = [
     path("banner/product/list/", BannerListView.as_view()),
 ]
 
+urlpatterns_discount_products = [ 
+    path('discount/products/list/',Discountproducts_list_view.as_view()),
+]
+
 urlpatterns += urlpatterns_category
 urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
 urlpatterns += urlpatterns_productsReview
 urlpatterns += urlpatterns_slider
 urlpatterns += urlpatterns_banner_products
+urlpatterns += urlpatterns_discount_products
