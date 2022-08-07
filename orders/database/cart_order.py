@@ -81,7 +81,7 @@ class OrderItem(InitModels):
 class Order(InitModels):
     # cart  = models.OneToOneField(Cart,on_delete=models.CASCADE)
     customer = models.ForeignKey('accounts.Profile',on_delete=models.SET_NULL,null=True,
-        verbose_name="Customer")
+        verbose_name="Customer",related_name="orders")
 
     ref_code = models.CharField(max_length=255, null=True,blank=True, unique=True)
 
@@ -97,7 +97,7 @@ class Order(InitModels):
     coupon = models.ForeignKey('orders.Coupon',blank=True,null=True,
         on_delete=models.SET_NULL)
     ordered_date = models.DateTimeField(null=True)
-    items = models.ManyToManyField(OrderItem)
+    items = models.ManyToManyField(OrderItem,related_name='items')
     total = models.PositiveIntegerField()
     # discount = models.PositiveIntegerField()
 
