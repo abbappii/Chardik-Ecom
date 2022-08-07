@@ -58,6 +58,8 @@ from products.views.feature_products_logic import (
 
 from products.views.discount_product_logic import (
     Discountproducts_list_view,
+    Discountproducts_Single_view,
+
 )
 
 urlpatterns = []
@@ -126,6 +128,7 @@ urlpatterns_banner_products = [
 
 urlpatterns_discount_products = [ 
     path('discount/products/list/',Discountproducts_list_view.as_view()),
+    path('discount/products/single/view/<int:pk>/',Discountproducts_Single_view.as_view()),
 ]
 
 urlpatterns += urlpatterns_category
