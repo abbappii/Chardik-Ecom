@@ -12,9 +12,9 @@ class FlashSale(InitModels):
     name = models.CharField(
         max_length=500,null=True,verbose_name="Flash Sale Name",blank=True
         )
-    discount = models.PositiveIntegerField(
-        null=True,blank=True,verbose_name="Flash Discount"
-    )
+    # discount = models.PositiveIntegerField(
+    #     null=True,blank=True,verbose_name="Flash Discount"
+    # )
     start_time = models.DateTimeField(
         null=True,auto_created=False,verbose_name="Start Time"
         )
@@ -53,6 +53,9 @@ class FlashProducts(InitModels):
         'products.Products',on_delete=models.SET_NULL,
         null=True,verbose_name="Select Prodcut",related_name='flash_product'
         )
+    flash_discount = models.PositiveIntegerField(
+        null=True,blank=True,verbose_name="Flash Discount Percantage"
+    )
     flash_price = models.FloatField(null=True,blank=True)
 
 
