@@ -23,6 +23,11 @@ class RevenueReports_View(APIView):
             'last_24_hours':RevenueHistory.objects.filter(created_at__gte=now - \
             timedelta(hours=24)).\
                 aggregate(total=Sum('profits')), 
+
+            # daily revenue 
+            'daily': RevenueHistory.objects.filter(created_at__gte = \
+                now.date()).aggregate(total_sum=Sum('profits')),
+
             #last 7 days
             'weekly': RevenueHistory.objects.filter(created_at__gte= now - \
             timedelta(days=7)).aggregate(total_sum=Sum('profits')),
@@ -49,6 +54,11 @@ from .serializers import RevenueAPI
 # last 24 hours 
 class last_24_hour_revenue(generics.ListAPIView):
     queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(hours=24), is_active=True)
+    serializer_class = RevenueAPI
+
+# daily revenue 
+class daily_revenue(generics.ListAPIView):
+    queryset = RevenueHistory.objects.filter(created_at__gte=now.date(), is_active=True)
     serializer_class = RevenueAPI
 
 # weekly revenue 
