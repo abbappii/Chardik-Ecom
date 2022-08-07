@@ -31,3 +31,13 @@ class Discountproducts_Single_view(generics.RetrieveAPIView):
 class Discountproducts_Create_view(generics.CreateAPIView):
     queryset = Discounts_product.objects.filter(is_active=True)
     serializer_class = DiscountProductsSerailzers
+
+# # update view 
+# class Discountproducts_Update_view(generics.UpdateAPIView):
+#     queryset = Discounts_product.objects.filter(is_active=True)
+#     serializer_class = DiscountProductsSerailzers
+
+# delete view 
+class Discountproducts_Delete_view(generics.DestroyAPIView):
+    queryset = Discounts_product.objects.filter(is_active=True)
+    serializer_class = DiscountProductsSerailzers
