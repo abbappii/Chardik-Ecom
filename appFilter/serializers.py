@@ -5,6 +5,21 @@ from rest_framework import serializers
 
 # imporing models 
 from products.database.products import Products
+from inventory.models import (
+    Supplier
+)
+from accounts.models.profile import (
+    Profile
+)
+
+from inventory.serializer import (
+    PurchaseSerialiers,
+    
+)
+from orders.serializers import (
+    OrderAPI,
+    OrderViewAPI
+)
 
 from products.database.init_p import (
     Brand, Categories, Countreies
@@ -18,6 +33,7 @@ from products.serializers.product_serializers import (
     Product_imagesSerializer,
     ProductReviewListAPI
 )
+
 
 
 # Products API ENDpoint 
@@ -69,3 +85,39 @@ class CountryBaseAPI(serializers.ModelSerializer):
     class Meta:
         model = Countreies
         fields = ['id','name','country']
+
+
+
+'''
+Transection Filter 
+    - purchase by supplier
+    - selling by customer
+
+'''
+
+## purchase by supplier
+class Purchase_ofSupplier_API(serializers.ModelSerializer):
+    
+    purchase = PurchaseSerialiers(many=True)
+
+    class Meta:
+        model = Supplier
+        fields = [
+            'id',
+            'name',
+            'purchase'
+        ]
+
+
+## Seller transection 
+class Orders_of_CustomersAPI(serializers.ModelSerializer):
+
+    orders = OrderViewAPI(many=True)
+
+    class Meta:
+        model = Profile
+        fields = [
+            'id',
+            'full_name',
+            'orders'
+        ]

@@ -71,6 +71,7 @@ class OrderItemAPI(serializers.ModelSerializer):
                 'quantity','attr',
                 'is_order','amount_item'
                 ]
+        depth = 1
 
 
 ## Order API 
@@ -87,6 +88,22 @@ class OrderAPI(serializers.ModelSerializer):
                 'mobile','email','fast_delivery','created_at','payment_complete','updated_at'
                 ]
 
+
+
+## View orders API
+
+class OrderViewAPI(serializers.ModelSerializer):
+
+    items = OrderItemAPI(many=True,read_only=True)
+
+    class Meta:
+        model = Order
+        fields = ['id',
+                'ref_code','address_shipping','address_billing','coupon',
+                'ordered_date','items',
+                'total','order_status','is_order',
+                'mobile','email','fast_delivery','created_at','payment_complete','updated_at'
+                ]
 
 
 
