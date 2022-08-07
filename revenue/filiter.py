@@ -23,6 +23,11 @@ class RevenueReports_View(APIView):
             'last_24_hours':RevenueHistory.objects.filter(created_at__gte=now - \
             timedelta(hours=24)).\
                 aggregate(total=Sum('profits')), 
+
+            # daily revenue 
+            'daily': RevenueHistory.objects.filter(created_at__gte = \
+                now.date()).aggregate(total_sum=Sum('profits')),
+
             #last 7 days
             'weekly': RevenueHistory.objects.filter(created_at__gte= now - \
             timedelta(days=7)).aggregate(total_sum=Sum('profits')),
