@@ -111,7 +111,6 @@ expence_URL = [
     path('expense/totals/last-24-hour/',last_24_hours_ExpenceView.as_view()),
 
     path('expense/totals/daily/',daily_ExpenceView.as_view()),
-   
 
     path('expense/totals/weekly/',WeeklyExpenceView.as_view()),
     path('expense/totals/monthly/',MonthlyExpenceView.as_view()),
@@ -119,6 +118,7 @@ expence_URL = [
     path('expense/totals/yearly/',YearlyExpenceView.as_view()),
 ]
 expence_date_total_URL = [ 
+    
     path('expense/list/hour/',hourly_expence_view.as_view()),
     path('expense/list/24-hours/',twenty_4_hours_expence_view.as_view()),
     path('expense/list/daily/',daily_expence_view.as_view()),

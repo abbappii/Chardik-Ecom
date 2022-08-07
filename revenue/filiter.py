@@ -51,6 +51,11 @@ class last_24_hour_revenue(generics.ListAPIView):
     queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(hours=24), is_active=True)
     serializer_class = RevenueAPI
 
+# daily revenue 
+class daily_revenue(generics.ListAPIView):
+    queryset = RevenueHistory.objects.filter(created_at__gte=now.date(), is_active=True)
+    serializer_class = RevenueAPI
+
 # weekly revenue 
 class weekly_revenue(generics.ListAPIView):
     queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=7), is_active=True)
