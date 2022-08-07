@@ -7,6 +7,7 @@ from inventory.serializer import (
     )
 from rest_framework import generics
 
+from rest_framework.response import Response
 
 # Create your views here.
 '''
@@ -43,13 +44,10 @@ class PurchaseDeleteView(generics.DestroyAPIView):
 
 
 # Single Edit View 
-
-class PurchaseEditView(generics.UpdateAPIView):
+class PurchaseEditView(generics.RetrieveUpdateAPIView):
     queryset = Purchase.objects.all()
     serializer_class = PurchaseCreateSerializers
-
-
-
+   
 #### Due supplier view 
 class SupplierDue_ReportsView(generics.ListAPIView):
     queryset = Purchase.objects.filter(is_active=True).order_by('-created_at')
