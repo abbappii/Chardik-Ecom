@@ -31,6 +31,9 @@ from appFilter.views.expence_query import (
      
     HourlyExpenceView,
     last_24_hours_ExpenceView,
+    
+    daily_ExpenceView,
+
     WeeklyExpenceView,
     MonthlyExpenceView,
     HalfYearlyExpenceView,
@@ -106,6 +109,10 @@ sales_reports_URL = [
 expence_URL = [ 
     path('expense/totals/last-hour/',HourlyExpenceView.as_view()),
     path('expense/totals/last-24-hour/',last_24_hours_ExpenceView.as_view()),
+
+    path('expense/totals/daily/',daily_ExpenceView.as_view()),
+   
+
     path('expense/totals/weekly/',WeeklyExpenceView.as_view()),
     path('expense/totals/monthly/',MonthlyExpenceView.as_view()),
     path('expense/totals/half-yearly/',HalfYearlyExpenceView.as_view()),

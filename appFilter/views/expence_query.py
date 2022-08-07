@@ -32,6 +32,12 @@ class last_24_hours_ExpenceView(APIView):
         qs = Expenses.objects.filter(created_at__gte = now - timedelta(hours=24)).aggregate(last_24_hour=Sum('expence_amount'))
         return Response(qs)
 
+# daily expences 
+class daily_ExpenceView(APIView):
+    def get(self,request):
+        qs = Expenses.objects.filter(created_at__gte=now.date()).aggregate(daily=Sum('expence_amount'))
+        return Response(qs)
+
 
 '''
 last 7 days expences
