@@ -63,6 +63,12 @@ from appFilter.views.views_sales import (
     
     )
 
+from appFilter.views.dashboard import (
+    Purchase_ofSupplier_View,
+    Sale_of_CustomersView
+)
+
+
 urlpatterns = []
 
 
@@ -128,9 +134,16 @@ expence_date_total_URL = [
 
 ]
 
+dashboard_URL = [
+    path('purchase/supplier/',Purchase_ofSupplier_View.as_view()),
+    path('saling/customer/',Sale_of_CustomersView.as_view())
+]
+
+
 
 urlpatterns += sales_reports_URL
 urlpatterns += sales_param_URL
 urlpatterns += products_URL
 urlpatterns += expence_URL
 urlpatterns += expence_date_total_URL
+urlpatterns += dashboard_URL
