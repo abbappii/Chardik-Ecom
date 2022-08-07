@@ -14,6 +14,9 @@ from products.database.reviews import (
 from products.database.feature_product import (
     Banner,BannerProduct
 )
+from products.database.discount_products import (
+    Discounts_product
+)
 
 admin.site.register(Categories)
 admin.site.register(Sub_Categories)
@@ -39,3 +42,9 @@ admin.site.register(Slider,SliderAdmin)
 # admin.site.register(ColorVariation)
 # admin.site.register(SizeVariation)
 # admin.site.register(WeightVariation)
+
+
+class DiscountProductsAdmin(admin.ModelAdmin):
+    list_display = ['id','discount_product','price','is_active']
+
+admin.site.register(Discounts_product,DiscountProductsAdmin)
