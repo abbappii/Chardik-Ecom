@@ -52,7 +52,7 @@ class PurchaseEditView(generics.UpdateAPIView):
 
 #### Due supplier view 
 class SupplierDue_ReportsView(generics.ListAPIView):
-    queryset = Purchase.objects.filter(is_active=True)
+    queryset = Purchase.objects.filter(is_active=True).order_by('-created_at')
     serializer_class = SupplierDueReportsAPI
 
 # supplier due delte view 
