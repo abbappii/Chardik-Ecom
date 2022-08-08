@@ -29,7 +29,7 @@ class SaleReports_View(APIView):
         return Response({
 
             # daily sale 
-            'daily_sale':Order.objects.filter(order_status="Completed",created_at=now.date()).\
+            'daily_sale':Order.objects.filter(order_status="Completed",created_at__gte=now.date()).\
                 aggregate(total=Sum('total')),
 
             # hourly sale 
