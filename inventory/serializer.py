@@ -67,14 +67,16 @@ class PurchaseCreateSerializers(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
 
-       instance.payment_status = validated_data.get('payment_status',instance.payment_status)
-       instance.due_price = validated_data.get('due_price', instance.due_price)
 
-       if instance.payment_status == 'Paid':
-          instance.due_price = 0
-          print('hudai')
-          return instance
-        
+        instance.payment_status = validated_data.get('payment_status',instance.payment_status)
+        instance.due_price = validated_data.get('due_price', instance.due_price)
+
+        if instance.payment_status == 'Paid':
+            instance.due_price = 0
+            print('hudai')
+            return instance
+        else:
+            return instance
 '''
 Define Supplier DUE Reports 
 '''
