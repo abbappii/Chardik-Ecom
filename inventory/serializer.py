@@ -73,9 +73,11 @@ class PurchaseCreateSerializers(serializers.ModelSerializer):
 
         if instance.payment_status == 'Paid':
             instance.due_price = 0
-            print('hudai')
+            # print('hudai')
+            instance.save()
             return instance
         else:
+            instance.save()
             return instance
 '''
 Define Supplier DUE Reports 
