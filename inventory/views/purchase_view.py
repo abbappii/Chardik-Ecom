@@ -44,7 +44,7 @@ class PurchaseDeleteView(generics.DestroyAPIView):
 
 
 # Single Edit View 
-class PurchaseEditView(generics.UpdateAPIView):
+class PurchaseEditView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Purchase.objects.all()
     serializer_class = PurchaseCreateSerializers
    
