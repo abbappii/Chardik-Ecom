@@ -85,7 +85,9 @@ class OrderAPI(serializers.ModelSerializer):
                 'ref_code','address_shipping','address_billing','coupon',
                 'ordered_date','items',
                 'total','order_status','is_order',
-                'mobile','email','fast_delivery','created_at','payment_complete','updated_at'
+                'mobile','email','fast_delivery','created_at',
+                'payment_complete','updated_at',
+                'user_device','user_browser'
                 ]
 
 
@@ -102,7 +104,8 @@ class OrderViewAPI(serializers.ModelSerializer):
                 'ref_code','address_shipping','address_billing','coupon',
                 'ordered_date','items',
                 'total','order_status','is_order',
-                'mobile','email','fast_delivery','created_at','payment_complete','updated_at'
+                'mobile','email','fast_delivery','created_at','payment_complete','updated_at',
+                'user_device','user_browser'
                 ]
 
 
