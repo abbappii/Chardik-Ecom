@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from orders.database.cart_order import Order
-from orders.serializers import OrderSerializer, OrderAPI
+from orders.serializers import  OrderAPI, OrderSerializer
 from django.db.models import Sum
 
 from datetime import datetime, timedelta
@@ -47,31 +47,31 @@ from rest_framework import generics
 # last 24 hours 
 class last_24_hour_list(generics.ListAPIView):
     queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(hours=24), is_active=True)
-    serializer_class = OrderAPI
+    serializer_class = OrderSerializer
 
 # hourly 
 class hourly_View(generics.ListAPIView):
     queryset = Order.objects.filter( order_status="Completed", created_at__gte = datetime.now() - timedelta(hours=1), is_active=True)
-    serializer_class = OrderAPI
+    serializer_class = OrderSerializer
 
 # daily 
 class daily_view(generics.ListAPIView):
     queryset = Order.objects.filter( order_status="Completed", created_at__gte=now.date(), is_active=True )
-    serializer_class = OrderAPI
+    serializer_class = OrderSerializer
 
 # # monthly 
 class monthly_View(generics.ListAPIView):
     queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days=30), is_active=True)
-    serializer_class = OrderAPI
+    serializer_class = OrderSerializer
 
 # # half yearly 
 class half_yearly_View(generics.ListAPIView):
     queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days = 6 * 365 /12 ), is_active=True)
-    serializer_class = OrderAPI
+    serializer_class = OrderSerializer
 
 # # yearly 
 class yearly_View(generics.ListAPIView):
     queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days = 365 ), is_active=True)
-    serializer_class = OrderAPI
+    serializer_class = OrderSerializer
 
     
