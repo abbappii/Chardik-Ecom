@@ -98,6 +98,11 @@ class Order(InitModels):
         on_delete=models.SET_NULL)
     ordered_date = models.DateTimeField(null=True)
     items = models.ManyToManyField(OrderItem,related_name='items')
+
+    # shippng fee, discount fix price 
+    shipping_fee = models.PositiveIntegerField(default=0)
+    discount_price = models.PositiveIntegerField(default=0)
+    
     total = models.PositiveIntegerField()
     # discount = models.PositiveIntegerField()
 
@@ -112,6 +117,9 @@ class Order(InitModels):
     # new add delivery status 
     fast_delivery = models.BooleanField(default=False)
 
+    # order from 
+    order_from = models.CharField(max_length=255,null=True, blank=True)
+    
     user_device = models.CharField(max_length=255, null=True,blank=True)
     user_browser = models.CharField(max_length=255, null=True,blank=True)
 
