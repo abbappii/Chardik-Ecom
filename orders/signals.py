@@ -6,21 +6,22 @@ from orders.database.cart_order import Order
 
 from utils.util import Util
 
-from django.utils import timezone
-now = timezone.now()
+from MainApplication.scripts.ref_code import (
+    unique_refID_generate
+)
 
-@receiver(post_save,sender=Order)
-def points_count(sender,instance, created,*args,**kwargs):
-    if created:
-        points_gained = Util.points_calculate(instance.total)
+# @receiver(post_save,sender=Order)
+# def points_count(sender,instance, created,*args,**kwargs):
+#     if created:
+#         points_gained = Util.points_calculate(instance.total)
 
-        try:
-            profile = instance.customer
-            profile.points_gained += points_gained
-            profile.save()
+#         try:
+#             profile = instance.customer
+#             profile.points_gained += points_gained
+#             profile.save()
 
-        except Exception as e:
-            pass
+#         except Exception as e:
+#             pass
 
 
 
@@ -45,3 +46,18 @@ def coupon_count(sender, instance, *args, **kwargs):
 
     except Exception as e:
         print(e)
+
+
+'''
+Creating auto generated ref code 
+'''
+
+@receiver(post_save,sender=Order)
+def Create_ref_code(sender,instance,created,*args,**kwargs):
+    try:
+        if created:
+            instance.ref_code = unique_refID_generate(instance)
+            instance.save()
+    except Exception as e:
+        print(e)
+
