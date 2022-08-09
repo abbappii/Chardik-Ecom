@@ -9,9 +9,12 @@ from inventory.bank_serializer.expence_serializers import ExpenceListSerializers
 from django.db.models import Sum
 
 from datetime import datetime, timedelta
-from django.utils import timezone
-now = timezone.now()
+# from django.utils import timezone
+# now = timezone.now()
 
+import datetime
+date = datetime.date.today()
+now = datetime.datetime.today()
 
 '''
 hourly expences
@@ -35,7 +38,7 @@ class last_24_hours_ExpenceView(APIView):
 # daily expences 
 class daily_ExpenceView(APIView):
     def get(self,request):
-        qs = Expenses.objects.filter(created_at__gte=now.date()).aggregate(daily=Sum('expence_amount'))
+        qs = Expenses.objects.filter(created_at__gte = date).aggregate(daily=Sum('expence_amount'))
         return Response(qs)
 
 

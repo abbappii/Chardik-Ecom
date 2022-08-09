@@ -21,7 +21,9 @@ o Weekly sales
 o Monthly sales
 '''
 
-now = timezone.now()
+import datetime
+date = datetime.date.today()
+now = datetime.datetime.today()
 
 class SaleReports_View(APIView):
     
@@ -29,11 +31,11 @@ class SaleReports_View(APIView):
         return Response({
 
             # daily sale 
-            'daily_sale':Order.objects.filter(order_status="Completed",created_at__gte=now.date()).\
+            'daily_sale':Order.objects.filter(order_status="Completed",created_at__gte= date).\
                 aggregate(total=Sum('total')),
 
             # hourly sale 
-            'hourly_sale':Order.objects.filter(order_status="Completed",created_at__gte=datetime.now() - \
+            'hourly_sale':Order.objects.filter(order_status="Completed",created_at__gte= now - \
             timedelta(hours=1)).aggregate(total=Sum('total')),
             
             # 24 hours sale
