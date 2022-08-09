@@ -34,6 +34,7 @@ from orders.serializers import (
     CustomerOrdersViewAdminSerializer,
 )
 from rest_framework.decorators import permission_classes
+from MainApplication.scripts.phone_SMS_settings import SMS_for_Phone_Message
 
 ## Order Item added 
 class AddOrderItem(GenericAPIView):
@@ -73,9 +74,16 @@ class OrderView(GenericAPIView):
     def post(self,request):
         user = request.user.profile
         add_user = Order(customer=user)
+        # phone = request.data.get('mobile')
+        # print(phone)
         apifetch = OrderAPI(add_user,data=request.data)
         if apifetch.is_valid():
             apifetch.save()
+
+            phone = apifetch.validated_data['mobile']
+            message = f"Your order received successfuly"
+            SMS_for_Phone_Message(phone,message).start()
+
             return Response(
                 apifetch.data,
                 # {'success':'Order is Updated'},
