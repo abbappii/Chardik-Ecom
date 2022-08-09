@@ -52,11 +52,13 @@ def coupon_count(sender, instance, *args, **kwargs):
 Creating auto generated ref code 
 '''
 
+import datetime 
+
 @receiver(post_save,sender=Order)
 def Create_ref_code(sender,instance,created,*args,**kwargs):
     try:
         if created:
-            instance.ref_code = unique_refID_generate(instance)
+            instance.ref_code = f"CH_{''.join(e for e in datetime.date.today() if e.isalnum())}_{instance.id}"
             instance.save()
     except Exception as e:
         print(e)
