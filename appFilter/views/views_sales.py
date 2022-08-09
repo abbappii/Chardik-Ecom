@@ -6,9 +6,13 @@ from orders.database.cart_order import Order
 from orders.serializers import  OrderAPI, OrderSerializer
 from django.db.models import Sum
 
-from datetime import datetime, timedelta
-from django.utils import timezone
-now = timezone.now()
+from datetime import timedelta
+# from django.utils import timezone
+# now = timezone.now()
+import datetime
+date = datetime.date.today()
+now = datetime.datetime.today()
+
 
 # class passParams(APIView):
 #     def get(self,request, *args, **kwargs):
@@ -51,12 +55,15 @@ class last_24_hour_list(generics.ListAPIView):
 
 # hourly 
 class hourly_View(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at__gte = datetime.now() - timedelta(hours=1), is_active=True)
+    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(hours=1), is_active=True)
     serializer_class = OrderSerializer
 
 # daily 
+
 class daily_view(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at__gte=now.date(), is_active=True )
+    queryset = Order.objects.filter( order_status="Completed", created_at = date, is_active=True )
+    # print('todays date is: ',date)
+    # print(now)
     serializer_class = OrderSerializer
 
 # # monthly 
