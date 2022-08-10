@@ -61,7 +61,7 @@ class hourly_View(generics.ListAPIView):
 # daily 
 
 class daily_view(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at_gte = date, is_active=True )
+    queryset = Order.objects.filter( order_status="Completed", created_at__gte = date, is_active=True )
     # print('todays date is: ',date)
     # print(now)
     serializer_class = OrderSerializer

@@ -64,6 +64,9 @@ from products.views.discount_product_logic import (
     Discountproducts_Delete_view,
 )
 
+from products.views.damage_products_logic import (
+    AddDamageProductsView
+)
 urlpatterns = []
 
 
@@ -138,6 +141,11 @@ urlpatterns_discount_products = [
 
 ]
 
+urlpatterns_damage_products = [ 
+    path('damage/add/', AddDamageProductsView.as_view()),
+
+]
+
 urlpatterns += urlpatterns_category
 urlpatterns += urlpatterns_product
 urlpatterns += urlpatterns_brand_countries
@@ -145,3 +153,5 @@ urlpatterns += urlpatterns_productsReview
 urlpatterns += urlpatterns_slider
 urlpatterns += urlpatterns_banner_products
 urlpatterns += urlpatterns_discount_products
+
+urlpatterns += urlpatterns_damage_products
