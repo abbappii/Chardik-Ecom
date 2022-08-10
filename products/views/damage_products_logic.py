@@ -8,7 +8,7 @@ This file contains
 '''
 
 # importing from rest framework section  
-from pydoc import getpager
+from rest_framework import status
 from rest_framework import generics
 from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
@@ -20,6 +20,11 @@ from products.database.damage_products import (
 
 from products.database.products import (
     Products
+)
+
+from products.serializers.damage_pro_serializers import (
+    DamageProductsAPI,
+    DamageProductsSerializers
 )
 
 class AddDamageProductsView(GenericAPIView):
@@ -44,3 +49,45 @@ class AddDamageProductsView(GenericAPIView):
 
             list_products_item.append(add_item.id)
         return Response(list_products_item)
+    
+
+# damage product create logic 
+
+class DamageProductsView(GenericAPIView):
+    queryset = DamageProducts.objects.all()
+    serializer_class = DamageProductsSerializers
+
+    def post(self,request):
+
+        data = request.data
+        serializer = DamageProductsSerializers(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                serializer.data,
+                status=status.HTTP_201_CREATED
+                )
+        else:
+            return Response(serializer.errors)  
+        
+# damage products list view 
+class DamageProductsListView(generics.ListAPIView):
+    queryset = DamageProducts.objects.all()
+    serializer_class = DamageProductsAPI 
+
+# update view 
+class DamageProductsUpdateView(generics.UpdateAPIView):
+    queryset = DamageProducts.objects.all()
+    serializer_class = DamageProductsSerializers
+
+# delete view 
+class DamageProductsDeleteeView(generics.DestroyAPIView):
+    queryset = DamageProducts.objects.all()
+    serializer_class = DamageProductsSerializers
+
+# delete view 
+class DamageProductsSingleView(generics.RetrieveAPIView):
+    queryset = DamageProducts.objects.all()
+    serializer_class = DamageProductsAPI
+
+
