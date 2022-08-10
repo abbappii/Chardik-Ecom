@@ -21,7 +21,7 @@ from products.serializers.product_serializers import (
 
 #ProductsView
 class ProductListViewSet(generics.ListAPIView):
-    queryset = Products.objects.prefetch_related('product_image','reviews')
+    queryset = Products.objects.prefetch_related('product_image','reviews').order_by('-created_at')
     serializer_class = ProductListAPI
 
 # class ProductListViewSet(generics.ListAPIView):
