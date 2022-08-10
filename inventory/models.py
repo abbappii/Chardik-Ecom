@@ -3,6 +3,7 @@ This file contaisn the Database layout of
     Inventory Management 
 '''
 
+from ensurepip import version
 from django.db import models
 from accounts.models.initials import InitModels
 from decimal import Decimal
@@ -14,14 +15,57 @@ Supplier models
 '''
 
 class Supplier(InitModels):
-    name = models.CharField(
+    supplier_name = models.CharField(
         max_length=200,
         null=True,
         verbose_name="Supplier Name"
         )
+    owner_contact = models.CharField(
+        max_length=20,
+        null=True, 
+        blank=True,
+        verbose_name="Owner Contact"
+        )
+    address = models.TextField(null=True, verbose_name="Address")
     email = models.EmailField(null=True, blank=True)
-    phone = models.CharField(max_length=20, null=True, blank=True)
 
+    manager_name = models.CharField(
+        max_length=250, null=True, 
+        blank=True, verbose_name="Manager Name"
+        )
+    manager_number = models.CharField(
+        max_length=20, null=True, 
+        blank=True, verbose_name="Manager Number"
+        )
+    bin_number = models.CharField(
+        max_length=50,null = True, 
+        blank=True, verbose_name="Bin Number"
+        )
+    trade_licence_number = models.CharField(
+        max_length=50,null = True, 
+        blank=True, verbose_name="Trade Licence"
+        )
+    warehouse_contact = models.CharField(
+        max_length=20,null = True, 
+        blank=True, verbose_name="Warehouse Number"
+        )
+
+    bank_number =  models.CharField(
+        max_length=100,null = True, 
+        blank=True, verbose_name="Bank Number"
+        )
+    branch =  models.CharField(
+        max_length=100, null=True, 
+        blank=True, verbose_name="Branch Name"
+        )
+    routhing_number = models.CharField(
+        max_length=100,null = True, 
+        blank=True, verbose_name="Routing Number"
+        )
+    swift_code = models.CharField(
+        max_length=50,null = True, 
+        blank=True, verbose_name="Swift Code"
+        )
     description = models.TextField(null=True,verbose_name="Description")
     address = models.TextField(null=True, verbose_name="Address")
     country = models.CharField(
@@ -32,7 +76,7 @@ class Supplier(InitModels):
         )
 
     def __str__(self):
-        return self.name
+        return self.supplier_name
 
     class Meta:
         verbose_name_plural = "Supplier List" 
