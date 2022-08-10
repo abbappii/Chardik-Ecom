@@ -17,6 +17,9 @@ from products.database.feature_product import (
 from products.database.discount_products import (
     Discounts_product
 )
+from products.database.damage_products import (
+    DamageProducts,AddDamageProduct
+)
 
 admin.site.register(Categories)
 admin.site.register(Sub_Categories)
@@ -48,3 +51,14 @@ class DiscountProductsAdmin(admin.ModelAdmin):
     list_display = ['id','discount_product','price','is_active']
 
 admin.site.register(Discounts_product,DiscountProductsAdmin)
+
+# damage products add admin 
+class DamageProductsAddAdmin(admin.ModelAdmin):
+    lsit_display =  ['id','quantity','loss_per_unit','is_active']
+admin.site.register(AddDamageProduct,DamageProductsAddAdmin)
+
+# damage prodcts list 
+class DamageProductsAdmin(admin.ModelAdmin):
+    lsit_display =  ['id','ref','total_loss','is_active']
+admin.site.register(DamageProducts,DamageProductsAdmin)
+
