@@ -6,9 +6,6 @@ from orders.database.cart_order import Order
 
 from utils.util import Util
 
-from MainApplication.scripts.ref_code import (
-    unique_refID_generate
-)
 
 # @receiver(post_save,sender=Order)
 # def points_count(sender,instance, created,*args,**kwargs):
@@ -58,7 +55,8 @@ import datetime
 def Create_ref_code(sender,instance,created,*args,**kwargs):
     try:
         if created:
-            instance.ref_code = f"CH_{''.join(e for e in datetime.date.today() if e.isalnum())}_{instance.id}"
+            instance.ref_code = \
+                 f"CH_{''.join(e for e in datetime.date.today() if e.isalnum())}_{instance.id}"
             instance.save()
     except Exception as e:
         print(e)

@@ -103,6 +103,8 @@ class Order(InitModels):
     shipping_fee = models.PositiveIntegerField(default=0)
     discount_price = models.PositiveIntegerField(default=0)
     
+    subtotal =models.PositiveIntegerField(default=0)
+
     total = models.PositiveIntegerField()
     # discount = models.PositiveIntegerField()
 
