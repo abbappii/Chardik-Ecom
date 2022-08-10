@@ -11,7 +11,7 @@ Expence serilizers
 class ExpenceSerializers(serializers.ModelSerializer):
     class Meta:
         model = Expenses
-        fields = ['id','name','outlet','reference','account','expence_amount','type','description']
+        fields = ['id','name','outlet','reference','date','account','expence_amount','type','description']
     
  
 '''
@@ -21,7 +21,7 @@ Expence serializers
 class ExpenceListSerializers(serializers.ModelSerializer):
     class Meta:
         model = Expenses
-        fields = ['id','name','outlet','reference','account','expence_amount','type','description','created_at']
+        fields = ['id','name','outlet','reference','date','account','expence_amount','type','description','created_at']
         depth = 1
  
 
