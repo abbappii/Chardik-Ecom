@@ -65,7 +65,13 @@ from products.views.discount_product_logic import (
 )
 
 from products.views.damage_products_logic import (
-    AddDamageProductsView
+    AddDamageProductsView,
+    DamageProductsView,
+    DamageProductsListView,
+    DamageProductsUpdateView,
+    DamageProductsDeleteeView,
+    DamageProductsSingleView
+
 )
 urlpatterns = []
 
@@ -144,6 +150,12 @@ urlpatterns_discount_products = [
 urlpatterns_damage_products = [ 
     path('damage/add/', AddDamageProductsView.as_view()),
 
+    path('damage/products/create/', DamageProductsView.as_view()),
+    path('damage/products/list/',DamageProductsListView.as_view()), 
+    path('damage/products/single/view/<int:pk>/',DamageProductsSingleView.as_view()),
+    path('damage/products/update/<int:pk>/',DamageProductsUpdateView.as_view()), 
+    path('damage/products/delete/<int:pk>/',DamageProductsDeleteeView.as_view()), 
+    
 ]
 
 urlpatterns += urlpatterns_category
