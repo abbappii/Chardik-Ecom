@@ -50,35 +50,35 @@ from rest_framework import generics
 
 # last 24 hours 
 class last_24_hour_list(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(hours=24), is_active=True)
-    serializer_class = OrderSerializer
+    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(hours=24), is_active=True).order_by('-created_at')
+    serializer_class = OrderSerializer 
 
 # hourly 
 class hourly_View(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(hours=1), is_active=True)
+    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(hours=1), is_active=True).order_by('-created_at')
     serializer_class = OrderSerializer
 
 # daily 
 
 class daily_view(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at__gte = date, is_active=True )
+    queryset = Order.objects.filter( order_status="Completed", created_at__gte = date, is_active=True ).order_by('-created_at')
     # print('todays date is: ',date)
     # print(now)
     serializer_class = OrderSerializer
 
 # # monthly 
 class monthly_View(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days=30), is_active=True)
+    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days=30), is_active=True).order_by('-created_at')
     serializer_class = OrderSerializer
 
 # # half yearly 
 class half_yearly_View(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days = 6 * 365 /12 ), is_active=True)
+    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days = 6 * 365 /12 ), is_active=True).order_by('-created_at')
     serializer_class = OrderSerializer
 
 # # yearly 
 class yearly_View(generics.ListAPIView):
-    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days = 365 ), is_active=True)
+    queryset = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days = 365 ), is_active=True).order_by('-created_at')
     serializer_class = OrderSerializer
 
     
