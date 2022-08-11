@@ -4,5 +4,6 @@ from revenue.models import (
 )
 
 # Register your models here.
-
-admin.site.register(RevenueHistory)
+class radmin(admin.ModelAdmin):
+    list_display = ['id']
+admin.site.register(RevenueHistory, radmin)

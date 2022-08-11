@@ -190,7 +190,7 @@ class Products(InitModels):
             quantity = self.product_quantity - self.stock_count
             return quantity
 
-
+    
 
 
 
