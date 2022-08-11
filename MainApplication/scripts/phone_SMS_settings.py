@@ -37,7 +37,7 @@ class SMS_of_Phone_Verification(threading.Thread):
             otp = random.randint(111111, 999999)
             url = f"http://66.45.237.70/api.php?username={phone_OTP_Username}&\
                 password={phone_OTP_Password}&number=88{self.number}&\
-                message=Your Charidike.com OTP is {otp}"
+                message=Your Chardike.com OTP is {otp}"
 
             payload  = {}
             
