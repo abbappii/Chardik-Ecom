@@ -50,14 +50,18 @@ Creating auto generated ref code
 '''
 
 import datetime 
+# date = datetime.date.today()
+# s_date=str(date)
 
 @receiver(post_save,sender=Order)
 def Create_ref_code(sender,instance,created,*args,**kwargs):
-    try:
-        if created:
+
+    if created:
+        try:
             instance.ref_code = \
-                 f"CH_{''.join(e for e in datetime.date.today() if e.isalnum())}_{instance.id}"
+                 f"CH{''.join(e for e in str(datetime.date.today()) if e.isalnum())}{instance.id}" 
+            print(instance.ref_code)
             instance.save()
-    except Exception as e:
-        print(e)
+        except Exception as e:
+            print(e)
 
