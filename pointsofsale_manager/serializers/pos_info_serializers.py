@@ -22,6 +22,9 @@ class OrderAPI_POS(serializers.ModelSerializer):
         fields = ['id','customer',
                 'ref_code','address_shipping','address_billing','coupon',
                 'ordered_date','items',
+                'shipping_fee','discount_price',
+                'subtotal',
+                'order_from',
                 'total','order_status','is_order',
                 'mobile','email','fast_delivery'
                 ]
