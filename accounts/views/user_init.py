@@ -187,7 +187,7 @@ class SendSMS(GenericAPIView):
     def get(self,request):
         phone = "01764343654"
         # number = f"88{phone}"
-        phone_message = f"Charidike.com says \n Hi Shahrier ,cholen Turkey Jai"
+        phone_message = f"Chardike.com says \n "
         SMS_for_Phone_Message(phone,phone_message).start()
         return Response({'Success':'Send'})
 
