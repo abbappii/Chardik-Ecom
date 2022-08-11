@@ -15,7 +15,7 @@ Supplier models
 '''
 
 class Supplier(InitModels):
-    supplier_name = models.CharField(
+    name = models.CharField(
         max_length=200,
         null=True,
         verbose_name="Supplier Name"
@@ -76,7 +76,7 @@ class Supplier(InitModels):
         )
 
     def __str__(self):
-        return self.supplier_name
+        return self.name
 
     class Meta:
         verbose_name_plural = "Supplier List" 
