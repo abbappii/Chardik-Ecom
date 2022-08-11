@@ -9,7 +9,10 @@ from django.utils import timezone
 from django.db.models import Sum
 from datetime import timedelta
 
-now = timezone.now()
+# now = timezone.now()
+import datetime
+date = datetime.date.today()
+now = datetime.datetime.today()
 
 class RevenueReports_View(APIView):
     
@@ -26,7 +29,7 @@ class RevenueReports_View(APIView):
 
             # daily revenue 
             'daily': RevenueHistory.objects.filter(created_at__gte = \
-                now.date()).aggregate(total_sum=Sum('profits')),
+               date).aggregate(total_sum=Sum('profits')),
 
             #last 7 days
             'weekly': RevenueHistory.objects.filter(created_at__gte= now - \
