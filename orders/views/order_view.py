@@ -83,7 +83,7 @@ class OrderView(GenericAPIView):
             apifetch.save()
 
             phone = apifetch.validated_data['mobile']
-            message = f"Your Chardike.com order received successfuly"
+            message = f"You have successfully created order at Chardike.com"
             SMS_for_Phone_Message(phone,message).start()
 
             return Response(
