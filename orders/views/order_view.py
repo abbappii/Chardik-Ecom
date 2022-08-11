@@ -126,7 +126,7 @@ class OrderSingleView(generics.RetrieveAPIView):
 
 # admin view of custommer orders 
 class orderviewofcustomerAdminview(generics.ListAPIView):
-    queryset = Order.objects.filter(is_active=True) 
+    queryset = Order.objects.filter(is_active=True).order_by('-created_at') 
     serializer_class = CustomerOrdersViewAdminSerializer
     permission_classes = [IsAdmin]
 
