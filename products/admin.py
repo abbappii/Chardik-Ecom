@@ -54,11 +54,11 @@ admin.site.register(Discounts_product,DiscountProductsAdmin)
 
 # damage products add admin 
 class DamageProductsAddAdmin(admin.ModelAdmin):
-    lsit_display =  ['id','quantity','loss_per_unit','is_active']
+    list_display =  ['id','quantity','loss_per_unit','is_active']
 admin.site.register(AddDamageProduct,DamageProductsAddAdmin)
 
 # damage prodcts list 
 class DamageProductsAdmin(admin.ModelAdmin):
-    lsit_display =  ['id','ref','total_loss','is_active']
+    list_display =  ['id','ref','total_loss','is_active']
 admin.site.register(DamageProducts,DamageProductsAdmin)
 

@@ -60,7 +60,7 @@ class AddOrderItem(GenericAPIView):
             get_product = Products.objects.get(id=add_item.item_id)
             # print(get_product)
             get_product.sold_count += int(item['quantity'])
-            print("sold count:",get_product.sold_count)
+            # print("sold count:",get_product.sold_count)
             get_product.stock_count += int(item['quantity'])
             get_product.save()
 
