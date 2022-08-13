@@ -119,21 +119,21 @@ def payment_success(request):
         return Response(response) 
 
 
-# @api_view(['POST'])
-# @csrf_exempt 
-# def refund_request(request):
+@api_view(['POST'])
+@csrf_exempt 
+def refund_request(request):
 
-#     settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
-#     sslcommez = SSLCOMMERZ(settings)
+    settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
+    sslcommez = SSLCOMMERZ(settings)
 
-#     if request.method == 'POST' or request.method == 'post':
-#         data = request.POST
-#         print(data)
-#         bank_tran_id = data['bank_tran_id']
+    if request.method == 'POST' or request.method == 'post':
+        data = request.POST
+        print(data)
+        bank_tran_id = data['bank_tran_id']
 
-#         refund_amount = '5.50'
-#         refund_remarks = 'out of stock'
+        refund_amount =  data['refund_amount']
+        refund_remarks = data['refund_remarks']
 
-#         response = sslcommez.init_refund(bank_tran_id,refund_amount,refund_remarks)
-
-#         return Response(response)
+        response = sslcommez.init_refund(bank_tran_id,refund_amount,refund_remarks)
+        print(response)
+        return Response(response)
