@@ -1,4 +1,5 @@
 
+from urllib import response
 from MainApplication import settings
 store_id = settings.store_id
 api_key = settings.Api_key
@@ -115,4 +116,24 @@ def payment_success(request):
 
         response = sslcommez.hash_validate_ipn(post_body)
         print(response)
-        return Response(response)
+        return Response(response) 
+
+
+# @api_view(['POST'])
+# @csrf_exempt 
+# def refund_request(request):
+
+#     settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
+#     sslcommez = SSLCOMMERZ(settings)
+
+#     if request.method == 'POST' or request.method == 'post':
+#         data = request.POST
+#         print(data)
+#         bank_tran_id = data['bank_tran_id']
+
+#         refund_amount = '5.50'
+#         refund_remarks = 'out of stock'
+
+#         response = sslcommez.init_refund(bank_tran_id,refund_amount,refund_remarks)
+
+#         return Response(response)
