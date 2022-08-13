@@ -22,7 +22,8 @@ from accounts.views.user_init import (
     UserProfileView, SendSMS,
     VerifyOTP,
     ForgetPassword__with__Phone,ChangePasswordInstant, 
-    UserProfileList
+    UserProfileList,
+    ProfileSingle_view
 )
 
 from accounts.views.billing_address import (
@@ -50,6 +51,7 @@ user_URL = [
     path('forget/password/phone/',ForgetPassword__with__Phone.as_view()),
     path('change/password/',ChangePasswordInstant.as_view()),
     path('profile/list/',UserProfileList.as_view()),
+    path('profile/single/view/<int:pk>/',ProfileSingle_view.as_view()),
 ]
 
 permission_URL =[
