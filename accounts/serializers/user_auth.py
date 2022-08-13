@@ -62,6 +62,7 @@ class UserProfileListSeriliazer(serializers.ModelSerializer):
         model = Profile
         # fields= ['id', 'user','full_name', 'phone']
         fields = "__all__"
+        depth = 1
 
 
 
