@@ -137,3 +137,19 @@ def refund_request(request):
         response = sslcommez.init_refund(bank_tran_id,refund_amount,refund_remarks)
         print(response)
         return Response(response)
+
+
+@api_view(['POST'])
+@csrf_exempt 
+def refund_status(request):
+
+    settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
+    sslcommez = SSLCOMMERZ(settings)
+
+    if request.method == 'POST' or request.method == 'post':
+        data = request.POST
+
+        refund_ref_id = data['refund_ref_id']
+        response = sslcommez.query_refund_status(refund_ref_id)
+        print(response)
+        return Response(response)
