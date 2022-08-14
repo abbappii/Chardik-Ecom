@@ -82,3 +82,7 @@ class yearly_View(generics.ListAPIView):
     serializer_class = OrderSerializer
 
     
+# all completed sales list 
+class sales_all(generics.ListAPIView):
+    queryset = Order.objects.filter( order_status="Completed",is_active=True).order_by('-created_at')
+    serializer_class = OrderSerializer

@@ -169,6 +169,11 @@ REDOC_SETTINGS = {
 #     'http://localhost:3000',
 # )
 
+
+store_id = 'techd62f54d1f0091c'
+Api_key = 'techd62f54d1f0091c@ssl'
+
+
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000",
 # ]

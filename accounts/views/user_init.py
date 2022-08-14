@@ -322,3 +322,15 @@ User profile list view
 class UserProfileList(generics.ListAPIView):
     queryset = Profile.objects.all()
     serializer_class = UserProfileListSeriliazer
+
+
+# profile single view 
+class ProfileSingle_view(generics.RetrieveAPIView):
+    queryset = Profile.objects.filter(is_active=True)
+    serializer_class = UserProfileListSeriliazer
+
+    def get(self,request, pk):
+        profile = Profile.objects.get(id=pk)
+        serializer = UserProfileListSeriliazer(profile)
+        return Response(serializer.data)
+

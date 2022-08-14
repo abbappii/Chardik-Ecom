@@ -59,7 +59,8 @@ from appFilter.views.views_sales import (
     daily_view,
     monthly_View,
     half_yearly_View,
-    yearly_View
+    yearly_View,
+    sales_all
     
     )
 
@@ -110,6 +111,7 @@ sales_param_URL = [
 
 sales_reports_URL = [
     path('sales/totals/',SaleReports_View.as_view()),
+    path('sales-all/',sales_all.as_view()),
 ]
 
 expence_URL = [ 
