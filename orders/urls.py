@@ -42,7 +42,7 @@ coupon_URL = [
 
 order_URL = [
     path('order/',OrderView.as_view(),name="order_url"),
-    path('add/item/',AddOrderItem.as_view()),
+    path('add/item/',AddOrderItem.as_view(),name='add_to_cart'),
 
     path('list/',OrderListview.as_view()),
     path('update/<int:pk>/',OrderUpdateView.as_view()),

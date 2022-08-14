@@ -27,21 +27,16 @@ class payment(APIView):
         sslcommez = SSLCOMMERZ(settings)
 
         customer = request.user.profile
-        order = Order.objects.filter(customer=customer, payment_complete=False)
-        total_amount = 0
-        for t in order:
-            total_amount += t.total
-        # total_amont = order.total
-        # print(total_amount)
-        tran_id = unique_tran_id_generate
+        order = Order.objects.filter(customer=customer, payment_complete=False).last()
 
-        # for item in order.items:
-        #     p_name = item.item.product_name
+        total_amount = order.total
+        print(total_amount)
+        tran_id = unique_tran_id_generate
 
         reverse_url1 = request.build_absolute_uri(reverse('success_payment'))
 
-        reverse_url2 = request.build_absolute_uri(reverse('order_url'))
-        reverse_url3 = request.build_absolute_uri(reverse('order_url'))
+        reverse_url2 = request.build_absolute_uri(reverse('success_payment'))
+        reverse_url3 = request.build_absolute_uri(reverse('success_payment'))
 
         post_body = {}
         post_body['total_amount'] = total_amount
