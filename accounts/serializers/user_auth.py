@@ -54,7 +54,7 @@ class UserProfileSeriliazer(serializers.ModelSerializer):
         model = Profile
         # fields = '__all__'
         fields= ['id', 'full_name','dob','gender','bio','profile_picture','address','city','zipcode','country',
-        'phone']
+        'phone','points_gained']
 
 # User Profile list serializers 
 class UserProfileListSeriliazer(serializers.ModelSerializer):
