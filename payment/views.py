@@ -12,6 +12,7 @@ from sslcommerz_lib import SSLCOMMERZ
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework import status
 
 from orders.database.cart_order import Order
 from MainApplication.scripts.pay import unique_tran_id_generate
@@ -114,7 +115,7 @@ def payment_success(request):
 
         response = sslcommez.hash_validate_ipn(post_body)
         # print(response)
-        return Response(response) 
+        return Response(response, status=status.HTTP_200_OK) 
 
 
 @api_view(['POST'])
