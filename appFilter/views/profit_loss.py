@@ -78,11 +78,42 @@ class profit_loss_yesterday(APIView):
         # }
         return Response({
                 
-                'orders_daily':qs1,
-                'Purchase_daily':qs2,
-                'Expenses_daily':qs3,
-                'damage_daily':qs4
+                'orders_yesterday':qs1,
+                'Purchase_yesterday':qs2,
+                'Expenses_yesterday':qs3,
+                'damage_yesterday':qs4
                 })
 
 
+# weekly profit loss report  
+
+class profit_loss_weekly(APIView):
+    def get(self,request): 
+        qs1 = Order.objects.filter( order_status="Completed", created_at__gte = now - timedelta(days=7),
+             is_active=True ).order_by('-created_at').values()
+        # s1 = OrderSerializer(qs1).data
+
+        qs2 = Purchase.objects.filter(is_active=True, created_at__gte = now - timedelta(days=7)).\
+            order_by('created_at').values()
+        # s2 = PurchaseSerialiers(qs2).data
+
+        qs3 = Expenses.objects.filter(is_active=True, created_at__gte = now - timedelta(days=7)).\
+            order_by('-created_at').values()
+        # s3 = ExpenceListSerializers(qs3).data
+
+        qs4 = DamageProducts.objects.filter(is_active=True, created_at__gte = now - timedelta(days=7)).\
+            order_by('-created_at').values()
+        # s4 = DamageProductsAPI(qs4).data
+
+        # dict  = {
+        #     's1':s1,
+        #     's2':s2,
+        # }
+        return Response({
+                
+                'orders_weekly':qs1,
+                'Purchase_weekly':qs2,
+                'Expenses_weekly':qs3,
+                'damage_weekly':qs4
+                })
 
