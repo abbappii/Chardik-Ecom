@@ -53,8 +53,8 @@ Order api serializers
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        # fields = "__all__"
-        fields = ['id']
+        fields = "__all__"
+        # fields = ['id']
         depth = 2
 
 
@@ -89,7 +89,7 @@ class OrderAPI(serializers.ModelSerializer):
                 'subtotal',
                 'order_from',
                 'total','order_status','is_order',
-                'mobile','email','fast_delivery','created_at',
+                'mobile','email','created_at',
                 'payment_complete','updated_at',
                 'user_device','user_browser'
                 ]
@@ -108,7 +108,7 @@ class OrderViewAPI(serializers.ModelSerializer):
                 'ref_code','address_shipping','address_billing','coupon',
                 'ordered_date','items',
                 'total','order_status','is_order',
-                'mobile','email','fast_delivery','created_at','payment_complete','updated_at',
+                'mobile','email','created_at','payment_complete','updated_at',
                 'user_device','user_browser'
                 ]
 

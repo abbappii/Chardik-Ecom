@@ -115,6 +115,8 @@ class Order(InitModels):
 
     order_status = models.CharField(max_length=100,choices=ORDER_STATUS,
         default="Pending")
+
+    fast_delivery = models.BooleanField(default=False)
     payment_method = models.CharField(max_length=100,choices=ORDER_PAY_METHOD,
         default="Cash on Delivery")
 
