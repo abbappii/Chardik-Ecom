@@ -39,7 +39,12 @@ ORDER_PAY_METHOD = (
     ("SSL Commerz", "SSL Commerz"),
 )
 
-
+DELIVERY_OPTIONS = (
+    ('Dhaka Fast Delivery','Dhaka Fast Delivery'),
+    ('Dhaka Slow Delivery','Dhaka Slow Delivery'),
+    ('Cash On Delivery', 'Cash On Delivery'),
+    ('Sundarban', 'Sundarban'),
+)
 
 
 
@@ -76,7 +81,7 @@ class OrderItem(InitModels):
 
     class Meta:
         verbose_name_plural =  "Order Item"
-    
+
 
 class Order(InitModels):
     # cart  = models.OneToOneField(Cart,on_delete=models.CASCADE)
@@ -116,8 +121,9 @@ class Order(InitModels):
     payment_complete = models.BooleanField(default=False)
     is_order = models.BooleanField(default=False,null=True)
     
-    # new add delivery status 
-    fast_delivery = models.BooleanField(default=False)
+    # new add delivery options   
+    delivery_option = models.CharField(max_length=255,choices=DELIVERY_OPTIONS,
+        default="Cash On Delivery")
 
     # order from 
     order_from = models.CharField(max_length=255,null=True, blank=True)
