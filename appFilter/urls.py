@@ -70,7 +70,12 @@ from appFilter.views.dashboard import (
 )
 
 from appFilter.views.profit_loss import (
-    profit_loss_daily
+    profit_loss_daily,
+    profit_loss_yesterday,
+    profit_loss_weekly,
+    profit_loss_monthly,
+    profit_loss_half_yearly,
+    profit_loss_yearly,
 )
 
 urlpatterns = []
@@ -145,7 +150,13 @@ dashboard_URL = [
 ]
 
 urlpatterns_profit_loss = [ 
-    path('profit/loss/daily/',profit_loss_daily.as_view()),  
+    path('profit-loss/daily/',profit_loss_daily.as_view()),  
+    path('profit-loss/yesterday/',profit_loss_yesterday.as_view()),
+    path('profit-loss/weekly/',profit_loss_weekly.as_view()),
+    path('profit-loss/monthly/',profit_loss_monthly.as_view()),
+    path('profit-loss/half-yearly/',profit_loss_half_yearly.as_view()),
+    path('profit-loss/yearly/',profit_loss_yearly.as_view()),
+    
 ]
 
 urlpatterns += sales_reports_URL
