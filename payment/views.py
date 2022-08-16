@@ -4,8 +4,6 @@ from MainApplication import settings
 store_id = settings.store_id
 api_key = settings.Api_key
 
-from django.http import HttpResponse
-
 from sslcommerz_lib import SSLCOMMERZ 
 
 
@@ -64,7 +62,7 @@ class payment(APIView):
         post_body['product_profile'] = "physical"
 
         response = sslcommez.createSession(post_body)
-        return Response(response)
+        return Response(response, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -135,7 +133,7 @@ def refund_request(request):
 
         response = sslcommez.init_refund(bank_tran_id,refund_amount,refund_remarks)
         # print(response)
-        return Response(response)
+        return Response(response, status=status.HTTP_200_OK)
 
 
 @api_view(['POST'])
@@ -151,4 +149,4 @@ def refund_status(request):
         refund_ref_id = data['refund_ref_id']
         response = sslcommez.query_refund_status(refund_ref_id)
         # print(response)
-        return Response(response)
+        return Response(response, status=status.HTTP_200_OK)
