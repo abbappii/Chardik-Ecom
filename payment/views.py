@@ -35,8 +35,8 @@ class payment(APIView):
 
         reverse_url1 = request.build_absolute_uri(reverse('success_payment'))
 
-        reverse_url2 = request.build_absolute_uri(reverse('success_payment'))
-        reverse_url3 = request.build_absolute_uri(reverse('success_payment'))
+        reverse_url2 = request.build_absolute_uri(reverse('order_url'))
+        reverse_url3 = request.build_absolute_uri(reverse('order_url'))
 
         post_body = {}
         post_body['total_amount'] = total_amount
@@ -113,7 +113,7 @@ def payment_success(request):
         post_body['risk_title'] = payment_data['risk_title']
 
         response = sslcommez.hash_validate_ipn(post_body)
-        print(response)
+        # print(response)
         return Response(response) 
 
 
@@ -133,7 +133,7 @@ def refund_request(request):
         refund_remarks = data['refund_remarks']
 
         response = sslcommez.init_refund(bank_tran_id,refund_amount,refund_remarks)
-        print(response)
+        # print(response)
         return Response(response)
 
 
@@ -149,5 +149,5 @@ def refund_status(request):
 
         refund_ref_id = data['refund_ref_id']
         response = sslcommez.query_refund_status(refund_ref_id)
-        print(response)
+        # print(response)
         return Response(response)
