@@ -65,3 +65,18 @@ def Create_ref_code(sender,instance,created,*args,**kwargs):
         except Exception as e:
             print(e)
 
+
+'''
+This logic works for order status completed message
+'''
+from MainApplication.scripts.phone_SMS_settings import SMS_for_Phone_Message
+
+@receiver(post_save,sender=Order)
+def Create_ref_code(sender,instance,created,*args,**kwargs):
+
+    if not created and instance.order_status == 'Completed':
+        phone = instance.mobile
+        message = f"Your payment completed Successfully  at Chardike.com"
+        SMS_for_Phone_Message(phone,message).start()
+    else:
+        pass
