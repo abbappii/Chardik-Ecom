@@ -38,6 +38,10 @@ class payment(APIView):
         reverse_url3 = request.build_absolute_uri(reverse('order_url'))
 
         post_body = {}
+
+        post_body['a'] = order.id
+        post_body['b'] = customer.id
+
         post_body['total_amount'] = total_amount
         post_body['currency'] = "BDT"
         post_body['tran_id'] = tran_id
@@ -62,6 +66,7 @@ class payment(APIView):
         post_body['product_profile'] = "physical"
 
         response = sslcommez.createSession(post_body)
+        print(response)
         return Response(response, status=status.HTTP_200_OK)
 
 
