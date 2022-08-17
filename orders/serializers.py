@@ -88,7 +88,7 @@ class OrderAPI(serializers.ModelSerializer):
                 'shipping_fee','discount_price',
                 'subtotal',
                 'order_from',
-                'total','order_status','is_order',
+                'total','order_status','is_order','delivery_option',
                 'mobile','email','created_at',
                 'payment_complete','updated_at',
                 'user_device','user_browser'
@@ -107,7 +107,7 @@ class OrderViewAPI(serializers.ModelSerializer):
         fields = ['id',
                 'ref_code','address_shipping','address_billing','coupon',
                 'ordered_date','items',
-                'total','order_status','is_order',
+                'total','order_status','is_order','delivery_option',
                 'mobile','email','created_at','payment_complete','updated_at',
                 'user_device','user_browser'
                 ]

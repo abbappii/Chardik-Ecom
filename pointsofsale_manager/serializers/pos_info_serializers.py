@@ -25,6 +25,6 @@ class OrderAPI_POS(serializers.ModelSerializer):
                 'shipping_fee','discount_price',
                 'subtotal',
                 'order_from',
-                'total','order_status','is_order',
+                'total','order_status','is_order','delivery_option',
                 'mobile','email','fast_delivery'
                 ]
