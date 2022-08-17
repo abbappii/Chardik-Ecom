@@ -22,7 +22,9 @@ from rest_framework.decorators import api_view
 
 class payment(APIView):
     def get(self, request, format = None):
-       
+        settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
+        sslcommez = SSLCOMMERZ(settings)
+
         customer = request.user.profile
         order = Order.objects.filter(customer=customer, payment_complete=False).last()
 
@@ -71,9 +73,6 @@ class payment(APIView):
 @api_view(['POST'])
 @csrf_exempt 
 def payment_success(request):
-
-    settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
-    sslcommez = SSLCOMMERZ(settings)
 
     if request.method == 'POST' or request.method == 'post':
         payment_data = request.POST
