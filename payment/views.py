@@ -22,9 +22,7 @@ from rest_framework.decorators import api_view
 
 class payment(APIView):
     def get(self, request, format = None):
-        settings = { 'store_id': store_id, 'store_pass': api_key, 'issandbox': True }
-        sslcommez = SSLCOMMERZ(settings)
-
+       
         customer = request.user.profile
         order = Order.objects.filter(customer=customer, payment_complete=False).last()
 
@@ -39,8 +37,8 @@ class payment(APIView):
 
         post_body = {}
 
-        post_body['a'] = order.id
-        post_body['b'] = customer.id
+        post_body['value_a'] = order.id
+        post_body['value_b'] = customer.id
 
         post_body['total_amount'] = total_amount
         post_body['currency'] = "BDT"
@@ -80,45 +78,17 @@ def payment_success(request):
     if request.method == 'POST' or request.method == 'post':
         payment_data = request.POST
 
-        post_body = {}
-        post_body['tran_id'] =  payment_data['tran_id']
-        post_body['val_id'] =  payment_data['val_id']
-        post_body['amount'] = payment_data['amount']
-        post_body['card_type'] = payment_data['card_type']
-        post_body['store_amount'] = payment_data['store_amount']
-        post_body['card_no'] = payment_data['card_no']
-        post_body['bank_tran_id'] = payment_data['bank_tran_id']
-        post_body['status'] = payment_data['status']
-        post_body['tran_date'] = payment_data['tran_date']
+        print(payment_data['value_a'])
+       
+        # order id 
+        order_id = payment_data['value_a']
+        order = Order.objects.get(id=order_id)
+        print(order)
+        order.payment_complete = True 
+        order.save()
+        
 
-        post_body['error'] = payment_data['error']
-
-        post_body['currency'] = payment_data['currency']
-        post_body['card_issuer'] = payment_data['card_issuer']
-        post_body['card_brand'] = payment_data['card_brand']
-
-        post_body['card_sub_brand'] = payment_data['card_sub_brand']
-
-        post_body['card_issuer_country'] = payment_data['card_issuer_country']
-        post_body['card_issuer_country_code'] = payment_data['card_issuer_country_code']
-        post_body['store_id'] = payment_data['store_id']
-        post_body['verify_sign'] = payment_data['verify_sign']
-        post_body['verify_key'] = payment_data['verify_key']
-        post_body['verify_sign_sha2'] = payment_data['verify_sign_sha2']
-        post_body['currency_type'] = payment_data['currency_type']
-        post_body['currency_amount'] = payment_data['currency_amount']
-        post_body['currency_rate'] = payment_data['currency_rate']
-        post_body['base_fair'] = payment_data['base_fair']
-        post_body['value_a'] = payment_data['value_a']
-        post_body['value_b'] = payment_data['value_b']
-        post_body['value_c'] = payment_data['value_c']
-        post_body['value_d'] = payment_data['value_d']
-        post_body['risk_level'] = payment_data['risk_level']
-        post_body['risk_title'] = payment_data['risk_title']
-
-        response = sslcommez.hash_validate_ipn(post_body)
-        # print(response)
-        return Response(response, status=status.HTTP_200_OK) 
+        return Response(payment_data, status=status.HTTP_200_OK) 
 
 
 @api_view(['POST'])
