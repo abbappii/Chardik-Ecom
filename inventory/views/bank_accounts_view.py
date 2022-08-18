@@ -74,7 +74,7 @@ class AllBankAccountTotalMoneyView(APIView):
 
 # list view 
 class DepositWithdrawListView(generics.ListAPIView):
-    queryset = DepositWithdraw.objects.all()
+    queryset = DepositWithdraw.objects.filter(is_active=True).order_by('-created_at')
     serializer_class = DepositWithdrawList
 
 
