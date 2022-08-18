@@ -22,7 +22,7 @@ class CartProduct(InitModels):
 
 ORDER_STATUS = (
     ("Pending","Pending"),
-    ("Received", "Received"),
+    ("Confirmed", "Confirmed"),
     ("Shipped", "Shipped"),
 
     ("On Hold", "On Hold"),
