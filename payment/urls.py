@@ -7,4 +7,5 @@ urlpatterns = [
     path('pay/success/', payment_success, name='success_payment'),
     path('refund/', refund_request, name='refund_request'),
     path('refund/status/',refund_status, name='refund_status'),
+    path('failed/', failed, name='pay_failed'),
 ]
