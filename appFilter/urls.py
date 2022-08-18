@@ -74,7 +74,7 @@ from appFilter.views.profit_loss import (
     profit_loss_daily_report,
     profit_loss_yesterday_report,
     profit_loss_weekly_report,
-
+    profit_loss_monthly_report,
 )
 
 urlpatterns = []
@@ -152,6 +152,7 @@ urlpatterns_profit_loss = [
     path('profit-loss/daily/', profit_loss_daily_report.as_view()),
     path('profit-loss/yesterday/', profit_loss_yesterday_report.as_view()),
     path('profit-loss/weekly/', profit_loss_weekly_report.as_view()),
+    path('profit-loss/monthly/',profit_loss_monthly_report.as_view()),
 
     
     
