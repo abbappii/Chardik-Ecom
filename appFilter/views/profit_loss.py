@@ -45,10 +45,10 @@ class profit_loss_daily(APIView):
         # }
         return Response({
                 
-                'orders_daily':qs1,
-                'Purchase_daily':qs2,
-                'Expenses_daily':qs3,
-                'damage_daily':qs4
+                'orders':qs1,
+                'Purchase':qs2,
+                'Expenses':qs3,
+                'damage':qs4
                 })
         # return Response(dict)
 
@@ -70,10 +70,10 @@ class profit_loss_yesterday(APIView):
         
         return Response({
                 
-                'orders_yesterday':qs1,
-                'Purchase_yesterday':qs2,
-                'Expenses_yesterday':qs3,
-                'damage_yesterday':qs4
+                'orders':qs1,
+                'Purchase':qs2,
+                'Expenses':qs3,
+                'damage':qs4
                 })
 
 
@@ -95,10 +95,10 @@ class profit_loss_weekly(APIView):
         
         return Response({
                 
-                'orders_weekly':qs1,
-                'Purchase_weekly':qs2,
-                'Expenses_weekly':qs3,
-                'damage_weekly':qs4
+                'orders':qs1,
+                'Purchase':qs2,
+                'Expenses':qs3,
+                'damage':qs4
                 })
 
 
@@ -119,10 +119,10 @@ class profit_loss_monthly(APIView):
        
         return Response({
                 
-                'orders_monthly':qs1,
-                'Purchase_monthly':qs2,
-                'Expenses_monthly':qs3,
-                'damage_monthly':qs4
+                'orders':qs1,
+                'Purchase':qs2,
+                'Expenses':qs3,
+                'damage':qs4
                 })
 
     
@@ -144,10 +144,10 @@ class profit_loss_half_yearly(APIView):
       
         return Response({
                 
-                'orders_half_yearly':qs1,
-                'Purchase_half_yearly':qs2,
-                'Expenses_half_yearly':qs3,
-                'damage_half_yearly':qs4
+                'orders':qs1,
+                'Purchase':qs2,
+                'Expenses':qs3,
+                'damage':qs4
                 })
 
 
@@ -170,8 +170,8 @@ class profit_loss_yearly(APIView):
         
         return Response({
                 
-                'orders_yearly':qs1,
-                'Purchase_yearly':qs2,
-                'Expenses_yearly':qs3,
-                'damage_yearly':qs4
+                'orders':qs1,
+                'Purchase':qs2,
+                'Expenses':qs3,
+                'damage':qs4
                 })

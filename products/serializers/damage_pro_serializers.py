@@ -25,7 +25,7 @@ class DamageProductsAPI(serializers.ModelSerializer):
             'updated_at',
             'is_active'
         ]
-        depth = 1
+        depth = 2
 
 
 
