@@ -1,3 +1,4 @@
+from urllib.request import HTTPPasswordMgr
 from django.shortcuts import render
 from django.http import HttpResponse
 from MainApplication import settings
@@ -94,7 +95,8 @@ def payment_success(request):
         order.save()    
 
         # return Response(payment_data, status=status.HTTP_200_OK) 
-        return render(request, 'index.html')
+        return Response({"Payment success": "Your Payment Success"}, status=status.HTTP_200_OK) 
+        # return HttpResponse("Your Pymen Success")
 
 
 
@@ -137,4 +139,5 @@ def refund_status(request):
 @api_view(['POST'])    
 @csrf_exempt
 def failed(request):
-    return render(request, 'failed.html')
+    return Response({"Payment Failed": "Your Payment Failed"}, status=status.HTTP_406_NOT_ACCEPTABLE) 
+   
