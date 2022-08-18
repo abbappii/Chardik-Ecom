@@ -1,5 +1,5 @@
-
-from urllib import response
+from django.shortcuts import render
+from django.http import HttpResponse
 from MainApplication import settings
 store_id = settings.store_id
 api_key = settings.Api_key
@@ -40,8 +40,8 @@ class payment(APIView):
 
         reverse_url1 = request.build_absolute_uri(reverse('success_payment'))
 
-        reverse_url2 = request.build_absolute_uri(reverse('order_url'))
-        reverse_url3 = request.build_absolute_uri(reverse('order_url'))
+        reverse_url2 = request.build_absolute_uri(reverse('pay_failed'))
+        reverse_url3 = request.build_absolute_uri(reverse('pay_failed'))
 
         post_body = {}
 
@@ -72,8 +72,9 @@ class payment(APIView):
         post_body['product_profile'] = "physical"
 
         response = sslcommez.createSession(post_body)
-        print(response)
+        # print(response)
         return Response(response, status=status.HTTP_200_OK)
+        
 
 
 @api_view(['POST'])
@@ -90,10 +91,11 @@ def payment_success(request):
         order = Order.objects.get(id=order_id)
         print(order)
         order.payment_complete = True 
-        order.save()
-        
+        order.save()    
 
-        return Response(payment_data, status=status.HTTP_200_OK) 
+        # return Response(payment_data, status=status.HTTP_200_OK) 
+        return render(request, 'index.html')
+
 
 
 @api_view(['POST'])
@@ -130,3 +132,9 @@ def refund_status(request):
         response = sslcommez.query_refund_status(refund_ref_id)
         # print(response)
         return Response(response, status=status.HTTP_200_OK)
+
+
+@api_view(['POST'])    
+@csrf_exempt
+def failed(request):
+    return render(request, 'failed.html')
