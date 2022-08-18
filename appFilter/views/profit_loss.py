@@ -258,3 +258,42 @@ class profit_loss_yesterday_report(APIView):
 
         })
 
+
+
+class profit_loss_weekly_report(APIView):
+
+    def get(self,request):
+
+        order = Order.objects.filter(order_status="Completed", is_active=True,created_at__gte = now - timedelta(days=1)).values()
+        purchase = Purchase.objects.filter(is_active=True,created_at__gte =now - timedelta(days=7)).values()
+        expence = Expenses.objects.filter(is_active=True, created_at__gte =now - timedelta(days=7)).values()
+        damage = DamageProducts.objects.filter(is_active=True, created_at__gte =now - timedelta(days=7)).values()
+
+        order_total = order.aggregate(total=Sum('total'))
+        order_count = order.count()
+
+        purchase_total = purchase.aggregate(total=Sum('price'))
+        purchase_count = purchase.count()
+        purchase_due = purchase.aggregate(due=Sum('due_price'))
+
+        expence_total = expence.aggregate(total=Sum('expence_amount'))
+        expence_count = expence.count()
+
+        damage_total = damage.aggregate(total=Sum('total_loss'))
+        damage_count = damage.count()
+
+        return Response({
+            'order_total': order_total,
+            'order_count': order_count,
+
+            'expence': expence_total,
+            'count': expence_count,
+
+            'damage_total': damage_total,
+            'damage_count': damage_count,
+
+            'purchase_total': purchase_total,
+            'purchase_count': purchase_count,
+            'purchase_due':purchase_due,
+
+        })
