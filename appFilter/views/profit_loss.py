@@ -219,7 +219,7 @@ class profit_loss_daily_report(APIView):
 
 
 
-
+# yesterday profit loss reports
 class profit_loss_yesterday_report(APIView):
 
     def get(self,request):
@@ -259,7 +259,7 @@ class profit_loss_yesterday_report(APIView):
         })
 
 
-
+# weekly profit loss reports 
 class profit_loss_weekly_report(APIView):
 
     def get(self,request):
@@ -299,7 +299,7 @@ class profit_loss_weekly_report(APIView):
         })
 
 
-
+# monthly profit loss reports 
 class profit_loss_monthly_report(APIView):
 
     def get(self,request):
@@ -338,7 +338,7 @@ class profit_loss_monthly_report(APIView):
 
         })
 
-
+# half yearly profit loss reports 
 class profit_loss_half_yearly_report(APIView):
 
     def get(self,request):
@@ -378,7 +378,7 @@ class profit_loss_half_yearly_report(APIView):
         })
 
 
-
+# yearly profit loss reports 
 class profit_yearly_report(APIView):
 
     def get(self,request):

@@ -158,11 +158,6 @@ urlpatterns_profit_loss = [
     path('profit-loss/monthly/',profit_loss_monthly_report.as_view()),
     path('profit-loss/half-yearly/',profit_loss_half_yearly_report.as_view()),
     path('profit-loss/yearly/',profit_yearly_report.as_view()),
-
-    
-
-    
-    
 ]
 
 urlpatterns += sales_reports_URL
