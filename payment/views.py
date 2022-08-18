@@ -95,7 +95,7 @@ def payment_success(request):
         order.save()    
 
         # return Response(payment_data, status=status.HTTP_200_OK) 
-        return Response({"Payment success": "Your Payment Success"}, status=status.HTTP_200_OK) 
+        return Response({"Your Payment Success"}, status=status.HTTP_200_OK) 
         # return HttpResponse("Your Pymen Success")
 
 
@@ -139,5 +139,5 @@ def refund_status(request):
 @api_view(['POST'])    
 @csrf_exempt
 def failed(request):
-    return Response({"Payment Failed": "Your Payment Failed"}, status=status.HTTP_406_NOT_ACCEPTABLE) 
+    return Response({"Payment Failed"}, status=status.HTTP_406_NOT_ACCEPTABLE) 
    
