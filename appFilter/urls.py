@@ -70,12 +70,14 @@ from appFilter.views.dashboard import (
 )
 
 from appFilter.views.profit_loss import (
-    profit_loss_daily,
-    profit_loss_yesterday,
-    profit_loss_weekly,
-    profit_loss_monthly,
-    profit_loss_half_yearly,
-    profit_loss_yearly,
+    
+    profit_loss_daily_report,
+    profit_loss_yesterday_report,
+    profit_loss_weekly_report,
+    profit_loss_monthly_report,
+    profit_loss_half_yearly_report,
+    profit_yearly_report,
+
 )
 
 urlpatterns = []
@@ -113,7 +115,7 @@ sales_param_URL = [
     path('sales/list/hourly/', hourly_View.as_view()),
     path('sales/list/daily/', daily_view.as_view()),
     path('sales/list/monthly/', monthly_View.as_view()),
-    path('sales/list/half-yearly/', half_yearly_View.as_view()),
+    path('sales/list/half-yearly/', half_yearly_View.as_view()), 
     path('sales/list/yearly/', yearly_View.as_view()),
 ]
 
@@ -150,13 +152,12 @@ dashboard_URL = [
 ]
 
 urlpatterns_profit_loss = [ 
-    path('profit-loss/daily/',profit_loss_daily.as_view()),  
-    path('profit-loss/yesterday/',profit_loss_yesterday.as_view()),
-    path('profit-loss/weekly/',profit_loss_weekly.as_view()),
-    path('profit-loss/monthly/',profit_loss_monthly.as_view()),
-    path('profit-loss/half-yearly/',profit_loss_half_yearly.as_view()),
-    path('profit-loss/yearly/',profit_loss_yearly.as_view()),
-    
+    path('profit-loss/daily/', profit_loss_daily_report.as_view()),
+    path('profit-loss/yesterday/', profit_loss_yesterday_report.as_view()),
+    path('profit-loss/weekly/', profit_loss_weekly_report.as_view()),
+    path('profit-loss/monthly/',profit_loss_monthly_report.as_view()),
+    path('profit-loss/half-yearly/',profit_loss_half_yearly_report.as_view()),
+    path('profit-loss/yearly/',profit_yearly_report.as_view()),
 ]
 
 urlpatterns += sales_reports_URL
