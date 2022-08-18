@@ -39,7 +39,7 @@ def pathao_view(request):
 # # Get  Refresh Token
 @api_view(['POST'])
 def pathao_refresh_token(request):
-    pathao_accesstoken_api='http://127.0.0.1:8000/courier/pathao/'
+    pathao_accesstoken_api='https://oyster-app-7ulvb.ondigitalocean.app/courier/pathao/'
     pathao_api_accesstoken_response=requests.post(pathao_accesstoken_api)
     pathao_api_accesstoken_response_json=pathao_api_accesstoken_response.json()
    
@@ -73,7 +73,7 @@ def pathao_refresh_token(request):
 @api_view(['GET'])
 def pathao_get_cites(request):
 
-    pathao_accesstoken_api='http://127.0.0.1:8000/courier/pathao/'
+    pathao_accesstoken_api='https://oyster-app-7ulvb.ondigitalocean.app/courier/pathao/'
     pathao_api_accesstoken_response=requests.post(pathao_accesstoken_api)
     pathao_api_accesstoken_response_json=pathao_api_accesstoken_response.json()
     
@@ -94,7 +94,7 @@ def pathao_get_cites(request):
 @api_view(['GET'])
 def pathao_get_zone(request):
 
-    pathao_accesstoken_api='http://127.0.0.1:8000/courier/pathao/'
+    pathao_accesstoken_api='https://oyster-app-7ulvb.ondigitalocean.app/courier/pathao/'
     pathao_api_accesstoken_response=requests.post(pathao_accesstoken_api)
     pathao_api_accesstoken_response_json=pathao_api_accesstoken_response.json()
    
@@ -116,7 +116,7 @@ def pathao_get_zone(request):
 @api_view(['GET'])
 def pathao_get_area(request):
 
-    pathao_accesstoken_api='http://127.0.0.1:8000/courier/pathao/'
+    pathao_accesstoken_api='https://oyster-app-7ulvb.ondigitalocean.app/courier/pathao/'
     pathao_api_accesstoken_response=requests.post(pathao_accesstoken_api)
     pathao_api_accesstoken_response_json=pathao_api_accesstoken_response.json()
 
@@ -150,7 +150,7 @@ def pathao_create_store(request):
 
 
 
-    pathao_accesstoken_api='http://127.0.0.1:8000/courier/pathao/'
+    pathao_accesstoken_api='https://oyster-app-7ulvb.ondigitalocean.app/courier/pathao/'
     pathao_api_accesstoken_response=requests.post(pathao_accesstoken_api)
     pathao_api_accesstoken_response_json=pathao_api_accesstoken_response.json()
     
@@ -180,7 +180,7 @@ def pathao_create_store(request):
     # # Get  Store
 @api_view(['GET'])
 def pathao_get_store(request):
-    pathao_accesstoken_api='http://127.0.0.1:8000/courier/pathao/'
+    pathao_accesstoken_api='https://oyster-app-7ulvb.ondigitalocean.app/courier/pathao/'
     pathao_api_accesstoken_response=requests.post(pathao_accesstoken_api)
    
     pathao_api_accesstoken_response_json=pathao_api_accesstoken_response.json()
@@ -224,7 +224,7 @@ def pathao_create_order(request):
 
 
 
-    pathao_accesstoken_api='http://127.0.0.1:8000/courier/pathao/'
+    pathao_accesstoken_api='https://oyster-app-7ulvb.ondigitalocean.app/courier/pathao/'
     pathao_api_accesstoken_response=requests.post(pathao_accesstoken_api)
     pathao_api_accesstoken_response_json=pathao_api_accesstoken_response.json()
     
@@ -318,7 +318,7 @@ def pathao_price_calculation(request):
         }
     print('payload data = ', payload_data)
     #pathao_base_url = settings.PATHAO_BASE_URL
-    pathao_base_url = 'http://127.0.0.1:8000/courier/pathao/'
+    pathao_base_url = 'https://oyster-app-7ulvb.ondigitalocean.app/courier/pathao/'
     print('base url = ', pathao_base_url)
     # issue_token_url = pathao_base_url + "/aladdin/api/v1/issue-token"
     # print('issue_token_url = ', issue_token_url)
