@@ -29,7 +29,8 @@ from accounts.views.user_init import (
 from accounts.views.billing_address import (
     BillingAddressDeleteView,
     BillingAddressView,
-    ShippingAddressView
+    ShippingAddressView,
+    BillingAddressEditView,
 )
 from accounts.views.points_profile import (
     PointLooseView,
@@ -78,6 +79,7 @@ billingAddress_URL = [
     path('billing/address/',BillingAddressView.as_view()),
     path('shipping/address/',ShippingAddressView.as_view()),
     path('billng/address/delete/<int:pk>/', BillingAddressDeleteView.as_view()),
+    path('billing-shipping/edit/<int:pk>/', BillingAddressEditView.as_view()),
 ]
 
 point_URL = [
