@@ -266,7 +266,8 @@ class ForgetPassword__with__Phone(GenericAPIView):
             get_confirm_password = request.data.get('password2')
             getUser = User.objects.get(profile=get_profileID)
             getUser.password = make_password(get_password)
-            getUser.confirm_password = make_password(get_confirm_password)
+            
+            getUser.confirm_password = make_password(get_password)
             getUser.save()
             return Response({
                 'Success':'Password Updated !'
