@@ -101,7 +101,7 @@ class BillingAddressDeleteView(generics.DestroyAPIView):
 # Single Edit View 
 class BillingAddressEditView(generics.UpdateAPIView):
     queryset = BillingAddress.objects.all()
-    serializer_class = BillingAddress
+    serializer_class = Billing_Address_Serialiazer
 
 
 # class ShowBillingAddress(APIView):
