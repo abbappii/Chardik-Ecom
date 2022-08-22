@@ -14,7 +14,8 @@ from orders.views.order_view import (
     OrderUpdateView,
     UserOrderListView,
 
-    orderviewofcustomerAdminview
+    orderviewofcustomerAdminview,
+    todays_OrderList,
 )
 
 # router = routers.DefaultRouter()
@@ -50,7 +51,7 @@ order_URL = [
     path('single/view/<int:pk>/', OrderSingleView.as_view ()),
 
     path('admin/user/order/show/<int:profileID>/', orderviewofcustomerAdminview.as_view()),
-
+    path('todays-order/',todays_OrderList.as_view()),
 ]
 
 urlpatterns += order_URL
