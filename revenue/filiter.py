@@ -56,30 +56,36 @@ from .serializers import RevenueAPI
 
 # last 24 hours 
 class last_24_hour_revenue(generics.ListAPIView):
-    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(hours=24), is_active=True)
+    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(hours=24), \
+         is_active=True).order_by('-created_at')
     serializer_class = RevenueAPI
 
 # daily revenue 
 class daily_revenue(generics.ListAPIView):
-    queryset = RevenueHistory.objects.filter(created_at__gte=now.date(), is_active=True)
+    queryset = RevenueHistory.objects.filter(created_at__gte=now.date(), \
+        is_active=True).order_by('-created_at')
     serializer_class = RevenueAPI
 
 # weekly revenue 
 class weekly_revenue(generics.ListAPIView):
-    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=7), is_active=True)
+    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=7),\
+         is_active=True).order_by('-created_at')
     serializer_class = RevenueAPI
 
 # monthly revenue 
 class monthly_revenue(generics.ListAPIView):
-    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=30), is_active=True)
+    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=30),\
+         is_active=True).order_by('-created_at')
     serializer_class = RevenueAPI
 
 # half yearly 
 class half_yearly_revenue(generics.ListAPIView):
-    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days = 6 * 365 /12 ), is_active=True)
+    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days = 6 * 365 /12 ), \
+         is_active=True).order_by('-created_at')
     serializer_class = RevenueAPI
 
 # yearly 
 class yearly_revenue(generics.ListAPIView):
-    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=365), is_active=True)
+    queryset = RevenueHistory.objects.filter(created_at__gte = now - timedelta(days=365), \
+         is_active=True).order_by('-created_at')
     serializer_class = RevenueAPI
