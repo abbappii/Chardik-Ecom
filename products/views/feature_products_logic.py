@@ -35,7 +35,7 @@ class Banner_createView(generics.CreateAPIView):
 
 # list view 
 class Banner_ListView(generics.ListAPIView):
-    queryset = Banner.objects.filter(is_active=True)
+    queryset = Banner.objects.filter(is_active=True).order_by('-created_at')
     serializer_class = Banner_API
 
 # single view 
