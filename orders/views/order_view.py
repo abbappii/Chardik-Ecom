@@ -32,6 +32,8 @@ from orders.serializers import (
     OrderAPI,
     OrderSerializer,
     CustomerOrdersViewAdminSerializer,
+    TodaysOrderAPI,
+    
 )
 from rest_framework.decorators import permission_classes
 from MainApplication.scripts.phone_SMS_settings import SMS_for_Phone_Message
@@ -145,4 +147,4 @@ class orderviewofcustomerAdminview(generics.ListAPIView):
 
 class todays_OrderList(generics.ListAPIView):
     queryset = Order.objects.filter(created_at__gte = tday).order_by('-created_at')
-    serializer_class = OrderSerializer
+    serializer_class = TodaysOrderAPI
