@@ -139,8 +139,11 @@ class LatestProductList(generics.ListAPIView):
 Top sales product logic
     - using sold_count field
 '''
+import datetime
+tday = datetime.date.today()
+
 class TopSalesProductsListView(generics.ListAPIView):
-    queryset = Products.objects.all().order_by('-sold_count')[:20]
+    queryset = Products.objects.filter(created_at = tday).order_by('-sold_count')[:20]
     serializer_class = ProductsAPI
 
 
