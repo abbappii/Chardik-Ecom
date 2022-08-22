@@ -144,12 +144,17 @@ class TopSalesProductsListView(generics.ListAPIView):
     serializer_class = ProductsAPI
 
 
-import datetime
-tday = datetime.date.today()
+# import datetime
+# tday = datetime.date.today()
 
-class HopSalesProductsDailyListView(generics.ListAPIView):
-    queryset = Products.objects.filter(items__is_active=True, created_at__gte=tday).order_by('-sold_count')[:20]
-    serializer_class = ProductsAPI
+# class HopSalesProductsDailyListView(generics.ListAPIView):
+#     # queryset = Products.objects.filter(items__all_items__created_at__gte=tday, \
+#     #      items__all_items__order_status='Completed').order_by('-sold_count')[:20]
+#     # print('query result:',queryset)
+#     queryset = Products.objects.filter(items__all_items__is_order=True, \
+#          items__all_items__created_at__gte=tday)
+#     print('hello')
+#     serializer_class = ProductsAPI  
 
 
 '''

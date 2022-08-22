@@ -15,7 +15,7 @@ from appFilter.views.products_filter import (
     TopSalesProductsListView, 
     # DailySalesOrderTimeToTimeListView,
     # DailyTotalSales,
-    HopSalesProductsDailyListView,
+    # HopSalesProductsDailyListView,
 )
 
 
@@ -97,7 +97,7 @@ products_URL = [
     path('popular-products/', PopularProductList.as_view()),
     path('latest-products/', LatestProductList.as_view()),
     path('top-sales-product/', TopSalesProductsListView.as_view()),
-    path('hotsale/',HopSalesProductsDailyListView.as_view()),
+    # path('hotsale/',HopSalesProductsDailyListView.as_view()),
 
     # path('low-to-high-price/', PriceLowToHighListView.as_view()),
     # path('high-to-low-price/', PriceHighToLowListView.as_view()),
