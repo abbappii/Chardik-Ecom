@@ -57,6 +57,12 @@ class OrderSerializer(serializers.ModelSerializer):
         # fields = ['id']
         depth = 2
 
+# todays order list 
+class TodaysOrderAPI(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = "__all__"
+        depth = 3
 
 '''
 Order API 

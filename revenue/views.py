@@ -17,7 +17,7 @@ from revenue.models import (
 
 ## Revenue List view 
 class RevenueListView(generics.ListAPIView):
-    queryset = RevenueHistory.objects.filter(is_active=True)
+    queryset = RevenueHistory.objects.filter(is_active=True).order_by('-created_at')
     serializer_class = RevenueAPI
 
 
