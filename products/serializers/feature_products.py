@@ -48,7 +48,8 @@ class Banner_API(serializers.ModelSerializer):
             'banner_ID',
             'name',
             'banner_image',
-            'products'
+            'products',
+            'is_slider'
         ]
     
     # custom method to return the list of banner products 
@@ -71,4 +72,5 @@ class Banner_API_func(serializers.ModelSerializer):
             'id',
             'name',
             'banner_image',
+            'is_slider',
         ]
