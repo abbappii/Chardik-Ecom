@@ -11,6 +11,7 @@ class Banner(InitModels):
     products = models.ManyToManyField(
         'products.Products', related_name='banner_products',
         through='BannerProduct')
+    is_slider = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
