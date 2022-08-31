@@ -44,7 +44,7 @@ class Products(InitModels):
     category = models.ManyToManyField('products.Categories',
         related_name='Category_products')
     sub_category = models.ManyToManyField('products.Sub_Categories',
-        related_name='Sub_category_products')
+        related_name='Sub_category_products',blank=True)
 
     product_name = models.CharField(
         max_length=255, 
@@ -113,11 +113,11 @@ class Products(InitModels):
     is_stock = models.BooleanField(default=True,verbose_name="Is Stock")
 
 
-    def __str__(self) -> str:
-        return self.product_name
+    def __str__(self):
+        return str(self.product_name)
 
     class Meta:
-        verbose_name_plural = "Product"
+        verbose_name_plural = "Product" 
 
 
     # Custom Property 
