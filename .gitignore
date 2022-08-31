@@ -109,7 +109,7 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
+# .env
 .venv
 env/
 venv/
@@ -143,3 +143,4 @@ cython_debug/
 
 # data/*.sqlite3
 # *.sqlite3
+.fuse_hidden0000014f00000006

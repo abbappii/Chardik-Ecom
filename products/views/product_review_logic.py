@@ -1,12 +1,15 @@
 
 from rest_framework import generics
-from products.database.products import ProductReview
-from products.serializers import ProductReviewSerailizers
+from products.database.reviews import ProductReview
+from products.serializers.init_serializers import (
+     ProductReviewSerailizers,
+     ProductReviewListAPI
 
+)
 # Review list view 
 class ProducReviewtListView(generics.ListAPIView):
     queryset = ProductReview.objects.all()
-    serializer_class = ProductReviewSerailizers
+    serializer_class = ProductReviewListAPI
 
 
 # review createview 
@@ -18,7 +21,7 @@ class ProductReviewCreateView(generics.CreateAPIView):
 
 class ProductReviewRetrieveView(generics.RetrieveAPIView):
     queryset = ProductReview.objects.all()
-    serializer_class = ProductReviewSerailizers
+    serializer_class = ProductReviewListAPI
 
 # product editview 
 class ProductReviewEditView(generics.UpdateAPIView):

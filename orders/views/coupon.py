@@ -7,7 +7,7 @@ This file contain of
 from rest_framework import generics
 
 # importing models 
-from orders.database.order import Coupon
+from orders.database.coupon import Coupon
 
 # importng api
 from orders.serializers import CouponAPI
@@ -24,7 +24,7 @@ Coupon Logics
 # view List Function 
 
 class CouponView(generics.ListAPIView):
-    queryset = Coupon.objects.all()
+    queryset = Coupon.objects.all().order_by('-updated_at')
     serializer_class = CouponAPI
 
 
@@ -33,6 +33,7 @@ class CouponView(generics.ListAPIView):
 class CouponSingleView(generics.RetrieveAPIView):
     queryset = Coupon.objects.all()
     serializer_class = CouponAPI
+    lookup_field = 'coupon_name'
 
 
 #  Create View 

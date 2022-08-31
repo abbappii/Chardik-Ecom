@@ -11,9 +11,9 @@ class Slider(InitModels):
         
     slider_image = models.ImageField(upload_to = 'slider_images', blank = True)
 
-    slug = models.SlugField(max_length=100,unique=True)
-    status = models.BooleanField(default=False)
-    position = models.PositiveIntegerField()
+    url_link = models.CharField(max_length=400,null=True,blank=True,verbose_name=
+        "Slider URL Link")
+    position = models.PositiveIntegerField(null=True)
     home_shown = models.BooleanField(default=True)
 
     category = models.ForeignKey(

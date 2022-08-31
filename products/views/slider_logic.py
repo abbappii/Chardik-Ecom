@@ -5,7 +5,7 @@ This file contains of
     - Logics 
 '''
 from products.database.slider import Slider
-from products.serializers import SliderSerializers
+from products.serializers.init_serializers import SliderSerializers
 
 from rest_framework import generics
 
@@ -22,6 +22,7 @@ Slider Logics
 class SliderListView(generics.ListAPIView):
     queryset = Slider.objects.all()
     serializer_class = SliderSerializers
+
 
 # single view 
 class SliderSingleView(generics.RetrieveAPIView):

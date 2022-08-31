@@ -7,8 +7,26 @@ This file contains the Business logics of the followings
 - countries (Create , Update , view , Delete)
 '''
 from rest_framework import generics
-from products.database.init import *
-from products.serializers import *
+from products.database.init_p import *
+from products.serializers.init_serializers import (
+    CategoriesSerializers,
+
+    SubCategoriesListSerializers,
+    SubCategorySerializers,
+    
+    BrandSerializer,
+    CountriesSerializer,
+    # SizeVariationAPI,
+    # WeightVariationAPI,
+    # ColorVariationAPI
+)
+# from products.database.init_p import (
+#     ColorVariation,
+#     WeightVariation,
+#     SizeVariation
+# )
+
+
 
 class CategoriesViewSet(generics.ListCreateAPIView):
     queryset = Categories.objects.all()
@@ -26,13 +44,42 @@ class CategoriesUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
             return self.list(request)
 
 #Sub Category part
-class SubCategoriesViewSet(generics.ListCreateAPIView):
+class SubCategoriesListView(generics.ListAPIView):
     queryset = Sub_Categories.objects.all()
-    serializer_class = SubCategoriesSerializers
+    serializer_class = SubCategoriesListSerializers
 
-class SubCategoriesUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+'''
+subcategory createview
+'''
+class SubCategoryCreateView(generics.CreateAPIView):
     queryset = Sub_Categories.objects.all()
-    serializer_class =SubCategoriesSerializers
+    serializer_class = SubCategorySerializers
+
+'''
+subcategory single view
+'''
+class SubCategorySingleView(generics.RetrieveAPIView):
+    queryset = Sub_Categories.objects.all()
+    serializer_class = SubCategoriesListSerializers
+
+'''
+Sub category update view
+'''
+class SubCategoryUpdateView(generics.UpdateAPIView):
+    queryset = Sub_Categories.objects.all()
+    serializer_class = SubCategorySerializers
+
+'''
+Sub category delete view
+'''
+class SubCategoryDeleteView(generics.DestroyAPIView):
+    queryset = Sub_Categories.objects.all()
+    serializer_class = SubCategorySerializers
+
+
+# class SubCategoriesUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Sub_Categories.objects.all()
+#     serializer_class =SubCategoriesSerializers
 
 
 #Brnad 
@@ -52,3 +99,43 @@ class CountryView(generics.ListCreateAPIView):
 class CountryUpdateDelete(generics.RetrieveUpdateDestroyAPIView):
     queryset = Countreies.objects.all()
     serializer_class =CountriesSerializer
+
+
+
+'''
+Color Variation 
+    - add
+    - delete
+    - view
+    - update
+'''
+
+# class ColorVariationListAPIview(generics.ListCreateAPIView):
+#     queryset = ColorVariation.objects.filter(is_active=True)
+#     serializer_class = ColorVariationAPI
+
+# class ColorVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = ColorVariation.objects.filter(is_active=True)
+#     serializer_class = ColorVariationAPI
+
+
+# ## Size View 
+
+# class SizeVariationListAPIview(generics.ListCreateAPIView):
+#     queryset = SizeVariation.objects.filter(is_active=True)
+#     serializer_class = SizeVariationAPI
+
+# class SizeVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = SizeVariation.objects.filter(is_active=True)
+#     serializer_class = SizeVariationAPI
+
+# ## Weight Variation View
+
+# class WeightVariationListAPIview(generics.ListCreateAPIView):
+#     queryset = WeightVariation.objects.filter(is_active=True)
+#     serializer_class = WeightVariationAPI
+
+
+# class WeightVariationSingleAPIview(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = WeightVariation.objects.filter(is_active=True)
+#     serializer_class = WeightVariationAPI

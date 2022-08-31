@@ -11,6 +11,8 @@ from accounts.models.profile import Profile
 from django.http import JsonResponse
 
 
+# def classPermission()
+
 # Is Admin Permission 
 
 class IsAdmin(BasePermission):
@@ -18,8 +20,10 @@ class IsAdmin(BasePermission):
     def has_permission(self, request, view):
 
         try:
+            # print(request.user.profile.get_permission_id)
             return bool(request.user.is_authenticated and request.user.profile \
-                 and 1 in request.user.profile.get_permission() )
+                 and 1 in request.user.profile.get_permission_id)
+            
         except Profile.DoesNotExist:
             return JsonResponse({'Error':'Sorry User is not an Admin'})
 
@@ -33,7 +37,7 @@ class IsManager(BasePermission):
 
         try:
             return bool(request.user.is_authenticated and request.user.profile \
-                and 2 in request.user.profile.get_permission() )
+                and 2 in request.user.profile.get_permission)
         except Profile.DoesNotExist:
             return JsonResponse({'Error':'Sorry User is not a Manager'})
 
@@ -47,7 +51,7 @@ class IsStuff(BasePermission):
 
         try:
             return bool(request.user.is_authenticated and request.user.profile \
-                and 3 in request.user.profile.get_permission() )
+                and 3 in request.user.profile.get_permission)
         except Profile.DoesNotExist:
             return JsonResponse({'Error':'Sorry User is not a Stuff'})
 
@@ -60,6 +64,6 @@ class IsCustomer(BasePermission):
 
         try:
             return bool(request.user.is_authenticated and request.user.profile \
-                and 4 in request.user.profile.get_permission() )
+                and 4 in request.user.profile.get_permission_id)
         except Profile.DoesNotExist:
             return JsonResponse({'Error':'Sorry User is not a Customer'})

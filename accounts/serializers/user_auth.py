@@ -52,8 +52,18 @@ class LoginSerializer(serializers.ModelSerializer):
 class UserProfileSeriliazer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields= ['id', 'full_name','address','city','zipcode','country',
-        'phone','date_joined']
+        # fields = '__all__'
+        fields= ['id', 'full_name','dob','gender','bio','profile_picture','address','city','zipcode','country',
+        'phone','points_gained']
+
+# User Profile list serializers 
+class UserProfileListSeriliazer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        # fields= ['id', 'user','full_name', 'phone']
+        fields = "__all__"
+        depth = 1
+
 
 
 # User passwordchange Serializer 

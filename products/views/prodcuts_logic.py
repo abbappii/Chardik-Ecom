@@ -5,25 +5,42 @@ This file contains the Business logics of the followings
 - Products Attribute (Create , Update , view , Delete)
 - Product Images (Create , Update , view , Delete)
 '''
-from django.shortcuts import redirect
+
 from rest_framework import generics
-from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FileUploadParser,FormParser
 from utils.util import *
-from products.database.products import Products 
-from products.serializers import *
+# from products.database.products import Products, Variation_with_Price_variant 
+from products.serializers.init_serializers import *
+from products.serializers.product_serializers import (
+    ProductsSerializers,Product_imagesSerializer,ProductListAPI
+)
  
 
 #ProductsView
-
 class ProductListViewSet(generics.ListAPIView):
+    queryset = Products.objects.prefetch_related('product_image','reviews').order_by('-created_at')
+    serializer_class = ProductListAPI
+
+# class ProductListViewSet(generics.ListAPIView):
+#     queryset = Products.objects.prefetch_related('product_image','reviews').\
+#         exclude(flash_product__is_active=True)
+#     serializer_class = ProductListAPI
+
+# product list admin view 
+# class ProductListViewAdmin(generics.ListAPIView):
+#     queryset = Products.objects.prefetch_related('product_image','reviews')
+#     serializer_class = ProductListAPI
+
+
+# product create view 
+class ProductCreateView(GenericAPIView):
+    parser_classes = (MultiPartParser, FormParser)
     queryset = Products.objects.all()
     serializer_class = ProductsSerializers
 
-class ProductCreateView(APIView):
-    parser_classes = (MultiPartParser, FormParser)
 
     def post(self, request,format=None):
         data = request.data
@@ -45,8 +62,13 @@ class ProductCreateView(APIView):
 class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductsSerializers
-    lookup_field = 'slug'
+    # lookup_field = 'slug'
 
+
+## Product Single View 
+class ProductSingleView(generics.RetrieveAPIView):
+    queryset = Products.objects.prefetch_related('product_image','reviews')
+    serializer_class = ProductListAPI
 
 # rendrer html form 
 # class ProductListViewSet(APIView):
@@ -105,4 +127,45 @@ class ProductRetUpDesViewSet(generics.RetrieveUpdateDestroyAPIView):
 #             return Response({'serializer': serializer, 'product': product})
 #         serializer.save()
 #         return redirect('products')
+
+
+'''
+Product Variation API
+    - Create
+    - Update
+    - Delete
+    - Single View
+'''
+
+
+# # Product Variation Create
+# class ProductVariationCreate(generics.CreateAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationAPI
+
+
+# # product Variation Retrieve
+# class ProductVariationSingleView(generics.RetrieveAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationListAPI
+
+
+# # Product Variation delete
+# class ProductVariationSingle_updateView(generics.UpdateAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationAPI
+
+
+# # Product Delete View
+# class ProductVariation_DeleteView(generics.DestroyAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationListAPI
+
+# class ProductVariationList(generics.ListAPIView):
+#     queryset = Variation_with_Price_variant.objects.all()
+#     serializer_class = VariationListAPI
+
+
+
+
 

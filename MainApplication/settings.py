@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import os
 
@@ -24,7 +23,14 @@ App_Install =[
     'orders.apps.OrdersConfig',
     'products.apps.ProductsConfig',
     'inventory.apps.InventoryConfig',
-    'pos_manager.apps.PosManagerConfig'
+    'initapp.apps.InitappConfig',
+    'courier.apps.CourierConfig',
+    'blog.apps.BlogConfig',
+    'pointsofsale_manager.apps.PointsofsaleManagerConfig',
+    'flash_sale.apps.FlashSaleConfig',
+    'revenue.apps.RevenueConfig',
+    'payment.apps.PaymentConfig',
+
 ]
 
 Third_Party = [
@@ -33,6 +39,7 @@ Third_Party = [
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
     # 'corsheaders',
+    
 ]
 
 Default_APPS = [
@@ -163,6 +170,11 @@ REDOC_SETTINGS = {
 #     'http://localhost:3000',
 # )
 
+
+store_id = 'techd62f54d1f0091c'
+Api_key = 'techd62f54d1f0091c@ssl'
+
+
 # CORS_ALLOWED_ORIGINS = [
 #     "http://localhost:3000",
 # ]
@@ -179,21 +191,33 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ]
   
 }
 
 
 
+# Email Configuration
+EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASS')
+EMAIL_USE_TLS = True
+
+
 '''
 Use of Django Simple JWT  Token Authentication 
-
 '''
 
 from datetime import timedelta
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=10),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': True,
@@ -222,4 +246,3 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
-

@@ -1,8 +1,13 @@
 
 from inventory.models import Purchase
-from inventory.serializer import PurchaseSerialiers
+from inventory.serializer import (
+    PurchaseSerialiers, 
+    PurchaseCreateSerializers,
+    SupplierDueReportsAPI
+    )
 from rest_framework import generics
 
+from rest_framework.response import Response
 
 # Create your views here.
 '''
@@ -13,7 +18,7 @@ Purchase Edit Delete and Update class
 # view List Function 
 
 class PurchaseView(generics.ListAPIView):
-    queryset = Purchase.objects.all()
+    queryset = Purchase.objects.all().order_by('-updated_at')
     serializer_class = PurchaseSerialiers
 
 
@@ -28,7 +33,7 @@ class PurchaseSingleView(generics.RetrieveAPIView):
 
 class PurchaseCreateView(generics.CreateAPIView):
     queryset = Purchase.objects.all()
-    serializer_class = PurchaseSerialiers
+    serializer_class = PurchaseCreateSerializers
 
 
 # delete View 
@@ -39,8 +44,16 @@ class PurchaseDeleteView(generics.DestroyAPIView):
 
 
 # Single Edit View 
-
-class PurchaseEditView(generics.UpdateAPIView):
+class PurchaseEditView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Purchase.objects.all()
-    serializer_class = PurchaseSerialiers
+    serializer_class = PurchaseCreateSerializers
+   
+#### Due supplier view 
+class SupplierDue_ReportsView(generics.ListAPIView):
+    queryset = Purchase.objects.filter(is_active=True).order_by('-created_at')
+    serializer_class = SupplierDueReportsAPI
 
+# supplier due delte view 
+class SupplierDue_ReportsDeleteView(generics.DestroyAPIView):
+    queryset = Purchase.objects.filter(is_active=True)
+    serializer_class = SupplierDueReportsAPI
