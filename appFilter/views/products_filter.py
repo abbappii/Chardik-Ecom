@@ -34,7 +34,7 @@ from appFilter.serializers import (
     ProductsAPI,CategoryBaseProductsAPI, BranBasedApi, CountryBaseAPI
 )
 
-from orders.database.cart_order import Order
+from orders.database.cart_order import Order,OrderItem
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -144,23 +144,29 @@ class TopSalesProductsListView(generics.ListAPIView):
     serializer_class = ProductsAPI
 
 
-# import datetime
-# tday = datetime.date.today()
+import datetime
+tday = datetime.date.today()
 
-# class HopSalesProductsDailyListView(generics.ListAPIView):
-#     # queryset = Products.objects.filter(items__all_items__created_at__gte=tday, \
-#     #      items__all_items__order_status='Completed').order_by('-sold_count')[:20]
-#     # print('query result:',queryset)
-#     queryset = Products.objects.filter(items__all_items__is_order=True, \
-#          items__all_items__created_at__gte=tday)
-#     print('hello')
-#     serializer_class = ProductsAPI  
+class HotSalesProductsDailyListView(APIView):
+    def get(self,request):
+        print('hello')
+        queryset = Products.objects.filter(items__created_at__gte=tday \
+        ).order_by('-created_at')[:20]
+        print(queryset)
+        print('todays date and time is: ',tday)
+        return Response(queryset)
 
+
+class Hot_sale_today(generics.ListAPIView):
+    print('hello')
+    queryset = Products.objects.filter(items__created_at__gte = tday).order_by('-created_at')[:20]
+    print(queryset)
+    print('todays date and time is: ',tday)
+    serializer_class = ProductsAPI
 
 '''
 Daily sales logic
 '''
-import datetime
 
 # class DailySalesOrderTimeToTimeListView(APIView):
 #     def get(self,request):
