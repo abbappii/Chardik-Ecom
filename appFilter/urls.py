@@ -15,7 +15,8 @@ from appFilter.views.products_filter import (
     TopSalesProductsListView, 
     # DailySalesOrderTimeToTimeListView,
     # DailyTotalSales,
-    # HopSalesProductsDailyListView,
+    HotSalesProductsDailyListView,
+    Hot_sale_today,
 )
 
 
@@ -97,19 +98,11 @@ products_URL = [
     path('popular-products/', PopularProductList.as_view()),
     path('latest-products/', LatestProductList.as_view()),
     path('top-sales-product/', TopSalesProductsListView.as_view()),
-    # path('hotsale/',HopSalesProductsDailyListView.as_view()),
 
-    # path('low-to-high-price/', PriceLowToHighListView.as_view()),
-    # path('high-to-low-price/', PriceHighToLowListView.as_view()),
-    # path('daily/sales/timetotime/list/', DailySalesOrderTimeToTimeListView.as_view()),
-    # path('total-sales-price-daily/',DailyTotalSales.as_view()),
+    # path('hotsale/', HotSalesProductsDailyListView.as_view()),
+    
+    path('hot-sales/',Hot_sale_today.as_view()),
 
-    # path('hour/',HourlySales.as_view()),
-    # path('last24/hours/sales/', Last24hoursSales.as_view()),
-    # path('weekly/sales/',WeeklySalesView.as_view()),
-    # path('monthly/sales/',MonthlySasleView.as_view()),
-    # path('half/yearly/sales/', HalfYearlySalesView.as_view()),
-    # path('yearly/sales/', YearlySalesView.as_view()),
 ]
 
 sales_param_URL = [ 
