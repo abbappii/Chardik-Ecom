@@ -6,7 +6,7 @@ from products.serializers.product_serializers import (
     ProductListAPI
 )
 # '''
-# feature product 
+# banner product 
 #         - create 
 #         - update 
 # '''
@@ -21,7 +21,7 @@ class Banner_Product_API(serializers.ModelSerializer):
 
 
 # '''
-# feature product nested purpose
+# banner product nested purpose
 #         
 # '''
 class BannerProduct_API_show(serializers.ModelSerializer):
@@ -47,6 +47,7 @@ class Banner_API(serializers.ModelSerializer):
             'id',
             'banner_ID',
             'name',
+            'title',
             'banner_image',
             'products',
             'is_slider'
@@ -71,6 +72,7 @@ class Banner_API_func(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'title',
             'banner_image',
             'is_slider',
         ]
