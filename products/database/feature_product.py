@@ -6,6 +6,12 @@ from accounts.models import InitModels
 # product filter model 
 class Banner(InitModels):
     name = models.CharField(max_length=255, unique=True)
+
+    title = models.CharField(
+        max_length=180, 
+        verbose_name="Banner Title",
+        null = True
+        )
     banner_image = models.ImageField(upload_to = 'product_filter_image')
 
     products = models.ManyToManyField(
