@@ -42,3 +42,10 @@ class Forgot_pass_web_view(serializers.ModelSerializer):
     class Meta:
         model = Profile 
         fields = ['phone']
+    
+class Forgot_pass_web_view_verify_otp(serializers.ModelSerializer):
+    otp = serializers.CharField()
+    
+    class Meta:
+        model = Profile
+        fields = ['otp']

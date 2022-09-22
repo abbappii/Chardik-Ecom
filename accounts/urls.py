@@ -24,7 +24,9 @@ from accounts.views.user_init import (
     ForgetPassword__with__Phone,ChangePasswordInstant, 
     UserProfileList,
     ProfileSingle_view,
-    ForgetPassword__with__Phone_for_web_view
+    ForgetPassword__with__Phone_for_web_view_otp_send,
+    ForgetPassword__with__Phone_for_web_view_otp_verify
+
 )
 
 from accounts.views.billing_address import (
@@ -54,7 +56,9 @@ user_URL = [
     path('change/password/',ChangePasswordInstant.as_view()),
     path('profile/list/',UserProfileList.as_view()),
     path('profile/single/view/<int:pk>/',ProfileSingle_view.as_view()),
-    path('forgot-pass-phone/',ForgetPassword__with__Phone_for_web_view.as_view(),name='forgot_from_web_pass'),
+    path('forgot-pass-phone/',ForgetPassword__with__Phone_for_web_view_otp_send.as_view()),
+
+    path('forgot-pass-otp-verify/',ForgetPassword__with__Phone_for_web_view_otp_verify.as_view()),
 
 ]
 
