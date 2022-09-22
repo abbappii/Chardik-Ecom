@@ -23,7 +23,8 @@ from accounts.views.user_init import (
     VerifyOTP,
     ForgetPassword__with__Phone,ChangePasswordInstant, 
     UserProfileList,
-    ProfileSingle_view
+    ProfileSingle_view,
+    ForgetPassword__with__Phone_for_web_view
 )
 
 from accounts.views.billing_address import (
@@ -53,6 +54,8 @@ user_URL = [
     path('change/password/',ChangePasswordInstant.as_view()),
     path('profile/list/',UserProfileList.as_view()),
     path('profile/single/view/<int:pk>/',ProfileSingle_view.as_view()),
+    path('forgot-pass-phone/',ForgetPassword__with__Phone_for_web_view.as_view(),name='forgot_from_web_pass'),
+
 ]
 
 permission_URL =[

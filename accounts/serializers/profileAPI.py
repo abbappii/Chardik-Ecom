@@ -37,3 +37,8 @@ class GivePermissionViewAPI(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['id','full_name','permission']
+
+class Forgot_pass_web_view(serializers.ModelSerializer):
+    class Meta:
+        model = Profile 
+        fields = ['phone']

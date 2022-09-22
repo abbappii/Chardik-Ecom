@@ -26,7 +26,7 @@ from MainApplication.scripts.permission import (
 # importing API
 from accounts.serializers.user_auth import LoginSerializer, UserProfileListSeriliazer
 from accounts.serializers.profileAPI import (
-    UserProfileSeriliazers
+    UserProfileSeriliazers, Forgot_pass_web_view
 )
 
 # importing models 
@@ -278,7 +278,53 @@ class ForgetPassword__with__Phone(GenericAPIView):
                 'Error':'Profile Didn`t Match'
             },status=status.HTTP_204_NO_CONTENT)
 
-        
+
+      
+#for web forget password
+class ForgetPassword__with__Phone_for_web_view(GenericAPIView):
+    serializer_class = Forgot_pass_web_view 
+    def post(self,request):
+        phone = request.data.get('phone')
+        if Profile.objects.filter(phone=phone):
+            getProfile_ID = Profile.objects.filter(phone=phone).first().id
+            SMS_of_Phone_Verification(phone,getProfile_ID).start()
+
+        else:
+            return Response({
+                'Error':'Number Didnt Found'
+            },status=status.HTTP_204_NO_CONTENT)  
+
+        profile = Profile.objects.get(id=getProfile_ID)
+        get_otp = request.data.get('otp')
+
+        if profile.phone_otp == get_otp :
+            return Response(
+                {"Success":"OTP Matched"},
+                status=status.HTTP_200_OK)
+        else:
+            return Response(
+                {'Error':'OTP did not Match'},
+                status=status.HTTP_406_NOT_ACCEPTABLE)
+    
+    def put(self,request):
+        get_profileID = request.data.get('profile_ID')
+
+        if User.objects.filter(profile=get_profileID).first():
+            get_password = request.data.get('password1')
+            get_confirm_password = request.data.get('password2')
+            getUser = User.objects.get(profile=get_profileID)
+            getUser.password = make_password(get_password)
+            getUser.confirm_password = make_password(get_confirm_password)
+            getUser.save()
+            return Response({
+                'Success':'Password Updated !'
+            },status=status.HTTP_205_RESET_CONTENT)
+
+        else:
+            return Response({
+                'Error':'Profile Didn`t Match'
+            },status=status.HTTP_204_NO_CONTENT)
+
 
 ## Change password while User is  log-in
 
